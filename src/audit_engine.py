@@ -138,47 +138,82 @@ def reprice(spec, units, line_items, resolution):
                         "note": "no_rate_in_force", "alt": {}, "disallowed": None})
             continue
 
-        standalone = rate
-
-        # (a) bundled rate substitution
+        # The whole adjustment chain, as a function of which facility and
+        # plan-tier column is used. Evaluating it across the grid gives us the
+        # rate this line would carry under every other column, with the same
+        # premium and discount decisions applied — so a hospital that billed the
+        # right service at the wrong column is identified as exactly that,
+        # rather than disappearing into a generic price mismatch.
         partner, bundled_rate = spec.bundle_partner(r.service)
-        if partner and partner in day_services.get((r.patient_id, r.service_date), ()):
-            rate = bundled_rate
+        bundled = bool(partner and partner in day_services.get((r.patient_id, r.service_date), ()))
+        start_rate = bundled_rate if bundled else rate
+        if bundled:
             note.append("bundle")
-        alt["standalone"] = standalone
 
-        # (b) facility multiplier, (c) plan-tier multiplier
-        for kind, table, key in (("facility", spec.facility_multipliers, r.facility_code),
-                                 ("tier", spec.tier_multipliers, r.plan_tier)):
-            m = table.get(r.service, {}).get(key)
-            if m is not None:
-                rate = apply(rate, m)
-                alt["standalone"] = apply(alt["standalone"], m)
-                note.append(f"{kind} x{m}")
-
-        alt["no_premium"] = rate
-
-        # (d) premium or uplift
+        facs = spec.facility_multipliers.get(r.service, {})
+        tiers = spec.tier_multipliers.get(r.service, {})
         prem = spec.threshold_premiums.get(r.service)
-        if prem:
-            alt["with_threshold"] = uplift(rate, prem[1])
-            if daily_qty[(r.patient_id, r.service, r.service_date)] > prem[0]:
-                rate = alt["with_threshold"]; note.append(f"threshold +{prem[1]}")
         nbd = spec.nbd_uplifts.get(r.service)
-        if nbd is not None:
-            alt["with_nbd"] = uplift(rate, nbd)
-            if not pd.isna(r.service_date) and r.service_date.weekday() >= 5:
-                rate = alt["with_nbd"]; note.append(f"non-business-day +{nbd}")
 
-        alt["no_discount"] = rate
-
-        # (e) cumulative volume discount, on utilisation *prior to* this line
-        discounts = spec.volume_discounts.get(r.service, [])
-        for threshold, frac in discounts:
-            alt.setdefault("with_discount", discount(rate, frac))
+        use_threshold = bool(prem) and daily_qty[(r.patient_id, r.service, r.service_date)] > prem[0]
+        use_nbd = nbd is not None and not pd.isna(r.service_date) and r.service_date.weekday() >= 5
+        use_discount = None
+        for threshold, frac in spec.volume_discounts.get(r.service, []):
             if cumulative[r.service] > threshold:
-                rate = discount(rate, frac); note.append(f"volume -{frac}")
-                break                        # deepest threshold first; never compounded
+                use_discount = frac
+                break                    # deepest threshold first; never compounded
+
+        def chain(base, fv, tv, *, premium=True, discount_=True, bundle=True):
+            """Price one line under a chosen set of readings, rounding at each step."""
+            v = base if bundle else standalone_base
+            if fv is not None:
+                v = apply(v, fv)
+            if tv is not None:
+                v = apply(v, tv)
+            if premium:
+                if use_threshold:
+                    v = uplift(v, prem[1])
+                if use_nbd:
+                    v = uplift(v, nbd)
+            if discount_ and use_discount is not None:
+                v = discount(v, use_discount)
+            return v
+
+        standalone_base = rate
+        fv, tv = facs.get(r.facility_code), tiers.get(r.plan_tier)
+        rate = chain(start_rate, fv, tv)
+
+        if bundled:
+            note.append("")                                  # keep note ordering stable
+        if fv is not None:
+            note.append(f"facility x{fv}")
+        if tv is not None:
+            note.append(f"tier x{tv}")
+        if use_threshold:
+            note.append(f"threshold +{prem[1]}")
+        if use_nbd:
+            note.append(f"non-business-day +{nbd}")
+        if use_discount is not None:
+            note.append(f"volume -{use_discount}")
+        note = [n for n in note if n]
+
+        # Counterfactuals: what the line would cost under each other reading.
+        alt["standalone"] = chain(start_rate, fv, tv, bundle=False)
+        alt["no_premium"] = chain(start_rate, fv, tv, premium=False)
+        alt["no_discount"] = chain(start_rate, fv, tv, discount_=False)
+        if prem and not use_threshold:
+            alt["with_threshold"] = uplift(chain(start_rate, fv, tv, premium=False, discount_=False), prem[1])
+        if nbd is not None and not use_nbd:
+            alt["with_nbd"] = uplift(chain(start_rate, fv, tv, premium=False, discount_=False), nbd)
+        if use_discount is None:
+            for _, frac in spec.volume_discounts.get(r.service, []):
+                alt["with_discount"] = discount(chain(start_rate, fv, tv), frac)
+                break
+        if facs or tiers:
+            alt["grid"] = {(fk, tk): chain(start_rate, facs.get(fk), tiers.get(tk))
+                           for fk in (facs or {r.facility_code: None})
+                           for tk in (tiers or {r.plan_tier: None})}
+            alt["grid_cell"] = (r.facility_code, r.plan_tier)
 
         # Daily quantity cap: units beyond the cap are not billable.
         #

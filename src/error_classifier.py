@@ -63,8 +63,38 @@ def classify_line(row, spec):
           and billed in {alt.get("with_threshold"), alt.get("with_nbd")}):
         found.append("premium_incorrectly_applied")
     else:
-        found.append("unit_price_mismatch")
+        found.extend(_wrong_grid_cell(billed, alt) or ["unit_price_mismatch"])
     return found
+
+
+def _wrong_grid_cell(billed, alt):
+    """Did the provider price the right service against the wrong grid column?
+
+    Hospitals with a facility x plan-tier grid (hospital 5) admit an error that
+    hospital 1 cannot express: the correct service, correctly adjusted, but read
+    off the wrong column. The engine prices the line under every column, so we
+    can name which one was used instead of falling back on a generic mismatch.
+
+    These two categories extend the hospital_1 label vocabulary. That vocabulary
+    has no word for them because hospital 1 has no multipliers, and the
+    submission format allows a free-text category. Reporting them as
+    `unit_price_mismatch` would be true but less useful to a reviewer, who would
+    have to rediscover the pattern by hand.
+    """
+    grid, cell = alt.get("grid"), alt.get("grid_cell")
+    if not grid or not cell:
+        return []
+    right_f, right_t = cell
+    for (fk, tk), value in grid.items():
+        if value != billed or (fk, tk) == cell:
+            continue
+        out = []
+        if fk != right_f:
+            out.append("wrong_facility_multiplier")
+        if tk != right_t:
+            out.append("wrong_tier_multiplier")
+        return out
+    return []
 
 
 def classify(priced, spec):

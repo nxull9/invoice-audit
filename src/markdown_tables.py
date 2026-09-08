@@ -47,6 +47,28 @@ def table(body):
     return rows, header
 
 
+def columns(rows, header, *names):
+    """Pull named columns out of a table by header text, not by position.
+
+    Hospital 1's bundle table is `Service A | Service B | Rate A | Rate B`;
+    hospital 5's is `Service A | Rate A | Service B | Rate B`. Reading by
+    position silently swaps a service name for a price. Reading by header does
+    not, and fails loudly if a column is missing.
+    """
+    idx = []
+    for want in names:
+        matches = [i for i, h in enumerate(header) if want.lower() in h.lower()]
+        if not matches:
+            raise KeyError(f"column {want!r} not in {header}")
+        idx.append(matches[0])
+    return [[r[i] for i in idx] for r in rows]
+
+
+def decimal_val(text):
+    """'1.08' -> Decimal('1.08'). Via str, never via float."""
+    return Decimal(str(text).strip())
+
+
 def find(secs, *keywords):
     """The body of the first section whose heading contains all keywords."""
     for title, body in secs.items():
