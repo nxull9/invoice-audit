@@ -1,0 +1,73 @@
+"""Reading the tabular contracts.
+
+Hospitals 1, 3, 4 and 5 state their rules in markdown tables under numbered
+headings. Regex is the right tool for that: it is exact, it is fast, and a
+reviewer can check it against the source document by eye. The LLM is reserved
+for hospital 2, which has no tables at all.
+
+`sections()` splits a document on its headings so that a table is always read
+in the context of the clause that introduces it — this matters because several
+tables share a column layout but mean different things.
+"""
+
+import re
+from decimal import Decimal
+
+_HEADING = re.compile(r"^#{2,3}\s+(.*)$", re.M)
+
+
+def sections(text):
+    """{heading: body} for every '##' or '###' heading in the document."""
+    marks = [(m.start(), m.group(1).strip()) for m in _HEADING.finditer(text)]
+    out = {}
+    for i, (pos, title) in enumerate(marks):
+        end = marks[i + 1][0] if i + 1 < len(marks) else len(text)
+        out[title] = text[pos:end]
+    return out
+
+
+def table(body):
+    """Every data row of the markdown table(s) in `body`, as lists of cells.
+
+    The header row and the `|---|` separator are dropped. A cell of '—' (the
+    em dash the contracts use for "not applicable") becomes None.
+    """
+    rows, header = [], None
+    for line in body.splitlines():
+        line = line.strip()
+        if not line.startswith("|"):
+            continue
+        if set(line) <= set("|-: "):
+            continue
+        cells = [c.strip() for c in line.strip("|").split("|")]
+        if header is None:
+            header = cells                    # first row of a table is its header
+            continue
+        rows.append([None if c in {"—", "-", ""} else c for c in cells])
+    return rows, header
+
+
+def find(secs, *keywords):
+    """The body of the first section whose heading contains all keywords."""
+    for title, body in secs.items():
+        low = title.lower()
+        if all(k.lower() in low for k in keywords):
+            return body
+    return None
+
+
+def cents(text):
+    """'GBP 1,301.25' -> 130125. Exact: parsed as Decimal, never as float."""
+    digits = re.sub(r"[^0-9.]", "", text)
+    return int((Decimal(digits) * 100).to_integral_value())
+
+
+def fraction(text):
+    """'+20%' -> 0.20, '12%' -> 0.12. Returned as Decimal for exact arithmetic."""
+    return Decimal(re.sub(r"[^0-9.]", "", text)) / Decimal(100)
+
+
+def quantity(text):
+    """'6 days', 'more than 10 items', '8 visits' -> 6, 10, 8."""
+    m = re.search(r"(\d+)", text)
+    return int(m.group(1)) if m else None
