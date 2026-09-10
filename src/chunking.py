@@ -86,3 +86,41 @@ def convention_checklist(text):
         m = re.search(pattern, body)
         out[key] = m.group(0).strip() if m else None
     return out
+
+
+# --------------------------------------------------------------------------
+# Tabular contracts, batched
+# --------------------------------------------------------------------------
+# Hospital 3's rate schedule is 118 rows. Asking for all of them in one reply needs
+# roughly 9,400 output tokens against a 4,096 limit, so the JSON would be truncated
+# mid-object and the model would score zero for a reason unrelated to whether it can
+# read. Batching keeps every reply comfortably inside the limit.
+#
+# This is a real constraint of the task rather than a workaround: output length is a
+# harder ceiling than context length, and a system that ignores it fails silently on
+# exactly the largest documents.
+
+TABLE_BATCH = 15
+
+
+def table_chunks(text, markers, batch_size=TABLE_BATCH, min_rows=3):
+    """Rate tables from a tabular contract, split into batches of `batch_size` rows.
+
+    Each batch keeps the table header so it remains readable on its own.
+    """
+    out = []
+    for title, body in sections(text).items():
+        if not any(m.lower() in title.lower() for m in markers):
+            continue
+        lines = [l for l in body.splitlines() if l.strip().startswith("|")]
+        if len(lines) < min_rows + 2:
+            continue
+        header, rows = lines[:2], lines[2:]
+        for start in range(0, len(rows), batch_size):
+            batch = rows[start:start + batch_size]
+            out.append({
+                "title": f"{title} [rows {start + 1}-{start + len(batch)}]",
+                "text": "\n".join(header + batch),
+                "n_clauses": len(batch),
+            })
+    return out
