@@ -1,44 +1,40 @@
 """The two contract facts that are free to extract.
 
 `service_date_out_of_window` and `contract_number_mismatch` need nothing from a
-contract except its number and its term. Every one of the five contracts states
-both in a metadata block in the first ten lines, in the same format, so a regex
-is the honest tool here — no LLM, no ambiguity, and it is trivially verifiable
-by eye against the source document.
+contract except its number and its term. All five contracts state both in a
+metadata block in the first ten lines, in the same format, so a regex is the honest
+tool: exact, fast, and checkable by eye against the source document.
 """
 
+import glob
+import os
 import re
 from datetime import datetime
 
-from src.config import CONTRACTS
-
-_NUM = re.compile(r"\*\*Contract number:\*\*\s*(\S+)")
-_FROM = re.compile(r"\*\*Effective from:\*\*\s*(.+)")
-_TO = re.compile(r"\*\*Effective to:\*\*\s*(.+)")
+NUMBER = re.compile(r'\*\*Contract number:\*\*\s*(\S+)')
+FROM   = re.compile(r'\*\*Effective from:\*\*\s*(.+)')
+TO     = re.compile(r'\*\*Effective to:\*\*\s*(.+)')
 
 
-def _date(text):
-    """Parse the '1 January 2024' form used in every contract header."""
-    return datetime.strptime(text.strip(), "%d %B %Y").date()
-
-
-def read_header(hospital):
+def read_header(data_root, hospital):
     """Return {contract_number, effective_from, effective_to} for one hospital.
 
-    Where a contract is split across several documents (hospital_3), every
-    document repeats the same header; we read them all and assert they agree,
-    so a disagreement surfaces as an error rather than a silent first-match win.
+    Hospital 3's contract is three documents. Each repeats the same header, so we
+    read them all and require agreement — a disagreement becomes an error rather
+    than a silent first-match win.
     """
-    docs = sorted(( CONTRACTS / hospital ).glob("*.md"))
+    docs = sorted(glob.glob(f'{data_root}/contracts/{hospital}/*.md'))
     seen = set()
     for path in docs:
-        text = path.read_text()
-        num, frm, to = _NUM.search(text), _FROM.search(text), _TO.search(text)
+        text = open(path).read()
+        num, frm, to = NUMBER.search(text), FROM.search(text), TO.search(text)
         if not (num and frm and to):
             continue
-        seen.add((num.group(1), _date(frm.group(1)), _date(to.group(1))))
+        seen.add((num.group(1),
+                  datetime.strptime(frm.group(1).strip(), '%d %B %Y').date(),
+                  datetime.strptime(to.group(1).strip(), '%d %B %Y').date()))
     if len(seen) != 1:
-        raise ValueError(f"{hospital}: headers disagree across documents: {seen}")
+        raise ValueError(f'{hospital}: headers disagree across documents: {seen}')
     number, start, end = seen.pop()
-    return {"contract_number": number, "effective_from": start, "effective_to": end,
-            "documents": [p.name for p in docs]}
+    return {'contract_number': number, 'effective_from': start,
+            'effective_to': end, 'documents': [os.path.basename(d) for d in docs]}
