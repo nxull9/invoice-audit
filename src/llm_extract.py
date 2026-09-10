@@ -37,6 +37,41 @@ def _pct(value):
     return d / Decimal(100) if d > 1 else d
 
 
+def _read_rates(item):
+    """Accept v1's single `rate_cents` and v2's dated `rates` list.
+
+    v1 could not express hospital 3's amended services, which are priced by two dated
+    columns. Both shapes are read so recordings made under either prompt remain
+    replayable and the two can be compared directly.
+    """
+    from datetime import date as _date
+
+    def parse_day(value):
+        if not value or not isinstance(value, str):
+            return None
+        try:
+            y, m, d = (int(x) for x in value.strip()[:10].split("-"))
+            return _date(y, m, d)
+        except (ValueError, TypeError):
+            return None
+
+    listed = item.get("rates")
+    if isinstance(listed, list) and listed:
+        out = []
+        for entry in listed:
+            if not isinstance(entry, dict):
+                continue
+            cents = _as_int(entry.get("rate_cents", entry.get("cents")))
+            if cents and cents > 0:
+                out.append({"cents": cents,
+                            "valid_from": parse_day(entry.get("valid_from")),
+                            "valid_to": parse_day(entry.get("valid_to"))})
+        return out
+
+    cents = _as_int(item.get("rate_cents"))
+    return [{"cents": cents, "valid_from": None, "valid_to": None}] if cents and cents > 0 else []
+
+
 def validate_service(item, source_text=None):
     """Check one extracted service. Returns (record, [reasons rejected])."""
     problems = []
@@ -48,9 +83,9 @@ def validate_service(item, source_text=None):
     if basis not in VALID_BASES:
         problems.append(f"unit_basis {basis!r} not one of {sorted(VALID_BASES)}")
 
-    rate = _as_int(item.get("rate_cents"))
-    if rate is None or rate <= 0:
-        problems.append(f"rate_cents {item.get('rate_cents')!r} is not a positive integer")
+    rates = _read_rates(item)
+    if not rates:
+        problems.append(f"no usable rate in {item.get('rates', item.get('rate_cents'))!r}")
 
     # A model that invents a supporting quote is caught here.
     quote = (item.get("source_quote") or "").strip()
@@ -65,7 +100,8 @@ def validate_service(item, source_text=None):
     record = {
         "service": name,
         "unit_basis": basis,
-        "rate_cents": rate,
+        "rates": rates,
+        "rate_cents": rates[0]["cents"],
         "daily_cap": _as_int(item.get("daily_cap")),
         "nbd_uplift": _pct(item.get("nbd_uplift_pct")),
         "clause": item.get("clause"),
@@ -106,9 +142,10 @@ def build_spec(hospital, header, extracted, rejected=None):
 
     for rec in extracted:
         name = rec["service"]
-        spec["services"][name] = new_service(name, rec["unit_basis"],
-                                             [new_rate(rec["rate_cents"])],
-                                             rec.get("daily_cap"))
+        spec["services"][name] = new_service(
+            name, rec["unit_basis"],
+            [new_rate(r["cents"], r["valid_from"], r["valid_to"]) for r in rec["rates"]],
+            rec.get("daily_cap"))
         if rec.get("nbd_uplift") is not None:
             spec["nbd_uplifts"][name] = rec["nbd_uplift"]
         if rec.get("threshold_premium"):
@@ -146,6 +183,7 @@ def extraction_frame(extracted):
         "service": r["service"],
         "unit_basis": r["unit_basis"],
         "rate_cents": r["rate_cents"],
+        "n_rates": len(r["rates"]),
         "daily_cap": r.get("daily_cap"),
         "nbd": str(r.get("nbd_uplift") or ""),
         "premium": str(r.get("threshold_premium") or ""),
@@ -198,7 +236,8 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
     for i, chunk in enumerate(chunks):
         reply, usage = model.generate(prompt, chunk["text"])
         if record is not None:
-            record[str(i)] = reply
+            record[str(i)] = {"reply": reply,
+                              "usage": {k: v for k, v in usage.items() if k != "telemetry"}}
 
         payload, error = parse_json(reply)
         found, returned, deviation = 0, 0, None

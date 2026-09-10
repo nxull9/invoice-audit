@@ -203,7 +203,16 @@ class LocalModel:
 
 
 class ReplayModel:
-    """Replays recorded responses so a committed run reproduces without a key."""
+    """Replays a recorded run, including its original cost and latency.
+
+    A recording stores the reply and the usage that produced it, so a replayed
+    comparison reports the tokens and wall-clock of the live call rather than zeros.
+    Without that, a table mixing replayed and live models silently understates the
+    replayed ones to nothing.
+
+    Recordings written before usage was stored hold a bare string; those replay with
+    zeros and are reported as missing telemetry rather than as free.
+    """
 
     def __init__(self, responses, name="replay"):
         self.responses = responses
@@ -212,9 +221,21 @@ class ReplayModel:
         self.calls = 0
 
     def generate(self, system, user):
-        reply = self.responses.get(str(self.calls), '{"services": []}')
+        entry = self.responses.get(str(self.calls))
         self.calls += 1
-        return reply, {"input_tokens": 0, "output_tokens": 0, "seconds": 0.0, "retries": 0}
+        if entry is None:
+            return '{"services": []}', {"input_tokens": 0, "output_tokens": 0,
+                                        "seconds": 0.0, "retries": 0, "telemetry": "missing"}
+        if isinstance(entry, str):
+            return entry, {"input_tokens": 0, "output_tokens": 0, "seconds": 0.0,
+                           "retries": 0, "telemetry": "missing"}
+        usage = dict(entry.get("usage") or {})
+        usage.setdefault("input_tokens", 0)
+        usage.setdefault("output_tokens", 0)
+        usage.setdefault("seconds", 0.0)
+        usage.setdefault("retries", 0)
+        usage["telemetry"] = "recorded"
+        return entry.get("reply", ""), usage
 
 
 def parse_json(text):
