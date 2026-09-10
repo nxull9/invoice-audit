@@ -22,16 +22,28 @@ SENTENCE_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 def load_encoder(model_name=SENTENCE_MODEL):
-    """Return (encode_fn, description). Falls back to TF-IDF if unavailable."""
+    """Return (encode_fn, description).
+
+    The encoder is stateful: it fits on first use and transforms thereafter, so every
+    text encoded through it lands in one comparable space. Encoding subsets with
+    independently fitted vectorisers is the classic way to get silently incomparable
+    vectors, and the TF-IDF fallback would do exactly that otherwise.
+    """
     try:
         from sentence_transformers import SentenceTransformer
         model = SentenceTransformer(model_name)
         return (lambda texts: np.asarray(model.encode(list(texts), show_progress_bar=False)),
                 f"sentence-transformers/{model_name.split('/')[-1]}")
     except Exception:
+        state = {"vectoriser": None}
+
         def encode(texts):
-            vec = TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4), lowercase=True)
-            return vec.fit_transform(list(texts)).toarray()
+            texts = list(texts)
+            if state["vectoriser"] is None:
+                state["vectoriser"] = TfidfVectorizer(
+                    analyzer="char_wb", ngram_range=(2, 4), lowercase=True).fit(texts)
+            return state["vectoriser"].transform(texts).toarray()
+
         return encode, "tfidf-char-ngram (fallback)"
 
 
