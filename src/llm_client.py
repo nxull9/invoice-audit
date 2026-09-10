@@ -38,6 +38,23 @@ REGISTRY = {
 }
 
 LOCAL_MODEL = "Qwen/Qwen2.5-7B-Instruct"
+LOCAL_FALLBACK = "Qwen/Qwen2.5-3B-Instruct"
+BITSANDBYTES_MIN = (0, 46, 1)
+
+
+def bitsandbytes_ready():
+    """Whether 4-bit loading is available in the *running* interpreter.
+
+    Version matters, not presence: transformers rejects older releases, and pip cannot
+    replace a package already imported, so an upgrade without a session restart leaves
+    the old one loaded and the check must catch that.
+    """
+    try:
+        import bitsandbytes
+        version = tuple(int(x) for x in bitsandbytes.__version__.split(".")[:3])
+        return version >= BITSANDBYTES_MIN, bitsandbytes.__version__
+    except Exception as exc:
+        return False, str(exc)
 
 
 def get_key(name):
@@ -131,34 +148,38 @@ class ApiModel:
 class LocalModel:
     """Qwen2.5-7B-Instruct quantised to 4 bit. No data leaves the machine."""
 
-    def __init__(self, model_id=LOCAL_MODEL, max_tokens=4096):
+    def __init__(self, model_id=None, max_tokens=4096):
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
-        try:
-            import bitsandbytes
-        except ImportError as exc:
-            raise RuntimeError(
-                "4-bit loading needs bitsandbytes. Run:\n"
-                "    !pip install -q -U 'bitsandbytes>=0.46.1'\n"
-                "then Runtime > Restart session. Back up runs/ first: a restart "
-                "clears /content and a completed sweep would have to be bought again."
-            ) from exc
+
+        quantised, detail = bitsandbytes_ready()
+        if model_id is None:
+            # Without working 4-bit, a 7B model in fp16 needs ~15 GB and will not fit a
+            # T4 alongside activations. The 3B fits in fp16 at ~6 GB, so the local
+            # result is still produced and the substitution is reported rather than
+            # silently changing what was measured.
+            model_id = LOCAL_MODEL if quantised else LOCAL_FALLBACK
+            if not quantised:
+                print(f"bitsandbytes unusable ({detail}); 4-bit disabled.")
+                print(f"Falling back to {model_id} in fp16.")
+                print("For the 7B: !pip install -U 'bitsandbytes>=0.46.1' "
+                      "then Runtime > Restart session (back up runs/ first).")
 
         self.name = model_id.split("/")[-1]
         self.model_id = model_id
-        self.via = "local"
+        self.via = "local-4bit" if quantised else "local-fp16"
         self.max_tokens = max_tokens
 
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            quantization_config=BitsAndBytesConfig(
+        load = {"device_map": "auto", "torch_dtype": torch.float16}
+        if quantised:
+            load["quantization_config"] = BitsAndBytesConfig(
                 load_in_4bit=True,
                 bnb_4bit_compute_dtype=torch.float16,
                 bnb_4bit_quant_type="nf4",
-                bnb_4bit_use_double_quant=True),
-            device_map="auto",
-            torch_dtype=torch.float16)
+                bnb_4bit_use_double_quant=True)
+
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
+        self.model = AutoModelForCausalLM.from_pretrained(model_id, **load)
         self.model.eval()
 
     def generate(self, system, user):
