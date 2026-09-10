@@ -86,8 +86,18 @@ class ApiModel:
                 f"no key for {name}. Set OPENROUTER_API_KEY, or {entry['direct_key']}, "
                 f"in Colab Secrets (key icon, left sidebar) or the environment.")
 
-        from openai import OpenAI
-        self.client = OpenAI(api_key=key, base_url=self.base_url)
+        try:
+            from openai import OpenAI
+            self.client = OpenAI(api_key=key, base_url=self.base_url)
+        except TypeError as exc:
+            # openai <1.55.3 passes `proxies` to httpx, which removed it in 0.28.
+            # Colab ships the newer httpx, so this pairing fails on a fresh runtime.
+            if "proxies" in str(exc):
+                raise RuntimeError(
+                    "openai/httpx version clash. Run:\n"
+                    "    !pip install -q --upgrade 'openai>=1.55.3'\n"
+                    "then Runtime > Restart session and run again.") from exc
+            raise
 
     def generate(self, system, user):
         """Return (text, usage). Temperature 0 so a rerun gives the same answer."""
