@@ -37,6 +37,11 @@ def _pct(value):
     return d / Decimal(100) if d > 1 else d
 
 
+def _flatten(text):
+    """Collapse whitespace and punctuation so a quote can be compared on substance."""
+    return re.sub(r"[^a-z0-9]+", " ", str(text).lower()).strip()
+
+
 def _read_rates(item):
     """Accept v1's single `rate_cents` and v2's dated `rates` list.
 
@@ -87,12 +92,18 @@ def validate_service(item, source_text=None):
     if not rates:
         problems.append(f"no usable rate in {item.get('rates', item.get('rate_cents'))!r}")
 
-    # A model that invents a supporting quote is caught here.
+    # Grounding check. The substantive question is whether this service exists in the
+    # text the model was given, not whether it echoed the row character for character.
+    # Requiring an exact echo tests formatting: an earlier version did, and rejected
+    # every extraction from all four models over incidental whitespace.
     quote = (item.get("source_quote") or "").strip()
-    if source_text and quote:
-        normalise = lambda s: re.sub(r"\s+", " ", s).strip()
-        if normalise(quote[:80]) not in normalise(source_text):
-            problems.append("source_quote does not appear in the article")
+    quote_matches = None
+    if source_text:
+        flat = _flatten(source_text)
+        if name and _flatten(name) not in flat:
+            problems.append(f"service {name!r} does not appear in the source text")
+        if quote:
+            quote_matches = _flatten(quote[:80]) in flat
 
     if problems:
         return None, problems
@@ -107,6 +118,7 @@ def validate_service(item, source_text=None):
         "clause": item.get("clause"),
         "confidence": item.get("confidence"),
         "source_quote": quote,
+        "quote_verbatim": quote_matches,
     }
 
     prem = item.get("threshold_premium") or None
@@ -190,6 +202,7 @@ def extraction_frame(extracted):
         "discounts": str(r.get("volume_discounts") or ""),
         "bundle": (r.get("bundle") or ("",))[0],
         "confidence": r.get("confidence"),
+        "quote_verbatim": r.get("quote_verbatim"),
     } for r in extracted])
 
 
@@ -240,7 +253,7 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
                               "usage": {k: v for k, v in usage.items() if k != "telemetry"}}
 
         payload, error = parse_json(reply)
-        found, returned, deviation = 0, 0, None
+        found, returned, deviation, unverified = 0, 0, None, 0
         if error:
             rejected.append(f"{chunk['title']}: {error}")
         else:
@@ -256,6 +269,8 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
                 if rec:
                     extracted.append(rec)
                     found += 1
+                    if rec.get("quote_verbatim") is False:
+                        unverified += 1
                 else:
                     rejected.append(f"{chunk['title']} / {item.get('service', '?')}: "
                                     f"{'; '.join(problems)}")
@@ -267,6 +282,7 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
             "services_accepted": found,
             "parse_error": error,
             "schema_deviation": deviation,
+            "quotes_unverified": unverified,
             **usage,
         })
         if verbose:
@@ -291,6 +307,8 @@ def telemetry_summary(telemetry, model_name):
         "parse_failures": int(telemetry.parse_error.notna().sum()),
         "schema_deviations": int(telemetry.schema_deviation.notna().sum())
                              if "schema_deviation" in telemetry else 0,
+        "quotes_unverified": int(telemetry.quotes_unverified.sum())
+                             if "quotes_unverified" in telemetry else 0,
         "retries": int(telemetry.retries.sum()) if "retries" in telemetry else 0,
         "input_tokens": int(telemetry.input_tokens.sum()),
         "output_tokens": int(telemetry.output_tokens.sum()),
