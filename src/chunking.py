@@ -1,0 +1,104 @@
+"""Splitting a contract into pieces a model can read.
+
+Hospital 2 is 37,036 tokens. Qwen2.5-7B's context window is 32,768. So the contract
+does not fit, and chunking is forced rather than chosen -- by the smallest model in
+the lineup, which is exactly the model that proves the pipeline can run air-gapped.
+
+We chunk **structurally**, not semantically. The contract's own headings say which
+articles carry rates:
+
+    13 articles titled "Contracted Services (N Group)"  ->  18,769 tokens, all rates
+    22 articles of boilerplate                          ->  18,138 tokens, no rates
+
+A one-line filter on the heading drops 49% of the document with no recall risk,
+because the heading states what the section is. An embedding index would return the
+top-k most similar chunks; we need all thirteen, and top-k is the wrong tool when you
+need everything. `retrieval.py` builds the embedding version anyway so the comparison
+is a measurement rather than an opinion.
+
+Each rate article is 944-1,646 tokens, comfortably inside every model's context.
+"""
+
+import re
+
+from src.markdown_tables import sections
+
+RATE_ARTICLE = "Contracted Services"
+CLAUSE = re.compile(r"^\d+\.\d+ In respect of", re.M)
+
+
+def rate_chunks(text, marker=RATE_ARTICLE):
+    """The articles that carry rates, as [{title, text, n_clauses}].
+
+    Everything else in the document is dropped. `n_clauses` is how many Services the
+    article should yield, counted by regex, so a model that returns fewer has
+    demonstrably missed some without needing a gold answer to compare against.
+    """
+    out = []
+    for title, body in sections(text).items():
+        if marker.lower() not in title.lower():
+            continue
+        out.append({"title": title, "text": body.strip(),
+                    "n_clauses": len(CLAUSE.findall(body))})
+    return out
+
+
+def dropped_chunks(text, marker=RATE_ARTICLE):
+    """The articles we filtered out, so the filter can be audited rather than trusted."""
+    return [{"title": title, "chars": len(body)}
+            for title, body in sections(text).items()
+            if marker.lower() not in title.lower()]
+
+
+def chunk_stats(text, marker=RATE_ARTICLE):
+    """What the filter kept and what it threw away."""
+    kept, dropped = rate_chunks(text, marker), dropped_chunks(text, marker)
+    kept_chars = sum(len(c["text"]) for c in kept)
+    dropped_chars = sum(c["chars"] for c in dropped)
+    return {
+        "articles_kept": len(kept),
+        "articles_dropped": len(dropped),
+        "clauses_expected": sum(c["n_clauses"] for c in kept),
+        "tokens_kept": kept_chars // 4,
+        "tokens_dropped": dropped_chars // 4,
+        "fraction_dropped": round(dropped_chars / (kept_chars + dropped_chars), 3),
+        "largest_chunk_tokens": max((len(c["text"]) // 4 for c in kept), default=0),
+    }
+
+
+# The articles that state no rates but govern how every rate is applied. These are
+# NOT dropped silently: the task description warns of "a definitions section that
+# quietly changes how days are counted", so they are pulled out separately and
+# checked by hand against what the engine already implements.
+CONVENTION_MARKERS = ["Definitions", "Calculation Conventions", "Interpretation"]
+
+
+def convention_chunks(text, markers=None):
+    """Articles that define terms or calculation order rather than rates."""
+    markers = markers or CONVENTION_MARKERS
+    return [{"title": title, "text": body.strip()}
+            for title, body in sections(text).items()
+            if any(m.lower() in title.lower() for m in markers)]
+
+
+def convention_checklist(text):
+    """The specific conventions the engine depends on, quoted from the contract.
+
+    Every one of these is implemented in `audit_engine`. Printing them next to the
+    contract's own words is how we check the engine matches this hospital rather
+    than assuming all five contracts say the same thing.
+    """
+    body = " ".join(c["text"] for c in convention_chunks(text))
+    wanted = {
+        "rounding": r"rounded to the nearest whole cent[^.]*",
+        "rounding_step": r"Rounding is applied[^.]*",
+        "adjustment_order": r"adjustments shall be applied to the base rate[^.]*",
+        "service_day": r'"Service Day" means[^.]*',
+        "business_day": r'"Business Day" means[^.]*',
+        "cumulative": r'"Cumulative utilisation" means[^.]*',
+    }
+    out = {}
+    for key, pattern in wanted.items():
+        m = re.search(pattern, body)
+        out[key] = m.group(0).strip() if m else None
+    return out
