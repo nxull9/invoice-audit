@@ -239,7 +239,18 @@ class ReplayModel:
 
 
 def parse_json(text):
-    """Extract a JSON object from a model reply. Returns (object, error)."""
+    """Extract a JSON object from a model reply. Returns (object, error).
+
+    Accepts an already-decoded object as well as raw text. A recording stores the
+    reply beside its usage, and an older replayer handed the whole record through
+    here; tolerating that is cheaper than requiring every caller to unwrap first.
+    """
+    if isinstance(text, dict) and "reply" in text:
+        text = text["reply"]
+    if isinstance(text, (dict, list)):
+        return text, None
+    if not isinstance(text, str):
+        return None, f"reply is {type(text).__name__}, not text"
     text = text.strip()
     fence = re.search(r"```(?:json)?\s*(.*?)```", text, re.S)
     if fence:
