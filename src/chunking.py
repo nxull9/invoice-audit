@@ -1,19 +1,9 @@
-"""Splitting a contract into pieces a model can read.
+"""Split a contract into units a model can read.
 
-Hospital 2 is 37,036 tokens; Qwen2.5-7B's context window is 32,768. The contract
-does not fit, so chunking is forced rather than chosen -- by the smallest model in
-the lineup, which is exactly the model that proves the pipeline can run air-gapped.
-
-We chunk structurally, not semantically. The contract's own headings say which
-articles carry rates: 13 titled 'Contracted Services (N Group)' hold all 76 rate
-clauses, and 22 boilerplate articles hold none. A one-line filter on the heading
-drops 49% of the document with no recall risk, because the heading states what the
-section is. An embedding index would return the top-k most similar chunks; we need
-all thirteen, and top-k is the wrong tool when you need everything.
-
-Convention articles are pulled out separately rather than dropped silently. The task
-description warns of a definitions section that quietly changes how days are
-counted, and hospital 2 does exactly that.
+Hospital 2 exceeds the smallest model's context window, so chunking is required.
+Rate-bearing articles are selected by heading rather than by embedding similarity:
+all of them are needed, and top-k retrieval cannot guarantee that. Rate tables are
+batched so no reply exceeds the output token limit.
 """
 
 import re
@@ -91,15 +81,6 @@ def convention_checklist(text):
 # --------------------------------------------------------------------------
 # Tabular contracts, batched
 # --------------------------------------------------------------------------
-# Hospital 3's rate schedule is 118 rows. Asking for all of them in one reply needs
-# roughly 9,400 output tokens against a 4,096 limit, so the JSON would be truncated
-# mid-object and the model would score zero for a reason unrelated to whether it can
-# read. Batching keeps every reply comfortably inside the limit.
-#
-# This is a real constraint of the task rather than a workaround: output length is a
-# harder ceiling than context length, and a system that ignores it fails silently on
-# exactly the largest documents.
-
 TABLE_BATCH = 15
 
 

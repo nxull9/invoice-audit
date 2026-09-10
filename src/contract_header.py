@@ -1,10 +1,4 @@
-"""The two contract facts that are free to extract.
-
-`service_date_out_of_window` and `contract_number_mismatch` need nothing from a
-contract except its number and its term. All five contracts state both in a
-metadata block in the first ten lines, in the same format, so a regex is the honest
-tool: exact, fast, and checkable by eye against the source document.
-"""
+"""Contract number and term, read by regex from the document header."""
 
 import glob
 import os

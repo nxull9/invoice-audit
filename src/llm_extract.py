@@ -1,21 +1,8 @@
-"""Turning a model's reading of a contract into a spec the engine can price with.
+"""Convert a model's JSON extraction into a contract spec.
 
-The model returns JSON describing clauses. This module converts that into the same
-dict shape `compile_contract` produces from tables, so hospital 2 flows through the
-identical engine as the other four. Nothing downstream knows or cares which contract
-was read by regex and which by a model.
-
-Two principles.
-
-**Nothing is trusted.** Every field is validated on the way in: the unit basis must be
-one of nine known values, the rate must be a positive integer of cents, a bundle must
-name a partner that exists. A field that fails validation is dropped and recorded as a
-rejection, not silently coerced into something plausible.
-
-**Everything is traceable.** Each extracted service carries the clause id, the model's
-own confidence, and the verbatim quote it claims to have read the rate from. The quote
-is checked against the source text, so a model that invents a supporting quote is
-caught rather than believed.
+Every field is validated on the way in and rejected rather than coerced. The prompt
+requires a verbatim quote of the clause each rate came from; that quote is checked
+against the source text, so a fabricated rule cannot pass.
 """
 
 import re

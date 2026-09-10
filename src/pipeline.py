@@ -1,16 +1,4 @@
-"""End to end: contract + invoices -> findings, expected totals, confidence.
-
-Three tiers of evidence, in increasing order of what they cost and decreasing
-order of how certain they are:
-
-  1. structural   arithmetic and calendar facts; no contract needed
-  2. resolution   which contracted service a billing description refers to
-  3. repricing    what the contract says the line should have cost
-
-A finding from tier 1 is a fact. A finding from tier 3 is only as good as the
-contract extraction and the service resolution beneath it, so its confidence is
-bounded by theirs — that propagation is what `confidence.py` does.
-"""
+"""Run every tier for one hospital."""
 
 import pandas as pd
 

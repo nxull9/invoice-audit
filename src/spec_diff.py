@@ -1,28 +1,8 @@
-"""Marking one contract reading against another.
+"""Score one contract reading against another.
 
-This is the measuring stick, and it is built *before* any model runs. That order
-matters: a model's output is text, and text always looks plausible. Without a scorer
-you cannot tell a correct extraction from a confident fabrication.
-
-We get the correct answers for free. Hospitals 1, 3, 4 and 5 state their rules in
-tables, so `compile_contract` already produces a spec we know is right. Hand the same
-contract text to a model, diff its spec against the regex one field by field, and you
-have a labelled extraction benchmark that cost nothing to produce.
-
-Three kinds of mistake are counted separately, because they cost different amounts:
-
-    missed       a rule in the contract the model did not report.
-                 Leaves a visible gap: the engine cannot price that service.
-
-    wrong        a rule reported with the wrong value.
-                 Prices every invoice touching that service incorrectly.
-
-    hallucinated a rule the model reported that is not in the contract at all.
-                 The most expensive: a confident number with no source. This is the
-                 failure the brief singles out, so it is reported on its own.
-
-Money is compared exactly. A rate of 10620 against a true 10625 is not "close",
-it is wrong, and partial credit would hide exactly the errors we care about.
+The tabular contracts yield a known-correct spec, so a model given the same text can
+be marked field by field at no labelling cost. Missed, wrong and hallucinated rules
+are counted separately; money is compared exactly.
 """
 
 import pandas as pd

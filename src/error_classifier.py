@@ -1,19 +1,8 @@
-"""Naming the error, once the engine has found one.
+"""Classify a mispriced line by which adjustment was mishandled.
 
-The engine says *that* a line was mispriced. This module says *why*, and the
-distinction matters: `volume_discount_omitted` and `premium_incorrectly_applied`
-are both "the rate is wrong", but they are different findings for whoever
-reviews the flag.
-
-The method is counterfactual rather than heuristic. The engine records the rate
-that would have applied under each alternative reading — with and without the
-bundle, the premium, the discount — and we ask which one the hospital actually
-billed. If the billed rate is exactly the rate you get by skipping the volume
-discount, the hospital omitted the volume discount. If it matches none of them,
-we say `unit_price_mismatch` and claim nothing further.
-
-`unit_price_mismatch` is therefore the honest residual, not a catch-all: it
-means the billed rate is not any rate this contract can produce.
+The engine records the rate each alternative reading would produce, so the billed
+rate identifies the specific error rather than a generic price mismatch.
+`unit_price_mismatch` means the billed rate is not one the contract can produce.
 """
 
 import pandas as pd

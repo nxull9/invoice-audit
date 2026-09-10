@@ -1,27 +1,7 @@
-"""The one shape every contract turns into.
+"""The contract representation every compiler produces.
 
-All five contracts encode the *same* pricing model. Hospital 1 states it in tables,
-hospital 2 dissolves it into prose, hospital 3 splits it across three documents and
-reprices part of it halfway through the term, hospital 5 adds a facility x plan-tier
-grid. What differs is presentation, not meaning: H1 s3.2, H2 s3.2, H4 s4.1 and H5 s3.1
-all state the identical adjustment order.
-
-    (a) substitute a bundled rate
-    (b) facility multiplier
-    (c) plan-tier multiplier
-    (d) premium or uplift
-    (e) cumulative volume discount
-
-with half-up rounding to the cent *after each step*.
-
-So the engine is written once against this shape, and the per-hospital work is
-producing one of these dicts -- by regex where the contract is tabular, by model where
-it is prose. Plain dicts rather than classes, so a spec is trivially printable,
-comparable and JSON-serialisable: we diff a model's extraction against a regex-built
-spec field by field, and dicts make that a one-liner.
-
-`provenance` records where each rule came from, so any extracted rule can be traced
-back to the clause that produced it.
+Plain dicts, so a spec is printable, comparable and JSON-serialisable — required for
+diffing a model's extraction against a regex-built one.
 """
 
 

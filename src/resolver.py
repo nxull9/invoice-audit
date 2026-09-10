@@ -1,32 +1,10 @@
-"""Mapping free-text billing descriptions onto contracted services.
+"""Resolve free-text billing descriptions to contracted services.
 
-The brief frames this as the hard part, and lexically it is: hospital 1 bills
-108 contracted services under 488 distinct descriptions, abbreviated
-("Rtn", "Compr", "Ent" for Otolaryngologic), reordered ("Occupancy Rtn Pall
-Crit Cr"), truncated ("Extended Ren Transp") and suffixed with noise codes
-("/NG-3022").
-
-We do not match on the text. We match on the *price*.
-
-A contract can only produce a small, enumerable set of unit rates: the base
-rate, the bundled rate, each multiplied by any facility and plan-tier
-multiplier, any premium or uplift, and any volume discount, rounded half-up at
-each step. Take the modal (unit_basis, unit_price_cents) for a description
-across all its line items and look it up in that set. On hospital 1 this
-resolves 488 of 488 descriptions uniquely; on hospital 5, 455 of 474.
-
-Two properties make this the right tool rather than an embedding model:
-
-* It is auditable. The output is a table of a few hundred rows that a human
-  can read, not a similarity score.
-* It fails in the safe direction. A description whose modal price is not a
-  price the contract can produce does not get a guess — it becomes a
-  candidate `unknown_service`, which is itself one of the error categories.
-
-Text is still used, but only as an *independent second opinion*: to break the
-handful of genuine price collisions, and to disagree. Where price and text pick
-different services, that disagreement lowers the confidence rather than being
-silently resolved.
+Descriptions are abbreviated, reordered and suffixed with noise codes, so lexical
+matching alone is unreliable. A contract can only produce a small enumerable set of
+unit rates, so we match on the modal (unit_basis, unit_price_cents) of each
+description instead, and use character n-gram similarity only to break genuine price
+collisions and to flag descriptions the price identifies but the text contradicts.
 """
 
 import collections
@@ -112,21 +90,8 @@ class LexicalMatcher:
         return pairs
 
 
-# A price match can be coincidental: a description for a service that is not in
-# the contract at all will still land on *some* derivable price. Two independent
-# signals identify that case, and we require both.
-#
-#   - the text does not support the price's choice (low similarity), and
-#   - no repeated usage establishes the description as an alias (rare).
-#
-# On hospital 1 these thresholds recover all 12 `unknown_service` invoices with
-# no false positives, and the margin is wide: the 12 score at most 0.123 against
-# a genuine minimum of 0.095, and every one appears exactly once against a
-# genuine minimum of 6 appearances.
-#
-# This is the most data-fitted decision in the system. It is tuned on 12
-# examples, and `unknown_margin` is reported per hospital so that a collapsed
-# margin on hospitals 2-5 is visible rather than silent. See the decision log.
+# Thresholds for treating a price match as coincidental rather than an alias.
+# Calibrated on hospital 1; the margin is reported per hospital.
 UNKNOWN_MAX_LEXICAL = 0.20
 UNKNOWN_MAX_ROWS = 2
 

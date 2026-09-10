@@ -1,28 +1,12 @@
-"""Repricing a hospital's line items under its contract.
+"""Reprice a hospital's line items under its contract.
 
-This is the financial source of truth. No model touches it: given a
-`ContractSpec` and a description->service resolution, it computes what each
-line item *should* have cost, and the caller compares that with what was
-billed.
+A single ordered pass. Cumulative volume discounts depend on utilisation prior to
+each line, so invoices are not independent and cannot be parallelised. Per-patient
+daily quantities, bundle co-occurrence and exclusion windows are precomputed.
 
-Two structural facts shape the implementation.
-
-**It is one ordered pass, not a per-invoice loop.** Cumulative volume discounts
-are counted "cumulatively across the whole term of this Agreement and
-aggregated across all Patients" in service-date order, ties broken by line
-identifier (H1 s7.1-7.2, H5 s8.1). You cannot price invoice 47 without having
-priced 1-46 first, so invoices are *not* independent and cannot be parallelised.
-
-**Some rules need the whole table before pricing starts.** A threshold premium
-is assessed against the aggregate quantity delivered to a patient on a service
-day "across all line items and all invoices" (H5 s5.1); a bundled rate applies
-only if both services reached the patient on the same day; an exclusion window
-looks in both directions from a service date. So a set of aggregates is built
-in a first pass, and the second pass prices in order.
-
-The adjustment order is stated identically in H1 s3.2, H2 s3.2 and H5 s3.1:
-bundle substitution, facility multiplier, plan-tier multiplier, premium or
-uplift, cumulative volume discount — rounding half-up after each step.
+Adjustment order, identical across all contracts: bundle substitution, facility
+multiplier, plan-tier multiplier, premium or uplift, cumulative volume discount,
+with half-up rounding after each step.
 """
 
 import collections
@@ -218,17 +202,7 @@ def reprice(spec, units, line_items, resolution):
 
         # Daily quantity cap: units beyond the cap are not billable.
         #
-        # KNOWN LIMITATION, measured on hospital 1. We trim to the cap, which is
-        # what the contract entitles the provider to ("Maximum billable units
-        # per Patient per Service Day"). The labels instead restore the original
-        # pre-inflation quantity: on the four capped invoices they imply
-        # quantities of 3, 9, 3 and 3 against caps of 4, 12, 12 and 8, with no
-        # co-occurring line item to explain the remainder. That original
-        # quantity is not recoverable from the contract, so we do not try to
-        # guess it. All four invoices are still flagged correctly; only their
-        # expected_total is affected, and always in the conservative direction
-        # (we allow the provider the contractual maximum). Confidence on
-        # expected_total is reduced for these lines accordingly.
+        # Trimmed to the contractual maximum. See decision log item 4.
         qty = int(r.quantity)
         billable = qty
         if svc["daily_cap"] is not None:

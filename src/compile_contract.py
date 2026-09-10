@@ -1,14 +1,7 @@
-"""Turning a contract document into a spec.
+"""Compile a tabular contract into a spec.
 
-One compiler per hospital, sharing the readers in `markdown_tables`. Four of the five
-contracts are tables, so regex is the honest tool: exact, fast, and checkable by eye
-against the source. Hospital 2 has no tables at all and is handled separately by
-`llm_extract`.
-
-Each compiler is deliberately strict. A service named in a premium, discount, bundle
-or exclusion table that does not appear in the rate schedule is recorded as a warning
-rather than dropped, because a silently dropped rule misprices every invoice touching
-that service and does so invisibly.
+One compiler per hospital over shared table readers. A rule naming a service absent
+from the rate schedule is recorded as a warning, never dropped silently.
 """
 
 import glob

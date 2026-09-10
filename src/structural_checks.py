@@ -1,15 +1,8 @@
-"""The checks that need no rate table.
+"""Checks requiring no rate table.
 
-Seven of the eighteen error categories are properties of the invoice data itself, or
-need at most the contract number and term. They cost nothing per hospital once
-written, so they run across all five before any contract is parsed and before any
-model is loaded.
-
-Everything operates on *invoice units* rather than on `invoice_id`, because
-`invoice_id` is not unique. Findings are still reported against `invoice_id`, since
-that is the submission key.
-
-Nothing here is probabilistic. A finding is an arithmetic or calendar fact.
+Seven error categories are arithmetic or calendar facts, or need only the contract
+number and term. Operates on invoice units rather than `invoice_id`, which is not
+unique; findings are reported against `invoice_id`, the submission key.
 """
 
 import pandas as pd

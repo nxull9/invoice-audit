@@ -1,17 +1,8 @@
-"""Loading the invoice data, and rebuilding the real invoice key.
+"""Load invoice data and reconstruct the invoice key.
 
-Two rules govern this module:
-
-1. Money stays an integer number of cents. We never let pandas infer a float for a
-   monetary column, because a rounding error would then be indistinguishable from a
-   billing error.
-2. Dates are parsed without destroying the original. `malformed_service_date` is one
-   of the errors we must detect, so the raw string is kept next to the parsed value
-   and a bad date becomes NaT rather than raising.
-
-A third rule came from the data rather than the brief: `invoice_id` is not a key.
-Five hospital_1 identifiers are each carried by two genuinely different invoices.
-The `line_id` prefix is unique, so that is the real key.
+Money is read as integer cents. Dates are parsed non-destructively so unparseable
+values remain reportable. `invoice_id` is not unique — the `line_id` prefix is the
+real key, and `build_invoice_units` restores it.
 """
 
 import pandas as pd

@@ -1,13 +1,7 @@
-"""Reading the tabular contracts.
+"""Read tables from the tabular contracts.
 
-Hospitals 1, 3, 4 and 5 state their rules in markdown tables under numbered
-headings. Regex is the right tool for that: it is exact, it is fast, and a
-reviewer can check it against the source document by eye. The LLM is reserved
-for hospital 2, which has no tables at all.
-
-`sections()` splits a document on its headings so that a table is always read
-in the context of the clause that introduces it — this matters because several
-tables share a column layout but mean different things.
+Columns are matched by header text rather than position, since contracts order the
+same columns differently.
 """
 
 import re

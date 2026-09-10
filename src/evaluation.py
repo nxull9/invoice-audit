@@ -1,15 +1,7 @@
-"""Scoring predictions against the hospital 1 labels.
+"""Score predictions against the hospital 1 labels.
 
-Two things are measured separately, because they fail for different reasons:
-
-* Detection - did we flag the right invoices? Precision, recall and F1 at the
-  invoice level. With 58 erroneous invoices in 913, accuracy is meaningless and is
-  deliberately never reported.
-* Attribution - for the invoices we flagged, did we name the right category?
-  Reported per category, because the categories have very different costs.
-
-A per-category recall of 1.0 on a category with four instances is not evidence of
-much. The support column is printed for that reason.
+Detection and attribution are reported separately. Accuracy is not reported: with 58
+erroneous invoices in 913 it is uninformative.
 """
 
 import pandas as pd
