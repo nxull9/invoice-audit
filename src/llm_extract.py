@@ -297,6 +297,7 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
             "parse_error": error,
             "schema_deviation": deviation,
             "quotes_unverified": unverified,
+            "schema_enforced": usage.get("schema_enforced", False),
             **usage,
         })
         if verbose:
@@ -323,6 +324,8 @@ def telemetry_summary(telemetry, model_name):
                              if "schema_deviation" in telemetry else 0,
         "quotes_unverified": int(telemetry.quotes_unverified.sum())
                              if "quotes_unverified" in telemetry else 0,
+        "schema_enforced": bool(telemetry.schema_enforced.all())
+                           if "schema_enforced" in telemetry else False,
         "retries": int(telemetry.retries.sum()) if "retries" in telemetry else 0,
         "input_tokens": int(telemetry.input_tokens.sum()),
         "output_tokens": int(telemetry.output_tokens.sum()),
