@@ -42,23 +42,37 @@ def _flatten(text):
     return re.sub(r"[^a-z0-9]+", " ", str(text).lower()).strip()
 
 
-def _read_rates(item):
-    """Accept v1's single `rate_cents` and v2's dated `rates` list.
-
-    v1 could not express hospital 3's amended services, which are priced by two dated
-    columns. Both shapes are read so recordings made under either prompt remain
-    replayable and the two can be compared directly.
-    """
+def parse_day(value):
+    """'2025-01-01' -> date, anything unusable -> None."""
     from datetime import date as _date
+    if not value or not isinstance(value, str):
+        return None
+    try:
+        y, m, d = (int(x) for x in value.strip()[:10].split("-"))
+        return _date(y, m, d)
+    except (ValueError, TypeError):
+        return None
 
-    def parse_day(value):
-        if not value or not isinstance(value, str):
-            return None
-        try:
-            y, m, d = (int(x) for x in value.strip()[:10].split("-"))
-            return _date(y, m, d)
-        except (ValueError, TypeError):
-            return None
+
+def _read_rates(item):
+    """Read a rate under any of the three prompt schemas.
+
+    v1 stated one rate and could not express hospital 3's amended services. v2 used a
+    nested list, which the local model handled badly. v3 returns to flat scalars with
+    an optional second rate and its start date. All three are read so recordings made
+    under any prompt stay replayable and the versions can be compared directly.
+    """
+
+    # v3: flat scalars. A nested list costs small models heavily -- Qwen2.5-7B returned
+    # every row under a flat schema and dropped 40% under a nested one, while the three
+    # hosted models were unaffected. The date logic belongs in code, not in the schema.
+    flat = _as_int(item.get("rate_cents"))
+    later = _as_int(item.get("rate_cents_after"))
+    changes = parse_day(item.get("rate_change_date"))
+    if flat and flat > 0 and later and later > 0 and changes:
+        from datetime import timedelta
+        return [{"cents": flat, "valid_from": None, "valid_to": changes - timedelta(days=1)},
+                {"cents": later, "valid_from": changes, "valid_to": None}]
 
     listed = item.get("rates")
     if isinstance(listed, list) and listed:
