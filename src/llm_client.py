@@ -99,6 +99,15 @@ class LocalModel:
     def __init__(self, model_id=LOCAL_MODEL, max_tokens=4096):
         import torch
         from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
+        try:
+            import bitsandbytes
+        except ImportError as exc:
+            raise RuntimeError(
+                "4-bit loading needs bitsandbytes. Run:\n"
+                "    !pip install -q -U 'bitsandbytes>=0.46.1'\n"
+                "then Runtime > Restart session. Back up runs/ first: a restart "
+                "clears /content and a completed sweep would have to be bought again."
+            ) from exc
 
         self.name = model_id.split("/")[-1]
         self.model_id = model_id
