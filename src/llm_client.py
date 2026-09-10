@@ -2,6 +2,7 @@
 
 import json
 import os
+import random
 import re
 import time
 
@@ -9,6 +10,14 @@ import requests
 
 CHAT_COMPLETIONS = "/chat/completions"
 TIMEOUT = 180
+
+# Shared-pool endpoints return 429 when the upstream provider is saturated, and 5xx
+# transiently. Both are expected operating conditions rather than failures, so they
+# are retried with exponential backoff and jitter. A non-retryable status is raised
+# immediately: retrying a malformed request or a bad credential only wastes time.
+RETRY_STATUS = {408, 409, 429, 500, 502, 503, 504}
+MAX_ATTEMPTS = 5
+BACKOFF_BASE = 2.0
 
 REGISTRY = {
     "gpt-4o": {
@@ -72,25 +81,51 @@ class ApiModel:
         })
 
     def generate(self, system, user):
-        started = time.time()
-        response = self.session.post(
-            self.base_url + CHAT_COMPLETIONS,
-            json={"model": self.model_id,
-                  "messages": [{"role": "system", "content": system},
-                               {"role": "user", "content": user}],
-                  "temperature": self.temperature,
-                  "max_tokens": self.max_tokens},
-            timeout=TIMEOUT)
-        if response.status_code != 200:
-            raise RuntimeError(f"{self.name} returned {response.status_code}: "
-                               f"{response.text[:300]}")
-        payload = response.json()
-        usage = payload.get("usage") or {}
-        return payload["choices"][0]["message"]["content"], {
-            "input_tokens": usage.get("prompt_tokens", 0),
-            "output_tokens": usage.get("completion_tokens", 0),
-            "seconds": round(time.time() - started, 2),
-        }
+        body = {"model": self.model_id,
+                "messages": [{"role": "system", "content": system},
+                             {"role": "user", "content": user}],
+                "temperature": self.temperature,
+                "max_tokens": self.max_tokens}
+        started, retries, last = time.time(), 0, None
+
+        for attempt in range(MAX_ATTEMPTS):
+            try:
+                response = self.session.post(self.base_url + CHAT_COMPLETIONS,
+                                             json=body, timeout=TIMEOUT)
+            except requests.RequestException as exc:
+                last, retries = f"{type(exc).__name__}: {exc}", retries + 1
+                self._wait(attempt)
+                continue
+
+            if response.status_code == 200:
+                payload = response.json()
+                usage = payload.get("usage") or {}
+                return payload["choices"][0]["message"]["content"], {
+                    "input_tokens": usage.get("prompt_tokens", 0),
+                    "output_tokens": usage.get("completion_tokens", 0),
+                    "seconds": round(time.time() - started, 2),
+                    "retries": retries,
+                }
+
+            last = f"{response.status_code}: {response.text[:200]}"
+            if response.status_code not in RETRY_STATUS:
+                raise RuntimeError(f"{self.name} returned {last}")
+
+            retries += 1
+            self._wait(attempt, response.headers.get("Retry-After"))
+
+        raise RuntimeError(f"{self.name} failed after {MAX_ATTEMPTS} attempts. Last: {last}")
+
+    @staticmethod
+    def _wait(attempt, retry_after=None):
+        """Exponential backoff with jitter, honouring Retry-After when supplied."""
+        if retry_after:
+            try:
+                time.sleep(min(float(retry_after), 60))
+                return
+            except ValueError:
+                pass
+        time.sleep(min(BACKOFF_BASE ** attempt + random.uniform(0, 1), 60))
 
 
 class LocalModel:
@@ -142,6 +177,7 @@ class LocalModel:
             "input_tokens": int(inputs["input_ids"].shape[1]),
             "output_tokens": int(generated.shape[0]),
             "seconds": round(time.time() - started, 2),
+            "retries": 0,
         }
 
 
@@ -157,7 +193,7 @@ class ReplayModel:
     def generate(self, system, user):
         reply = self.responses.get(str(self.calls), '{"services": []}')
         self.calls += 1
-        return reply, {"input_tokens": 0, "output_tokens": 0, "seconds": 0.0}
+        return reply, {"input_tokens": 0, "output_tokens": 0, "seconds": 0.0, "retries": 0}
 
 
 def parse_json(text):

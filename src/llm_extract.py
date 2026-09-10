@@ -220,6 +220,7 @@ def telemetry_summary(telemetry, model_name):
         "clauses_expected": int(telemetry.clauses_expected.sum()),
         "services_accepted": int(telemetry.services_accepted.sum()),
         "parse_failures": int(telemetry.parse_error.notna().sum()),
+        "retries": int(telemetry.retries.sum()) if "retries" in telemetry else 0,
         "input_tokens": int(telemetry.input_tokens.sum()),
         "output_tokens": int(telemetry.output_tokens.sum()),
         "seconds": round(float(telemetry.seconds.sum()), 1),
