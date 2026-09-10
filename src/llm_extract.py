@@ -159,6 +159,28 @@ def extraction_frame(extracted):
 # Running an extraction over a whole contract
 # --------------------------------------------------------------------------
 
+def normalise_payload(payload):
+    """Accept the shapes models actually return, and report which one arrived.
+
+    The prompt asks for {"services": [...]}. Smaller models frequently return the bare
+    array, and occasionally a single object. Rejecting those would measure instruction
+    adherence rather than extraction quality, so the shape is normalised and the
+    deviation recorded: envelope compliance is reported alongside accuracy rather than
+    folded into it.
+    """
+    if isinstance(payload, list):
+        return payload, "bare_list"
+    if isinstance(payload, dict):
+        if "services" in payload:
+            return payload["services"], None
+        for key in ("data", "items", "rows", "results"):
+            if key in payload and isinstance(payload[key], list):
+                return payload[key], f"key_{key}"
+        if "service" in payload:
+            return [payload], "single_object"
+    return [], "unrecognised"
+
+
 def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
                      record=None):
     """Read every chunk with `model` and assemble one spec.
@@ -179,11 +201,18 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
             record[str(i)] = reply
 
         payload, error = parse_json(reply)
-        found = 0
+        found, returned, deviation = 0, 0, None
         if error:
             rejected.append(f"{chunk['title']}: {error}")
         else:
-            for item in payload.get("services", []):
+            items, deviation = normalise_payload(payload)
+            returned = len(items)
+            if deviation:
+                rejected.append(f"{chunk['title']}: schema deviation ({deviation})")
+            for item in items:
+                if not isinstance(item, dict):
+                    rejected.append(f"{chunk['title']}: non-object in services list")
+                    continue
                 rec, problems = validate_service(item, chunk["text"])
                 if rec:
                     extracted.append(rec)
@@ -195,9 +224,10 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
         telemetry.append({
             "chunk": chunk["title"],
             "clauses_expected": chunk["n_clauses"],
-            "services_returned": 0 if error else len(payload.get("services", [])),
+            "services_returned": returned,
             "services_accepted": found,
             "parse_error": error,
+            "schema_deviation": deviation,
             **usage,
         })
         if verbose:
@@ -220,6 +250,8 @@ def telemetry_summary(telemetry, model_name):
         "clauses_expected": int(telemetry.clauses_expected.sum()),
         "services_accepted": int(telemetry.services_accepted.sum()),
         "parse_failures": int(telemetry.parse_error.notna().sum()),
+        "schema_deviations": int(telemetry.schema_deviation.notna().sum())
+                             if "schema_deviation" in telemetry else 0,
         "retries": int(telemetry.retries.sum()) if "retries" in telemetry else 0,
         "input_tokens": int(telemetry.input_tokens.sum()),
         "output_tokens": int(telemetry.output_tokens.sum()),
