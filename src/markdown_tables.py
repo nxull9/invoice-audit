@@ -50,17 +50,26 @@ def table(body):
 def columns(rows, header, *names):
     """Pull named columns out of a table by header text, not by position.
 
-    Hospital 1's bundle table is `Service A | Service B | Rate A | Rate B`;
-    hospital 5's is `Service A | Rate A | Service B | Rate B`. Reading by
-    position silently swaps a service name for a price. Reading by header does
-    not, and fails loudly if a column is missing.
+    Hospital 1's bundle table is `Service A | Service B | Rate A | Rate B`; hospital 5's
+    is `Service A | Rate A | Service B | Rate B`. Reading by position silently swaps a
+    service name for a price. Reading by header does not, and fails loudly if a column
+    is missing.
+
+    A name may list alternatives separated by `|`, because the five contracts label the
+    same column differently -- "Not billable within" and "Window" both mean the length
+    of an exclusion window. The first alternative that matches wins.
     """
     idx = []
     for want in names:
-        matches = [i for i, h in enumerate(header) if want.lower() in h.lower()]
-        if not matches:
-            raise KeyError(f"column {want!r} not in {header}")
-        idx.append(matches[0])
+        chosen = None
+        for alt in want.split("|"):
+            matches = [i for i, h in enumerate(header) if alt.lower() in h.lower()]
+            if matches:
+                chosen = matches[0]
+                break
+        if chosen is None:
+            raise KeyError(f"none of {want.split('|')!r} found in {header}")
+        idx.append(chosen)
     return [[r[i] for i in idx] for r in rows]
 
 

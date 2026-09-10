@@ -18,6 +18,8 @@ means the billed rate is not any rate this contract can produce.
 
 import pandas as pd
 
+from src.contract_spec import bundle_partner
+
 # Categories that flag a breach without changing what is owed. Established from
 # the single-category invoices on hospital 1, every one of which has
 # expected_total_cents exactly equal to the billed total.
@@ -31,11 +33,11 @@ COMPLIANCE_ONLY = {
 def classify_line(row, spec):
     """Every category this line item breaches. May be empty, may be several."""
     found = []
-    svc = spec.services.get(row.service) if row.service else None
+    svc = spec["services"].get(row.service) if row.service else None
     if svc is None:
         return found
 
-    if row.unit_basis_as_billed != svc.unit_basis:
+    if row.unit_basis_as_billed != svc["unit_basis"]:
         found.append("wrong_unit_basis")
 
     if row.disallowed:

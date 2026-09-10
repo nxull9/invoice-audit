@@ -36,6 +36,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+from src.contract_spec import bundle_partner
 from src.money import apply, uplift, discount
 
 ONE = Decimal(1)
@@ -48,15 +49,15 @@ def derivable_prices(spec):
     service is a genuine price collision and is handed to the text tie-break.
     """
     index = collections.defaultdict(set)
-    for name, svc in spec.services.items():
-        _, bundled = spec.bundle_partner(name)
-        facs = list(spec.facility_multipliers.get(name, {1: ONE}).values()) or [ONE]
-        tiers = list(spec.tier_multipliers.get(name, {1: ONE}).values()) or [ONE]
-        prem = spec.threshold_premiums.get(name)
-        nbd = spec.nbd_uplifts.get(name)
-        discs = [d for _, d in spec.volume_discounts.get(name, [])]
+    for name, svc in spec["services"].items():
+        _, bundled = bundle_partner(spec, name)
+        facs = list(spec["facility_multipliers"].get(name, {1: ONE}).values()) or [ONE]
+        tiers = list(spec["tier_multipliers"].get(name, {1: ONE}).values()) or [ONE]
+        prem = spec["threshold_premiums"].get(name)
+        nbd = spec["nbd_uplifts"].get(name)
+        discs = [d for _, d in spec["volume_discounts"].get(name, [])]
 
-        starts = [r.cents for r in svc.rates] + ([bundled] if bundled else [])
+        starts = [rate["cents"] for rate in svc["rates"]] + ([bundled] if bundled else [])
         for start in starts:
             for f in set(facs):
                 a = apply(start, f)
@@ -67,7 +68,7 @@ def derivable_prices(spec):
                     for c in ups:
                         for d in [None] + discs:
                             price = c if d is None else discount(c, d)
-                            index[(svc.unit_basis, price)].add(name)
+                            index[(svc["unit_basis"], price)].add(name)
     return index
 
 
@@ -138,7 +139,7 @@ def resolve(spec, line_items):
     """
     index = derivable_prices(spec)
     modes = modal_price(line_items)
-    lex = LexicalMatcher(spec.services)
+    lex = LexicalMatcher(spec["services"])
 
     rows = []
     for desc, (mode, mode_n, total) in modes.items():

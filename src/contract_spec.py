@@ -1,10 +1,10 @@
-"""The one data structure every contract compiles into.
+"""The one shape every contract turns into.
 
-All five contracts encode the *same* pricing model. Hospital 1 states it in
-tables, hospital 2 dissolves it into prose, hospital 3 splits it across three
-documents and repriced part of it halfway through the term, hospital 5 adds a
-facility x plan-tier multiplier grid. What differs is presentation, not
-semantics — H1 s3.2, H2 s3.2 and H5 s3.1 state the identical adjustment order:
+All five contracts encode the *same* pricing model. Hospital 1 states it in tables,
+hospital 2 dissolves it into prose, hospital 3 splits it across three documents and
+reprices part of it halfway through the term, hospital 5 adds a facility x plan-tier
+grid. What differs is presentation, not meaning: H1 s3.2, H2 s3.2, H4 s4.1 and H5 s3.1
+all state the identical adjustment order.
 
     (a) substitute a bundled rate
     (b) facility multiplier
@@ -14,90 +14,94 @@ semantics — H1 s3.2, H2 s3.2 and H5 s3.1 state the identical adjustment order:
 
 with half-up rounding to the cent *after each step*.
 
-So the engine is written once against this structure, and the per-hospital work
-is compiling a `ContractSpec` — by regex where the contract is tabular, by LLM
-where it is prose. `provenance` records where each rule came from, so an
-extracted rule can always be traced back to the clause that produced it.
+So the engine is written once against this shape, and the per-hospital work is
+producing one of these dicts -- by regex where the contract is tabular, by model where
+it is prose. Plain dicts rather than classes, so a spec is trivially printable,
+comparable and JSON-serialisable: we diff a model's extraction against a regex-built
+spec field by field, and dicts make that a one-liner.
+
+`provenance` records where each rule came from, so any extracted rule can be traced
+back to the clause that produced it.
 """
 
-from dataclasses import dataclass, field
-from datetime import date
-from typing import Optional
 
-
-@dataclass
-class Rate:
+def new_rate(cents, valid_from=None, valid_to=None):
     """A rate, optionally bounded in time.
 
-    Hospital 3's Amendment No. 1 substitutes rates from 1 January 2025 *by
-    service date*, so a service can hold several non-overlapping rates.
+    Hospital 3's Amendment No. 1 substitutes rates from 1 January 2025 *by service
+    date*, so one service can hold several non-overlapping rates.
     """
-    cents: int
-    valid_from: Optional[date] = None
-    valid_to: Optional[date] = None
-
-    def covers(self, on):
-        return ((self.valid_from is None or on >= self.valid_from)
-                and (self.valid_to is None or on <= self.valid_to))
+    return {"cents": int(cents), "valid_from": valid_from, "valid_to": valid_to}
 
 
-@dataclass
-class Service:
-    name: str
-    unit_basis: str
-    rates: list                      # list[Rate], newest-specific first
-    daily_cap: Optional[int] = None  # max billable units per patient per service day
-
-    def rate_on(self, service_date):
-        """The contracted rate in force on a given service date, or None."""
-        for r in self.rates:
-            if r.covers(service_date):
-                return r.cents
-        return None
+def rate_covers(rate, on):
+    """Is this rate in force on the given date?"""
+    if on is None:
+        return rate["valid_from"] is None and rate["valid_to"] is None
+    return ((rate["valid_from"] is None or on >= rate["valid_from"])
+            and (rate["valid_to"] is None or on <= rate["valid_to"]))
 
 
-@dataclass
-class ContractSpec:
-    hospital: str
-    contract_number: str
-    effective_from: date
-    effective_to: date
+def rate_on(service, service_date):
+    """The contracted rate in force for a service on a date, or None."""
+    for rate in service["rates"]:
+        if rate_covers(rate, service_date):
+            return rate["cents"]
+    # A rate with no date bounds always applies; fall back to it.
+    for rate in service["rates"]:
+        if rate["valid_from"] is None and rate["valid_to"] is None:
+            return rate["cents"]
+    return None
 
-    services: dict = field(default_factory=dict)          # name -> Service
-    threshold_premiums: dict = field(default_factory=dict)  # name -> (threshold_qty, uplift)
-    nbd_uplifts: dict = field(default_factory=dict)         # name -> uplift fraction
-    volume_discounts: dict = field(default_factory=dict)    # name -> [(threshold, fraction)]
-    bundles: list = field(default_factory=list)             # [(a, b, rate_a, rate_b)]
-    exclusions: list = field(default_factory=list)          # [(service, days, other)]
-    facility_multipliers: dict = field(default_factory=dict)  # name -> {facility: mult}
-    tier_multipliers: dict = field(default_factory=dict)      # name -> {tier: mult}
 
-    provenance: dict = field(default_factory=dict)   # rule kind -> source location
-    warnings: list = field(default_factory=list)     # anything we could not read cleanly
+def new_service(name, unit_basis, rates, daily_cap=None):
+    return {"name": name, "unit_basis": unit_basis, "rates": rates, "daily_cap": daily_cap}
 
-    # -- convenience -------------------------------------------------------
-    def bundle_partner(self, service):
-        """The service that must co-occur for a bundled rate, and the substituted rate."""
-        for a, b, ra, rb in self.bundles:
-            if service == a:
-                return b, ra
-            if service == b:
-                return a, rb
-        return None, None
 
-    def summary(self):
-        return {
-            "hospital": self.hospital,
-            "contract": self.contract_number,
-            "services": len(self.services),
-            "priced_periods": sum(len(s.rates) for s in self.services.values()),
-            "daily_caps": sum(s.daily_cap is not None for s in self.services.values()),
-            "threshold_premiums": len(self.threshold_premiums),
-            "nbd_uplifts": len(self.nbd_uplifts),
-            "volume_discounts": len(self.volume_discounts),
-            "bundles": len(self.bundles),
-            "exclusions": len(self.exclusions),
-            "facility_multipliers": len(self.facility_multipliers),
-            "tier_multipliers": len(self.tier_multipliers),
-            "warnings": len(self.warnings),
-        }
+def new_spec(hospital, contract_number, effective_from, effective_to):
+    """An empty contract spec, ready for a compiler to fill."""
+    return {
+        "hospital": hospital,
+        "contract_number": contract_number,
+        "effective_from": effective_from,
+        "effective_to": effective_to,
+        "services": {},               # name -> service dict
+        "threshold_premiums": {},     # name -> (threshold_qty, uplift_fraction)
+        "nbd_uplifts": {},            # name -> uplift_fraction
+        "volume_discounts": {},       # name -> [(threshold, fraction), ...] deepest first
+        "bundles": [],                # [(service_a, service_b, rate_a, rate_b), ...]
+        "exclusions": [],             # [(service, days, other_service), ...]
+        "facility_multipliers": {},   # name -> {facility_code: multiplier}
+        "tier_multipliers": {},       # name -> {plan_tier: multiplier}
+        "provenance": {},             # rule family -> where it came from
+        "warnings": [],               # anything we could not read cleanly
+    }
+
+
+def bundle_partner(spec, service):
+    """The service that must co-occur for a bundled rate, and the substituted rate."""
+    for a, b, rate_a, rate_b in spec["bundles"]:
+        if service == a:
+            return b, rate_a
+        if service == b:
+            return a, rate_b
+    return None, None
+
+
+def summarise(spec):
+    """One row describing a compiled spec, for eyeballing that it read correctly."""
+    return {
+        "hospital": spec["hospital"],
+        "contract": spec["contract_number"],
+        "services": len(spec["services"]),
+        "priced_periods": sum(len(s["rates"]) for s in spec["services"].values()),
+        "daily_caps": sum(s["daily_cap"] is not None for s in spec["services"].values()),
+        "threshold_premiums": len(spec["threshold_premiums"]),
+        "nbd_uplifts": len(spec["nbd_uplifts"]),
+        "volume_discounts": len(spec["volume_discounts"]),
+        "bundles": len(spec["bundles"]),
+        "exclusions": len(spec["exclusions"]),
+        "facility_multipliers": len(spec["facility_multipliers"]),
+        "tier_multipliers": len(spec["tier_multipliers"]),
+        "warnings": len(spec["warnings"]),
+    }

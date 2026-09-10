@@ -14,7 +14,7 @@ bounded by theirs — that propagation is what `confidence.py` does.
 
 import pandas as pd
 
-from src.data_loader import load_hospital, build_invoice_units
+from src.data_loader import load_invoices, load_line_items, build_invoice_units
 from src.contract_header import read_header
 from src.compile_contract import compile_contract
 from src.resolver import resolve
@@ -34,12 +34,18 @@ def unknown_service_findings(resolution, line_items):
     ], columns=["invoice_id", "category", "detail"])
 
 
-def audit(hospital):
-    """Run every tier for one hospital and return the pieces the report needs."""
-    header = read_header(hospital)
-    spec = compile_contract(hospital)
-    invoices, line_items = load_hospital(hospital)
-    units, line_items = build_invoice_units(invoices, line_items)
+def audit(data_root, hospital, spec=None):
+    """Run every tier for one hospital and return the pieces the report needs.
+
+    `spec` may be supplied directly, which is how hospital 2 is audited: its contract
+    is prose, so its spec comes from a model rather than from a table reader.
+    """
+    header = read_header(data_root, hospital)
+    if spec is None:
+        spec = compile_contract(data_root, hospital)
+    invoices = load_invoices(data_root, hospital)
+    line_items = load_line_items(data_root, hospital)
+    units = build_invoice_units(invoices, line_items)
 
     resolution = resolve(spec, line_items)
     priced = reprice(spec, units, line_items, resolution)

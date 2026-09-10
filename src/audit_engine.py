@@ -30,6 +30,7 @@ from decimal import Decimal
 
 import pandas as pd
 
+from src.contract_spec import bundle_partner, rate_on
 from src.money import apply, uplift, discount
 
 ONE = Decimal(1)
@@ -71,7 +72,7 @@ def _exclusion_violations(spec, li):
         if r.service and not pd.isna(r.service_date):
             dates[(r.patient_id, r.service)].append(r.service_date)
     bad = set()
-    for excluded, days, trigger in spec.exclusions:
+    for excluded, days, trigger in spec["exclusions"]:
         window = pd.Timedelta(days=days)
         for r in li.itertuples():
             if r.service != excluded or pd.isna(r.service_date):
@@ -126,13 +127,13 @@ def reprice(spec, units, line_items, resolution):
     out = []
     for r in li.itertuples():
         note, alt = [], {}
-        svc = spec.services.get(r.service) if r.service else None
+        svc = spec["services"].get(r.service) if r.service else None
         if svc is None:
             out.append({"rate": None, "billable": None, "total": None,
                         "note": "unknown_service", "alt": {}, "disallowed": None})
             continue
 
-        rate = svc.rate_on(r.service_date.date() if not pd.isna(r.service_date) else None)
+        rate = rate_on(svc, r.service_date.date() if not pd.isna(r.service_date) else None)
         if rate is None:
             out.append({"rate": None, "billable": None, "total": None,
                         "note": "no_rate_in_force", "alt": {}, "disallowed": None})
@@ -144,21 +145,21 @@ def reprice(spec, units, line_items, resolution):
         # premium and discount decisions applied — so a hospital that billed the
         # right service at the wrong column is identified as exactly that,
         # rather than disappearing into a generic price mismatch.
-        partner, bundled_rate = spec.bundle_partner(r.service)
+        partner, bundled_rate = bundle_partner(spec, r.service)
         bundled = bool(partner and partner in day_services.get((r.patient_id, r.service_date), ()))
         start_rate = bundled_rate if bundled else rate
         if bundled:
             note.append("bundle")
 
-        facs = spec.facility_multipliers.get(r.service, {})
-        tiers = spec.tier_multipliers.get(r.service, {})
-        prem = spec.threshold_premiums.get(r.service)
-        nbd = spec.nbd_uplifts.get(r.service)
+        facs = spec["facility_multipliers"].get(r.service, {})
+        tiers = spec["tier_multipliers"].get(r.service, {})
+        prem = spec["threshold_premiums"].get(r.service)
+        nbd = spec["nbd_uplifts"].get(r.service)
 
         use_threshold = bool(prem) and daily_qty[(r.patient_id, r.service, r.service_date)] > prem[0]
         use_nbd = nbd is not None and not pd.isna(r.service_date) and r.service_date.weekday() >= 5
         use_discount = None
-        for threshold, frac in spec.volume_discounts.get(r.service, []):
+        for threshold, frac in spec["volume_discounts"].get(r.service, []):
             if cumulative[r.service] > threshold:
                 use_discount = frac
                 break                    # deepest threshold first; never compounded
@@ -206,7 +207,7 @@ def reprice(spec, units, line_items, resolution):
         if nbd is not None and not use_nbd:
             alt["with_nbd"] = uplift(chain(start_rate, fv, tv, premium=False, discount_=False), nbd)
         if use_discount is None:
-            for _, frac in spec.volume_discounts.get(r.service, []):
+            for _, frac in spec["volume_discounts"].get(r.service, []):
                 alt["with_discount"] = discount(chain(start_rate, fv, tv), frac)
                 break
         if facs or tiers:
@@ -230,9 +231,9 @@ def reprice(spec, units, line_items, resolution):
         # expected_total is reduced for these lines accordingly.
         qty = int(r.quantity)
         billable = qty
-        if svc.daily_cap is not None:
+        if svc["daily_cap"] is not None:
             key = (r.patient_id, r.service, r.service_date)
-            remaining = max(0, svc.daily_cap - day_used[key])
+            remaining = max(0, svc["daily_cap"] - day_used[key])
             billable = min(qty, remaining)
             day_used[key] += billable
             if billable < qty:
