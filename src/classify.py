@@ -7,7 +7,7 @@ rate identifies the specific error rather than a generic price mismatch.
 
 import pandas as pd
 
-from src.contract_spec import bundle_partner
+from src.contracts import bundle_partner
 
 # Categories that flag a breach without changing what is owed. Established from
 # the single-category invoices on hospital 1, every one of which has
@@ -88,6 +88,11 @@ def _wrong_grid_cell(billed, alt):
     return []
 
 
+def _cents(value):
+    """An integer for the evidence line, or '?' where the engine could not price."""
+    return "?" if pd.isna(value) else int(value)
+
+
 def classify(priced, spec):
     """Line-level findings for a whole hospital, as (invoice_id, category, detail)."""
     rows = []
@@ -95,10 +100,10 @@ def classify(priced, spec):
         for cat in classify_line(r, spec):
             rows.append({
                 "invoice_id": r.invoice_id, "category": cat,
-                "detail": (f"{r.line_id} {r.service}: billed {r.unit_price_cents} x {r.quantity}"
-                           f" = {r.line_total_cents}, expected "
-                           f"{r.expected_unit_rate} x {r.billable_quantity}"
-                           f" = {r.expected_line_total}"
+                "detail": (f"{r.line_id} {r.service}: billed {int(r.unit_price_cents)} x "
+                           f"{int(r.quantity)} = {int(r.line_total_cents)}, expected "
+                           f"{_cents(r.expected_unit_rate)} x {_cents(r.billable_quantity)}"
+                           f" = {_cents(r.expected_line_total)}"
                            + (f" [{r.adjustments}]" if r.adjustments else "")),
             })
     return pd.DataFrame(rows, columns=["invoice_id", "category", "detail"])

@@ -6,32 +6,25 @@ hospital's terms or from the model's own recollection, and every answer carries 
 clauses it was based on.
 """
 
+import glob
+import os
 import re
 import textwrap
 
-from src.embeddings import VectorIndex
-from src.llm_client import parse_json
+from src.config import PROMPTS
+from src.retrieval import VectorIndex
+from src.llm import parse_json
 
-ANSWER_PROMPT = """You answer questions about one healthcare reimbursement contract.
+QA_PROMPT_VERSION = "qa_v1"
 
-Use ONLY the numbered clauses supplied. They are the entire contract you have access to.
 
-If the clauses do not contain the answer, say so plainly. Do not supply a rate, a
-threshold or a date that does not appear in them, and do not reason from what contracts
-usually say.
+def answer_prompt():
+    return open(PROMPTS / f"contract_{QA_PROMPT_VERSION}.txt").read()
 
-Answer in three short parts:
-  ANSWER   — one or two sentences
-  CLAUSE   — which numbered clause you used
-  QUOTE    — the exact sentence carrying the fact, copied verbatim
-"""
 
 
 def clause_index(data_root, hospital, encoder=None):
     """Split a hospital's contract into clauses and index them for retrieval."""
-    import glob
-    import os
-
     clauses, meta = [], []
     for path in sorted(glob.glob(f"{data_root}/contracts/{hospital}/*.md")):
         document = os.path.basename(path)
@@ -58,7 +51,7 @@ def ask(question, index, model, hospital, k=4, show_context=True):
     context = "\n\n".join(
         f"[{i + 1}] ({h['document']} · {h['section']})\n{h['text']}"
         for i, h in enumerate(hits))
-    answer, usage = model.generate(ANSWER_PROMPT,
+    answer, usage = model.generate(answer_prompt(),
                                    f"CLAUSES:\n{context}\n\nQUESTION: {question}")
 
     if show_context:

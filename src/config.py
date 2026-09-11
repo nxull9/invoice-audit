@@ -1,7 +1,7 @@
 """Project-wide paths and constants.
 
 Every monetary amount in this project is an integer number of cents.
-There are no floats anywhere in the financial path — see `audit_engine`.
+There are no floats anywhere in the financial path — see `pricing`.
 """
 
 from pathlib import Path
@@ -14,10 +14,21 @@ CONTRACTS = DATA / "contracts"
 INVOICES = DATA / "invoices"
 LABELS = DATA / "labels"
 REPORTS = ROOT / "reports"
+PROMPTS = ROOT / "prompts"
+RUNS = ROOT / "runs"                   # recorded model replies; replayed so no key is needed
 
 HOSPITALS = ["hospital_1", "hospital_2", "hospital_3", "hospital_4", "hospital_5"]
 DEV_HOSPITAL = "hospital_1"            # labelled; used for development only
 SCORED_HOSPITALS = HOSPITALS[1:]       # hospitals 2-5 go in the submission
+
+# Hospital 2 states its rules as prose and is read by a model. The others are tables
+# and are read by regex. Which model and which prompt version are pinned here so a
+# run is reproducible from its recording in RUNS.
+EXTRACTION_MODEL = "gpt-4o"
+PROSE_PROMPT_VERSION = "prose_v1"
+# A model-read contract is trusted less than a regex-read one until its extraction
+# has been verified. Applied as a multiplier to confidence -- see output.py.
+MODEL_EXTRACTION_CONFIDENCE = 0.85
 
 # The 18 error categories used by the hospital_1 label file. We reuse this
 # vocabulary verbatim rather than inventing our own, so that per-category

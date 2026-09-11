@@ -1,21 +1,12 @@
-"""Embedding, projection and clustering of billing descriptions and contract text.
+"""Encode text and search it, scoped to one hospital.
 
-Two uses. First, an independent check on the price-anchored resolver: if a sentence
-embedding model clusters descriptions the same way the resolver assigns them, two
-methods sharing no information agree, and the agreement is measurable without labels.
-Second, a vector index over contract chunks, so retrieval can be compared against the
-structural filter rather than assumed to be better.
-
-Falls back to character n-gram TF-IDF where sentence-transformers is unavailable, so
-the notebook runs without a GPU or a model download.
+The hospital filter is applied before scoring, never after: a question about one
+contract must not be answered from another, however similar the wording. Falls back
+to character n-gram TF-IDF when sentence-transformers is not installed.
 """
 
 import numpy as np
-from sklearn.cluster import KMeans
-from sklearn.decomposition import PCA
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import (adjusted_rand_score, homogeneity_score,
-                             silhouette_score, completeness_score)
 from sklearn.preprocessing import normalize
 
 SENTENCE_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
@@ -52,40 +43,6 @@ def embed(texts, encoder=None):
     encode, name = encoder if encoder else load_encoder()
     return normalize(encode(texts)), name
 
-
-def project(vectors, n_components=2, random_state=0):
-    """PCA projection, with the variance each component explains."""
-    pca = PCA(n_components=n_components, random_state=random_state)
-    coords = pca.fit_transform(vectors)
-    return coords, pca.explained_variance_ratio_
-
-
-def cluster(vectors, n_clusters, random_state=0):
-    return KMeans(n_clusters=n_clusters, n_init=10,
-                  random_state=random_state).fit_predict(vectors)
-
-
-def agreement(cluster_labels, assigned_services):
-    """How far unsupervised clustering agrees with the resolver's assignment.
-
-    The resolver uses price and never sees the text; the encoder uses text and never
-    sees a price. Agreement is therefore evidence, not circular.
-    """
-    truth = [str(s) for s in assigned_services]
-    return {
-        "adjusted_rand": round(float(adjusted_rand_score(truth, cluster_labels)), 4),
-        "homogeneity": round(float(homogeneity_score(truth, cluster_labels)), 4),
-        "completeness": round(float(completeness_score(truth, cluster_labels)), 4),
-        "n_clusters": int(len(set(cluster_labels))),
-        "n_services": int(len(set(truth))),
-    }
-
-
-def separation(vectors, labels):
-    """Silhouette score of a labelling. -1 to 1; higher means better separated."""
-    if len(set(labels)) < 2:
-        return None
-    return round(float(silhouette_score(vectors, labels, metric="cosine")), 4)
 
 
 class VectorIndex:

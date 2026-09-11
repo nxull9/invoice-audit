@@ -9,8 +9,29 @@ import re
 from decimal import Decimal
 
 from src.config import UNIT_BASIS
-from src.contract_spec import new_spec, new_service, new_rate
-from src.llm_client import parse_json
+from src.contracts import new_spec, new_service, new_rate
+from src.llm import parse_json
+from src.markdown_tables import sections
+
+
+# --------------------------------------------------------------------------
+# Splitting a prose contract into units a model reads one at a time
+# --------------------------------------------------------------------------
+
+RATE_ARTICLE = "Contracted Services"
+CLAUSE = re.compile(r"^\d+\.\d+ In respect of", re.M)
+
+
+def rate_chunks(text, marker=RATE_ARTICLE):
+    """The articles that carry rates, as [{title, text, n_clauses}].
+
+    Articles are chosen by heading, not by similarity search: every rate-bearing
+    article is needed, and top-k retrieval cannot promise that. `n_clauses` is counted
+    by regex so a model that returns fewer has visibly missed some.
+    """
+    return [{"title": title, "text": body.strip(), "n_clauses": len(CLAUSE.findall(body))}
+            for title, body in sections(text).items()
+            if marker.lower() in title.lower()]
 
 VALID_BASES = set(UNIT_BASIS.values())
 
@@ -115,11 +136,11 @@ def _read_rates(item):
 def validate_service(item, source_text=None):
     """Check one extracted service. Returns (record, [reasons rejected])."""
     problems = []
-    name = (item.get("service") or "").strip()
+    name = str(item.get("service") or "").strip()      # a model may return a number here
     if not name:
         return None, ["no service name"]
 
-    raw_basis = (item.get("unit_basis") or "").strip()
+    raw_basis = str(item.get("unit_basis") or "").strip()
     basis = canonical_basis(raw_basis)
     if basis is None:
         problems.append(f"unit_basis {raw_basis!r} is not a recognised unit basis")
@@ -132,7 +153,7 @@ def validate_service(item, source_text=None):
     # text the model was given, not whether it echoed the row character for character.
     # Requiring an exact echo tests formatting: an earlier version did, and rejected
     # every extraction from all four models over incidental whitespace.
-    quote = (item.get("source_quote") or "").strip()
+    quote = str(item.get("source_quote") or "").strip()
     quote_matches = None
     if source_text:
         flat = _flatten(source_text)
@@ -173,7 +194,7 @@ def validate_service(item, source_text=None):
 
     bundle = item.get("bundle") or None
     if isinstance(bundle, dict):
-        partner = (bundle.get("partner_service") or "").strip()
+        partner = str(bundle.get("partner_service") or "").strip()
         this_r = _as_int(bundle.get("this_rate_cents"))
         other_r = _as_int(bundle.get("partner_rate_cents"))
         if partner and this_r and other_r:
@@ -339,24 +360,3 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
     spec = build_spec(hospital, header, extracted, rejected)
     import pandas as pd
     return spec, extraction_frame(extracted), pd.DataFrame(telemetry)
-
-
-def telemetry_summary(telemetry, model_name):
-    """One row per model, for the comparison table."""
-    return {
-        "model": model_name,
-        "calls": len(telemetry),
-        "clauses_expected": int(telemetry.clauses_expected.sum()),
-        "services_accepted": int(telemetry.services_accepted.sum()),
-        "parse_failures": int(telemetry.parse_error.notna().sum()),
-        "schema_deviations": int(telemetry.schema_deviation.notna().sum())
-                             if "schema_deviation" in telemetry else 0,
-        "quotes_unverified": int(telemetry.quotes_unverified.sum())
-                             if "quotes_unverified" in telemetry else 0,
-        "schema_enforced": bool(telemetry.schema_enforced.all())
-                           if "schema_enforced" in telemetry else False,
-        "retries": int(telemetry.retries.sum()) if "retries" in telemetry else 0,
-        "input_tokens": int(telemetry.input_tokens.sum()),
-        "output_tokens": int(telemetry.output_tokens.sum()),
-        "seconds": round(float(telemetry.seconds.sum()), 1),
-    }

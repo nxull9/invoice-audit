@@ -1,4 +1,4 @@
-"""Generalisation tests for the audit pipeline.
+"""Generalisation tests for the audit audit.
 
 Hospital 1 reaches precision and recall of 1.000, which is the only score the project
 can measure and therefore the one least worth trusting. Four decisions were calibrated
@@ -15,7 +15,7 @@ import random
 
 import pandas as pd
 
-from src.contract_spec import rate_on
+from src.contracts import rate_on
 from src.money import uplift, discount
 
 

@@ -8,8 +8,8 @@ import glob
 from datetime import date
 
 from src.config import UNIT_BASIS
-from src.contract_header import read_header
-from src.contract_spec import new_spec, new_service, new_rate
+from src.contracts import read_header
+from src.contracts import new_spec, new_service, new_rate
 from src.markdown_tables import (sections, table, find, columns, cents, fraction,
                                  quantity, decimal_val)
 
@@ -240,7 +240,7 @@ COMPILERS = {
 
 
 def compile_contract(data_root, hospital):
-    """Compile one hospital's contract. Hospital 2 is prose and needs `llm_extract`."""
+    """Compile one hospital's contract. Hospital 2 is prose and needs `extract`."""
     if hospital not in COMPILERS:
         raise NotImplementedError(f"{hospital} has no table-based compiler (it is prose)")
     return COMPILERS[hospital](data_root, hospital)

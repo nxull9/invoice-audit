@@ -100,3 +100,46 @@ counted.*
 Constrained decoding would also have prevented it — an enum in the schema makes
 `per_item_supplied` unemittable. That remains the stronger fix, and it is available
 locally precisely because the sampler is ours.
+
+## contract_extraction_prose_v1 -> prose_v2
+
+**Why.** Hospital 2 is the one contract read by a model, so its extraction cannot be
+scored against a regex-built specification the way the tabular hospitals were. It was
+checked a different way: hospital 2's clauses use one sentence shape per rule family, so
+`evaluation/verify_hospital_2.py` reads each rule back with a pattern and compares it
+with what the model returned, service by service.
+
+**What v1 got wrong.** GPT-4o under v1 returned all 76 services with every rate exact,
+and 7 rule defects — all one confusion:
+
+```
+22.2  contract: premium (exceeds 10 h  -> +25%)   model: cap=10  premium kept
+26.1  contract: premium (exceeds 12    -> +40%)   model: cap=12  nbd=+40%  premium=None
+26.5  contract: premium (exceeds  8    -> +15%)   model: cap=8   nbd=+15%  premium=None
+```
+
+A threshold-premium sentence ("where the aggregate quantity ... exceeds N ... the rate
+shall be increased by X%") was filed as a daily cap of N, and twice its percentage was
+filed as a non-business-day uplift. Every number is real; only the field is wrong.
+
+**Effect on the audit.** Three phantom caps under-price high-quantity lines, two
+phantom uplifts over-price every weekend line on those services, two missed premiums
+under-price the lines the premium applies to. Hospital 2 flagged 283 of 1,125 invoices
+(25.2%) against 6.4–7.5% on the other four. The weekend subset made the cause visible:
+411 weekend lines on "uplift" services, 80 mismatching; with 2 of the 10 uplift services
+being phantom, 411 × 2/10 = 82 was the prediction.
+
+DeepSeek under the same v1 prompt made 2 defects (two invented caps, no premium
+confusion). The tabular exam had ranked the two models equal; the prose contract did not.
+
+**Change in v2.** One section added before the rules, giving the three sentence shapes
+side by side — cap, threshold premium, non-business-day uplift — each with a worked
+example and the fields it must and must not populate. One rule added (rule 8): before
+returning, re-check every `daily_cap` and `nbd_uplift_pct` against the sentence it came
+from. Nothing else in the prompt changed, so any difference in the result is attributable.
+
+**What is being tested.** The 7 defects should go to 0 with rates staying 76/76 exact.
+If v2 introduces a defect elsewhere, the section over-steered and the finding changes.
+
+**Not changed, deliberately.** The schema is not enforced at the sampler for the prose
+run. Doing so alongside the prompt change would make the two effects inseparable.

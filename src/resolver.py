@@ -14,7 +14,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-from src.contract_spec import bundle_partner
+from src.contracts import bundle_partner
 from src.money import apply, uplift, discount
 
 ONE = Decimal(1)

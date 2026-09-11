@@ -19,8 +19,7 @@ import glob
 import os
 import re
 
-TEXT_LAYER_MIN_CHARS = 500
-DEMO_DIR = "reports/ocr_demo"   # never inside runs/, which holds recordings      # below this a PDF page is treated as an image
+TEXT_LAYER_MIN_CHARS = 500          # below this a PDF page is treated as an image
 DIGIT_CONFUSIONS = str.maketrans({"O": "0", "o": "0", "l": "1", "I": "1", "S": "5"})
 
 

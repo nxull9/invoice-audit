@@ -1,4 +1,4 @@
-"""Split a contract into units a model can read.
+"""Chunking diagnostics and the tabular-contract batcher used by the model exam.
 
 Hospital 2 exceeds the smallest model's context window, so chunking is required.
 Rate-bearing articles are selected by heading rather than by embedding similarity:
@@ -9,21 +9,11 @@ batched so no reply exceeds the output token limit.
 import re
 
 from src.markdown_tables import sections
+from src.extract import rate_chunks  # noqa: F401  (kept importable for the notebook)
 
 RATE_ARTICLE = 'Contracted Services'
 CLAUSE = re.compile(r'^\d+\.\d+ In respect of', re.M)
 CONVENTION_MARKERS = ['Definitions', 'Calculation Conventions', 'Interpretation']
-
-
-def rate_chunks(text, marker=RATE_ARTICLE):
-    """The articles that carry rates, as [{title, text, n_clauses}].
-
-    `n_clauses` is how many Services the article should yield, counted by regex, so a
-    model returning fewer has demonstrably missed some without needing a gold answer.
-    """
-    return [{'title': title, 'text': body.strip(), 'n_clauses': len(CLAUSE.findall(body))}
-            for title, body in sections(text).items()
-            if marker.lower() in title.lower()]
 
 
 def dropped_chunks(text, marker=RATE_ARTICLE):
@@ -58,7 +48,7 @@ def convention_chunks(text, markers=None):
 def convention_checklist(text):
     """The conventions the engine depends on, quoted from the contract itself.
 
-    Every one of these is implemented in `audit_engine`. Printing them beside the
+    Every one of these is implemented in `pricing`. Printing them beside the
     contract's own words is how we check the engine matches *this* hospital, rather
     than assuming all five contracts say the same thing.
     """

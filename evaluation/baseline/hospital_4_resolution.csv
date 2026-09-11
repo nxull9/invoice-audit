@@ -1,0 +1,535 @@
+description,service,method,confidence
+ADMIN  - gi ANAES /CW-1500,Assisted Gastrointestinal Anaesthesia Administration,price_unique,0.9
+ADMIN - outpt RHEUM,Outpatient Rheumatologic Anaesthesia Administration,price_unique,0.98
+ADMIN - outpt RHEUM anaes,Outpatient Rheumatologic Anaesthesia Administration,price_unique,0.98
+ADMIN - outpt RHEUM anaes /CW-8338,Outpatient Rheumatologic Anaesthesia Administration,price_unique,0.98
+ADMIN spclst NEURO anaes /CW-6871,,unknown_service,0.9
+ADV - ortho WD bd OCC,Advanced Orthopaedic Ward Bed Occupancy,price_unique,0.98
+ADV ortho WD bd OCCUPANCY,Advanced Orthopaedic Ward Bed Occupancy,price_unique,0.98
+ADVANCED - onc WARD bd OCC,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+ADVANCED - ortho WD bd OCCUPANCY /CW-3359,Advanced Orthopaedic Ward Bed Occupancy,price_unique,0.98
+AMB  - gi NUTRITIONAL support /CW-3607,Ambulatory Gastrointestinal Nutritional Support,price_unique,0.9
+AMB  msk VENT supp,Ambulatory Musculoskeletal Ventilation Support,price_unique,0.98
+AMB - gastrointestinal NUTR supp /CW-3413,Ambulatory Gastrointestinal Nutritional Support,price_unique,0.98
+AMB - paed CRIT cr OCC /CW-3496,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+AMB - rheum REHAB prog /CW-9454,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+AMB - rheum REHAB programme /CW-8508,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+AMB - rheumatologic REHAB prog,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+AMB gi NUTR supp,Ambulatory Gastrointestinal Nutritional Support,price_unique,0.98
+AMB haem ENDOSC proc /CW-9607,,unknown_service,0.9
+AMB musculoskeletal VENT supp /CW-8775,Ambulatory Musculoskeletal Ventilation Support,price_unique,0.98
+AMB obst CONF /CW-5695,Ambulatory Obstetric Case Conference,price_unique,0.98
+AMB obst CS conf,Ambulatory Obstetric Case Conference,price_unique,0.98
+AMB paed CRIT cr OCCUPANCY /CW-5795,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+AMBULATORY - obst CS conf,Ambulatory Obstetric Case Conference,price_unique,0.98
+AMBULATORY - paed CRITICAL cr OCC,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+AMBULATORY obst CS conf /CW-4745,Ambulatory Obstetric Case Conference,price_unique,0.98
+AMBULATORY obst CS conf /CW-8021,Ambulatory Obstetric Case Conference,price_unique,0.98
+ANLY assisted OBST spcm,Assisted Obstetric Specimen Analysis,price_unique,0.98
+ASSISTED  - paed THTR tm /CW-7552,Assisted Paediatric Theatre Time,price_unique,0.98
+ASSISTED card VENTILATION supp /CW-6226,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASSISTED gi ANAES admin /CW-1036,Assisted Gastrointestinal Anaesthesia Administration,price_unique,0.98
+ASSISTED spcm ANALYSIS /CW-2232,Assisted Obstetric Specimen Analysis,price_unique,0.98
+ASSISTED urol NURS obs /CW-3340,Assisted Urologic Nursing Observation,price_unique,0.98
+ASST  card VENT supp /CW-7623,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST  urol OBSERVATION /CW-2070,Assisted Urologic Nursing Observation,price_unique,0.98
+ASST - card VENT supp,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST - gastrointestinal ANAES admin /CW-6527,Assisted Gastrointestinal Anaesthesia Administration,price_unique,0.98
+ASST - gi ANAES admin,Assisted Gastrointestinal Anaesthesia Administration,price_unique,0.98
+ASST - gi ANAES administration,Assisted Gastrointestinal Anaesthesia Administration,price_unique,0.98
+ASST - obst SPCM anly /CW-7565,Assisted Obstetric Specimen Analysis,price_unique,0.98
+ASST - obstetric TRANSP svc /CW-7850,,unknown_service,0.9
+ASST - paed TM /CW-5883,Assisted Paediatric Theatre Time,price_unique,0.98
+ASST - paediatric THEATRE tm /CW-7535,Assisted Paediatric Theatre Time,price_unique,0.98
+ASST - urol NURS obs /CW-2623,Assisted Urologic Nursing Observation,price_unique,0.98
+ASST obst SPCM anly,Assisted Obstetric Specimen Analysis,price_unique,0.98
+ASST urol NURS obs /CW-5982,Assisted Urologic Nursing Observation,price_unique,0.98
+BEDS  gi BIOPSY proc /CW-1241,Bedside Gastrointestinal Biopsy Procedure,price_unique,0.98
+BEDS - oncology TRANSF /CW-9855,,unknown_service,0.9
+BEDSIDE - gi BIOP proc /CW-7056,Bedside Gastrointestinal Biopsy Procedure,price_unique,0.98
+CARD hm VST BEDS,Bedside Cardiac Home Visit,price_unique,0.98
+CARD hm VST RTN,Routine Cardiac Home Visit,price_unique,0.9
+CARD physio SESS EMER,Emergency Cardiac Physiotherapy Session,price_unique,0.98
+CARD physio SESS OUTPT,Outpatient Cardiac Physiotherapy Session,price_unique,0.98
+CARDIAC physio SESS /CW-4455,Emergency Cardiac Physiotherapy Session,price_unique,0.9
+CARE - postop CARDIAC wnd /CW-2116,Postoperative Cardiac Wound Care,price_unique,0.98
+CARE postop CARDIAC wnd,Postoperative Cardiac Wound Care,price_unique,0.98
+COMPR neuro ENDOSCOPIC proc,Comprehensive Neurological Endoscopic Procedure,price_unique,0.98
+COMPR neurological ENDOSC proc /CW-4675,Comprehensive Neurological Endoscopic Procedure,price_unique,0.98
+CONF  intens GER case,Intensive Geriatric Case Conference,price_unique,0.98
+CONF ger CS,Intensive Geriatric Case Conference,price_unique,0.98
+CONF intens GER cs /CW-3922,Intensive Geriatric Case Conference,price_unique,0.98
+CONSULT intens PAED /CW-3137,Intensive Paediatric Consultation,price_unique,0.98
+CONSULT rtn NEURO /CW-8916,,unknown_service,0.9
+CONT  infect CRIT care OCC,Continuous Infectious Critical Care Occupancy,price_unique,0.98
+CONT - gi TRANSFUSION svc,Continuous Gastrointestinal Transfusion Service,price_unique,0.98
+CONT infectious CRIT cr OCCUPANCY,Continuous Infectious Critical Care Occupancy,price_unique,0.98
+CONTINUOUS gi TRANSF svc,Continuous Gastrointestinal Transfusion Service,price_unique,0.98
+CONTINUOUS infectious CRITICAL occ,Continuous Infectious Critical Care Occupancy,price_unique,0.98
+CR std ORTHOPAEDIC crit,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+ELECT - nurs OBS,Elective Gastrointestinal Nursing Observation,price_unique,0.98
+ELECT - ophth RADIOTHER /CW-6461,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+ELECT - ophthalmic RADIOTHER fract /CW-9522,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+ELECT - ophthalmic RADIOTHERAPY fract /CW-3532,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+ELECT ophth RADIOTHER fract /CW-4480,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+ELECTIVE gi NURS obs /CW-7280,Elective Gastrointestinal Nursing Observation,price_unique,0.98
+EMER - card PHYSIO sess /CW-1742,Emergency Cardiac Physiotherapy Session,price_unique,0.98
+EMERGENCY - card PHYSIOTHERAPY sess,Emergency Cardiac Physiotherapy Session,price_unique,0.98
+ENDOSC - ext PSYCHIATRIC /CW-9075,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+ENDOSC - outpatient UROLOGIC /CW-5618,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+EXT  - psych ENDOSC proc /CW-4756,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT - psychiatric ENDOSC procedure,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT psych ENDOSC proc,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT ren BD occupancy /CW-7024,Extended Renal Ward Bed Occupancy,price_unique,0.98
+EXT ren WD occ /CW-7113,Extended Renal Ward Bed Occupancy,price_unique,0.98
+EXT renal WD bed OCC,Extended Renal Ward Bed Occupancy,price_unique,0.98
+FOC - metab BIOP procedure /CW-1579,Focused Metabolic Biopsy Procedure,price_unique,0.98
+FOC - metab BIOPSY proc /CW-9462,Focused Metabolic Biopsy Procedure,price_unique,0.98
+FOCUSED biop PROC,Focused Metabolic Biopsy Procedure,price_unique,0.98
+FOCUSED metab BIOP proc /CW-3728,Focused Metabolic Biopsy Procedure,price_unique,0.98
+FOCUSED metabolic BIOP proc /CW-3860,Focused Metabolic Biopsy Procedure,price_unique,0.98
+FRACT - elect OPHTH radiother /CW-4974,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+FRACT - elect OPHTH radiotherapy /CW-2057,Elective Ophthalmic Radiotherapy Fraction,price_unique,0.98
+GER cs CONF INTENS,Intensive Geriatric Case Conference,price_unique,0.98
+GER cs CONF POSTOP,Postoperative Geriatric Case Conference,price_unique,0.98
+GER diag IMG OUTPT,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+GER diag IMG PREOP,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+GI - transfusion SVC /CW-9161,Continuous Gastrointestinal Transfusion Service,price_unique,0.9
+HEP - inf THERAPY,Standard Hepatic Infusion Therapy,price_unique,0.98
+IMG - preop GER diag /CW-8799,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+IMG - preop ONC diag /CW-7126,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+IMG - preoperative ONC,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+IMG preoperative ONCOLOGY /CW-9430,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+IMMUN - spclst /CW-9956,Specialist Immunologic Consultation,price_unique,0.98
+IMMUN wd BD occ AMB,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+IMMUN wd BD occ SUPV,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+INFECT - critical CARE occ,Continuous Infectious Critical Care Occupancy,price_unique,0.98
+INPATIENT - psych HM vst /CW-9305,Inpatient Psychiatric Home Visit,price_unique,0.98
+INPATIENT psychiatric HM visit /CW-6666,Inpatient Psychiatric Home Visit,price_unique,0.98
+INPT  psych HM vst /CW-4923,Inpatient Psychiatric Home Visit,price_unique,0.98
+INPT - psych HM visit /CW-4170,Inpatient Psychiatric Home Visit,price_unique,0.98
+INPT - psych HOME vst,Inpatient Psychiatric Home Visit,price_unique,0.98
+INPT psych HOME vst /CW-1371,Inpatient Psychiatric Home Visit,price_unique,0.98
+INTENS  - paed CONSULTATION /CW-2377,Intensive Paediatric Consultation,price_unique,0.98
+INTENS  neurological DIAG img /CW-9312,,unknown_service,0.9
+INTENS - ger CASE conf,Intensive Geriatric Case Conference,price_unique,0.98
+INTENS - geriatric CS conference /CW-7622,Intensive Geriatric Case Conference,price_unique,0.98
+INTENS - paed CONSULT,Intensive Paediatric Consultation,price_unique,0.98
+INTENSIVE  - paediatric CONSULT /CW-8569,Intensive Paediatric Consultation,price_unique,0.98
+INTERM  - rheum DIAL sess /CW-1055,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+INTERM  - urol TELEM monit /CW-1964,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+INTERM  psych REHAB prog /CW-7902,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+INTERM - psych REHAB prog,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+INTERM - rheum SESS /CW-7476,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+INTERM - urol TELEM monit,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+INTERM - urol TELEMETRY /CW-3304,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+INTERM urol TELEM monit,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+INTERM urologic TELEM monit /CW-6015,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+INTERMITTENT - rheum DIAL sess /CW-4841,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+INTERMITTENT psych REHAB prog,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+INTERMITTENT rheum DIALYSIS session /CW-3359,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+INTERP - postop PAEDIATRIC img /CW-8778,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+INTERP preoperative HAEM img,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+INTERPRETATION - postop PAED imaging /CW-8171,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+LAB  - emer DERM /CW-2124,,unknown_service,0.9
+MONIT  interm UROLOGIC telemetry /CW-1251,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+NURS - elect GASTROINTESTINAL /CW-1281,Elective Gastrointestinal Nursing Observation,price_unique,0.98
+OBS - gi NURS /CW-2992,Elective Gastrointestinal Nursing Observation,price_unique,0.9
+OBS postop RHEUMATOLOGIC nurs,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+OBSERVATION  postop RHEUM nurs,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+OBST cs CONF AMB,Ambulatory Obstetric Case Conference,price_unique,0.98
+OBST cs CONF EXT,Extended Obstetric Case Conference,price_unique,0.98
+OCC  - amb PAED crit CR,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+OCC  - ambulatory PAEDIATRIC critical CR,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+OCC  - outpt ORTHO recov ROOM /CW-6062,Outpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCC  - outpt ORTHOPAEDIC recov ROOM,Outpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCC  - standard ORTHO cr /CW-6124,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+OCC - std CRIT cr /CW-1779,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+OCC - supv IMMUN wd BED /CW-6089,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+OCC adv ONC ward BD /CW-1103,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+OCC adv ONC wd BD /CW-8074,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+OCC advanced ORTHO wd,Advanced Orthopaedic Ward Bed Occupancy,price_unique,0.98
+OCC amb PAED crit CARE /CW-9108,Ambulatory Paediatric Critical Care Occupancy,price_unique,0.98
+OCC cont INFECTIOUS crit CR /CW-4807,Continuous Infectious Critical Care Occupancy,price_unique,0.98
+OCC supv IMMUN wd BED /CW-7552,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+OCCUPANCY  adv ONC bd /CW-4545,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+OCCUPANCY - adv ORTHO wd BD /CW-5531,Advanced Orthopaedic Ward Bed Occupancy,price_unique,0.98
+OCCUPANCY - advanced ONC wd BD /CW-2874,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+OCCUPANCY - outpt ORTHO recov ROOM /CW-9263,Outpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCCUPANCY - std ORTHOPAEDIC crit CR /CW-7040,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+OCCUPANCY - supv IMMUN wd BD /CW-8876,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+OCCUPANCY adv ONC wd BD,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+ONC wd BD occ ADV,Advanced Oncology Ward Bed Occupancy,price_unique,0.98
+ONC wd BD occ STD,Standard Oncology Ward Bed Occupancy,price_unique,0.98
+ORTHOPAEDIC recov RM occupancy /CW-4525,Outpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OUTPATIENT - obst DIAL sess,Outpatient Obstetric Dialysis Session,price_unique,0.98
+OUTPATIENT - rheum ADMINISTRATION /CW-5971,Outpatient Rheumatologic Anaesthesia Administration,price_unique,0.98
+OUTPT  urol ENDOSCOPIC proc,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+OUTPT - obst DIAL /CW-3474,Outpatient Obstetric Dialysis Session,price_unique,0.98
+OUTPT - obst DIAL sess /CW-7015,Outpatient Obstetric Dialysis Session,price_unique,0.98
+OUTPT - obst DIAL sess /CW-9914,Outpatient Obstetric Dialysis Session,price_unique,0.98
+OUTPT - obst DIALYSIS sess,Outpatient Obstetric Dialysis Session,price_unique,0.98
+OUTPT - urologic ENDOSC proc,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+OUTPT metabolic PHARM disp,,unknown_service,0.9
+OUTPT recov RM occ,Outpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OUTPT rheum ANAES admin /CW-4096,Outpatient Rheumatologic Anaesthesia Administration,price_unique,0.98
+OUTPT urol ENDOSC proc /CW-9583,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+PLANNING spclst HEP disch,Specialist Hepatic Discharge Planning,price_unique,0.98
+PLNG cont OTOLARYNGOLOGIC disch,,unknown_service,0.9
+POSTOP  - rheumatologic NURSING observation /CW-6924,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+POSTOP  paed IMG interp,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+POSTOP - card WND care /CW-5796,Postoperative Cardiac Wound Care,price_unique,0.98
+POSTOP - ger IMG interp,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP - ger IMG interpretation /CW-5101,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP - ger INTERP /CW-6488,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP - paediatric IMAGING interp,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+POSTOP - rheum NURS obs,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+POSTOP ger IMAGING interp,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP ger IMG interp /CW-1229,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP ger IMG interpretation,Postoperative Geriatric Imaging Interpretation,price_unique,0.98
+POSTOP paed IMG interp /CW-2275,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+POSTOP paed IMG interpretation /CW-2645,Postoperative Paediatric Imaging Interpretation,price_unique,0.98
+POSTOPERATIVE card CR,Postoperative Cardiac Wound Care,price_unique,0.98
+POSTOPERATIVE rheum NURS obs /CW-2573,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+PREOP - ger DIAG /CW-2259,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+PREOP - haem IMG interp /CW-1749,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+PREOP - haem IMG interpretation /CW-4475,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+PREOP - haem INTERP,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+PREOP - haematology IMG,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+PREOP - msk RECOVERY rm OCCUPANCY /CW-6079,Preoperative Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+PREOP - msk RECOVERY room OCCUPANCY /CW-7703,Preoperative Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+PREOP - musculoskeletal RECOV rm OCC,Preoperative Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+PREOP - onc DIAG /CW-5837,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+PREOP - onc DIAGNOSTIC img /CW-1315,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+PREOP ger DIAGNOSTIC img,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+PREOP geriatric IMG /CW-3234,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+PREOP msk RECOV rm OCC,Preoperative Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+PREOP msk ROOM occ,Preoperative Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+PREOPERATIVE - haematology IMG interp /CW-7886,Preoperative Haematology Imaging Interpretation,price_unique,0.98
+PREOPERATIVE ger DIAG img /CW-7580,Preoperative Geriatric Diagnostic Imaging,price_unique,0.98
+PROC - beds GASTROINTESTINAL biop /CW-9191,Bedside Gastrointestinal Biopsy Procedure,price_unique,0.98
+PROC - ext PSYCH /CW-9029,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+PROC - foc METABOLIC biopsy /CW-1566,Focused Metabolic Biopsy Procedure,price_unique,0.98
+PROC - outpt UROL endosc /CW-2734,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+PROC compr NEURO endoscopic /CW-6452,Comprehensive Neurological Endoscopic Procedure,price_unique,0.98
+PROCEDURE  - outpt UROL endosc /CW-5587,Outpatient Urologic Endoscopic Procedure,price_unique,0.98
+PROCEDURE - beds GI biopsy /CW-5425,Bedside Gastrointestinal Biopsy Procedure,price_unique,0.98
+PROCEDURE - comprehensive NEURO endosc,Comprehensive Neurological Endoscopic Procedure,price_unique,0.98
+PROG - amb RHEUM rehabilitation /CW-6302,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+PROG - interm PSYCH,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+PROG - interm PSYCH rehabilitation /CW-1715,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+PROG - intermittent PSYCH rehab /CW-3340,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+PSYCH rehab PROG CONT,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+PSYCH rehab PROG INTERM,Intermittent Psychiatric Rehabilitation Programme,price_unique,0.98
+REN - wd BD occ /CW-4382,Extended Renal Ward Bed Occupancy,price_unique,0.98
+RHEUM dial SESS INTERM,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+RHEUM dial SESS SUPV,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+RHEUM rehabilitation PROGRAMME /CW-4700,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+RTN - card HM visit,Routine Cardiac Home Visit,price_unique,0.9
+RTN - card HM vst /CW-5145,Routine Cardiac Home Visit,price_unique,0.9
+RTN - ortho TRANSF service /CW-3818,,unknown_service,0.9
+RTN card HM vst /CW-6536,Routine Cardiac Home Visit,price_unique,0.9
+RTN cardiac HM visit,Routine Cardiac Home Visit,price_unique,0.9
+SESS  outpt OBST dial /CW-7039,Outpatient Obstetric Dialysis Session,price_unique,0.98
+SESS - emergency CARD physio /CW-9661,Emergency Cardiac Physiotherapy Session,price_unique,0.98
+SESS - emergency CARDIAC physio,Emergency Cardiac Physiotherapy Session,price_unique,0.98
+SESS interm RHEUM dial /CW-5468,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+SESS intermittent RHEUM dial,Intermittent Rheumatologic Dialysis Session,price_unique,0.98
+SPCLST  - hep DISCH planning /CW-7438,Specialist Hepatic Discharge Planning,price_unique,0.98
+SPCLST - consult,Specialist Immunologic Consultation,price_unique,0.98
+SPCLST - hep DISCH planning,Specialist Hepatic Discharge Planning,price_unique,0.98
+SPCLST - hep DISCHARGE plng,Specialist Hepatic Discharge Planning,price_unique,0.98
+SPCLST - immunologic CONSULT,Specialist Immunologic Consultation,price_unique,0.98
+SPCLST - immunologic CONSULTATION /CW-3950,Specialist Immunologic Consultation,price_unique,0.98
+SPCLST immunologic /CW-6493,Specialist Immunologic Consultation,price_unique,0.98
+SPCLST wnd CR /CW-6542,,unknown_service,0.9
+SPCM  - asst OBST /CW-9843,Assisted Obstetric Specimen Analysis,price_unique,0.98
+SPECIALIST immunologic CONSULT /CW-1309,Specialist Immunologic Consultation,price_unique,0.98
+STD - hep INF ther /CW-6477,Standard Hepatic Infusion Therapy,price_unique,0.98
+STD - ophth LAB pnl,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+STD - ophth LAB pnl /CW-2452,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+STD - ophth LAB pnl /CW-8684,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+STD - ophthalmic LAB pnl,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+STD - orthopaedic CRIT care OCC /CW-2102,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+STD - orthopaedic CRIT cr OCC /CW-7769,Standard Orthopaedic Critical Care Occupancy,price_unique,0.98
+STD ophthalmic LAB pnl,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+SUPERVISED  - vasc RADIOTHER,Supervised Vascular Radiotherapy Fraction,price_unique,0.98
+SUPERVISED - pulmonary HM vst /CW-3719,Supervised Pulmonary Home Visit,price_unique,0.98
+SUPERVISED pulm HM vst /CW-7359,Supervised Pulmonary Home Visit,price_unique,0.98
+SUPERVISED pulmonary HM visit /CW-7640,Supervised Pulmonary Home Visit,price_unique,0.98
+SUPP  ambulatory GI nutr /CW-8509,Ambulatory Gastrointestinal Nutritional Support,price_unique,0.98
+SUPP - amb MSK vent /CW-6725,Ambulatory Musculoskeletal Ventilation Support,price_unique,0.98
+SUPP amb MSK vent /CW-8558,Ambulatory Musculoskeletal Ventilation Support,price_unique,0.98
+SUPP asst VENTILATION /CW-3888,Assisted Cardiac Ventilation Support,price_unique,0.98
+SUPPORT - amb MSK vent,Ambulatory Musculoskeletal Ventilation Support,price_unique,0.9
+SUPV - immun WARD bd OCC,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+SUPV - vascular RADIOTHER fract /CW-4865,Supervised Vascular Radiotherapy Fraction,price_unique,0.98
+SUPV - vascular RADIOTHERAPY fract,Supervised Vascular Radiotherapy Fraction,price_unique,0.98
+SUPV immun WD bd OCC /CW-1811,Supervised Immunologic Ward Bed Occupancy,price_unique,0.98
+SUPV vascular RADIOTHER fract /CW-1727,Supervised Vascular Radiotherapy Fraction,price_unique,0.98
+SVC - ortho STERILISATION,,unknown_service,0.9
+SVC cont GI transfusion /CW-1126,Continuous Gastrointestinal Transfusion Service,price_unique,0.98
+THER - standard HEP inf /CW-8309,Standard Hepatic Infusion Therapy,price_unique,0.98
+THER std HEP inf,Standard Hepatic Infusion Therapy,price_unique,0.98
+THER std HEP inf /CW-1052,Standard Hepatic Infusion Therapy,price_unique,0.98
+TM asst PAEDIATRIC thtr /CW-4279,Assisted Paediatric Theatre Time,price_unique,0.98
+TRANSF - cont GI,Continuous Gastrointestinal Transfusion Service,price_unique,0.98
+VST  foc NEURO /CW-8682,,unknown_service,0.9
+VST - supv PULMONARY /CW-3511,Supervised Pulmonary Home Visit,price_unique,0.98
+VST - supv PULMONARY hm /CW-6997,Supervised Pulmonary Home Visit,price_unique,0.98
+VST supv PULMONARY home /CW-3675,Supervised Pulmonary Home Visit,price_unique,0.98
+admin - INPATIENT ortho ANAES,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+admin - INTERM ren ANAES /CW-9520,Intermittent Renal Anaesthesia Administration,price_unique,0.98
+admin - SUPV pulm ANAES,Supervised Pulmonary Anaesthesia Administration,price_unique,0.98
+admin REN anaesthesia,Intermittent Renal Anaesthesia Administration,price_unique,0.98
+administration INTERM ren ANAES /CW-3269,Intermittent Renal Anaesthesia Administration,price_unique,0.98
+adv  - PAED thtr /CW-9651,Advanced Paediatric Theatre Time,price_unique,0.98
+adv  - PAED thtr TM,Advanced Paediatric Theatre Time,price_unique,0.98
+adv  VASC endosc PROC /CW-5904,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+adv - PALL hm VST /CW-2046,Advanced Palliative Home Visit,price_unique,0.98
+adv - PALL hm VST /CW-4754,Advanced Palliative Home Visit,price_unique,0.98
+adv - PALLIATIVE hm VISIT /CW-4841,Advanced Palliative Home Visit,price_unique,0.98
+adv - VASC endosc PROCEDURE /CW-2084,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+adv - VASC proc,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+adv PAED thtr TM,Advanced Paediatric Theatre Time,price_unique,0.98
+adv PALL hm VST /CW-7657,Advanced Palliative Home Visit,price_unique,0.98
+adv VASC endosc PROC /CW-8230,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+advanced PAED thtr TM /CW-5259,Advanced Paediatric Theatre Time,price_unique,0.98
+advanced VASC endosc PROC /CW-6163,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+amb  - HAEM transfusion SVC /CW-5631,Ambulatory Haematology Transfusion Service,price_unique,0.98
+amb - HAEMATOLOGY transf SVC /CW-5136,Ambulatory Haematology Transfusion Service,price_unique,0.98
+amb - IMMUN ward BD occupancy /CW-2184,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+amb - MSK spcm ANLY,Ambulatory Musculoskeletal Specimen Analysis,price_unique,0.98
+amb IMMUN ward BD occ,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+amb IMMUN wd BD occ /CW-7522,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+amb MSK spcm,Ambulatory Musculoskeletal Specimen Analysis,price_unique,0.98
+amb MSK spcm ANLY,Ambulatory Musculoskeletal Specimen Analysis,price_unique,0.98
+amb MSK spcm ANLY /CW-5350,Ambulatory Musculoskeletal Specimen Analysis,price_unique,0.98
+amb WD bed OCC /CW-2964,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+anly INTENS spcm,Intensive Urologic Specimen Analysis,price_unique,0.98
+assisted - NUTR supp,Assisted Renal Nutritional Support,price_unique,0.98
+assisted - PAED physio SESS /CW-5564,Assisted Paediatric Physiotherapy Session,price_unique,0.98
+assisted - REN nutr SUPP /CW-6761,Assisted Renal Nutritional Support,price_unique,0.98
+asst - PAED physio SESS,Assisted Paediatric Physiotherapy Session,price_unique,0.98
+asst - PAEDIATRIC physio SESS /CW-1557,Assisted Paediatric Physiotherapy Session,price_unique,0.98
+asst - RENAL nutritional SUPP,Assisted Renal Nutritional Support,price_unique,0.98
+asst REN nutr SUPP /CW-3943,Assisted Renal Nutritional Support,price_unique,0.98
+asst RENAL nutr /CW-4158,Assisted Renal Nutritional Support,price_unique,0.98
+beds - OBST img INTERP,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+beds - OBST img INTERPRETATION,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+beds CARD hm /CW-4363,Bedside Cardiac Home Visit,price_unique,0.98
+beds CARD hm VST,Bedside Cardiac Home Visit,price_unique,0.98
+bedside OBST img,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+card  - HOME vst,Bedside Cardiac Home Visit,price_unique,0.98
+card VENT supp asst,Assisted Cardiac Ventilation Support,price_unique,0.98
+card VENT supp spclst,Specialist Cardiac Ventilation Support,price_unique,0.98
+card VENT support,Specialist Cardiac Ventilation Support,price_unique,0.9
+compr - OPHTH lab PANEL /CW-3670,Comprehensive Ophthalmic Laboratory Panel,price_unique,0.98
+compr - OPHTH lab PNL,Comprehensive Ophthalmic Laboratory Panel,price_unique,0.98
+compr - OPHTH laboratory PNL /CW-7966,Comprehensive Ophthalmic Laboratory Panel,price_unique,0.98
+compr - UROL img INTERP,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+compr UROL img INTERPRETATION,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+comprehensive - OPHTH lab PNL /CW-3198,Comprehensive Ophthalmic Laboratory Panel,price_unique,0.98
+conf  - EXT obst CS /CW-8663,Extended Obstetric Case Conference,price_unique,0.98
+conf - EXT obstetric CS,Extended Obstetric Case Conference,price_unique,0.98
+conf - UROL cs /CW-3094,Focused Urologic Case Conference,price_unique,0.98
+conference - POSTOPERATIVE ger CS /CW-6353,Postoperative Geriatric Case Conference,price_unique,0.98
+cont PSYCHIATRIC rehabilitation PROG,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+elect  OBSTETRIC transf SVC /CW-6472,Elective Obstetric Transfusion Service,price_unique,0.98
+elect OBST transf SVC /CW-1798,Elective Obstetric Transfusion Service,price_unique,0.98
+elect OBSTETRIC transf SVC /CW-6737,Elective Obstetric Transfusion Service,price_unique,0.98
+elective - NEURO ward BED occ,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+elective - NEURO wd BD occ,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+elective - NEURO wd BED occ,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+elective - OBST transf SERVICE /CW-5652,Elective Obstetric Transfusion Service,price_unique,0.98
+emer  - METAB radiother,Emergency Metabolic Radiotherapy Fraction,price_unique,0.98
+emer - RHEUMATOLOGIC prog /CW-1178,Emergency Rheumatologic Rehabilitation Programme,price_unique,0.98
+emer METAB radiother FRACT,Emergency Metabolic Radiotherapy Fraction,price_unique,0.98
+emer METABOLIC radiotherapy FRACTION /CW-3320,Emergency Metabolic Radiotherapy Fraction,price_unique,0.98
+emergency - RHEUM rehabilitation PROG /CW-2482,Emergency Rheumatologic Rehabilitation Programme,price_unique,0.98
+ext  HEP disch PLNG /CW-1975,Extended Hepatic Discharge Planning,price_unique,0.98
+ext  UROLOGIC telem,Extended Urologic Telemetry Monitoring,price_unique,0.98
+ext - HEP disch PLANNING,Extended Hepatic Discharge Planning,price_unique,0.98
+ext - HEP disch PLANNING /CW-9770,Extended Hepatic Discharge Planning,price_unique,0.98
+ext - HEP transf SVC /CW-5339,Extended Hepatic Transfusion Service,price_unique,0.98
+ext - HEP transf SVC /CW-9407,Extended Hepatic Transfusion Service,price_unique,0.98
+ext - HEPATIC transfusion SVC /CW-2178,Extended Hepatic Transfusion Service,price_unique,0.98
+ext - OBST cs CONFERENCE /CW-3448,Extended Obstetric Case Conference,price_unique,0.98
+ext - OBSTETRIC conf,Extended Obstetric Case Conference,price_unique,0.98
+ext - RHEUMATOLOGIC observation /CW-5150,Extended Rheumatologic Nursing Observation,price_unique,0.98
+ext - UROL telem MONIT /CW-1191,Extended Urologic Telemetry Monitoring,price_unique,0.98
+ext HEPATIC disch PLNG,Extended Hepatic Discharge Planning,price_unique,0.98
+ext HEPATIC transfusion SVC /CW-8250,Extended Hepatic Transfusion Service,price_unique,0.98
+ext RHEUM nurs OBS,Extended Rheumatologic Nursing Observation,price_unique,0.98
+ext RHEUM obs,Extended Rheumatologic Nursing Observation,price_unique,0.98
+extended  HEP transfusion SVC,Extended Hepatic Transfusion Service,price_unique,0.98
+foc  - VASC transport SVC /CW-9116,Focused Vascular Transport Service,price_unique,0.98
+foc - UROL cs CONF,Focused Urologic Case Conference,price_unique,0.98
+foc - VASC inf THERAPY /CW-8936,Focused Vascular Infusion Therapy,price_unique,0.98
+foc - VASC transp SVC,Focused Vascular Transport Service,price_unique,0.98
+foc - VASC transport SERVICE,Focused Vascular Transport Service,price_unique,0.98
+foc UROL cs CONF /CW-2324,Focused Urologic Case Conference,price_unique,0.98
+foc UROL cs CONF /CW-7956,Focused Urologic Case Conference,price_unique,0.98
+foc UROLOGIC cs CONFERENCE,Focused Urologic Case Conference,price_unique,0.98
+foc VASC infusion THER,Focused Vascular Infusion Therapy,price_unique,0.98
+foc VASCULAR transp SERVICE /CW-7821,Focused Vascular Transport Service,price_unique,0.98
+foc VASCULAR transport SVC,Focused Vascular Transport Service,price_unique,0.98
+focused UROL cs CONFERENCE,Focused Urologic Case Conference,price_unique,0.98
+fract - INTENS rheum RADIOTHER /CW-1555,Intensive Rheumatologic Radiotherapy Fraction,price_unique,0.98
+fract - INTENSIVE rheum RADIOTHERAPY /CW-4214,Intensive Rheumatologic Radiotherapy Fraction,price_unique,0.98
+fract EMER metabolic RADIOTHER,Emergency Metabolic Radiotherapy Fraction,price_unique,0.98
+ger - CASE conf,Postoperative Geriatric Case Conference,price_unique,0.9
+gi - IMG interp,Specialist Gastrointestinal Imaging Interpretation,price_unique,0.9
+gi NURS obs elect,Elective Gastrointestinal Nursing Observation,price_unique,0.98
+gi NURS obs supv,Supervised Gastrointestinal Nursing Observation,price_unique,0.98
+haematology - TRANSF svc,Ambulatory Haematology Transfusion Service,price_unique,0.98
+hep - DISCHARGE plng /CW-2290,Extended Hepatic Discharge Planning,price_unique,0.98
+hep DISCH plng ext,Extended Hepatic Discharge Planning,price_unique,0.98
+hep DISCH plng spclst,Specialist Hepatic Discharge Planning,price_unique,0.98
+hm - ADV palliative,Advanced Palliative Home Visit,price_unique,0.98
+imaging  OUTPT ger DIAG /CW-9918,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+img  COMPREHENSIVE urologic /CW-6158,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+img - OUTPT ger,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+img - POSTOP onc DIAG,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+inpatient - ORTHOPAEDIC anaes ADMIN /CW-3173,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+inpt - ORTHO anaes ADMINISTRATION,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+intens  UROLOGIC spcm ANALYSIS /CW-5532,Intensive Urologic Specimen Analysis,price_unique,0.98
+intens - RHEUM radiotherapy /CW-4273,Intensive Rheumatologic Radiotherapy Fraction,price_unique,0.98
+intens - UROL spcm ANALYSIS /CW-2272,Intensive Urologic Specimen Analysis,price_unique,0.98
+intens - UROL specimen ANLY /CW-8319,Intensive Urologic Specimen Analysis,price_unique,0.98
+intens - VASC steril SVC /CW-4993,Intensive Vascular Sterilisation Service,price_unique,0.98
+intens - VASCULAR steril SVC /CW-7067,Intensive Vascular Sterilisation Service,price_unique,0.98
+intensive  - VASCULAR steril SVC /CW-1594,Intensive Vascular Sterilisation Service,price_unique,0.98
+interm - NEUROLOGICAL lab PNL /CW-3443,Intermittent Neurological Laboratory Panel,price_unique,0.98
+interm - ONC hm VST,Intermittent Oncology Home Visit,price_unique,0.98
+interm - ONCOLOGY hm VST /CW-7658,Intermittent Oncology Home Visit,price_unique,0.98
+interm NEURO lab PNL,Intermittent Neurological Laboratory Panel,price_unique,0.98
+interm ONC home VST /CW-1380,Intermittent Oncology Home Visit,price_unique,0.98
+intermittent  NEURO lab PNL /CW-9905,Intermittent Neurological Laboratory Panel,price_unique,0.98
+intermittent - NEURO laboratory PNL,Intermittent Neurological Laboratory Panel,price_unique,0.98
+intermittent - REN anaes,Intermittent Renal Anaesthesia Administration,price_unique,0.98
+interp - BEDS obst IMG /CW-9860,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+interp - BEDSIDE obst IMG,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+interp - COMPR urol IMG /CW-7467,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+interp BEDSIDE obst IMG /CW-4098,Bedside Obstetric Imaging Interpretation,price_unique,0.98
+interp COMPR img /CW-6998,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+interpretation - COMPR img /CW-2951,Comprehensive Urologic Imaging Interpretation,price_unique,0.98
+monit  - POSTOP otolaryngologic TELEM /CW-5715,Postoperative Otolaryngologic Telemetry Monitoring,price_unique,0.98
+monit  POSTOPERATIVE otolaryngologic TELEMETRY,Postoperative Otolaryngologic Telemetry Monitoring,price_unique,0.98
+monit - EXT urol TELEM /CW-7204,Extended Urologic Telemetry Monitoring,price_unique,0.98
+monit EXT urol TELEM,Extended Urologic Telemetry Monitoring,price_unique,0.98
+monit POSTOP otolaryngologic TELEM /CW-4406,Postoperative Otolaryngologic Telemetry Monitoring,price_unique,0.98
+msk - SPCM analysis,Ambulatory Musculoskeletal Specimen Analysis,price_unique,0.9
+obs - EXT rheum NURS /CW-3692,Extended Rheumatologic Nursing Observation,price_unique,0.98
+obs SUPERVISED gi NURSING /CW-4223,Supervised Gastrointestinal Nursing Observation,price_unique,0.98
+occ  - AMB card WARD bed /CW-8690,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+occ  - AMB card WD bd,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+occ - AMBULATORY immun WD bd,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+occ - ELECT neuro WD bd /CW-3182,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+occ - ELECT neuro WD bd /CW-9688,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+occ - POSTOP pall RECOVERY rm,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+occ AMB card WARD /CW-1077,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+occ AMB cardiac WD bd,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+occ ELECTIVE neuro WARD bd,Elective Neurological Ward Bed Occupancy,price_unique,0.98
+occ PALLIATIVE recov RM,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+occupancy  - AMBULATORY card WD bd,Ambulatory Cardiac Ward Bed Occupancy,price_unique,0.98
+occupancy ONC wd BD,Standard Oncology Ward Bed Occupancy,price_unique,0.9
+onc DIAG img postop,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+onc DIAG img preop,Preoperative Oncology Diagnostic Imaging,price_unique,0.98
+ophth LAB pnl compr,Comprehensive Ophthalmic Laboratory Panel,price_unique,0.98
+ophth LAB pnl std,Standard Ophthalmic Laboratory Panel,price_unique,0.98
+ortho  - ANAES admin /CW-7356,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+ortho - ANAES admin /CW-8548,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+ortho - ANAES administration,Inpatient Orthopaedic Anaesthesia Administration,price_unique,0.98
+outpatient  - GER diag /CW-5691,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+outpt - CARDIAC physio,Outpatient Cardiac Physiotherapy Session,price_unique,0.98
+outpt - GER diagnostic IMG,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+outpt - GERIATRIC diagnostic IMG /CW-5122,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+outpt CARD physio SESSION /CW-1340,Outpatient Cardiac Physiotherapy Session,price_unique,0.98
+outpt CARD sess,Outpatient Cardiac Physiotherapy Session,price_unique,0.98
+outpt CARDIAC physiotherapy SESS /CW-3911,Outpatient Cardiac Physiotherapy Session,price_unique,0.98
+outpt GER diag IMG /CW-6232,Outpatient Geriatric Diagnostic Imaging,price_unique,0.98
+paed THTR tm adv,Advanced Paediatric Theatre Time,price_unique,0.98
+paed THTR tm asst,Assisted Paediatric Theatre Time,price_unique,0.98
+panel  INTERM neuro LAB,Intermittent Neurological Laboratory Panel,price_unique,0.98
+plng EXT disch /CW-9928,Extended Hepatic Discharge Planning,price_unique,0.98
+pnl - INTERM neuro LABORATORY /CW-8821,Intermittent Neurological Laboratory Panel,price_unique,0.98
+postop  - ONC img,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+postop  - PALLIATIVE recov ROOM occupancy /CW-6043,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+postop  PAED sterilisation SVC,Postoperative Paediatric Sterilisation Service,price_unique,0.98
+postop - PALL recovery RM occupancy,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+postop - PALLIATIVE recov RM occ /CW-4182,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+postop GERIATRIC cs CONF /CW-2720,Postoperative Geriatric Case Conference,price_unique,0.98
+postop ONC diagnostic IMG,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+postop ONC img /CW-9715,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+postop ONCOLOGY imaging /CW-3721,Postoperative Oncology Diagnostic Imaging,price_unique,0.98
+postop PAED steril SVC,Postoperative Paediatric Sterilisation Service,price_unique,0.98
+postop PAED steril SVC /CW-1683,Postoperative Paediatric Sterilisation Service,price_unique,0.98
+postoperative - ENT telem MONIT /CW-9058,Postoperative Otolaryngologic Telemetry Monitoring,price_unique,0.98
+postoperative - PALL recov ROOM occupancy,Postoperative Palliative Recovery Room Occupancy,price_unique,0.98
+postoperative CS conference /CW-1435,Postoperative Geriatric Case Conference,price_unique,0.98
+proc ADV vasc ENDOSC /CW-8189,Advanced Vascular Endoscopic Procedure,price_unique,0.98
+prog  - CONT psych REHABILITATION /CW-5824,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+prog - EMER rheum REHAB /CW-5035,Emergency Rheumatologic Rehabilitation Programme,price_unique,0.98
+prog CONT psych REHAB /CW-9206,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+prog CONT rehab /CW-3359,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+prog EMER rheum REHABILITATION /CW-3222,Emergency Rheumatologic Rehabilitation Programme,price_unique,0.98
+renal ANAES admin,Intermittent Renal Anaesthesia Administration,price_unique,0.98
+rheum - RADIOTHERAPY fract /CW-5238,Intensive Rheumatologic Radiotherapy Fraction,price_unique,0.98
+rheum NURS obs ext,Extended Rheumatologic Nursing Observation,price_unique,0.98
+rheum NURS obs postop,Postoperative Rheumatologic Nursing Observation,price_unique,0.98
+rheum REHAB prog amb,Ambulatory Rheumatologic Rehabilitation Programme,price_unique,0.98
+rheum REHAB prog emer,Emergency Rheumatologic Rehabilitation Programme,price_unique,0.98
+service - INTENS steril /CW-8257,Intensive Vascular Sterilisation Service,price_unique,0.98
+service - POSTOP paed STERIL,Postoperative Paediatric Sterilisation Service,price_unique,0.98
+service POSTOP paediatric STERIL,Postoperative Paediatric Sterilisation Service,price_unique,0.98
+sess  - STD paediatric DIAL /CW-3203,Standard Paediatric Dialysis Session,price_unique,0.98
+sess - SUPV rheum DIALYSIS,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+sess ASSISTED paed PHYSIO /CW-7619,Assisted Paediatric Physiotherapy Session,price_unique,0.98
+sess STANDARD paed DIAL,Standard Paediatric Dialysis Session,price_unique,0.98
+spclst  - CARD vent SUPP,Specialist Cardiac Ventilation Support,price_unique,0.98
+spclst - CARD ventilation SUPP /CW-4904,Specialist Cardiac Ventilation Support,price_unique,0.98
+spclst - CARDIAC vent SUPPORT /CW-5757,Specialist Cardiac Ventilation Support,price_unique,0.98
+spclst - GI img INTERP /CW-7861,Specialist Gastrointestinal Imaging Interpretation,price_unique,0.98
+spclst GI img INTERP /CW-5639,Specialist Gastrointestinal Imaging Interpretation,price_unique,0.98
+specialist - GI imaging INTERPRETATION /CW-3195,Specialist Gastrointestinal Imaging Interpretation,price_unique,0.98
+standard - ONC bd OCC,Standard Oncology Ward Bed Occupancy,price_unique,0.98
+standard - ONC ward BD occ /CW-4538,Standard Oncology Ward Bed Occupancy,price_unique,0.98
+standard - VASC home VST /CW-2287,Standard Vascular Home Visit,price_unique,0.98
+std - DIAL sess /CW-2606,Standard Paediatric Dialysis Session,price_unique,0.98
+std - ONC wd BED occ /CW-1173,Standard Oncology Ward Bed Occupancy,price_unique,0.98
+std - PAED dial SESS /CW-6582,Standard Paediatric Dialysis Session,price_unique,0.98
+std - VASC hm VST /CW-7377,Standard Vascular Home Visit,price_unique,0.98
+std - VASC vst,Standard Vascular Home Visit,price_unique,0.98
+supervised  PULMONARY anaes ADMIN,Supervised Pulmonary Anaesthesia Administration,price_unique,0.98
+supervised  RHEUM dial SESSION /CW-9091,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+supervised - PULM admin,Supervised Pulmonary Anaesthesia Administration,price_unique,0.98
+supervised PULM anaes ADMIN,Supervised Pulmonary Anaesthesia Administration,price_unique,0.98
+supervised RHEUM dial SESS,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+supp  SPCLST cardiac VENT /CW-8694,Specialist Cardiac Ventilation Support,price_unique,0.98
+supp - ASSISTED renal NUTR /CW-6071,Assisted Renal Nutritional Support,price_unique,0.98
+supp SPCLST card VENT /CW-2599,Specialist Cardiac Ventilation Support,price_unique,0.98
+supv  - DIAL sess /CW-1782,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+supv  - GASTROINTESTINAL nurs OBS,Supervised Gastrointestinal Nursing Observation,price_unique,0.98
+supv  NURSING obs,Supervised Gastrointestinal Nursing Observation,price_unique,0.9
+supv - GI nurs OBS /CW-9063,Supervised Gastrointestinal Nursing Observation,price_unique,0.98
+supv PULM anaes ADMINISTRATION,Supervised Pulmonary Anaesthesia Administration,price_unique,0.98
+supv RHEUM sess /CW-6316,Supervised Rheumatologic Dialysis Session,price_unique,0.98
+svc - EXT hep TRANSF,Extended Hepatic Transfusion Service,price_unique,0.98
+svc - INTENS vasc STERILISATION,Intensive Vascular Sterilisation Service,price_unique,0.98
+svc AMB haem TRANSFUSION /CW-4630,Ambulatory Haematology Transfusion Service,price_unique,0.98
+svc FOC vasc TRANSPORT,Focused Vascular Transport Service,price_unique,0.98
+ther - FOC vasc INF /CW-4721,Focused Vascular Infusion Therapy,price_unique,0.98
+therapy  - FOC vasc INFUSION /CW-1063,Focused Vascular Infusion Therapy,price_unique,0.98
+tm - OUTPT urol THEATRE /CW-3657,Outpatient Urologic Theatre Time,price_unique,0.98
+tm - OUTPT urol THTR /CW-8902,Outpatient Urologic Theatre Time,price_unique,0.98
+tm OUTPATIENT urol /CW-9136,Outpatient Urologic Theatre Time,price_unique,0.98
+tm OUTPT urol THTR,Outpatient Urologic Theatre Time,price_unique,0.98
+urol TELEM monit ext,Extended Urologic Telemetry Monitoring,price_unique,0.98
+urol TELEM monit interm,Intermittent Urologic Telemetry Monitoring,price_unique,0.98
+visit - BEDSIDE card HM,Bedside Cardiac Home Visit,price_unique,0.98
+visit BEDS cardiac HM,Bedside Cardiac Home Visit,price_unique,0.98
+visit STD vasc,Standard Vascular Home Visit,price_unique,0.98
+vst - INTERM onc HM,Intermittent Oncology Home Visit,price_unique,0.98
+vst BEDS card HM,Bedside Cardiac Home Visit,price_unique,0.98
+vst STD vasc HM /CW-9701,Standard Vascular Home Visit,price_unique,0.98

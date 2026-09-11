@@ -1,0 +1,475 @@
+description,service,method,confidence
+ADV  CARD VENT SUPP,Advanced Cardiac Ventilation Support,price_unique,0.98
+ADV  CARDIAC VENTILATION SUPPORT,Advanced Cardiac Ventilation Support,price_unique,0.98
+ADV - DERM DISPENSING,Advanced Dermatologic Pharmaceutical Dispensing,price_unique,0.98
+ADV - PHARM DISP,Advanced Dermatologic Pharmaceutical Dispensing,price_unique,0.98
+ADV CARDIAC VENT SUPPORT,Advanced Cardiac Ventilation Support,price_unique,0.98
+ADV DERM PHARM /PH-3728,Advanced Dermatologic Pharmaceutical Dispensing,price_unique,0.98
+ADV DERM PHARM DISP,Advanced Dermatologic Pharmaceutical Dispensing,price_unique,0.98
+ADV DERMATOLOGIC PHARM DISPENSING,Advanced Dermatologic Pharmaceutical Dispensing,price_unique,0.98
+AMB  - METAB IMG INTERP,Ambulatory Metabolic Imaging Interpretation,price_unique,0.98
+AMB  - ONC IMG INTERP,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+AMB  METABOLIC IMAGING /PH-2931,Ambulatory Metabolic Imaging Interpretation,price_unique,0.98
+AMB  METABOLIC IMG INTERP,Ambulatory Metabolic Imaging Interpretation,price_unique,0.98
+AMB  PAED ISOL RM OCC,Ambulatory Paediatric Isolation Room Occupancy,price_unique,0.98
+AMB - HEP CS,Ambulatory Hepatic Case Conference,price_unique,0.98
+AMB HEP CASE CONF,Ambulatory Hepatic Case Conference,price_unique,0.98
+AMB HEPATIC CS CONFERENCE /PH-2286,Ambulatory Hepatic Case Conference,price_unique,0.98
+AMB ONC IMG INTERPRETATION /PH-1018,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+AMB ONCOLOGY IMG INTERP /PH-9222,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+AMB PAED ISOL RM OCCUPANCY,Ambulatory Paediatric Isolation Room Occupancy,price_unique,0.98
+AMBULATORY  - ONCOLOGY IMG INTERP,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+AMBULATORY  HEP ENDOSC PROC /PH-2434,,unknown_service,0.9
+AMBULATORY  ONC IMG INTERP /PH-7671,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+AMBULATORY PAED ISOL RM OCC /PH-1574,Ambulatory Paediatric Isolation Room Occupancy,price_unique,0.98
+ANALYSIS SUPV ENT SPCM,Supervised Otolaryngologic Specimen Analysis,price_unique,0.98
+ASSISTED  - STERIL SVC /PH-6091,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASSISTED CARD VENTILATION SUPP /PH-7856,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASSISTED GERIATRIC LAB PNL /PH-5880,,unknown_service,0.9
+ASSISTED IMMUN STERIL SVC /PH-9770,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASSISTED METAB ENDOSC PROCEDURE,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+ASSISTED METAB ENDOSCOPIC PROC /PH-2115,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+ASST  - CARDIAC VENT SUPPORT,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST  - HEP PHYSIO SESS /PH-3958,Assisted Hepatic Physiotherapy Session,price_unique,0.98
+ASST  METAB ENDOSC PROC /PH-4234,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+ASST  METAB PROCEDURE /PH-3748,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+ASST  PSYCH PHARM DISP /PH-6086,,unknown_service,0.9
+ASST  REN IMAGING INTERP /PH-4396,Assisted Renal Imaging Interpretation,price_unique,0.98
+ASST  RENAL IMG INTERP,Assisted Renal Imaging Interpretation,price_unique,0.98
+ASST - HEPATIC PHYSIO SESS /PH-8096,Assisted Hepatic Physiotherapy Session,price_unique,0.98
+ASST - METAB ENDOSC PROCEDURE /PH-8137,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+ASST CARD VENT SUPP /PH-3696,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST CARDIAC VENT SUPP,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST CARDIAC VENT SUPP /PH-2315,Assisted Cardiac Ventilation Support,price_unique,0.98
+ASST HEP PHYSIO SESS,Assisted Hepatic Physiotherapy Session,price_unique,0.98
+ASST HEP PHYSIO SESS /PH-9888,Assisted Hepatic Physiotherapy Session,price_unique,0.98
+ASST HEP PHYSIO SESSION,Assisted Hepatic Physiotherapy Session,price_unique,0.98
+ASST IMMUN STERIL /PH-1150,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASST IMMUN STERIL SVC,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASST IMMUN STERIL SVC /PH-5225,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASST REN IMAGING INTERP /PH-6649,Assisted Renal Imaging Interpretation,price_unique,0.98
+ASST STERIL SERVICE /PH-7778,Assisted Immunologic Sterilisation Service,price_unique,0.98
+ASST VENT SUPP,Assisted Cardiac Ventilation Support,price_unique,0.98
+BEDS ONC TRANSF SERVICE /PH-2481,Bedside Oncology Transfusion Service,price_unique,0.98
+BEDS ONC TRANSF SVC,Bedside Oncology Transfusion Service,price_unique,0.98
+BEDS PAED CONSULT,Bedside Paediatric Consultation,price_unique,0.98
+BEDS PAEDIATRIC CONSULT /PH-8451,Bedside Paediatric Consultation,price_unique,0.98
+BEDS PAEDIATRIC CONSULT /PH-9421,Bedside Paediatric Consultation,price_unique,0.98
+BEDSIDE  ONC SVC,Bedside Oncology Transfusion Service,price_unique,0.98
+BEDSIDE ONC TRANSF SERVICE /PH-3200,Bedside Oncology Transfusion Service,price_unique,0.98
+BEDSIDE PAED CONSULTATION,Bedside Paediatric Consultation,price_unique,0.98
+CARD VENT SUPP ADV,Advanced Cardiac Ventilation Support,price_unique,0.98
+CARD VENT SUPP ASST,Assisted Cardiac Ventilation Support,price_unique,0.98
+COMPR  - CONSULT,Comprehensive Palliative Consultation,price_unique,0.98
+COMPR  - ONC TRANSFUSION SVC,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPR  GER WOUND CR,Comprehensive Geriatric Wound Care,price_unique,0.98
+COMPR  ONC TRANSF SVC,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPR  ONC TRANSF SVC /PH-6526,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPR  ONC TRANSFUSION SVC /PH-7950,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPR  PALLIATIVE CONSULT,Comprehensive Palliative Consultation,price_unique,0.98
+COMPR  VENT SUPP /PH-7497,Comprehensive Metabolic Ventilation Support,price_unique,0.98
+COMPR ENDOSC PROC,Comprehensive Gastrointestinal Endoscopic Procedure,price_unique,0.98
+COMPR GER WND CARE,Comprehensive Geriatric Wound Care,price_unique,0.98
+COMPR GER WOUND CR /PH-7691,Comprehensive Geriatric Wound Care,price_unique,0.98
+COMPR GI ENDOSC PROC,Comprehensive Gastrointestinal Endoscopic Procedure,price_unique,0.98
+COMPR METAB VENT SUPPORT,Comprehensive Metabolic Ventilation Support,price_unique,0.98
+COMPR METABOLIC VENT SUPP,Comprehensive Metabolic Ventilation Support,price_unique,0.98
+COMPR OPHTH ISOL ROOM OCCUPANCY,Comprehensive Ophthalmic Isolation Room Occupancy,price_unique,0.98
+COMPR PALL CONSULT,Comprehensive Palliative Consultation,price_unique,0.98
+COMPR PALL CONSULT /PH-5729,Comprehensive Palliative Consultation,price_unique,0.98
+COMPR WND CARE /PH-1784,Comprehensive Geriatric Wound Care,price_unique,0.98
+COMPREHENSIVE  ONC TRANSFUSION SVC,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPREHENSIVE  OPHTH ISOL RM OCCUPANCY /PH-6957,Comprehensive Ophthalmic Isolation Room Occupancy,price_unique,0.98
+COMPREHENSIVE - METAB VENT SUPPORT,Comprehensive Metabolic Ventilation Support,price_unique,0.98
+COMPREHENSIVE GER WND CARE,Comprehensive Geriatric Wound Care,price_unique,0.98
+COMPREHENSIVE ONC TRANSF SERVICE,Comprehensive Oncology Transfusion Service,price_unique,0.98
+COMPREHENSIVE PALL CONSULT,Comprehensive Palliative Consultation,price_unique,0.98
+CONF  AMB CS,Ambulatory Hepatic Case Conference,price_unique,0.98
+CONFERENCE  - CONT PULMONARY CS,Continuous Pulmonary Case Conference,price_unique,0.98
+CONFERENCE CONT PULMONARY CS,Continuous Pulmonary Case Conference,price_unique,0.98
+CONSULT  - SUPV VASC /PH-5450,Supervised Vascular Consultation,price_unique,0.98
+CONSULT BEDSIDE PAED,Bedside Paediatric Consultation,price_unique,0.98
+CONSULT BEDSIDE PAED /PH-7802,Bedside Paediatric Consultation,price_unique,0.98
+CONT  ENT TRANSP SVC,Continuous Otolaryngologic Transport Service,price_unique,0.98
+CONT  IMMUNOLOGIC LAB PANEL,Continuous Immunologic Laboratory Panel,price_unique,0.98
+CONT - CS CONF,Continuous Pulmonary Case Conference,price_unique,0.98
+CONT - ENT TRANSP SVC /PH-3583,Continuous Otolaryngologic Transport Service,price_unique,0.98
+CONT - OTOLARYNGOLOGIC TRANSP SVC,Continuous Otolaryngologic Transport Service,price_unique,0.98
+CONT GASTROINTESTINAL ISOL RM OCC,,unknown_service,0.9
+CONT METAB ENDOSC PROC,Continuous Metabolic Endoscopic Procedure,price_unique,0.98
+CONT OTOLARYNGOLOGIC TRANSP SVC,Continuous Otolaryngologic Transport Service,price_unique,0.98
+CONT PULM CS CONFERENCE /PH-7640,Continuous Pulmonary Case Conference,price_unique,0.98
+CONTINUOUS  IMMUN LAB PNL,Continuous Immunologic Laboratory Panel,price_unique,0.98
+CONTINUOUS  PULMONARY CS CONFERENCE,Continuous Pulmonary Case Conference,price_unique,0.98
+CONTINUOUS - IMMUN LAB PANEL,Continuous Immunologic Laboratory Panel,price_unique,0.98
+CONTINUOUS METAB ENDOSC PROC /PH-6106,Continuous Metabolic Endoscopic Procedure,price_unique,0.98
+CONTINUOUS METAB ENDOSC PROCEDURE /PH-2824,Continuous Metabolic Endoscopic Procedure,price_unique,0.98
+CR  INPATIENT PULM CRIT /PH-5924,Inpatient Pulmonary Critical Care Occupancy,price_unique,0.98
+DERM - NURS OBSERVATION,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+DERM HM VST OUTPT,Outpatient Dermatologic Home Visit,price_unique,0.98
+DERM HM VST RTN,Routine Dermatologic Home Visit,price_unique,0.98
+DERM NURS OBS INPT,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+DERM NURS OBS SPCLST,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+DIAGNOSTIC - ELECT VASCULAR /PH-3569,Elective Vascular Diagnostic Imaging,price_unique,0.98
+DISP  - ELECT METAB /PH-6137,Elective Metabolic Pharmaceutical Dispensing,price_unique,0.98
+DISP  ELECTIVE METAB PHARM /PH-9640,Elective Metabolic Pharmaceutical Dispensing,price_unique,0.98
+DISP INPT REN PHARM,,unknown_service,0.9
+ELECT  - INFECT WARD BD OCC,,unknown_service,0.9
+ELECT  - VASC DIAG IMG /PH-8719,Elective Vascular Diagnostic Imaging,price_unique,0.98
+ELECT  PULM RADIOTHER FRACT,Elective Pulmonary Radiotherapy Fraction,price_unique,0.98
+ELECT - OPHTH RECOV RM OCC,Elective Ophthalmic Recovery Room Occupancy,price_unique,0.98
+ELECT - PULM RADIOTHER FRACT,Elective Pulmonary Radiotherapy Fraction,price_unique,0.98
+ELECT - PULM RADIOTHER FRACT /PH-7464,Elective Pulmonary Radiotherapy Fraction,price_unique,0.98
+ELECT - VASCULAR DIAGNOSTIC IMG,Elective Vascular Diagnostic Imaging,price_unique,0.98
+ELECT METAB DISP,Elective Metabolic Pharmaceutical Dispensing,price_unique,0.98
+ELECT METABOLIC PHARM DISP,Elective Metabolic Pharmaceutical Dispensing,price_unique,0.98
+ELECT OPHTH RECOV ROOM OCC /PH-7656,Elective Ophthalmic Recovery Room Occupancy,price_unique,0.98
+ELECT OPHTHALMIC NUTR SUPP /PH-9806,Elective Ophthalmic Nutritional Support,price_unique,0.98
+ELECT PULM RADIOTHER FRACTION /PH-2542,Elective Pulmonary Radiotherapy Fraction,price_unique,0.98
+ELECT VASC DIAG IMAGING,Elective Vascular Diagnostic Imaging,price_unique,0.98
+ELECT VASCULAR DIAG IMG,Elective Vascular Diagnostic Imaging,price_unique,0.98
+ELECTIVE  OPHTH RECOVERY OCC /PH-7463,Elective Ophthalmic Recovery Room Occupancy,price_unique,0.98
+ELECTIVE  PHARM DISP /PH-2792,Elective Metabolic Pharmaceutical Dispensing,price_unique,0.98
+ELECTIVE OPHTH RECOV OCC,Elective Ophthalmic Recovery Room Occupancy,price_unique,0.98
+EMER  - METAB DISCHARGE PLNG,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER  BIOP PROC,Emergency Neurological Biopsy Procedure,price_unique,0.98
+EMER  GI ENDOSC PROC /PH-9383,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+EMER  METAB DISCH /PH-9998,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER  NEURO BIOPSY PROCEDURE /PH-5562,Emergency Neurological Biopsy Procedure,price_unique,0.98
+EMER  ONC IMG INTERPRETATION,Emergency Oncology Imaging Interpretation,price_unique,0.98
+EMER  UROL HM VST,Emergency Urologic Home Visit,price_unique,0.98
+EMER - METAB PLNG /PH-9105,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER - ONC IMG INTERP,Emergency Oncology Imaging Interpretation,price_unique,0.98
+EMER - PALL STERIL SVC,,unknown_service,0.9
+EMER GI ENDOSC PROC /PH-7768,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+EMER GI ENDOSC PROC /PH-8326,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+EMER METAB DISCH PLNG,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER METAB DISCHARGE PLANNING,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER METAB DISCHARGE PLNG,Emergency Metabolic Discharge Planning,price_unique,0.98
+EMER NEURO BIOPSY PROC /PH-1059,Emergency Neurological Biopsy Procedure,price_unique,0.98
+EMER ONC IMAGING INTERP /PH-5810,Emergency Oncology Imaging Interpretation,price_unique,0.98
+EMER ONCOLOGY IMG INTERP /PH-5517,Emergency Oncology Imaging Interpretation,price_unique,0.98
+EMER PULM RADIOTHER FRACT /PH-2351,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+EMER UROL VISIT /PH-9513,Emergency Urologic Home Visit,price_unique,0.98
+EMERGENCY  - GI ENDOSC PROC /PH-3138,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+EMERGENCY  NEURO BIOP PROC,Emergency Neurological Biopsy Procedure,price_unique,0.98
+EMERGENCY - GI ENDOSC PROC,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+EMERGENCY NEUROLOGICAL BIOP PROC /PH-7800,Emergency Neurological Biopsy Procedure,price_unique,0.98
+EMERGENCY PULM FRACT,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+EMERGENCY PULM RADIOTHER FRACTION,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+EMERGENCY PULM RADIOTHERAPY FRACT /PH-7558,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+ENDO THTR TM EXT,Extended Endocrine Theatre Time,price_unique,0.98
+ENDO THTR TM FOC,Focused Endocrine Theatre Time,price_unique,0.98
+EXT  DERMATOLOGIC TRANSP SERVICE,Extended Dermatologic Transport Service,price_unique,0.98
+EXT  ENDO THEATRE TM,Extended Endocrine Theatre Time,price_unique,0.98
+EXT  ENDO THTR TM /PH-3856,Extended Endocrine Theatre Time,price_unique,0.98
+EXT  NEUROLOGICAL CONSULT,Extended Neurological Consultation,price_unique,0.98
+EXT  NEUROLOGICAL CONSULT /PH-7491,Extended Neurological Consultation,price_unique,0.98
+EXT - ENDO THTR TM,Extended Endocrine Theatre Time,price_unique,0.98
+EXT DERM TRANSP SERVICE /PH-1568,Extended Dermatologic Transport Service,price_unique,0.98
+EXT ENDO THTR TIME /PH-7392,Extended Endocrine Theatre Time,price_unique,0.98
+EXT ENDO THTR TM,Extended Endocrine Theatre Time,price_unique,0.98
+EXT ENDO THTR TM /PH-7393,Extended Endocrine Theatre Time,price_unique,0.98
+EXT INF THER,Extended Urologic Infusion Therapy,price_unique,0.98
+EXT NEURO CONSULT /PH-3973,Extended Neurological Consultation,price_unique,0.98
+EXT OPHTH TRANSP SERVICE,Extended Ophthalmic Transport Service,price_unique,0.98
+EXT OPHTH TRANSP SERVICE /PH-7295,Extended Ophthalmic Transport Service,price_unique,0.98
+EXT OPHTH TRANSP SVC,Extended Ophthalmic Transport Service,price_unique,0.98
+EXT PSYCH ENDOSC PROC,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT PSYCH ENDOSC PROC /PH-6105,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT PSYCH ENDOSC PROCEDURE,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+EXT UROL INFUSION THER /PH-7222,Extended Urologic Infusion Therapy,price_unique,0.98
+EXT UROLOGIC INF THER,Extended Urologic Infusion Therapy,price_unique,0.98
+EXTENDED  DERM TRANSP SERVICE /PH-9532,Extended Dermatologic Transport Service,price_tiebreak_text,0.9
+EXTENDED  NEURO CONSULT,Extended Neurological Consultation,price_unique,0.98
+EXTENDED PSYCH ENDOSC PROCEDURE,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+FOC  ENDO THTR TIME,Focused Endocrine Theatre Time,price_unique,0.98
+FOC  ENDO THTR TM /PH-5137,Focused Endocrine Theatre Time,price_unique,0.98
+FOC - NEURO RADIOTHER FRACT,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FOC - NEUROLOGICAL RADIOTHER FRACT,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FOC - NUTR SUPP,Focused Urologic Nutritional Support,price_unique,0.98
+FOC ENDOCRINE THTR TM /PH-7354,Focused Endocrine Theatre Time,price_unique,0.98
+FOC UROL NUTR,Focused Urologic Nutritional Support,price_unique,0.98
+FOC UROL NUTR /PH-6864,Focused Urologic Nutritional Support,price_unique,0.98
+FOC UROLOGIC NUTR SUPP,Focused Urologic Nutritional Support,price_unique,0.98
+FOCUSED  - NEURO RADIOTHER FRACT,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FOCUSED  - UROL NUTR SUPP,Focused Urologic Nutritional Support,price_unique,0.98
+FOCUSED NEURO RADIOTHER FRACT,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FOCUSED NEURO RADIOTHERAPY FRACT /PH-2860,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FRACT - EMER PULM RADIOTHER,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+FRACT FOC NEUROLOGICAL RADIOTHER /PH-3421,Focused Neurological Radiotherapy Fraction,price_unique,0.98
+FRACT ROUTINE UROL RADIOTHER /PH-4232,Routine Urologic Radiotherapy Fraction,price_unique,0.98
+FRACT STD PAEDIATRIC RADIOTHER,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+FRACT UROL RADIOTHER,Routine Urologic Radiotherapy Fraction,price_unique,0.98
+FRACTION STD PAED RADIOTHERAPY /PH-2327,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+GER  - RECOV ROOM OCC,,unknown_service,0.9
+GI ENDOSC PROC COMPR,Comprehensive Gastrointestinal Endoscopic Procedure,price_unique,0.98
+GI ENDOSC PROC EMER,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+HAEM - LABORATORY PNL,Outpatient Haematology Laboratory Panel,price_unique,0.98
+HEP CS CONF /PH-8928,Ambulatory Hepatic Case Conference,price_unique,0.9
+HEP CS CONF AMB,Ambulatory Hepatic Case Conference,price_unique,0.98
+HEP CS CONF INTENS,Intensive Hepatic Case Conference,price_unique,0.98
+IMAGING  - ELECTIVE VASCULAR DIAG /PH-2728,Elective Vascular Diagnostic Imaging,price_unique,0.98
+IMMUN RECOV RM OCC INPT,Inpatient Immunologic Recovery Room Occupancy,price_unique,0.98
+IMMUN RECOV RM OCC PREOP,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.98
+IMMUN STERIL SVC ASST,Assisted Immunologic Sterilisation Service,price_unique,0.98
+IMMUN STERIL SVC SUPV,Supervised Immunologic Sterilisation Service,price_unique,0.98
+IMMUNOLOGIC  RECOV RM OCC /PH-9870,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.9
+INFECT  - VENT SUPP /PH-8261,Standard Infectious Ventilation Support,price_unique,0.98
+INPATIENT  - PULM CRITICAL CR OCC,Inpatient Pulmonary Critical Care Occupancy,price_unique,0.98
+INPATIENT  DERM NURSING OBS /PH-8521,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+INPATIENT - PSYCH CS CONF /PH-8216,Inpatient Psychiatric Case Conference,price_unique,0.98
+INPT  - PSYCHIATRIC CS CONF /PH-3922,Inpatient Psychiatric Case Conference,price_unique,0.98
+INPT  IMMUN RECOV RM,Inpatient Immunologic Recovery Room Occupancy,price_unique,0.98
+INPT  IMMUN RECOV RM OCCUPANCY /PH-6667,Inpatient Immunologic Recovery Room Occupancy,price_unique,0.98
+INPT  IMMUNOLOGIC RECOV RM OCC,Inpatient Immunologic Recovery Room Occupancy,price_unique,0.98
+INPT - IMMUN RECOV RM OCC,Inpatient Immunologic Recovery Room Occupancy,price_unique,0.98
+INPT - PULM CRITICAL CR OCC /PH-2338,Inpatient Pulmonary Critical Care Occupancy,price_unique,0.98
+INPT PSYCH CONFERENCE /PH-2719,Inpatient Psychiatric Case Conference,price_unique,0.98
+INPT PSYCHIATRIC CASE CONF,Inpatient Psychiatric Case Conference,price_unique,0.98
+INPT PSYCHIATRIC CS CONF /PH-7007,Inpatient Psychiatric Case Conference,price_unique,0.98
+INPT PULM CRITICAL CR OCC /PH-1009,Inpatient Pulmonary Critical Care Occupancy,price_unique,0.98
+INPT PULMONARY CRIT CR OCCUPANCY,Inpatient Pulmonary Critical Care Occupancy,price_unique,0.98
+INTENS  - ONCOLOGY STERIL SVC,Intensive Oncology Sterilisation Service,price_unique,0.98
+INTENS  - ONCOLOGY STERIL SVC /PH-1663,Intensive Oncology Sterilisation Service,price_unique,0.98
+INTENS - HEP CS CONF,Intensive Hepatic Case Conference,price_unique,0.98
+INTENS HEP CASE CONF /PH-1923,Intensive Hepatic Case Conference,price_unique,0.98
+INTENS HEP CS CONF,Intensive Hepatic Case Conference,price_unique,0.98
+INTENS HEP CS CONF /PH-3124,Intensive Hepatic Case Conference,price_tiebreak_text,0.9
+INTENS ONC STERILISATION SVC,Intensive Oncology Sterilisation Service,price_unique,0.98
+INTENSIVE  ONC STERIL SERVICE /PH-3836,Intensive Oncology Sterilisation Service,price_unique,0.98
+INTENSIVE HEP CS CONF,Intensive Hepatic Case Conference,price_unique,0.98
+INTERM  REN STERIL SVC,,unknown_service,0.9
+INTERM  VASC TELEMETRY MONITORING,Intermittent Vascular Telemetry Monitoring,price_unique,0.98
+INTERM  VASCULAR TELEM,Intermittent Vascular Telemetry Monitoring,price_unique,0.98
+INTERM - UROL DISCH PLNG,Intermittent Urologic Discharge Planning,price_unique,0.98
+INTERM ENDO NURS OBS,,unknown_service,0.9
+INTERM ORTHO DISCHARGE PLNG,Intermittent Orthopaedic Discharge Planning,price_unique,0.98
+INTERM UROL DISCH PLNG,Intermittent Urologic Discharge Planning,price_unique,0.98
+INTERM VASC TELEM MONITORING /PH-6473,Intermittent Vascular Telemetry Monitoring,price_unique,0.98
+INTERMITTENT  ORTHO PLNG,Intermittent Orthopaedic Discharge Planning,price_unique,0.98
+INTERMITTENT - ORTHOPAEDIC DISCH PLNG,Intermittent Orthopaedic Discharge Planning,price_unique,0.98
+INTERMITTENT - VASC MONIT,Intermittent Vascular Telemetry Monitoring,price_unique,0.98
+INTERMITTENT ORTHO DISCH PLANNING,Intermittent Orthopaedic Discharge Planning,price_unique,0.98
+INTERMITTENT UROL DISCH PLNG,Intermittent Urologic Discharge Planning,price_unique,0.98
+INTERMITTENT UROLOGIC DISCH PLANNING /PH-9665,Intermittent Urologic Discharge Planning,price_unique,0.98
+INTERP - POSTOP MSK IMG,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+INTERP EMER ONC IMAGING /PH-7410,Emergency Oncology Imaging Interpretation,price_unique,0.98
+INTERP EMER ONC IMAGING /PH-9034,Emergency Oncology Imaging Interpretation,price_unique,0.98
+INTERPRETATION  AMB METAB IMG,Ambulatory Metabolic Imaging Interpretation,price_unique,0.98
+INTERPRETATION ASST REN IMG,Assisted Renal Imaging Interpretation,price_unique,0.98
+INTERPRETATION POSTOPERATIVE MSK IMG /PH-1032,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+LAB CONT IMMUN,Continuous Immunologic Laboratory Panel,price_unique,0.98
+METAB DISCH PLNG EMER,Emergency Metabolic Discharge Planning,price_unique,0.98
+METAB DISCH PLNG SUPV,Supervised Metabolic Discharge Planning,price_unique,0.98
+METAB ENDOSC PROC ASST,Assisted Metabolic Endoscopic Procedure,price_unique,0.98
+METAB ENDOSC PROC CONT,Continuous Metabolic Endoscopic Procedure,price_unique,0.98
+METABOLIC  DISCH PLNG,Supervised Metabolic Discharge Planning,price_unique,0.98
+MONIT - ROUTINE GER TELEM,Routine Geriatric Telemetry Monitoring,price_unique,0.98
+MONIT RTN PSYCH TELEMETRY,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+MONITORING  RTN GERIATRIC TELEM,Routine Geriatric Telemetry Monitoring,price_unique,0.98
+MONITORING  RTN PSYCH TELEM /PH-9117,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+MONITORING - INTERM VASC TELEMETRY,Intermittent Vascular Telemetry Monitoring,price_unique,0.98
+MSK NUTR SUPP /PH-5455,Preoperative Musculoskeletal Nutritional Support,price_unique,0.9
+NEURO BIOP PROC EMER,Emergency Neurological Biopsy Procedure,price_unique,0.98
+NEURO BIOP PROC RTN,Routine Neurological Biopsy Procedure,price_unique,0.98
+OBS  - INPT DERM NURS,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+OBS  DERM NURSING /PH-3348,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+OBS - INPT DERM NURS /PH-5270,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+OBS INPT DERMATOLOGIC NURS /PH-5222,Inpatient Dermatologic Nursing Observation,price_unique,0.98
+OBS SPCLST DERMATOLOGIC NURSING,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+OBSERVATION  SPCLST DERM NURS,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+OCC - ELECTIVE OPHTH RECOV RM,Elective Ophthalmic Recovery Room Occupancy,price_unique,0.98
+OCC AMB PAED RM,Ambulatory Paediatric Isolation Room Occupancy,price_unique,0.98
+OCC COMPREHENSIVE OPHTHALMIC ISOL RM,Comprehensive Ophthalmic Isolation Room Occupancy,price_unique,0.98
+OCC OPHTHALMIC ISOL ROOM,Comprehensive Ophthalmic Isolation Room Occupancy,price_unique,0.98
+OCC OUTPT RECOV RM /PH-1028,Outpatient Neurological Recovery Room Occupancy,price_unique,0.98
+OCC PREOPERATIVE IMMUN RECOV ROOM,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.98
+OCCUPANCY  COMPR OPHTHALMIC ISOL RM /PH-4881,Comprehensive Ophthalmic Isolation Room Occupancy,price_unique,0.98
+OCCUPANCY PREOP IMMUN RECOV ROOM,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.98
+ONC IMG INTERP AMB,Ambulatory Oncology Imaging Interpretation,price_unique,0.98
+ONC IMG INTERP EMER,Emergency Oncology Imaging Interpretation,price_unique,0.98
+ONC TRANSF SVC BEDS,Bedside Oncology Transfusion Service,price_unique,0.98
+ONC TRANSF SVC COMPR,Comprehensive Oncology Transfusion Service,price_unique,0.98
+OPHTH  NUTR SUPP,Elective Ophthalmic Nutritional Support,price_unique,0.98
+OPHTH NUTRITIONAL SUPP /PH-3490,Elective Ophthalmic Nutritional Support,price_unique,0.98
+OPHTH TRANSP SVC EXT,Extended Ophthalmic Transport Service,price_unique,0.98
+OPHTH TRANSP SVC PREOP,Preoperative Ophthalmic Transport Service,price_unique,0.98
+OUTPATIENT  HAEM LAB PNL /PH-5094,Outpatient Haematology Laboratory Panel,price_unique,0.98
+OUTPATIENT  NEURO RECOV RM OCCUPANCY,Outpatient Neurological Recovery Room Occupancy,price_unique,0.98
+OUTPATIENT - NEURO RECOV RM OCC,Outpatient Neurological Recovery Room Occupancy,price_unique,0.98
+OUTPATIENT DERM HM,Outpatient Dermatologic Home Visit,price_unique,0.98
+OUTPATIENT HAEM LAB PNL /PH-5820,Outpatient Haematology Laboratory Panel,price_unique,0.98
+OUTPATIENT METABOLIC PHYSIO SESSION,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT  - DERM VISIT /PH-3323,Outpatient Dermatologic Home Visit,price_unique,0.98
+OUTPT  - DERMATOLOGIC VST,Outpatient Dermatologic Home Visit,price_unique,0.98
+OUTPT  DERM HOME VST,Outpatient Dermatologic Home Visit,price_unique,0.98
+OUTPT  HAEM LAB PNL,Outpatient Haematology Laboratory Panel,price_unique,0.98
+OUTPT  METAB PHYSIO SESS /PH-1346,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT  METABOLIC PHYSIOTHERAPY SESS,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT  NEUROLOGICAL RECOV ROOM OCC /PH-5702,Outpatient Neurological Recovery Room Occupancy,price_unique,0.98
+OUTPT  PHYSIO SESSION,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT  PSYCH DISCH PLNG /PH-4218,Outpatient Psychiatric Discharge Planning,price_unique,0.98
+OUTPT  PSYCHIATRIC DISCHARGE PLNG /PH-6789,Outpatient Psychiatric Discharge Planning,price_tiebreak_text,0.9
+OUTPT METAB PHYSIO SESS,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT METABOLIC PHYSIO SESSION,Outpatient Metabolic Physiotherapy Session,price_unique,0.98
+OUTPT NEURO RECOV RM OCC,Outpatient Neurological Recovery Room Occupancy,price_unique,0.98
+PALL CONSULT,Comprehensive Palliative Consultation,price_unique,0.9
+PALL CONSULT COMPR,Comprehensive Palliative Consultation,price_unique,0.98
+PALL CONSULT SUPV,Supervised Palliative Consultation,price_unique,0.98
+PALL CONSULTATION,Supervised Palliative Consultation,price_unique,0.98
+PLANNING  - OUTPT PSYCH DISCH /PH-6487,Outpatient Psychiatric Discharge Planning,price_tiebreak_text,0.9
+PLANNING  - SUPV METAB DISCH /PH-3065,Supervised Metabolic Discharge Planning,price_unique,0.98
+PLANNING INTERM UROLOGIC DISCHARGE /PH-4571,Intermittent Urologic Discharge Planning,price_unique,0.98
+PLNG  OUTPATIENT DISCH,Outpatient Psychiatric Discharge Planning,price_tiebreak_text,0.9
+PLNG  STD PSYCHIATRIC DISCHARGE /PH-4685,Standard Psychiatric Discharge Planning,price_unique,0.98
+PLNG - SUPV METAB DISCH,Supervised Metabolic Discharge Planning,price_unique,0.98
+PLNG INTERM UROLOGIC DISCHARGE,Intermittent Urologic Discharge Planning,price_unique,0.98
+PLNG OUTPT PSYCH DISCH /PH-1726,Outpatient Psychiatric Discharge Planning,price_tiebreak_text,0.9
+PLNG STD PSYCH DISCH,Standard Psychiatric Discharge Planning,price_unique,0.98
+PNL  CONTINUOUS IMMUN LABORATORY /PH-6674,Continuous Immunologic Laboratory Panel,price_unique,0.98
+PNL - CONT IMMUN LAB /PH-7790,Continuous Immunologic Laboratory Panel,price_unique,0.98
+POSTOP  MSK IMG INTERP /PH-8079,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+POSTOP - MUSCULOSKELETAL IMG INTERP,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+POSTOP MSK IMG INTERP /PH-8595,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+POSTOPERATIVE  OTOLARYNGOLOGIC DIAG IMG /PH-6206,,unknown_service,0.9
+POSTOPERATIVE MSK IMAGING INTERP,Postoperative Musculoskeletal Imaging Interpretation,price_unique,0.98
+PREOP  - MSK NUTR SUPP /PH-3539,Preoperative Musculoskeletal Nutritional Support,price_unique,0.98
+PREOP  - MUSCULOSKELETAL NUTR SUPP,Preoperative Musculoskeletal Nutritional Support,price_unique,0.98
+PREOP  ENDO REHAB PROGRAMME /PH-2386,Preoperative Endocrine Rehabilitation Programme,price_unique,0.98
+PREOP  ENDOCRINE REHAB PROG /PH-1561,Preoperative Endocrine Rehabilitation Programme,price_unique,0.98
+PREOP  OPHTHALMIC TRANSP SVC,Preoperative Ophthalmic Transport Service,price_unique,0.98
+PREOP - GI NUTR SUPP,Preoperative Gastrointestinal Nutritional Support,price_unique,0.98
+PREOP - IMMUN RECOVERY RM OCCUPANCY,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.98
+PREOP ENDO REHAB PROGRAMME /PH-6136,Preoperative Endocrine Rehabilitation Programme,price_unique,0.98
+PREOP GASTROINTESTINAL NUTR SUPP,Preoperative Gastrointestinal Nutritional Support,price_unique,0.98
+PREOP GI NUTRITIONAL SUPP,Preoperative Gastrointestinal Nutritional Support,price_unique,0.98
+PREOP MSK NUTR SUPP /PH-5426,Preoperative Musculoskeletal Nutritional Support,price_unique,0.98
+PREOP OPHTH TRANSP SERVICE,Preoperative Ophthalmic Transport Service,price_unique,0.98
+PREOP OPHTH TRANSP SERVICE /PH-6454,Preoperative Ophthalmic Transport Service,price_unique,0.98
+PREOP PAED BIOP,Preoperative Paediatric Biopsy Procedure,price_unique,0.98
+PREOP PAED BIOP PROCEDURE,Preoperative Paediatric Biopsy Procedure,price_unique,0.98
+PREOP PAEDIATRIC BIOP PROCEDURE /PH-3256,Preoperative Paediatric Biopsy Procedure,price_unique,0.98
+PREOP PAEDIATRIC BIOPSY PROC,Preoperative Paediatric Biopsy Procedure,price_unique,0.98
+PREOPERATIVE  OPHTHALMIC TRANSP SVC,Preoperative Ophthalmic Transport Service,price_unique,0.98
+PREOPERATIVE GI NUTR SUPP /PH-7619,Preoperative Gastrointestinal Nutritional Support,price_unique,0.98
+PREOPERATIVE IMMUN RECOV RM OCCUPANCY /PH-1117,Preoperative Immunologic Recovery Room Occupancy,price_unique,0.98
+PREOPERATIVE OPHTH TRANSP SVC /PH-6669,Preoperative Ophthalmic Transport Service,price_unique,0.98
+PREOPERATIVE PAED BIOP PROCEDURE,Preoperative Paediatric Biopsy Procedure,price_unique,0.98
+PROC - COMPREHENSIVE GI ENDOSC /PH-2540,Comprehensive Gastrointestinal Endoscopic Procedure,price_unique,0.98
+PROC EMER GI ENDOSC /PH-2135,Emergency Gastrointestinal Endoscopic Procedure,price_unique,0.98
+PROC EXT PSYCH ENDOSC /PH-7478,Extended Psychiatric Endoscopic Procedure,price_unique,0.98
+PROCEDURE  - CONT METAB ENDOSC /PH-8537,Continuous Metabolic Endoscopic Procedure,price_unique,0.98
+PROCEDURE  - EMER NEURO BIOP,Emergency Neurological Biopsy Procedure,price_unique,0.98
+PROCEDURE  COMPR GI ENDOSCOPIC /PH-8431,Comprehensive Gastrointestinal Endoscopic Procedure,price_unique,0.98
+PROG PREOP ENDOCRINE REHABILITATION,Preoperative Endocrine Rehabilitation Programme,price_unique,0.98
+PSYCH  TELEM MONITORING,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+PSYCH DISCH PLNG OUTPT,Outpatient Psychiatric Discharge Planning,price_unique,0.98
+PSYCH DISCH PLNG STD,Standard Psychiatric Discharge Planning,price_unique,0.98
+PSYCHIATRIC CS CONFERENCE /PH-3349,Inpatient Psychiatric Case Conference,price_unique,0.98
+PULM RADIOTHER FRACT ELECT,Elective Pulmonary Radiotherapy Fraction,price_unique,0.98
+PULM RADIOTHER FRACT EMER,Emergency Pulmonary Radiotherapy Fraction,price_unique,0.98
+ROUTINE  DERM HM VST,Routine Dermatologic Home Visit,price_unique,0.98
+ROUTINE  NEURO BIOP PROCEDURE /PH-5595,Routine Neurological Biopsy Procedure,price_unique,0.98
+ROUTINE  PSYCH TELEM MONITORING,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+ROUTINE  UROL TRANSP SVC /PH-4926,Routine Urologic Transport Service,price_unique,0.98
+ROUTINE - PSYCH PHYSIO SESS /PH-3410,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+ROUTINE - UROLOGIC TRANSP SVC /PH-1731,Routine Urologic Transport Service,price_unique,0.98
+ROUTINE PSYCH MONITORING,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+ROUTINE PSYCH PHYSIO SESSION,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+ROUTINE PSYCH TELEM MONIT /PH-9954,Routine Psychiatric Telemetry Monitoring,price_unique,0.98
+RTN  - DERMATOLOGIC HM VST,Routine Dermatologic Home Visit,price_unique,0.98
+RTN  GER TELEM MONIT,Routine Geriatric Telemetry Monitoring,price_unique,0.98
+RTN  GER TELEMETRY,Routine Geriatric Telemetry Monitoring,price_unique,0.98
+RTN  INFECT INF THER,Routine Infectious Infusion Therapy,price_unique,0.98
+RTN  NEURO BIOPSY PROC,Routine Neurological Biopsy Procedure,price_unique,0.98
+RTN  PHYSIOTHERAPY SESS,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+RTN - INFECT INF THER /PH-5248,Routine Infectious Infusion Therapy,price_unique,0.98
+RTN - NEURO BIOPSY PROC,Routine Neurological Biopsy Procedure,price_unique,0.98
+RTN - PSYCH PHYSIO SESSION,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+RTN - UROL TRANSP SERVICE,Routine Urologic Transport Service,price_unique,0.98
+RTN INFECTIOUS INF THER,Routine Infectious Infusion Therapy,price_unique,0.98
+RTN NEUROLOGICAL BIOP PROC,Routine Neurological Biopsy Procedure,price_unique,0.98
+RTN PSYCHIATRIC PHYSIO SESS /PH-3991,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+RTN PSYCHIATRIC PHYSIOTHERAPY SESS,Routine Psychiatric Physiotherapy Session,price_unique,0.98
+RTN UROL TRANSPORT SERVICE /PH-3522,Routine Urologic Transport Service,price_unique,0.98
+RTN UROLOGIC RADIOTHER FRACT,Routine Urologic Radiotherapy Fraction,price_unique,0.98
+RTN UROLOGIC RADIOTHER FRACT /PH-5813,Routine Urologic Radiotherapy Fraction,price_unique,0.98
+RTN UROLOGIC RADIOTHER FRACTION /PH-6893,Routine Urologic Radiotherapy Fraction,price_unique,0.98
+SERVICE CONT ENT TRANSP /PH-9101,Continuous Otolaryngologic Transport Service,price_unique,0.9
+SERVICE EXT DERM TRANSP,Extended Dermatologic Transport Service,price_tiebreak_text,0.9
+SERVICE INTENSIVE ONCOLOGY STERIL,Intensive Oncology Sterilisation Service,price_unique,0.98
+SPCLST  - GI PHARM DISP,Specialist Gastrointestinal Pharmaceutical Dispensing,price_unique,0.98
+SPCLST  - METAB STERIL SVC,Specialist Metabolic Sterilisation Service,price_unique,0.98
+SPCLST  - METABOLIC STERIL SERVICE,Specialist Metabolic Sterilisation Service,price_unique,0.98
+SPCLST  DERM NURSING OBS,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+SPCLST  GASTROINTESTINAL PHARM DISP,Specialist Gastrointestinal Pharmaceutical Dispensing,price_tiebreak_narrow,0.7
+SPCLST  METAB STERILISATION SVC /PH-4155,Specialist Metabolic Sterilisation Service,price_unique,0.98
+SPCLST - DERMATOLOGIC NURS OBS,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+SPCLST GI PHARM DISP /PH-8561,Specialist Gastrointestinal Pharmaceutical Dispensing,price_unique,0.98
+SPCLST METAB STERIL SVC,Specialist Metabolic Sterilisation Service,price_unique,0.98
+SPCM  STD PULMONARY /PH-7123,,unknown_service,0.9
+SPECIALIST  DERMATOLOGIC NURS OBS /PH-4333,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+SPECIALIST - GI PHARM DISPENSING /PH-4317,Specialist Gastrointestinal Pharmaceutical Dispensing,price_unique,0.98
+SPECIALIST DERM NURS OBS /PH-3531,Specialist Dermatologic Nursing Observation,price_tiebreak_text,0.9
+SPECIALIST GI PHARM DISP,Specialist Gastrointestinal Pharmaceutical Dispensing,price_tiebreak_text,0.9
+STANDARD  PAED RADIOTHERAPY FRACT /PH-9499,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+STANDARD PAED RADIOTHERAPY FRACT,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+STD  INFECT VENTILATION SUPP /PH-3964,Standard Infectious Ventilation Support,price_unique,0.98
+STD  PAED RADIOTHER FRACT /PH-5422,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+STD INFECT VENT SUPPORT,Standard Infectious Ventilation Support,price_unique,0.98
+STD PAED RADIOTHER FRACT,Standard Paediatric Radiotherapy Fraction,price_unique,0.98
+STD PSYCH DISCH PLANNING,Standard Psychiatric Discharge Planning,price_unique,0.98
+STD PSYCH DISCH PLNG,Standard Psychiatric Discharge Planning,price_unique,0.98
+SUPERVISED  IMMUN STERIL SERVICE,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SUPERVISED - PALLIATIVE CONSULT /PH-8045,Supervised Palliative Consultation,price_unique,0.98
+SUPERVISED METAB DISCH PLNG /PH-5892,Supervised Metabolic Discharge Planning,price_unique,0.98
+SUPERVISED SPCM ANLY /PH-7244,Supervised Otolaryngologic Specimen Analysis,price_unique,0.9
+SUPERVISED VASC CONSULT,Supervised Vascular Consultation,price_unique,0.98
+SUPP  ELECT OPHTH NUTR,Elective Ophthalmic Nutritional Support,price_unique,0.98
+SUPP  FOCUSED UROL NUTRITIONAL,Focused Urologic Nutritional Support,price_unique,0.98
+SUPP - PREOP MSK NUTR /PH-2761,Preoperative Musculoskeletal Nutritional Support,price_unique,0.98
+SUPP ELECTIVE OPHTH NUTR /PH-2997,Elective Ophthalmic Nutritional Support,price_unique,0.98
+SUPP STD INFECTIOUS VENT,Standard Infectious Ventilation Support,price_unique,0.98
+SUPPORT - ADV CARD,Advanced Cardiac Ventilation Support,price_unique,0.98
+SUPPORT PREOPERATIVE GI NUTR /PH-8764,Preoperative Gastrointestinal Nutritional Support,price_unique,0.98
+SUPV  - OTOLARYNGOLOGIC SPCM ANLY,Supervised Otolaryngologic Specimen Analysis,price_unique,0.98
+SUPV  - PALL CONSULT,Supervised Palliative Consultation,price_unique,0.98
+SUPV  - STERIL SVC,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SUPV  - VASC DIAG IMG /PH-5142,Supervised Vascular Diagnostic Imaging,price_unique,0.98
+SUPV  ENT SPCM ANALYSIS /PH-4343,Supervised Otolaryngologic Specimen Analysis,price_unique,0.98
+SUPV  IMMUNOLOGIC STERIL /PH-7453,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SUPV  METAB DISCH PLNG /PH-3947,Supervised Metabolic Discharge Planning,price_unique,0.98
+SUPV  VASC CONSULT /PH-4632,Supervised Vascular Consultation,price_unique,0.98
+SUPV DIAG IMG /PH-4513,Supervised Vascular Diagnostic Imaging,price_unique,0.98
+SUPV DIAG IMG /PH-9633,Supervised Vascular Diagnostic Imaging,price_unique,0.98
+SUPV ENT SPCM ANLY,Supervised Otolaryngologic Specimen Analysis,price_unique,0.98
+SUPV ENT SPECIMEN ANLY,Supervised Otolaryngologic Specimen Analysis,price_unique,0.98
+SUPV IMMUN STERIL SVC /PH-6429,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SUPV IMMUNOLOGIC STERIL SVC /PH-9100,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SUPV PALLIATIVE CONSULTATION,Supervised Palliative Consultation,price_unique,0.98
+SUPV VASCULAR CONSULT,Supervised Vascular Consultation,price_unique,0.98
+SVC  PREOP OPHTHALMIC TRANSP,Preoperative Ophthalmic Transport Service,price_unique,0.98
+SVC  SUPERVISED IMMUN STERIL /PH-1907,Supervised Immunologic Sterilisation Service,price_unique,0.98
+SVC - EXT DERMATOLOGIC TRANSP /PH-7506,Extended Dermatologic Transport Service,price_unique,0.98
+SVC EXT DERM TRANSPORT,Extended Dermatologic Transport Service,price_unique,0.98
+SVC EXT OPHTH TRANSP,Extended Ophthalmic Transport Service,price_unique,0.98
+SVC INTENSIVE ONC STERILISATION,Intensive Oncology Sterilisation Service,price_unique,0.98
+SVC SPCLST METAB STERIL /PH-1083,Specialist Metabolic Sterilisation Service,price_unique,0.98
+THEATRE FOC ENDO,Focused Endocrine Theatre Time,price_unique,0.98
+THER  - ROUTINE INFECT INF,Routine Infectious Infusion Therapy,price_unique,0.98
+THER - EXTENDED UROL INF,Extended Urologic Infusion Therapy,price_unique,0.98
+THER EXTENDED UROLOGIC INF,Extended Urologic Infusion Therapy,price_unique,0.98
+THERAPY ROUTINE INFECTIOUS INF,Routine Infectious Infusion Therapy,price_unique,0.98
+THERAPY RTN INFECT INF /PH-5866,Routine Infectious Infusion Therapy,price_unique,0.98
+TM FOC ENDOCRINE THEATRE,Focused Endocrine Theatre Time,price_unique,0.98
+TRANSP  CONT ENT /PH-1091,Continuous Otolaryngologic Transport Service,price_unique,0.98
+UROL HM VST /PH-1437,Emergency Urologic Home Visit,price_unique,0.98
+VASC  - DIAGNOSTIC IMG,Supervised Vascular Diagnostic Imaging,price_unique,0.9
+VASC DIAG IMG ELECT,Elective Vascular Diagnostic Imaging,price_unique,0.98
+VASC DIAG IMG SUPV,Supervised Vascular Diagnostic Imaging,price_unique,0.98
+VISIT  EMER UROLOGIC HM,Emergency Urologic Home Visit,price_unique,0.98
+VST  EMERGENCY UROL HM /PH-9730,Emergency Urologic Home Visit,price_unique,0.98
+VST  ROUTINE DERM HOME /PH-6678,Routine Dermatologic Home Visit,price_unique,0.98
+VST EMER UROL HOME,Emergency Urologic Home Visit,price_unique,0.98
+VST RTN DERM /PH-7550,Routine Dermatologic Home Visit,price_unique,0.98

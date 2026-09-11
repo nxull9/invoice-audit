@@ -14,7 +14,7 @@ from decimal import Decimal
 
 import pandas as pd
 
-from src.contract_spec import bundle_partner, rate_on
+from src.contracts import bundle_partner, rate_on
 from src.money import apply, uplift, discount
 
 ONE = Decimal(1)

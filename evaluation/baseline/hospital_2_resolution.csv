@@ -1,0 +1,507 @@
+description,service,method,confidence
+ADMIN OPHTH ANAES /SA-6486,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+ADMIN POSTOP OPHTH ANAES,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+ADV  ENDO CASE CONFERENCE,Advanced Endocrine Case Conference,price_unique,0.98
+ADV  GI ENDOSC PROC,Advanced Gastrointestinal Endoscopic Procedure,price_unique,0.98
+ADV  GI ENDOSC PROC /SA-3924,Advanced Gastrointestinal Endoscopic Procedure,price_unique,0.98
+ADV  GI PROC,Advanced Gastrointestinal Endoscopic Procedure,price_unique,0.98
+ADV  RHEUM ISOL RM OCC /SA-5213,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+ADV - INFECT ISOL RM OCC /SA-7043,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+ADV DERM ANLY,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ADV DERM SPCM ANALYSIS /SA-4468,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ADV DERM SPCM ANLY /SA-9302,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ADV ENDO CS CONF /SA-1948,Advanced Endocrine Case Conference,price_unique,0.98
+ADV ENDOSCOPIC PROC /SA-6974,Advanced Gastrointestinal Endoscopic Procedure,price_unique,0.9
+ADV INFECT ISOL RM OCC,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+ADV RHEUM ISOL RM OCCUPANCY,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+ADV RHEUM ISOLATION OCC,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+ADV RHEUM RM OCC,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+ADV RHEUM RM OCCUPANCY,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+ADVANCED INFECT RM OCC,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+ADVANCED RHEUM ISOL RM /SA-1731,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+AMB - PALL DIAGNOSTIC IMG /SA-7135,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+AMB HAEM NUTR SUPP,Ambulatory Haematology Nutritional Support,price_unique,0.98
+AMB NUTRITIONAL SUPP /SA-7761,Ambulatory Haematology Nutritional Support,price_unique,0.98
+AMB VASC INF THER,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+AMB VASC INF THER /SA-1352,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+AMB VASC INFUSION THER,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+AMBULATORY - OPHTH VENTILATION SUPP,,unknown_service,0.9
+AMBULATORY VASC INF THERAPY,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+ANALYSIS CARD SPCM,Intermittent Cardiac Specimen Analysis,price_unique,0.9
+ANALYSIS EXT DERM SPCM,Extended Dermatologic Specimen Analysis,price_unique,0.98
+ANLY - DERM SPCM,Extended Dermatologic Specimen Analysis,price_unique,0.9
+ANLY ADV DERM SPCM /SA-1886,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ANLY ADV DERM SPCM /SA-3043,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ANLY ADV DERMATOLOGIC SPECIMEN /SA-3586,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+ANLY INTERM CARD SPCM,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+ANLY INTERM CARD SPCM /SA-2727,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+ANLY PREOP CARD SPCM,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+ANLY PREOPERATIVE CARD SPECIMEN,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+ASST - INFECT TELEM,Assisted Infectious Telemetry Monitoring,price_unique,0.98
+ASST - INFECT TELEM MONIT,Assisted Infectious Telemetry Monitoring,price_unique,0.98
+ASST BIOP PROC,Assisted Gastrointestinal Biopsy Procedure,price_unique,0.98
+ASST DIAG IMAGING,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+ASST DIAG IMG /SA-7926,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+ASST INFECT MONIT /SA-6965,Assisted Infectious Telemetry Monitoring,price_unique,0.98
+ASST INFECT TELEM MONIT /SA-9090,Assisted Infectious Telemetry Monitoring,price_unique,0.98
+ASST MSK DIAG IMG /SA-4432,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+BEDS  OBST PHYSIO SESS,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+BEDS OBST PHYSIOTHERAPY SESSION,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+BEDS OBSTETRIC PHYSIO SESS /SA-6964,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+BEDS OPHTH RADIOTHER FRACT /SA-1831,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+BEDS PHARM DISP,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+BEDS PULM DISP /SA-7949,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+BEDS PULMONARY PHARM DISP,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+BEDSIDE OPHTH RADIOTHER FRACT /SA-4563,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+BIOPSY ASST GI /SA-6156,Assisted Gastrointestinal Biopsy Procedure,price_unique,0.98
+CARD  NURS OBS,Elective Cardiac Nursing Observation,price_unique,0.98
+CARD SPCM ANLY INTERM,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+CARD SPCM ANLY PREOP,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+CARDIAC  TRANSP SERVICE,Elective Cardiac Transport Service,price_unique,0.98
+COMPR  HAEM SVC /SA-2722,Comprehensive Haematology Transport Service,price_unique,0.98
+COMPR  HAEM TRANSP SVC,Comprehensive Haematology Transport Service,price_unique,0.98
+COMPR ENT CASE CONF,Comprehensive Otolaryngologic Case Conference,price_unique,0.98
+COMPR ENT CS CONF,Comprehensive Otolaryngologic Case Conference,price_unique,0.98
+COMPR ENT CS CONF /SA-8008,Comprehensive Otolaryngologic Case Conference,price_unique,0.98
+COMPR HAEM TRANSP SERVICE /SA-1740,Comprehensive Haematology Transport Service,price_unique,0.98
+COMPR HAEM TRANSPORT SVC,Comprehensive Haematology Transport Service,price_unique,0.98
+COMPREHENSIVE  HAEM TRANSP SVC /SA-3116,Comprehensive Haematology Transport Service,price_unique,0.98
+CONF  COMPR ENT CS,Comprehensive Otolaryngologic Case Conference,price_unique,0.98
+CONF ADV ENDO CASE,Advanced Endocrine Case Conference,price_unique,0.98
+CONF ADV ENDO CS,Advanced Endocrine Case Conference,price_unique,0.98
+CONT  REN SUPP,Continuous Renal Ventilation Support,price_unique,0.98
+CONT - OTOLARYNGOLOGIC DISCH PLNG,Continuous Otolaryngologic Discharge Planning,price_unique,0.98
+CONT - REN VENT SUPP,Continuous Renal Ventilation Support,price_unique,0.98
+CONT ENT DISCH PLNG,Continuous Otolaryngologic Discharge Planning,price_unique,0.98
+CONT ENT DISCH PLNG /SA-8811,Continuous Otolaryngologic Discharge Planning,price_unique,0.98
+CONT OTOLARYNGOLOGIC DISCH PLNG /SA-3899,Continuous Otolaryngologic Discharge Planning,price_unique,0.98
+CONT REN VENT SUPP /SA-2853,Continuous Renal Ventilation Support,price_unique,0.98
+CONT REN VENT SUPPORT,Continuous Renal Ventilation Support,price_unique,0.98
+CS  ADV ENDO /SA-1786,Advanced Endocrine Case Conference,price_unique,0.98
+DERM SPCM ANLY ADV,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+DERM SPCM ANLY EXT,Extended Dermatologic Specimen Analysis,price_unique,0.98
+DIAG SUPERVISED MSK,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+DIAGNOSTIC SUPV MSK /SA-5988,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+DISP - BEDS PULM PHARM,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+DISP BEDS PULMONARY PHARM,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+DISP FOC PHARM,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+DISP FOC PULM PHARM /SA-1272,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+ELECT  CARD NURS OBSERVATION /SA-6459,Elective Cardiac Nursing Observation,price_unique,0.98
+ELECT - CARD NURSING OBS,Elective Cardiac Nursing Observation,price_unique,0.98
+ELECT CARD NURS OBS,Elective Cardiac Nursing Observation,price_unique,0.98
+ELECT CARD NURS OBS /SA-1894,Elective Cardiac Nursing Observation,price_unique,0.98
+ELECT CARD NURS OBS /SA-5886,Elective Cardiac Nursing Observation,price_unique,0.98
+ELECT CARD SVC,Elective Cardiac Transport Service,price_unique,0.98
+ELECT CARD TRANSP SVC /SA-5251,Elective Cardiac Transport Service,price_unique,0.98
+ELECT TRANSP SVC,Elective Cardiac Transport Service,price_unique,0.98
+EMER  PULM VENT SUPP /SA-9029,Emergency Pulmonary Ventilation Support,price_unique,0.98
+EMER  REN INF THER /SA-7213,Emergency Renal Infusion Therapy,price_unique,0.98
+EMER  REN THER,Emergency Renal Infusion Therapy,price_unique,0.98
+EMER  TRANSP SERVICE /SA-9292,Emergency Haematology Transport Service,price_unique,0.98
+EMER  TRANSP SVC /SA-1419,Emergency Haematology Transport Service,price_unique,0.98
+EMER - PAED THTR TM /SA-9306,Emergency Paediatric Theatre Time,price_unique,0.98
+EMER HAEM SVC /SA-3156,Emergency Haematology Transport Service,price_unique,0.98
+EMER HAEM TRANSP SVC /SA-2115,Emergency Haematology Transport Service,price_unique,0.98
+EMER MSK PROG /SA-4534,,unknown_service,0.9
+EMER PAED THTR TIME /SA-3798,Emergency Paediatric Theatre Time,price_unique,0.98
+EMER PAED THTR TM /SA-9377,Emergency Paediatric Theatre Time,price_unique,0.98
+EMER PULM VENT,Emergency Pulmonary Ventilation Support,price_unique,0.98
+EMER PULM VENT SUPP /SA-6819,Emergency Pulmonary Ventilation Support,price_unique,0.98
+EMER PULMONARY VENT SUPP /SA-3137,Emergency Pulmonary Ventilation Support,price_unique,0.98
+EMER REN INF THER,Emergency Renal Infusion Therapy,price_unique,0.98
+EMER REN INF THER /SA-8878,Emergency Renal Infusion Therapy,price_unique,0.98
+EMER REN INFUSION THER,Emergency Renal Infusion Therapy,price_unique,0.98
+EMER THTR TM /SA-2118,Emergency Paediatric Theatre Time,price_unique,0.98
+EMERGENCY PAED THTR TM /SA-2205,Emergency Paediatric Theatre Time,price_unique,0.98
+ENDO  CS CONF,Advanced Endocrine Case Conference,price_unique,0.98
+ENT CS CONF /SA-5963,Comprehensive Otolaryngologic Case Conference,price_unique,0.9
+ENT CS CONF /SA-6459,Comprehensive Otolaryngologic Case Conference,price_unique,0.9
+ENT REHAB PROG,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+ENT REHAB PROG INTENS,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+ENT REHAB PROG INTERM,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+EXT  DERM SPCM ANLY /SA-4005,Extended Dermatologic Specimen Analysis,price_unique,0.98
+EXT  ORTHO RADIOTHER FRACT,Extended Orthopaedic Radiotherapy Fraction,price_unique,0.98
+EXT  VASC HM VST,Extended Vascular Home Visit,price_unique,0.98
+EXT  VASC HOME,Extended Vascular Home Visit,price_unique,0.98
+EXT DERM ANLY /SA-1680,Extended Dermatologic Specimen Analysis,price_unique,0.98
+EXT ENT NUTR SUPP,Extended Otolaryngologic Nutritional Support,price_unique,0.98
+EXT ENT NUTR SUPP /SA-9610,Extended Otolaryngologic Nutritional Support,price_unique,0.98
+EXT ORTHO RADIOTHERAPY FRACT,Extended Orthopaedic Radiotherapy Fraction,price_unique,0.98
+EXT ORTHOPAEDIC RADIOTHER FRACT /SA-4235,Extended Orthopaedic Radiotherapy Fraction,price_unique,0.98
+EXT RADIOTHER FRACT,Extended Orthopaedic Radiotherapy Fraction,price_unique,0.98
+EXT VASC HM,Extended Vascular Home Visit,price_unique,0.98
+EXT VASC VST,Extended Vascular Home Visit,price_unique,0.98
+EXTENDED  DERM SPCM ANLY,Extended Dermatologic Specimen Analysis,price_unique,0.98
+EXTENDED - HM VST,Extended Vascular Home Visit,price_unique,0.98
+EXTENDED ENT NUTR,Extended Otolaryngologic Nutritional Support,price_unique,0.98
+EXTENDED VASC VST /SA-2084,Extended Vascular Home Visit,price_unique,0.98
+FOC  CARD DIAL SESS /SA-1981,Focused Cardiac Dialysis Session,price_unique,0.98
+FOC  OPHTH LAB PNL /SA-9997,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+FOC  OPHTH LABORATORY PNL /SA-6975,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+FOC  PALL RECOV RM OCC /SA-5934,Focused Palliative Recovery Room Occupancy,price_unique,0.98
+FOC  PALL RECOV ROOM OCCUPANCY /SA-9540,Focused Palliative Recovery Room Occupancy,price_unique,0.98
+FOC  PULM PHARM DISP,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+FOC  PULM PHARM DISP /SA-2738,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+FOC  PULM PHARM DISP /SA-8680,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+FOC  VASC PHARM DISP /SA-5164,,unknown_service,0.9
+FOC  VASC TRANSF SVC,Focused Vascular Transfusion Service,price_unique,0.98
+FOC - CARD DIAL SESS,Focused Cardiac Dialysis Session,price_unique,0.98
+FOC CARDIAC DIAL SESS /SA-9422,Focused Cardiac Dialysis Session,price_unique,0.98
+FOC OPHTH LAB PNL /SA-4929,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+FOC OPHTH LAB PNL /SA-5900,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+FOC PALL RECOVERY RM OCC /SA-8419,Focused Palliative Recovery Room Occupancy,price_unique,0.98
+FOC VASC TRANSFUSION SVC,Focused Vascular Transfusion Service,price_unique,0.98
+FOCUSED OPHTH LAB PNL /SA-1953,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+FOCUSED PULMONARY PHARM DISP,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+FRACT  BEDS OPHTH RADIOTHER /SA-8930,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+FRACT  BEDSIDE OPHTH RADIOTHER,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+FRACT BEDS RADIOTHER /SA-5851,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+FRACT EXT ORTHO RADIOTHER,Extended Orthopaedic Radiotherapy Fraction,price_unique,0.98
+FRACTION BEDS OPHTH RADIOTHER /SA-7880,Bedside Ophthalmic Radiotherapy Fraction,price_unique,0.98
+HAEM BIOP PROC /SA-6522,Supervised Haematology Biopsy Procedure,price_unique,0.98
+HAEM BIOP PROC OUTPT,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+HAEM BIOP PROC SUPV,Supervised Haematology Biopsy Procedure,price_unique,0.98
+HAEM TRANSP SVC COMPR,Comprehensive Haematology Transport Service,price_unique,0.98
+HAEM TRANSP SVC EMER,Emergency Haematology Transport Service,price_unique,0.98
+IMAGING ASST MSK DIAG /SA-2758,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+IMG - SUPV MSK DIAG /SA-2439,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+IMG ASST DIAG,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+IMG CONT CARD DIAG /SA-4810,,unknown_service,0.9
+IMG PREOP VASC,Preoperative Vascular Imaging Interpretation,price_unique,0.98
+IMG SUPV MSK DIAG,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+INFECT ISOL RM OCC ADV,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+INFECT ISOL RM OCC RTN,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+INPATIENT OPHTH RECOV RM,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+INPATIENT ORTHO RECOV RM OCC /SA-8038,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INPT  ORTHO RECOV RM OCC /SA-8297,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INPT ISOL RM OCC,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+INPT OPHTH RECOV OCCUPANCY /SA-8706,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+INPT OPHTH RECOV RM OCC,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+INPT OPHTH RECOV ROOM OCC,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+INPT ORTHO RECOV OCC,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INPT PAED ISOL RM OCC,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+INPT PAED ISOL ROOM OCC,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+INTENS  - METAB RECOV RM OCC,,unknown_service,0.9
+INTENS  - PALLIATIVE WD BD OCC /SA-6765,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+INTENS  ENT REHAB PROG,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+INTENS  ENT REHABILITATION PROG /SA-2959,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+INTENS  PAED INF THER,Intensive Paediatric Infusion Therapy,price_unique,0.98
+INTENS  PALL WD BD /SA-1182,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+INTENS - ENT REHAB PROG /SA-6734,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+INTENS - NEURO REHABILITATION PROG /SA-8220,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+INTENS INFECT PHYSIO SESS,Intensive Infectious Physiotherapy Session,price_unique,0.98
+INTENS INFECTIOUS PHYSIO SESS /SA-3027,Intensive Infectious Physiotherapy Session,price_unique,0.98
+INTENS NEURO PROG /SA-3375,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+INTENS NEURO REHAB PROG,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+INTENS PAED INF THER /SA-4770,Intensive Paediatric Infusion Therapy,price_unique,0.98
+INTENS PALL BD OCCUPANCY,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+INTENS PALL WD BD OCC /SA-8184,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+INTENS PALLIATIVE WD BD OCC,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+INTENSIVE  INFECT PHYSIO SESS,Intensive Infectious Physiotherapy Session,price_unique,0.98
+INTENSIVE  PAED INF THER,Intensive Paediatric Infusion Therapy,price_unique,0.98
+INTENSIVE INFECT PHYSIO SESS /SA-6814,Intensive Infectious Physiotherapy Session,price_unique,0.98
+INTERM  OPHTHALMIC ADMIN,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERM  ORTHO RECOV RM OCC /SA-8516,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INTERM  ORTHO RECOVERY RM OCC /SA-8653,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INTERM  PSYCH LAB PANEL /SA-3427,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+INTERM  REHAB PROG,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+INTERM - CARD SPCM ANLY,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+INTERM - MSK DIAL SESSION /SA-9704,,unknown_service,0.9
+INTERM - OPHTH ANAES ADMIN /SA-3116,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERM CARD ANLY,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+INTERM CARD SPCM,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+INTERM ENT REHAB /SA-8030,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+INTERM ENT REHAB PROG,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+INTERM OPHTH ADMIN,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERM OPHTH ANAES ADMIN,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERM ORTHO RECOV OCC,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INTERM ORTHO RECOV RM OCC,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+INTERM PSYCH LAB PNL,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+INTERM PSYCHIATRIC LAB PNL /SA-4231,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+INTERMITTENT OPHTH ANAES ADMIN,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERMITTENT OPHTH ANAESTHESIA ADMIN,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+INTERMITTENT PSYCH LAB,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+INTERMITTENT PSYCH LAB PNL /SA-4633,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+INTERP  RTN NEURO IMG,Routine Neurological Imaging Interpretation,price_unique,0.98
+INTERP  SUPERVISED IMG /SA-6042,Supervised Neurological Imaging Interpretation,price_unique,0.98
+INTERP  SUPV NEURO IMG /SA-3334,Supervised Neurological Imaging Interpretation,price_unique,0.98
+INTERP RTN NEURO IMG /SA-3711,Routine Neurological Imaging Interpretation,price_unique,0.98
+INTERPRETATION  ROUTINE NEURO,Routine Neurological Imaging Interpretation,price_unique,0.98
+INTERPRETATION NEURO IMG /SA-5989,Routine Neurological Imaging Interpretation,price_unique,0.98
+INTERPRETATION SUPERVISED NEURO IMG,Supervised Neurological Imaging Interpretation,price_unique,0.98
+LAB SUPV METAB,Supervised Metabolic Laboratory Panel,price_unique,0.98
+METAB LAB PANEL,Supervised Metabolic Laboratory Panel,price_unique,0.98
+MONIT  STD METAB TELEM /SA-3090,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+MONIT STD METAB TELEM,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+MONITORING ASST INFECT TELEMETRY,Assisted Infectious Telemetry Monitoring,price_unique,0.98
+MSK  DIAG IMG,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+MSK DIAG IMG ASST,Assisted Musculoskeletal Diagnostic Imaging,price_unique,0.98
+MSK DIAG IMG SUPV,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+MSK RECOVERY RM OCC,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.9
+NEURO  REHAB PROG,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+NEURO IMG INTERP RTN,Routine Neurological Imaging Interpretation,price_unique,0.98
+NEURO IMG INTERP SUPV,Supervised Neurological Imaging Interpretation,price_unique,0.98
+NEURO ISOL RM OCC PREOP,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+NEURO ISOL RM OCC STD,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+NEURO REHAB PROG INTENS,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+NEURO REHAB PROG POSTOP,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+NEUROLOGICAL REHAB PROG /SA-9661,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+OBSERVATION  CARD NURSING,Elective Cardiac Nursing Observation,price_unique,0.98
+OBST PHYSIO SESS BEDS,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+OBST PHYSIO SESS PREOP,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+OCC  - FOC PALL RECOV ROOM,Focused Palliative Recovery Room Occupancy,price_unique,0.98
+OCC  ADV RHEUM ISOL,Advanced Rheumatologic Isolation Room Occupancy,price_unique,0.98
+OCC  INPATIENT ORTHO RECOV RM /SA-2313,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCC  INPT PAED ISOL RM,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+OCC  INPT PAED ISOL RM /SA-6138,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+OCC  INPT PAED ISOLATION ROOM,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+OCC  PREOP NEUROLOGICAL ISOL RM /SA-3078,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+OCC - PREOPERATIVE NEURO ISOL RM,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+OCC ADV INFECT ISOL /SA-7328,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+OCC ADV INFECT ISOL ROOM /SA-3253,Advanced Infectious Isolation Room Occupancy,price_unique,0.98
+OCC INPATIENT OPHTH RECOV /SA-5374,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+OCC INPATIENT ORTHO RECOV RM /SA-7665,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCC INPT OPHTH RECOV RM,Inpatient Ophthalmic Recovery Room Occupancy,price_unique,0.98
+OCC INPT PAED ISOL RM /SA-7229,Inpatient Paediatric Isolation Room Occupancy,price_unique,0.98
+OCC INTENS PALL WD BD,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+OCC INTENS WD BD,Intensive Palliative Ward Bed Occupancy,price_unique,0.98
+OCC INTERM ORTHOPAEDIC RECOV RM /SA-4391,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+OCC POSTOP ORTHO ISOL ROOM,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+OCC POSTOP ORTHO ISOLATION RM,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+OCC PREOP ISOL RM,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+OCC PREOP NEUROLOGICAL ISOL RM,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+OCC PREOPERATIVE NEURO ISOL RM,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+OCC STD MSK RECOV RM,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+OCC STD MSK RECOV ROOM,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+OCC STD NEURO ISOL,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+OCC STD NEURO ISOL RM,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+OCC STD NEUROLOGICAL ISOL ROOM /SA-6421,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+OCC STD ORTHO ISOL RM,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+OCC STD RECOV RM,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.9
+OCC SUPV RHEUM CRIT CR,Supervised Rheumatologic Critical Care Occupancy,price_unique,0.98
+OCCUPANCY SUPV RHEUM CRIT CR /SA-3411,Supervised Rheumatologic Critical Care Occupancy,price_unique,0.98
+ONC WD BD OCC /SA-5889,,unknown_service,0.9
+OPHTH - ANAESTHESIA ADMIN /SA-3643,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+OPHTH ANAES ADMIN INTERM,Intermittent Ophthalmic Anaesthesia Administration,price_unique,0.98
+OPHTH ANAES ADMIN POSTOP,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+OPHTH LAB PNL,Routine Ophthalmic Laboratory Panel,price_unique,0.9
+OPHTH LAB PNL FOC,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+OPHTH LAB PNL RTN,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+ORTHO ISOL RM OCC POSTOP,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+ORTHO ISOL RM OCC STD,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+ORTHO RECOV RM OCC INPT,Inpatient Orthopaedic Recovery Room Occupancy,price_unique,0.98
+ORTHO RECOV RM OCC INTERM,Intermittent Orthopaedic Recovery Room Occupancy,price_unique,0.98
+ORTHOPAEDIC ISOL RM OCC,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+OTOLARYNGOLOGIC  DISCH PLNG /SA-6235,Continuous Otolaryngologic Discharge Planning,price_unique,0.98
+OUTPT HAEM BIOP PROC /SA-1755,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+OUTPT HAEM BIOPSY PROC,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+OUTPT HAEMATOLOGY BIOP PROC /SA-7396,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+PAED  INF THER,Standard Paediatric Infusion Therapy,price_unique,0.9
+PAED INF THER INTENS,Intensive Paediatric Infusion Therapy,price_unique,0.98
+PAED INF THER STD,Standard Paediatric Infusion Therapy,price_unique,0.98
+PAED THEATRE TM /SA-1156,Emergency Paediatric Theatre Time,price_unique,0.9
+PAED THTR TM EMER,Emergency Paediatric Theatre Time,price_unique,0.98
+PAED THTR TM POSTOP,Postoperative Paediatric Theatre Time,price_unique,0.98
+PAEDIATRIC  INF THER,Intensive Paediatric Infusion Therapy,price_unique,0.98
+PALL RECOV ROOM OCC,Focused Palliative Recovery Room Occupancy,price_unique,0.98
+PANEL  RTN OPHTH LAB,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+PHARM FOC PULM,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+PHYSIOTHERAPY  BEDS OBST,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+PLNG  BEDS GERIATRIC DISCH,,unknown_service,0.9
+PNL  RTN OPHTH LABORATORY,Routine Ophthalmic Laboratory Panel,price_unique,0.9
+PNL FOC LAB /SA-4377,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+PNL FOCUSED OPHTH LAB /SA-2998,Focused Ophthalmic Laboratory Panel,price_unique,0.98
+PNL INTERM PSYCH LAB,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+PNL INTERM PSYCH LAB /SA-5413,Intermittent Psychiatric Laboratory Panel,price_unique,0.98
+PNL RTN OPHTH LAB,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+POSTOP  CARD PHYSIO,Postoperative Cardiac Physiotherapy Session,price_unique,0.98
+POSTOP  CARD PHYSIO SESS /SA-4818,Postoperative Cardiac Physiotherapy Session,price_unique,0.98
+POSTOP  OPHTH ANAES ADMINISTRATION /SA-5379,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+POSTOP  ORTHO ISOL OCC,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+POSTOP  PULMONARY INF THER,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+POSTOP  VASC TRANSP SVC,Postoperative Vascular Transport Service,price_unique,0.98
+POSTOP - NEURO PROG /SA-8363,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP - NEURO REHAB PROG,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP ANAES ADMIN,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+POSTOP CARD PHYSIO SESS /SA-2508,Postoperative Cardiac Physiotherapy Session,price_unique,0.98
+POSTOP CARD SESS,Postoperative Cardiac Physiotherapy Session,price_unique,0.98
+POSTOP INF THER,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+POSTOP NEURO PROG /SA-1044,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP NEURO REHAB PROG /SA-1572,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP NEURO REHAB PROG /SA-6939,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP NEURO REHABILITATION PROG,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+POSTOP OPHTH ANAESTHESIA /SA-4633,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+POSTOP ORTHO ISOL RM OCC,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+POSTOP ORTHO ISOLATION RM OCC,Postoperative Orthopaedic Isolation Room Occupancy,price_unique,0.98
+POSTOP PAED THTR TM,Postoperative Paediatric Theatre Time,price_unique,0.98
+POSTOP PULM INF THER /SA-6470,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+POSTOP PULM INF THER /SA-9058,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+POSTOP PULM INFUSION THER,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+POSTOP THTR TM,Postoperative Paediatric Theatre Time,price_unique,0.98
+POSTOP VASC TRANSP SERVICE,Postoperative Vascular Transport Service,price_unique,0.98
+POSTOP VASC TRANSP SVC /SA-5049,Postoperative Vascular Transport Service,price_unique,0.98
+POSTOP VASCULAR TRANSPORT SVC,Postoperative Vascular Transport Service,price_unique,0.98
+POSTOPERATIVE OPHTH ANAES ADMIN,Postoperative Ophthalmic Anaesthesia Administration,price_unique,0.98
+POSTOPERATIVE PAED THTR TM,Postoperative Paediatric Theatre Time,price_unique,0.98
+PREOP  OBST HOME VST /SA-4776,Preoperative Obstetric Home Visit,price_unique,0.98
+PREOP  OBST PHYSIO SESS,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+PREOP  OBST PHYSIO SESS /SA-5105,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+PREOP  ORTHO SUPP /SA-5284,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+PREOP  VASC INTERP,Preoperative Vascular Imaging Interpretation,price_unique,0.98
+PREOP - ORTHO VENT SUPP,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+PREOP - ORTHO VENT SUPP /SA-6661,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+PREOP CARD ANALYSIS,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+PREOP CARD SPCM ANLY,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+PREOP CARD SPECIMEN ANLY /SA-9557,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+PREOP CARDIAC SPCM ANLY /SA-9127,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+PREOP NEURO ISOL RM,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+PREOP NEURO ISOL RM OCC,Preoperative Neurological Isolation Room Occupancy,price_unique,0.98
+PREOP OBST HM VST /SA-3879,Preoperative Obstetric Home Visit,price_unique,0.98
+PREOP OBST PHYSIO SESS /SA-6179,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+PREOP OBSTETRIC HM VISIT,Preoperative Obstetric Home Visit,price_unique,0.98
+PREOP OBSTETRIC HM VST,Preoperative Obstetric Home Visit,price_unique,0.98
+PREOP ORTHO VENTILATION SUPP /SA-6583,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+PREOP SPCM ANLY /SA-5067,Preoperative Cardiac Specimen Analysis,price_unique,0.98
+PREOP VASC IMG INTERP,Preoperative Vascular Imaging Interpretation,price_unique,0.98
+PREOP VASC INTERP /SA-3692,Preoperative Vascular Imaging Interpretation,price_unique,0.98
+PREOPERATIVE  OBST PHYSIO SESSION,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+PREOPERATIVE  OBST SESS /SA-3810,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+PREOPERATIVE OBST HM VST,Preoperative Obstetric Home Visit,price_unique,0.98
+PREOPERATIVE ORTHOPAEDIC VENTILATION SUPP /SA-9857,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+PROC  - SUPV HEP,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+PROC  SUPV HAEM BIOP /SA-6944,Supervised Haematology Biopsy Procedure,price_unique,0.98
+PROC ADV GI ENDOSCOPIC /SA-3753,Advanced Gastrointestinal Endoscopic Procedure,price_unique,0.98
+PROC ASST GASTROINTESTINAL,Assisted Gastrointestinal Biopsy Procedure,price_unique,0.98
+PROC HEP ENDOSC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+PROC OUTPT HAEM BIOP,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+PROC OUTPT HAEM BIOPSY /SA-9926,Outpatient Haematology Biopsy Procedure,price_unique,0.98
+PROCEDURE ASST GI BIOP,Assisted Gastrointestinal Biopsy Procedure,price_unique,0.98
+PROCEDURE ASST GI BIOPSY /SA-5378,Assisted Gastrointestinal Biopsy Procedure,price_unique,0.98
+PROCEDURE SUPV HEP ENDOSC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+PROG  INTENS ENT REHAB,Intensive Otolaryngologic Rehabilitation Programme,price_unique,0.9
+PROG INTENS NEURO REHAB,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+PROG INTERM OTOLARYNGOLOGIC REHAB,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+PROGRAMME INTENS NEURO REHAB,Intensive Neurological Rehabilitation Programme,price_unique,0.98
+PSYCH TRANSF SVC,Standard Psychiatric Transfusion Service,price_unique,0.98
+PULM INF THER /SA-9868,Postoperative Pulmonary Infusion Therapy,price_unique,0.98
+PULM PHARM DISP /SA-2727,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.9
+PULM PHARM DISP BEDS,Bedside Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+PULM PHARM DISP FOC,Focused Pulmonary Pharmaceutical Dispensing,price_unique,0.98
+REHABILITATION INTERM ENT,Intermittent Otolaryngologic Rehabilitation Programme,price_unique,0.98
+REHABILITATION POSTOP NEURO /SA-3507,Postoperative Neurological Rehabilitation Programme,price_unique,0.98
+ROUTINE HEP CS CONF,,unknown_service,0.9
+ROUTINE INFECT RM OCC,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+ROUTINE LAB PNL /SA-5904,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+RTN  INFECT ISOL RM,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+RTN  INFECT ISOL RM OCC /SA-1394,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+RTN  INFECT RM OCC /SA-3020,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+RTN  NEUROLOGICAL IMG INTERP,Routine Neurological Imaging Interpretation,price_unique,0.98
+RTN GER PHYSIO SESS,Routine Geriatric Physiotherapy Session,price_unique,0.98
+RTN GER SESS,Routine Geriatric Physiotherapy Session,price_unique,0.98
+RTN INFECT ISOL RM OCC /SA-6375,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+RTN INFECT RM OCC,Routine Infectious Isolation Room Occupancy,price_unique,0.98
+RTN NEURO IMG INTERP /SA-2009,Routine Neurological Imaging Interpretation,price_unique,0.98
+RTN OPHTH LAB PNL /SA-1969,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+RTN OPHTHALMIC LAB PNL,Routine Ophthalmic Laboratory Panel,price_unique,0.98
+RTN PHYSIO SESS,Routine Geriatric Physiotherapy Session,price_unique,0.9
+SERVICE - ELECT CARD TRANSP,Elective Cardiac Transport Service,price_unique,0.98
+SERVICE FOC VASC TRANSFUSION /SA-8463,Focused Vascular Transfusion Service,price_unique,0.98
+SESS  INTENS INFECT PHYSIO,Intensive Infectious Physiotherapy Session,price_unique,0.98
+SESS CARD DIAL,Focused Cardiac Dialysis Session,price_unique,0.98
+SESS FOC CARD DIAL,Focused Cardiac Dialysis Session,price_unique,0.98
+SESS FOC CARD DIAL /SA-1863,Focused Cardiac Dialysis Session,price_unique,0.98
+SESS INTENS INFECT PHYSIO /SA-4043,Intensive Infectious Physiotherapy Session,price_unique,0.98
+SESS PREOP OBST PHYSIO,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+SESS PREOP PHYSIO,Preoperative Obstetric Physiotherapy Session,price_unique,0.98
+SESS ROUTINE GERIATRIC PHYSIO /SA-3246,Routine Geriatric Physiotherapy Session,price_unique,0.98
+SESS RTN GER PHYSIO /SA-5953,Routine Geriatric Physiotherapy Session,price_unique,0.98
+SESS RTN GER PHYSIO /SA-7008,Routine Geriatric Physiotherapy Session,price_unique,0.98
+SESSION  BEDS OBST PHYSIO /SA-5920,Bedside Obstetric Physiotherapy Session,price_unique,0.98
+SESSION POSTOP CARD PHYSIO,Postoperative Cardiac Physiotherapy Session,price_unique,0.98
+SPCLST HEP NUTR SUPP,,unknown_service,0.9
+SPCLST PSYCH STERIL SERVICE,Specialist Psychiatric Sterilisation Service,price_unique,0.98
+SPCLST PSYCH STERILISATION SVC /SA-1201,Specialist Psychiatric Sterilisation Service,price_unique,0.98
+SPCLST STERILISATION SVC,Specialist Psychiatric Sterilisation Service,price_unique,0.98
+SPCM  - INTERM CARD /SA-3094,Intermittent Cardiac Specimen Analysis,price_unique,0.98
+SPCM ADV DERM /SA-5608,Advanced Dermatologic Specimen Analysis,price_unique,0.98
+SPECIALIST PSYCH STERIL SERVICE,Specialist Psychiatric Sterilisation Service,price_unique,0.98
+STANDARD  - ORTHO ISOL RM OCC,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+STD  - TELEM MONIT,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+STD  GI TELEM MONIT,,unknown_service,0.9
+STD  MSK RECOV RM OCC,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+STD  NEURO ISOL RM OCC,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+STD - ORTHO ISOL RM OCC /SA-1562,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+STD - PAED INF THER /SA-9927,Standard Paediatric Infusion Therapy,price_unique,0.98
+STD - TELEM MONIT /SA-8775,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+STD ENT ANAES ADMIN /SA-3414,,unknown_service,0.9
+STD ISOL RM OCC,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.9
+STD METAB TELEM MONIT,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+STD METAB TELEM MONIT /SA-4721,Standard Metabolic Telemetry Monitoring,price_unique,0.98
+STD MSK RECOV RM /SA-7054,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.98
+STD NEURO ISOL RM OCCUPANCY /SA-5454,Standard Neurological Isolation Room Occupancy,price_unique,0.98
+STD ORTHO ISOL RM OCC /SA-8236,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+STD ORTHO ISOL ROOM OCCUPANCY /SA-3231,Standard Orthopaedic Isolation Room Occupancy,price_unique,0.98
+STD PAED INF THER,Standard Paediatric Infusion Therapy,price_unique,0.98
+STD PSYCHIATRIC TRANSF SVC,Standard Psychiatric Transfusion Service,price_unique,0.98
+STD RECOV RM OCC,Standard Musculoskeletal Recovery Room Occupancy,price_unique,0.9
+SUPERVISED  METAB LAB PANEL /SA-4441,Supervised Metabolic Laboratory Panel,price_unique,0.98
+SUPERVISED BIOPSY PROC,Supervised Haematology Biopsy Procedure,price_unique,0.98
+SUPERVISED HAEM BIOP PROCEDURE,Supervised Haematology Biopsy Procedure,price_unique,0.98
+SUPERVISED NEUROLOGICAL IMG INTERP /SA-6293,Supervised Neurological Imaging Interpretation,price_unique,0.98
+SUPP  - EXT ENT NUTR,Extended Otolaryngologic Nutritional Support,price_unique,0.98
+SUPP  AMB HAEM NUTR /SA-4369,Ambulatory Haematology Nutritional Support,price_unique,0.98
+SUPP  AMB HAEMATOLOGY,Ambulatory Haematology Nutritional Support,price_unique,0.98
+SUPP - CONT REN VENT,Continuous Renal Ventilation Support,price_unique,0.98
+SUPP AMB HAEM NUTR,Ambulatory Haematology Nutritional Support,price_unique,0.98
+SUPP EMER PULM VENT,Emergency Pulmonary Ventilation Support,price_unique,0.98
+SUPP EMER PULM VENTILATION /SA-8204,Emergency Pulmonary Ventilation Support,price_unique,0.98
+SUPP EXT ENT NUTR /SA-9016,Extended Otolaryngologic Nutritional Support,price_unique,0.98
+SUPP PREOP ORTHO VENT,Preoperative Orthopaedic Ventilation Support,price_unique,0.98
+SUPPORT  AMB HAEM NUTR,Ambulatory Haematology Nutritional Support,price_unique,0.98
+SUPPORT AMBULATORY HAEM NUTR,Ambulatory Haematology Nutritional Support,price_unique,0.98
+SUPPORT CONTINUOUS REN VENT,Continuous Renal Ventilation Support,price_unique,0.98
+SUPV  HEP ENDOSC PROC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+SUPV  IMG INTERP,Supervised Neurological Imaging Interpretation,price_unique,0.98
+SUPV - NEURO IMG,Supervised Neurological Imaging Interpretation,price_unique,0.98
+SUPV HAEM BIOP PROC,Supervised Haematology Biopsy Procedure,price_unique,0.98
+SUPV HAEM BIOP PROC /SA-6547,Supervised Haematology Biopsy Procedure,price_unique,0.98
+SUPV HAEM BIOP PROC /SA-9038,Supervised Haematology Biopsy Procedure,price_unique,0.98
+SUPV HEP ENDOSC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+SUPV HEP ENDOSCOPIC PROC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+SUPV HEPATIC ENDOSC PROC,Supervised Hepatic Endoscopic Procedure,price_unique,0.98
+SUPV METAB LAB PNL /SA-3376,Supervised Metabolic Laboratory Panel,price_unique,0.98
+SUPV METAB LABORATORY PANEL /SA-8571,Supervised Metabolic Laboratory Panel,price_unique,0.98
+SUPV METAB LABORATORY PNL /SA-3629,Supervised Metabolic Laboratory Panel,price_unique,0.98
+SUPV MSK DIAG /SA-7067,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+SUPV MSK DIAG IMG,Supervised Musculoskeletal Diagnostic Imaging,price_unique,0.98
+SUPV OPHTH IMG,,unknown_service,0.9
+SUPV RHEUM CRIT CR OCC,Supervised Rheumatologic Critical Care Occupancy,price_unique,0.98
+SUPV RHEUM CRIT CR OCC /SA-8848,Supervised Rheumatologic Critical Care Occupancy,price_unique,0.98
+SUPV RHEUMATOLOGIC CRIT CR OCC,Supervised Rheumatologic Critical Care Occupancy,price_unique,0.98
+SVC  SPCLST PSYCH STERIL,Specialist Psychiatric Sterilisation Service,price_unique,0.98
+SVC - ELECT CARDIAC TRANSP,Elective Cardiac Transport Service,price_unique,0.98
+SVC COMPR HAEM TRANSP /SA-1408,Comprehensive Haematology Transport Service,price_unique,0.98
+SVC ELECT CARD TRANSP,Elective Cardiac Transport Service,price_unique,0.98
+SVC EMER TRANSP,Emergency Haematology Transport Service,price_unique,0.98
+SVC FOC VASC /SA-2989,Focused Vascular Transfusion Service,price_unique,0.98
+SVC FOC VASC TRANSF /SA-2946,Focused Vascular Transfusion Service,price_unique,0.98
+SVC FOC VASC TRANSF /SA-8656,Focused Vascular Transfusion Service,price_unique,0.98
+SVC FOCUSED VASC TRANSFUSION /SA-5676,Focused Vascular Transfusion Service,price_unique,0.98
+SVC POSTOP VASC TRANSP /SA-7367,Postoperative Vascular Transport Service,price_unique,0.98
+SVC STD PSYCH TRANSF,Standard Psychiatric Transfusion Service,price_unique,0.98
+SVC STD PSYCH TRANSF /SA-3868,Standard Psychiatric Transfusion Service,price_unique,0.98
+SVC STD PSYCH TRANSF /SA-9672,Standard Psychiatric Transfusion Service,price_unique,0.98
+THER  - STD PAEDIATRIC INF /SA-9454,Standard Paediatric Infusion Therapy,price_unique,0.98
+THER  INTENS PAED INF,Intensive Paediatric Infusion Therapy,price_unique,0.98
+THER  STANDARD INF,Standard Paediatric Infusion Therapy,price_unique,0.98
+THER  STD PAED INF,Standard Paediatric Infusion Therapy,price_unique,0.98
+THER AMB VASC,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+THER AMBULATORY VASC INF,Ambulatory Vascular Infusion Therapy,price_unique,0.98
+THER STD PAED INFUSION,Standard Paediatric Infusion Therapy,price_unique,0.98
+TM  POSTOP PAED THTR,Postoperative Paediatric Theatre Time,price_unique,0.98
+TM POSTOP PAEDIATRIC /SA-5370,Postoperative Paediatric Theatre Time,price_unique,0.98
+TRANSP EMERGENCY HAEM /SA-4837,Emergency Haematology Transport Service,price_unique,0.98
+VASC IMAGING INTERP,Preoperative Vascular Imaging Interpretation,price_unique,0.98
+VASC TRANSP SVC,Postoperative Vascular Transport Service,price_unique,0.98
+VST PREOP OBST HM /SA-4486,Preoperative Obstetric Home Visit,price_unique,0.98
+VST VASCULAR HM /SA-8814,Extended Vascular Home Visit,price_unique,0.98

@@ -1,0 +1,489 @@
+description,service,method,confidence
+Admin Advanced Metabolic Anaes /NG-1114,Advanced Metabolic Anaesthesia Administration,price_unique,0.98
+Adv  Renal Consultation,,unknown_service,0.9
+Adv Card Recov Rm,Advanced Cardiac Recovery Room Occupancy,price_unique,0.98
+Adv Haem Physiotherapy Sess,Advanced Haematology Physiotherapy Session,price_unique,0.98
+Adv Infect Critical Care Occ /NG-2548,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Adv Infect Critical Cr Occ /NG-1530,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Adv Metab Nursing Observation /NG-7035,Advanced Metabolic Nursing Observation,price_unique,0.98
+Adv Metabolic Anaes Administration,Advanced Metabolic Anaesthesia Administration,price_unique,0.98
+Adv Metabolic Anaesthesia Admin,Advanced Metabolic Anaesthesia Administration,price_unique,0.98
+Adv Neuro Consultation /NG-3672,Advanced Neurological Consultation,price_unique,0.98
+Adv Rheumatologic Lab Panel,Advanced Rheumatologic Laboratory Panel,price_unique,0.98
+Advanced  Infect Crit Cr,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Advanced - Metab Nurs Obs,Advanced Metabolic Nursing Observation,price_unique,0.98
+Advanced Card Recov Rm Occ,Advanced Cardiac Recovery Room Occupancy,price_unique,0.98
+Advanced Critical Cr Occupancy,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Advanced Haem Physio Session,Advanced Haematology Physiotherapy Session,price_unique,0.98
+Advanced Haem Physiotherapy Session,Advanced Haematology Physiotherapy Session,price_unique,0.98
+Advanced Infectious Crit Care Occ /NG-3293,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Advanced Metab Anaes,Advanced Metabolic Anaesthesia Administration,price_unique,0.98
+Advanced Metabolic Anaes Admin,Advanced Metabolic Anaesthesia Administration,price_unique,0.98
+Advanced Neuro Consult,Advanced Neurological Consultation,price_unique,0.98
+Advanced Neuro Consultation,Advanced Neurological Consultation,price_unique,0.98
+Advanced Rheum Lab Pnl,Advanced Rheumatologic Laboratory Panel,price_unique,0.98
+Advanced Rheum Laboratory Pnl /NG-2701,Advanced Rheumatologic Laboratory Panel,price_unique,0.98
+Amb - Ophthalmic Cs Conf,Ambulatory Ophthalmic Case Conference,price_unique,0.98
+Amb - Urol Img Interp,Ambulatory Urologic Imaging Interpretation,price_unique,0.98
+Amb Card Home Vst,Ambulatory Cardiac Home Visit,price_unique,0.98
+Amb Gastrointestinal Discharge Plng,,unknown_service,0.9
+Amb Immun Endosc Proc,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Amb Infectious Hm Visit,Ambulatory Infectious Home Visit,price_unique,0.98
+Amb Infectious Visit,Ambulatory Infectious Home Visit,price_unique,0.98
+Amb Msk Wd Bd Occupancy /NG-3394,Ambulatory Musculoskeletal Ward Bed Occupancy,price_unique,0.9
+Amb Ophthalmic Dial Sess,Ambulatory Ophthalmic Dialysis Session,price_unique,0.98
+Amb Psych Dial Session,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Amb Psychiatric Dialysis Sess,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Amb Pulm Recov Rm Occupancy,Ambulatory Pulmonary Recovery Room Occupancy,price_unique,0.98
+Amb Urol Imaging Interpretation,Ambulatory Urologic Imaging Interpretation,price_unique,0.98
+Amb Urologic Img Interp,Ambulatory Urologic Imaging Interpretation,price_unique,0.98
+Ambulatory  Immunologic Wd Bd Occupancy,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+Ambulatory  Pulm Recov Rm Occupancy /NG-9869,Ambulatory Pulmonary Recovery Room Occupancy,price_unique,0.98
+Ambulatory  Pulm Recovery Room Occupancy,Ambulatory Pulmonary Recovery Room Occupancy,price_unique,0.98
+Ambulatory - Card Home Vst,Ambulatory Cardiac Home Visit,price_unique,0.98
+Ambulatory - Immun Endosc Proc /NG-1182,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Ambulatory - Immunologic Wd Bed Occ /NG-8463,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+Ambulatory Card Hm Visit /NG-9268,Ambulatory Cardiac Home Visit,price_unique,0.98
+Ambulatory Card Home Vst,Ambulatory Cardiac Home Visit,price_unique,0.98
+Ambulatory Endosc Procedure /NG-8034,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Ambulatory Immunologic Wd Bd Occ,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+Ambulatory Msk Ward Bd Occ /NG-7929,Ambulatory Musculoskeletal Ward Bed Occupancy,price_unique,0.9
+Ambulatory Musculoskeletal Wd Bd Occ,Ambulatory Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Ambulatory Ophth Dial Sess,Ambulatory Ophthalmic Dialysis Session,price_unique,0.98
+Ambulatory Ophthalmic Dial Session,Ambulatory Ophthalmic Dialysis Session,price_unique,0.98
+Ambulatory Psych Dial Session,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Ambulatory Urol Imaging Interpretation,Ambulatory Urologic Imaging Interpretation,price_unique,0.98
+Anly Inpatient Palliative Specimen,Inpatient Palliative Specimen Analysis,price_unique,0.98
+Assisted  Urol Hm Vst,Assisted Urologic Home Visit,price_unique,0.98
+Assisted - Infect Disch Planning /NG-6257,Assisted Infectious Discharge Planning,price_unique,0.98
+Assisted - Pulm Thtr Tm /NG-9868,Assisted Pulmonary Theatre Time,price_unique,0.98
+Assisted Gi Inf Ther /NG-8862,Assisted Gastrointestinal Infusion Therapy,price_unique,0.9
+Assisted Infect Disch Planning /NG-1542,Assisted Infectious Discharge Planning,price_unique,0.98
+Assisted Pulm Theatre Tm /NG-8055,Assisted Pulmonary Theatre Time,price_unique,0.98
+Asst  Pulmonary Theatre Time,Assisted Pulmonary Theatre Time,price_unique,0.98
+Asst - Gi Inf Therapy /NG-1139,Assisted Gastrointestinal Infusion Therapy,price_unique,0.9
+Asst Gastrointestinal Infusion Therapy,Assisted Gastrointestinal Infusion Therapy,price_unique,0.98
+Asst Infectious Discharge Plng,Assisted Infectious Discharge Planning,price_unique,0.98
+Asst Pulmonary Theatre Time /NG-2448,Assisted Pulmonary Theatre Time,price_unique,0.98
+Asst Specimen Anly,,unknown_service,0.9
+Asst Urologic Home Vst,Assisted Urologic Home Visit,price_unique,0.98
+Beds Otolaryngologic Recovery Room Occ,Bedside Otolaryngologic Recovery Room Occupancy,price_unique,0.98
+Beds Psych Dialysis Sess,Bedside Psychiatric Dialysis Session,price_unique,0.98
+Beds Psych Session,Bedside Psychiatric Dialysis Session,price_unique,0.98
+Beds Pulmonary Biop Proc,Bedside Pulmonary Biopsy Procedure,price_unique,0.98
+Beds Pulmonary Biop Proc /NG-6360,Bedside Pulmonary Biopsy Procedure,price_unique,0.98
+Bedside Pulm Biopsy Proc,Bedside Pulmonary Biopsy Procedure,price_unique,0.98
+Bedside Pulmonary Biop Proc,Bedside Pulmonary Biopsy Procedure,price_unique,0.98
+Care Cont Musculoskeletal Wnd /NG-8330,Continuous Musculoskeletal Wound Care,price_unique,0.98
+Care Cont Musculoskeletal Wnd /NG-8990,Continuous Musculoskeletal Wound Care,price_unique,0.98
+Care Extended Ger Wound,Extended Geriatric Wound Care,price_unique,0.98
+Care Focused Ent Wnd,Focused Otolaryngologic Wound Care,price_unique,0.98
+Care Preop Ren Wound,Preoperative Renal Wound Care,price_unique,0.98
+Case - Intensive Ophth /NG-3641,Intensive Ophthalmic Case Conference,price_unique,0.98
+Compr - Otolaryngologic Rehab Prog,Comprehensive Otolaryngologic Rehabilitation Programme,price_unique,0.98
+Compr - Psych Transf Svc,Comprehensive Psychiatric Transfusion Service,price_unique,0.98
+Compr - Urol Transp Svc,Comprehensive Urologic Transport Service,price_unique,0.98
+Compr - Urologic Transport Service,Comprehensive Urologic Transport Service,price_unique,0.98
+Compr Ent Thtr Time,Comprehensive Otolaryngologic Theatre Time,price_unique,0.98
+Compr Infectious Nurs,Comprehensive Infectious Nursing Observation,price_unique,0.98
+Compr Infectious Nursing,Comprehensive Infectious Nursing Observation,price_unique,0.98
+Compr Infectious Nursing Observation,Comprehensive Infectious Nursing Observation,price_unique,0.98
+Compr Onc Nurs Observation,Comprehensive Oncology Nursing Observation,price_unique,0.98
+Compr Oncology Nurs Obs,Comprehensive Oncology Nursing Observation,price_unique,0.98
+Compr Otolaryngologic Rehab /NG-4700,Comprehensive Otolaryngologic Rehabilitation Programme,price_unique,0.98
+Compr Otolaryngologic Rehab Prog /NG-9048,Comprehensive Otolaryngologic Rehabilitation Programme,price_unique,0.98
+Compr Otolaryngologic Theatre Tm,Comprehensive Otolaryngologic Theatre Time,price_unique,0.98
+Compr Psychiatric Transf Service /NG-8081,Comprehensive Psychiatric Transfusion Service,price_unique,0.98
+Compr Psychiatric Transfusion Svc,Comprehensive Psychiatric Transfusion Service,price_unique,0.98
+Compr Urologic Transp Service,Comprehensive Urologic Transport Service,price_unique,0.98
+Compr Urologic Transport Svc,Comprehensive Urologic Transport Service,price_unique,0.98
+Comprehensive - Onc Nurs Obs,Comprehensive Oncology Nursing Observation,price_unique,0.98
+Comprehensive Ent Thtr Time /NG-2399,Comprehensive Otolaryngologic Theatre Time,price_unique,0.98
+Comprehensive Infect Nursing,Comprehensive Infectious Nursing Observation,price_unique,0.98
+Comprehensive Onc Nurs Observation,Comprehensive Oncology Nursing Observation,price_unique,0.98
+Comprehensive Oncology Nurs Obs,Comprehensive Oncology Nursing Observation,price_unique,0.98
+Comprehensive Otolaryngologic Thtr Time,Comprehensive Otolaryngologic Theatre Time,price_unique,0.98
+Conf Amb Ophth Cs /NG-4640,Ambulatory Ophthalmic Case Conference,price_unique,0.98
+Conf Emergency Derm Cs,Emergency Dermatologic Case Conference,price_unique,0.98
+Conference Amb Ophth Case,Ambulatory Ophthalmic Case Conference,price_unique,0.98
+Conference Amb Ophth Cs /NG-9862,Ambulatory Ophthalmic Case Conference,price_unique,0.98
+Conference Emer Dermatologic Cs,Emergency Dermatologic Case Conference,price_unique,0.98
+Conference Intens Ophth Cs,Intensive Ophthalmic Case Conference,price_unique,0.98
+Consult Advanced Neuro /NG-5114,Advanced Neurological Consultation,price_unique,0.98
+Consult Outpt Immun /NG-3689,Outpatient Immunologic Consultation,price_unique,0.98
+Consultation Adv,Advanced Neurological Consultation,price_unique,0.98
+Cont - Immunologic Thtr Tm,Continuous Immunologic Theatre Time,price_unique,0.98
+Cont - Psychiatric Rehab Prog /NG-1498,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+Cont - Pulmonary Wnd Cr,Continuous Pulmonary Wound Care,price_unique,0.98
+Cont - Pulmonary Wnd Cr /NG-2407,Continuous Pulmonary Wound Care,price_unique,0.98
+Cont Ent Telem Monit,Continuous Otolaryngologic Telemetry Monitoring,price_unique,0.98
+Cont Immun Theatre Time /NG-9315,Continuous Immunologic Theatre Time,price_unique,0.98
+Cont Msk Wound Cr,Continuous Musculoskeletal Wound Care,price_unique,0.9
+Cont Musculoskeletal Wound Care,Continuous Musculoskeletal Wound Care,price_unique,0.98
+Cont Obst Rehab Prog,Continuous Obstetric Rehabilitation Programme,price_unique,0.98
+Cont Obst Rehab Prog /NG-1357,Continuous Obstetric Rehabilitation Programme,price_unique,0.98
+Cont Obstetric Rehab Programme /NG-9792,Continuous Obstetric Rehabilitation Programme,price_unique,0.98
+Cont Pharmaceutical Disp,Continuous Vascular Pharmaceutical Dispensing,price_unique,0.98
+Cont Psych Rehab Programme,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+Cont Psychiatric Rehabilitation Programme,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+Cont Pulm Spcm Analysis,,unknown_service,0.9
+Cont Pulmonary Wnd Cr,Continuous Pulmonary Wound Care,price_unique,0.98
+Cont Vasc Pharmaceutical Disp,Continuous Vascular Pharmaceutical Dispensing,price_unique,0.98
+Cont Vasc Pharmaceutical Dispensing,Continuous Vascular Pharmaceutical Dispensing,price_unique,0.98
+Continuous - Card Nursing Observation,Continuous Cardiac Nursing Observation,price_unique,0.98
+Continuous - Ent Telemetry Monit /NG-9499,Continuous Otolaryngologic Telemetry Monitoring,price_unique,0.98
+Continuous - Obst Rehab Programme,Continuous Obstetric Rehabilitation Programme,price_unique,0.98
+Continuous Ent Telem Monit,Continuous Otolaryngologic Telemetry Monitoring,price_unique,0.98
+Continuous Immun Theatre Time /NG-4759,Continuous Immunologic Theatre Time,price_unique,0.98
+Continuous Otolaryngologic Telemetry Monit /NG-7391,Continuous Otolaryngologic Telemetry Monitoring,price_unique,0.98
+Continuous Psych Rehabilitation Prog,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+Continuous Wnd Care,Continuous Pulmonary Wound Care,price_unique,0.98
+Cr Cont Wnd,Continuous Pulmonary Wound Care,price_unique,0.98
+Cr Foc Otolaryngologic Wound,Focused Otolaryngologic Wound Care,price_unique,0.98
+Cr Focused Ent Wound,Focused Otolaryngologic Wound Care,price_unique,0.98
+Cs Amb Ophthalmic /NG-7838,Ambulatory Ophthalmic Case Conference,price_unique,0.9
+Derm Transf Svc Interm,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Derm Transf Svc Rtn,Routine Dermatologic Transfusion Service,price_unique,0.98
+Disp Specialist Otolaryngologic Pharmaceutical,Specialist Otolaryngologic Pharmaceutical Dispensing,price_unique,0.98
+Elect  Card Nutritional Supp,Elective Cardiac Nutritional Support,price_unique,0.98
+Elect - Card Supp,Elective Cardiac Nutritional Support,price_unique,0.98
+Elect Cardiac Nutr Supp,Elective Cardiac Nutritional Support,price_unique,0.98
+Elect Cardiac Nutritional Supp /NG-3162,Elective Cardiac Nutritional Support,price_unique,0.98
+Elective - Pulm Nutritional Supp,Elective Pulmonary Nutritional Support,price_unique,0.98
+Elective Pulm Nutr Support,Elective Pulmonary Nutritional Support,price_unique,0.98
+Elective Pulmonary Nutr Supp,Elective Pulmonary Nutritional Support,price_unique,0.98
+Elective Pulmonary Nutr Support,Elective Pulmonary Nutritional Support,price_unique,0.98
+Emer - Ortho Consultation,Emergency Orthopaedic Consultation,price_unique,0.98
+Emer Ortho,Emergency Orthopaedic Consultation,price_unique,0.98
+Emer Ortho Consult,Emergency Orthopaedic Consultation,price_unique,0.98
+Emer Ortho Rehabilitation Prog,Emergency Orthopaedic Rehabilitation Programme,price_unique,0.98
+Emer Orthopaedic Consultation,Emergency Orthopaedic Consultation,price_unique,0.98
+Emer Orthopaedic Rehabilitation Prog,Emergency Orthopaedic Rehabilitation Programme,price_unique,0.98
+Emergency - Orthopaedic Rehab Prog,Emergency Orthopaedic Rehabilitation Programme,price_unique,0.98
+Emergency Dermatologic Cs Conference,Emergency Dermatologic Case Conference,price_unique,0.98
+Emergency Ren Radiotherapy Fract,Emergency Renal Radiotherapy Fraction,price_unique,0.98
+Endo Dial Sess Inpt,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Endo Dial Sess Std,Standard Endocrine Dialysis Session,price_unique,0.98
+Ent Steril Svc Preop,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Ent Steril Svc Supv,Supervised Otolaryngologic Sterilisation Service,price_unique,0.98
+Ent Thtr Tm Compr,Comprehensive Otolaryngologic Theatre Time,price_unique,0.98
+Ent Thtr Tm Spclst,Specialist Otolaryngologic Theatre Time,price_unique,0.98
+Ext - Geriatric Wound Care /NG-2898,Extended Geriatric Wound Care,price_unique,0.98
+Ext - Pall Panel,Extended Palliative Laboratory Panel,price_unique,0.98
+Ext - Vascular Rehabilitation Prog,Extended Vascular Rehabilitation Programme,price_unique,0.98
+Ext Ger Wnd Cr,Extended Geriatric Wound Care,price_unique,0.98
+Ext Geriatric Wnd Cr /NG-7617,Extended Geriatric Wound Care,price_unique,0.98
+Ext Pall Lab Panel,Extended Palliative Laboratory Panel,price_unique,0.98
+Ext Pall Lab Panel /NG-9077,Extended Palliative Laboratory Panel,price_unique,0.98
+Ext Palliative Laboratory Pnl,Extended Palliative Laboratory Panel,price_unique,0.98
+Ext Vasc Rehabilitation Prog,Extended Vascular Rehabilitation Programme,price_unique,0.98
+Extended Haem Anaes Admin,,unknown_service,0.9
+Extended Metab Isolation Room Occupancy,Extended Metabolic Isolation Room Occupancy,price_unique,0.98
+Extended Metabolic Isol Rm Occupancy /NG-9372,Extended Metabolic Isolation Room Occupancy,price_unique,0.98
+Extended Ortho Ventilation Support,,unknown_service,0.9
+Extended Pall Laboratory Pnl,Extended Palliative Laboratory Panel,price_unique,0.98
+Extended Ren Transp,Extended Renal Transport Service,price_unique,0.98
+Extended Ren Transport Service,Extended Renal Transport Service,price_unique,0.98
+Extended Vasc Rehab Prog,Extended Vascular Rehabilitation Programme,price_unique,0.98
+Foc - Immunologic Physio,Focused Immunologic Physiotherapy Session,price_unique,0.98
+Foc - Ortho Transp Service,Focused Orthopaedic Transport Service,price_unique,0.98
+Foc Immunologic Physio Sess,Focused Immunologic Physiotherapy Session,price_unique,0.98
+Focused - Orthopaedic Transp Svc,Focused Orthopaedic Transport Service,price_unique,0.98
+Focused Ent Cr /NG-9962,Focused Otolaryngologic Wound Care,price_unique,0.98
+Focused Immun Physiotherapy Sess,Focused Immunologic Physiotherapy Session,price_unique,0.98
+Focused Orthopaedic Transp Svc,Focused Orthopaedic Transport Service,price_unique,0.98
+Focused Otolaryngologic Wound Cr,Focused Otolaryngologic Wound Care,price_unique,0.98
+Fract Emergency Ren Radiother,Emergency Renal Radiotherapy Fraction,price_unique,0.98
+Fract Inpt Ophthalmic Radiotherapy /NG-8037,Inpatient Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Fract Outpatient Radiotherapy,,unknown_service,0.9
+Fract Std Ent,Standard Otolaryngologic Radiotherapy Fraction,price_unique,0.9
+Fract Std Otolaryngologic Radiotherapy,Standard Otolaryngologic Radiotherapy Fraction,price_unique,0.98
+Fraction  Std Ent Radiotherapy,Standard Otolaryngologic Radiotherapy Fraction,price_unique,0.9
+Fraction Emergency Ren Radiotherapy,Emergency Renal Radiotherapy Fraction,price_unique,0.98
+Fraction Inpatient Ren Radiother,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Fraction Outpatient Metab Radiotherapy /NG-5514,Outpatient Metabolic Radiotherapy Fraction,price_unique,0.98
+Fraction Std Otolaryngologic Radiother,Standard Otolaryngologic Radiotherapy Fraction,price_unique,0.98
+Ger Nutr Supp Intens,Intensive Geriatric Nutritional Support,price_unique,0.98
+Ger Nutr Supp Std,Standard Geriatric Nutritional Support,price_unique,0.98
+Ger Nutr Support /NG-2366,Intensive Geriatric Nutritional Support,price_unique,0.9
+Hep Physio Sess Inpt,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Hep Physio Sess Spclst,Specialist Hepatic Physiotherapy Session,price_unique,0.98
+Imaging Interm Rheum Diagnostic,Intermittent Rheumatologic Diagnostic Imaging,price_unique,0.98
+Img Inpatient Diag,Inpatient Vascular Diagnostic Imaging,price_unique,0.98
+Img Inpatient Vascular Diagnostic,Inpatient Vascular Diagnostic Imaging,price_unique,0.98
+Img Preop Vasc Diagnostic,Preoperative Vascular Diagnostic Imaging,price_unique,0.98
+Img Preop Vascular Diag,Preoperative Vascular Diagnostic Imaging,price_unique,0.98
+Img Vasc Diagnostic,Preoperative Vascular Diagnostic Imaging,price_unique,0.9
+Immun Consult,Outpatient Immunologic Consultation,price_unique,0.98
+Immun Endosc Proc Amb,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Immun Endosc Proc Preop,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Immun Wd Bd Occ Amb,Ambulatory Immunologic Ward Bed Occupancy,price_unique,0.98
+Immun Wd Bd Occ Rtn,Routine Immunologic Ward Bed Occupancy,price_unique,0.98
+Infect Crit Cr Occ Adv,Advanced Infectious Critical Care Occupancy,price_unique,0.98
+Infect Crit Cr Occ Rtn,Routine Infectious Critical Care Occupancy,price_unique,0.98
+Inpatient  Ophth Radiother Fraction,Inpatient Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Inpatient - Ophth Transport,Inpatient Ophthalmic Transport Service,price_unique,0.98
+Inpatient - Vasc Diagnostic Img,Inpatient Vascular Diagnostic Imaging,price_unique,0.98
+Inpatient Endo Dial Sess,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Inpatient Hepatic Physio Sess,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Inpatient Ophth Transp Svc,Inpatient Ophthalmic Transport Service,price_unique,0.98
+Inpatient Ophth Transport Svc,Inpatient Ophthalmic Transport Service,price_unique,0.98
+Inpatient Pall Specimen Analysis /NG-4820,Inpatient Palliative Specimen Analysis,price_unique,0.98
+Inpatient Ren Radiother Fraction,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Inpatient Ren Radiotherapy Fraction /NG-3532,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Inpatient Vascular Diag Imaging,Inpatient Vascular Diagnostic Imaging,price_unique,0.98
+Inpt - Hep Physio Sess /NG-1999,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Inpt - Ophth Radiother Fract,Inpatient Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Inpt - Ophth Radiother Fract /NG-2420,Inpatient Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Inpt - Pall Specimen Analysis /NG-1173,Inpatient Palliative Specimen Analysis,price_unique,0.98
+Inpt - Ren Radiotherapy Fract,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Inpt - Ren Radiotherapy Fraction,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Inpt Endo Session,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Inpt Hep Physiotherapy Session,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Inpt Hepatic Physio Session /NG-3220,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Inpt Hepatic Session,Inpatient Hepatic Physiotherapy Session,price_unique,0.98
+Inpt Msk Wd Bed Occ,Inpatient Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Inpt Musculoskeletal Wd Bed Occupancy /NG-8170,Inpatient Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Inpt Ophth Transport Svc,Inpatient Ophthalmic Transport Service,price_unique,0.98
+Inpt Ophthalmic Transport Svc,Inpatient Ophthalmic Transport Service,price_unique,0.98
+Inpt Palliative Isol Room Occupancy,Inpatient Palliative Isolation Room Occupancy,price_unique,0.98
+Inpt Palliative Isolation Rm Occupancy,Inpatient Palliative Isolation Room Occupancy,price_unique,0.98
+Intens - Nutr Support,Intensive Geriatric Nutritional Support,price_unique,0.98
+Intens - Ophthalmic Cs Conference /NG-6174,Intensive Ophthalmic Case Conference,price_unique,0.98
+Intens Gastrointestinal Isolation Rm Occupancy,Intensive Gastrointestinal Isolation Room Occupancy,price_unique,0.98
+Intens Ger Nutr Support,Intensive Geriatric Nutritional Support,price_unique,0.98
+Intens Gi Isolation Room Occupancy /NG-9835,Intensive Gastrointestinal Isolation Room Occupancy,price_unique,0.98
+Intensive Ger Nutr Supp /NG-4079,Intensive Geriatric Nutritional Support,price_unique,0.98
+Intensive Gi Isolation Rm Occ,Intensive Gastrointestinal Isolation Room Occupancy,price_unique,0.98
+Interm - Derm Transf Svc,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Interm - Diag Img /NG-6221,Intermittent Rheumatologic Diagnostic Imaging,price_unique,0.98
+Interm Derm Transfusion Service /NG-8116,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Interm Neuro Nutr Supp /NG-9593,Intermittent Neurological Nutritional Support,price_unique,0.98
+Interm Pulm Rehab Prog,Intermittent Pulmonary Rehabilitation Programme,price_unique,0.98
+Interm Pulm Rehab Prog /NG-4176,Intermittent Pulmonary Rehabilitation Programme,price_unique,0.98
+Interm Rehab Programme,Intermittent Pulmonary Rehabilitation Programme,price_unique,0.98
+Interm Rheum Diagnostic Img /NG-6790,Intermittent Rheumatologic Diagnostic Imaging,price_unique,0.98
+Interm Rheumatologic Diag Img,Intermittent Rheumatologic Diagnostic Imaging,price_unique,0.98
+Intermittent - Derm Transf Svc,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Intermittent Neurological Nutr Supp,Intermittent Neurological Nutritional Support,price_unique,0.98
+Metabolic - Lab Pnl,,unknown_service,0.9
+Monit Cont Ent Telemetry /NG-2024,Continuous Otolaryngologic Telemetry Monitoring,price_unique,0.98
+Msk Dial Sess,Supervised Musculoskeletal Dialysis Session,price_unique,0.98
+Msk Wd Bd Occ Amb,Ambulatory Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Msk Wd Bd Occ Inpt,Inpatient Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Neuro - Nutr Supp,Intermittent Neurological Nutritional Support,price_unique,0.98
+Obs Cont Card Nursing,Continuous Cardiac Nursing Observation,price_unique,0.98
+Obs Continuous Card Nurs,Continuous Cardiac Nursing Observation,price_unique,0.98
+Obs Continuous Card Nursing /NG-8292,Continuous Cardiac Nursing Observation,price_unique,0.98
+Obs Metab Nursing,Advanced Metabolic Nursing Observation,price_unique,0.98
+Observation Compr Infectious Nurs,Comprehensive Infectious Nursing Observation,price_unique,0.98
+Observation Cont Nurs,Continuous Cardiac Nursing Observation,price_unique,0.98
+Occ  - Postoperative Obstetric Isol Rm,Postoperative Obstetric Isolation Room Occupancy,price_unique,0.98
+Occ - Inpt Isol Rm /NG-2747,Inpatient Palliative Isolation Room Occupancy,price_unique,0.98
+Occ - Postoperative Metabolic Critical Care,Postoperative Metabolic Critical Care Occupancy,price_unique,0.98
+Occ Advanced Orthopaedic Recovery Rm /NG-2920,,unknown_service,0.9
+Occ Beds Otolaryngologic Recov Room,Bedside Otolaryngologic Recovery Room Occupancy,price_unique,0.98
+Occ Beds Otolaryngologic Recovery Room /NG-2212,Bedside Otolaryngologic Recovery Room Occupancy,price_unique,0.98
+Occ Inpatient Palliative Isolation Rm,Inpatient Palliative Isolation Room Occupancy,price_unique,0.98
+Occ Inpt Msk Wd Bd,Inpatient Musculoskeletal Ward Bed Occupancy,price_unique,0.98
+Occ Routine Infectious Critical Cr,Routine Infectious Critical Care Occupancy,price_unique,0.98
+Occ Supervised Ren Isolation Rm,Supervised Renal Isolation Room Occupancy,price_unique,0.98
+Occupancy  Extended Metabolic Isol Rm /NG-3709,Extended Metabolic Isolation Room Occupancy,price_unique,0.98
+Occupancy - Beds Otolaryngologic Recov Room,Bedside Otolaryngologic Recovery Room Occupancy,price_unique,0.98
+Occupancy - Spclst Neurological Recovery Rm /NG-4948,Specialist Neurological Recovery Room Occupancy,price_unique,0.98
+Occupancy Advanced Card Recov Rm,Advanced Cardiac Recovery Room Occupancy,price_unique,0.98
+Occupancy Bedside Ent Recovery Room,Bedside Otolaryngologic Recovery Room Occupancy,price_unique,0.98
+Occupancy Inpatient Palliative Isol Room,Inpatient Palliative Isolation Room Occupancy,price_unique,0.98
+Occupancy Postop Metabolic Crit Cr,Postoperative Metabolic Critical Care Occupancy,price_unique,0.98
+Occupancy Postop Obstetric Isol Room,Postoperative Obstetric Isolation Room Occupancy,price_unique,0.98
+Occupancy Postoperative Obstetric Isol Rm,Postoperative Obstetric Isolation Room Occupancy,price_unique,0.98
+Occupancy Rtn Pall Crit Cr,Routine Palliative Critical Care Occupancy,price_unique,0.98
+Ophth Cs Conf Amb,Ambulatory Ophthalmic Case Conference,price_unique,0.98
+Ophth Cs Conf Intens,Intensive Ophthalmic Case Conference,price_unique,0.98
+Ophth Radiother Fract Inpt,Inpatient Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Ophth Radiother Fract Postop,Postoperative Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Ortho Transp Svc,Focused Orthopaedic Transport Service,price_unique,0.98
+Outpatient - Metabolic Radiother Fract /NG-9469,Outpatient Metabolic Radiotherapy Fraction,price_unique,0.98
+Outpatient Metab Radiother Fraction,Outpatient Metabolic Radiotherapy Fraction,price_unique,0.98
+Outpatient Orthopaedic Pharm Dispensing /NG-2825,,unknown_service,0.9
+Outpt - Immun Consultation /NG-3299,Outpatient Immunologic Consultation,price_unique,0.98
+Outpt Immun Consult /NG-9519,Outpatient Immunologic Consultation,price_unique,0.98
+Outpt Immun Consultation,Outpatient Immunologic Consultation,price_unique,0.98
+Outpt Metab Radiother Fract,Outpatient Metabolic Radiotherapy Fraction,price_unique,0.98
+Outpt Radiother Fraction,Outpatient Metabolic Radiotherapy Fraction,price_unique,0.98
+Paed Biop Proc Spclst,Specialist Paediatric Biopsy Procedure,price_unique,0.98
+Paed Biop Proc Std,Standard Paediatric Biopsy Procedure,price_unique,0.98
+Plng Rtn Oncology Discharge,Routine Oncology Discharge Planning,price_unique,0.98
+Postop Critical Cr Occupancy,Postoperative Metabolic Critical Care Occupancy,price_unique,0.98
+Postop Metabolic Critical Cr Occ,Postoperative Metabolic Critical Care Occupancy,price_unique,0.98
+Postop Ophthalmic Radiotherapy Fract,Postoperative Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Postop Pulmonary Wnd Care /NG-1729,Postoperative Pulmonary Wound Care,price_unique,0.98
+Postoperative - Metab Crit Cr Occupancy,Postoperative Metabolic Critical Care Occupancy,price_unique,0.98
+Postoperative - Ophth Radiother Fract /NG-1408,Postoperative Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Postoperative Ophth Radiother Fract,Postoperative Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Postoperative Ophthalmic Radiother Fract /NG-5937,Postoperative Ophthalmic Radiotherapy Fraction,price_unique,0.98
+Postoperative Pulm Wnd Cr,Postoperative Pulmonary Wound Care,price_unique,0.98
+Postoperative Pulmonary Wnd Cr /NG-8823,Postoperative Pulmonary Wound Care,price_unique,0.98
+Preop - Geriatric Ventilation Supp,Preoperative Geriatric Ventilation Support,price_unique,0.98
+Preop - Immun Endoscopic Procedure /NG-3497,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Preop Endo Physio Sess,Preoperative Endocrine Physiotherapy Session,price_unique,0.98
+Preop Endo Physiotherapy Sess,Preoperative Endocrine Physiotherapy Session,price_unique,0.98
+Preop Endocrine Physio Session,Preoperative Endocrine Physiotherapy Session,price_unique,0.98
+Preop Ent Sterilisation Svc /NG-3994,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Preop Geriatric Vent Supp,Preoperative Geriatric Ventilation Support,price_unique,0.98
+Preop Geriatric Ventilation Support /NG-1168,Preoperative Geriatric Ventilation Support,price_unique,0.98
+Preop Immun Endosc Proc,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Preop Onc Consultation,Preoperative Oncology Consultation,price_unique,0.98
+Preop Oncology Consult /NG-2424,Preoperative Oncology Consultation,price_unique,0.98
+Preop Oncology Consult /NG-5826,Preoperative Oncology Consultation,price_unique,0.98
+Preop Oncology Consult /NG-7321,Preoperative Oncology Consultation,price_unique,0.98
+Preop Otolaryngologic Steril Svc,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Preop Renal Wnd Cr,Preoperative Renal Wound Care,price_unique,0.98
+Preoperative - Ger Vent Support /NG-6364,Preoperative Geriatric Ventilation Support,price_unique,0.98
+Preoperative - Immun Endoscopic Procedure,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Preoperative - Ren Wnd Cr,Preoperative Renal Wound Care,price_unique,0.98
+Preoperative Endocrine Physio Sess,Preoperative Endocrine Physiotherapy Session,price_unique,0.98
+Preoperative Ent Steril Svc,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Preoperative Onc Consultation,Preoperative Oncology Consultation,price_unique,0.98
+Preoperative Otolaryngologic Steril Service,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Proc - Amb Immun Endoscopic /NG-3634,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Proc Preoperative Immunologic Endoscopic /NG-1751,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Proc Std Psychiatric Endosc /NG-2345,Standard Psychiatric Endoscopic Procedure,price_unique,0.98
+Procedure Amb Immunologic Endoscopic,Ambulatory Immunologic Endoscopic Procedure,price_unique,0.98
+Procedure Immun Endosc,Preoperative Immunologic Endoscopic Procedure,price_unique,0.98
+Procedure Routine Urol Biopsy,Routine Urologic Biopsy Procedure,price_unique,0.98
+Procedure Routine Urologic Biop /NG-3022,Routine Urologic Biopsy Procedure,price_unique,0.98
+Procedure Standard Endocrine Endosc,Standard Endocrine Endoscopic Procedure,price_unique,0.98
+Prog Comprehensive Otolaryngologic Rehab,Comprehensive Otolaryngologic Rehabilitation Programme,price_unique,0.98
+Prog Emergency Ortho Rehabilitation /NG-5611,Emergency Orthopaedic Rehabilitation Programme,price_unique,0.98
+Programme  Rtn Psych Rehab /NG-3241,Routine Psychiatric Rehabilitation Programme,price_unique,0.98
+Programme Continuous Obst Rehab,Continuous Obstetric Rehabilitation Programme,price_unique,0.98
+Programme Extended Vascular Rehab,Extended Vascular Rehabilitation Programme,price_unique,0.98
+Programme Interm Pulmonary Rehab,Intermittent Pulmonary Rehabilitation Programme,price_unique,0.98
+Psych Dial Sess Amb,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Psych Dial Sess Beds,Bedside Psychiatric Dialysis Session,price_unique,0.98
+Psych Rehab Prog Cont,Continuous Psychiatric Rehabilitation Programme,price_unique,0.98
+Psych Rehab Prog Rtn,Routine Psychiatric Rehabilitation Programme,price_unique,0.98
+Psych Rehab Programme,Routine Psychiatric Rehabilitation Programme,price_unique,0.98
+Psychiatric Rehab Programme /NG-8199,Continuous Psychiatric Rehabilitation Programme,price_unique,0.9
+Pulm Wnd Cr Cont,Continuous Pulmonary Wound Care,price_unique,0.98
+Pulm Wnd Cr Postop,Postoperative Pulmonary Wound Care,price_unique,0.98
+Pulmonary - Biopsy Proc,Bedside Pulmonary Biopsy Procedure,price_unique,0.98
+Ren Radiother Fract Emer,Emergency Renal Radiotherapy Fraction,price_unique,0.98
+Ren Radiother Fract Inpt,Inpatient Renal Radiotherapy Fraction,price_unique,0.98
+Ren Radiotherapy Fract,Emergency Renal Radiotherapy Fraction,price_unique,0.9
+Routine  Biop Procedure,Routine Urologic Biopsy Procedure,price_unique,0.98
+Routine - Gastrointestinal Transfusion Svc,Routine Gastrointestinal Transfusion Service,price_unique,0.98
+Routine - Onc Discharge Plng,Routine Oncology Discharge Planning,price_unique,0.98
+Routine - Oncology Disch,Routine Oncology Discharge Planning,price_unique,0.98
+Routine Card Specimen Analysis,Routine Cardiac Specimen Analysis,price_unique,0.98
+Routine Pall Critical Care Occupancy /NG-1990,Routine Palliative Critical Care Occupancy,price_unique,0.98
+Rtn  - Derm Transf Svc,Routine Dermatologic Transfusion Service,price_unique,0.98
+Rtn - Onc Discharge Plng,Routine Oncology Discharge Planning,price_unique,0.98
+Rtn - Psychiatric Rehabilitation Prog,Routine Psychiatric Rehabilitation Programme,price_unique,0.98
+Rtn - Transf Svc,Routine Gastrointestinal Transfusion Service,price_unique,0.9
+Rtn - Urol Biop Procedure,Routine Urologic Biopsy Procedure,price_unique,0.98
+Rtn Biop Proc /NG-7762,Routine Urologic Biopsy Procedure,price_unique,0.98
+Rtn Cardiac Spcm Anly /NG-6683,Routine Cardiac Specimen Analysis,price_unique,0.98
+Rtn Cardiac Specimen,Routine Cardiac Specimen Analysis,price_unique,0.98
+Rtn Derm Transfusion Service,Routine Dermatologic Transfusion Service,price_unique,0.98
+Rtn Derm Transfusion Service /NG-2088,Routine Dermatologic Transfusion Service,price_unique,0.98
+Rtn Dermatologic Transfusion Svc,Routine Dermatologic Transfusion Service,price_unique,0.98
+Rtn Gi Svc /NG-4995,Routine Gastrointestinal Transfusion Service,price_unique,0.9
+Rtn Haem Inf Therapy,Routine Haematology Infusion Therapy,price_unique,0.98
+Rtn Immun Ward Bed Occupancy,Routine Immunologic Ward Bed Occupancy,price_unique,0.98
+Rtn Immunologic Ward Bd Occ,Routine Immunologic Ward Bed Occupancy,price_unique,0.98
+Rtn Immunologic Wd Bed Occupancy,Routine Immunologic Ward Bed Occupancy,price_unique,0.98
+Rtn Infect Crit Cr Occupancy,Routine Infectious Critical Care Occupancy,price_unique,0.98
+Rtn Infect Critical Care Occ,Routine Infectious Critical Care Occupancy,price_unique,0.98
+Rtn Pall Crit Cr Occupancy,Routine Palliative Critical Care Occupancy,price_unique,0.98
+Rtn Palliative Critical Cr Occ,Routine Palliative Critical Care Occupancy,price_unique,0.98
+Rtn Palliative Critical Cr Occupancy,Routine Palliative Critical Care Occupancy,price_unique,0.98
+Service - Foc Ortho Transp,Focused Orthopaedic Transport Service,price_unique,0.98
+Sess Amb Psych Dial,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Sess Ambulatory Ophth Dialysis,Ambulatory Ophthalmic Dialysis Session,price_unique,0.98
+Sess Ambulatory Psych Dialysis /NG-7178,Ambulatory Psychiatric Dialysis Session,price_unique,0.98
+Sess Inpatient Endo Dialysis,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Sess Standard Endo Dialysis,Standard Endocrine Dialysis Session,price_unique,0.98
+Session  Interm Hep Dial,,unknown_service,0.9
+Session - Std Pulmonary Dial,Standard Pulmonary Dialysis Session,price_unique,0.98
+Session Beds Psychiatric Dialysis,Bedside Psychiatric Dialysis Session,price_unique,0.98
+Session Inpatient Endo Dial,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Session Inpt Endo Dial,Inpatient Endocrine Dialysis Session,price_unique,0.98
+Session Specialist Hep Physiotherapy,Specialist Hepatic Physiotherapy Session,price_unique,0.98
+Session Std Endocrine Dialysis,Standard Endocrine Dialysis Session,price_unique,0.98
+Session Std Pulmonary Dialysis,Standard Pulmonary Dialysis Session,price_unique,0.98
+Spclst  Derm Transp Svc /NG-4716,Specialist Dermatologic Transport Service,price_unique,0.98
+Spclst - Ent Pharmaceutical Dispensing /NG-9066,Specialist Otolaryngologic Pharmaceutical Dispensing,price_unique,0.98
+Spclst - Ent Thtr Tm /NG-7710,Specialist Otolaryngologic Theatre Time,price_unique,0.98
+Spclst Derm Transport Service,Specialist Dermatologic Transport Service,price_unique,0.98
+Spclst Ent Theatre Tm,Specialist Otolaryngologic Theatre Time,price_unique,0.98
+Spclst Ent Thtr Time,Specialist Otolaryngologic Theatre Time,price_unique,0.98
+Spclst Hep Physio Session,Specialist Hepatic Physiotherapy Session,price_unique,0.98
+Spclst Hepatic Physiotherapy Sess,Specialist Hepatic Physiotherapy Session,price_unique,0.98
+Spclst Otolaryngologic Pharm Disp,Specialist Otolaryngologic Pharmaceutical Dispensing,price_unique,0.98
+Spclst Otolaryngologic Thtr Tm,Specialist Otolaryngologic Theatre Time,price_unique,0.98
+Specialist  Neurological Recovery Rm Occ,Specialist Neurological Recovery Room Occupancy,price_unique,0.98
+Specialist - Neuro Recov Rm Occ,Specialist Neurological Recovery Room Occupancy,price_unique,0.98
+Specialist - Otolaryngologic Pharm Disp /NG-4235,Specialist Otolaryngologic Pharmaceutical Dispensing,price_unique,0.98
+Specialist Derm Transp,Specialist Dermatologic Transport Service,price_unique,0.98
+Specialist Ent Pharmaceutical Dispensing,Specialist Otolaryngologic Pharmaceutical Dispensing,price_unique,0.98
+Specialist Neuro Recovery Room Occ,Specialist Neurological Recovery Room Occupancy,price_unique,0.98
+Specialist Neurological Recovery Rm /NG-7294,Specialist Neurological Recovery Room Occupancy,price_unique,0.98
+Specialist Paed Biop Proc,Specialist Paediatric Biopsy Procedure,price_unique,0.98
+Specialist Paediatric Biop Proc /NG-5601,Specialist Paediatric Biopsy Procedure,price_unique,0.98
+Specialist Paediatric Biop Procedure /NG-2447,Specialist Paediatric Biopsy Procedure,price_unique,0.98
+Standard Endo Dial Sess,Standard Endocrine Dialysis Session,price_unique,0.98
+Standard Ent Radiotherapy Fract,Standard Otolaryngologic Radiotherapy Fraction,price_unique,0.98
+Standard Ger Nutr Support /NG-7257,Standard Geriatric Nutritional Support,price_unique,0.98
+Standard Paed Biop Proc /NG-2120,Standard Paediatric Biopsy Procedure,price_unique,0.98
+Standard Paed Biopsy Procedure,Standard Paediatric Biopsy Procedure,price_unique,0.98
+Standard Pulm Dial Sess,Standard Pulmonary Dialysis Session,price_unique,0.98
+Std - Biop Proc,Standard Paediatric Biopsy Procedure,price_unique,0.98
+Std Endo Dial Session /NG-7220,Standard Endocrine Dialysis Session,price_unique,0.98
+Std Endo Endoscopic Procedure,Standard Endocrine Endoscopic Procedure,price_unique,0.98
+Std Endocrine Dialysis Sess /NG-9032,Standard Endocrine Dialysis Session,price_unique,0.98
+Std Endocrine Endosc Proc,Standard Endocrine Endoscopic Procedure,price_unique,0.98
+Std Endocrine Endosc Procedure /NG-7684,Standard Endocrine Endoscopic Procedure,price_unique,0.98
+Std Geriatric Nutritional Supp,Standard Geriatric Nutritional Support,price_unique,0.98
+Std Geriatric Nutritional Support,Standard Geriatric Nutritional Support,price_unique,0.98
+Std Nutritional Supp,Standard Geriatric Nutritional Support,price_unique,0.98
+Std Paediatric Proc,Standard Paediatric Biopsy Procedure,price_unique,0.98
+Std Psychiatric Endosc Procedure /NG-5963,Standard Psychiatric Endoscopic Procedure,price_unique,0.98
+Std Psychiatric Endoscopic Procedure /NG-6086,Standard Psychiatric Endoscopic Procedure,price_unique,0.98
+Std Pulmonary Dial Sess,Standard Pulmonary Dialysis Session,price_unique,0.98
+Supervised  Ren Isol Room Occ,Supervised Renal Isolation Room Occupancy,price_unique,0.98
+Supervised - Ent Steril Svc /NG-7318,Supervised Otolaryngologic Sterilisation Service,price_unique,0.98
+Supervised - Ren Isolation Room Occupancy,Supervised Renal Isolation Room Occupancy,price_unique,0.98
+Supervised Ent Steril Service,Supervised Otolaryngologic Sterilisation Service,price_unique,0.98
+Supervised Msk Dial Session,Supervised Musculoskeletal Dialysis Session,price_unique,0.98
+Supervised Msk Dialysis Sess,Supervised Musculoskeletal Dialysis Session,price_unique,0.98
+Supervised Musculoskeletal Dialysis Sess /NG-6660,Supervised Musculoskeletal Dialysis Session,price_unique,0.98
+Supp Geriatric Vent /NG-9418,Preoperative Geriatric Ventilation Support,price_unique,0.98
+Supp Interm Neuro Nutritional /NG-6247,Intermittent Neurological Nutritional Support,price_unique,0.98
+Supp Postoperative Ortho Nutritional,,unknown_service,0.9
+Support Intens Geriatric Nutritional,Intensive Geriatric Nutritional Support,price_unique,0.98
+Support Interm Neurological Nutr,Intermittent Neurological Nutritional Support,price_unique,0.98
+Supv Ent Steril Svc,Supervised Otolaryngologic Sterilisation Service,price_unique,0.98
+Supv Isol Rm Occupancy,Supervised Renal Isolation Room Occupancy,price_unique,0.98
+Supv Ren Isol Rm Occupancy,Supervised Renal Isolation Room Occupancy,price_unique,0.98
+Svc Extended Ren Transp,Extended Renal Transport Service,price_unique,0.98
+Svc Interm Transf,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Svc Intermittent Derm Transf /NG-9194,Intermittent Dermatologic Transfusion Service,price_unique,0.98
+Svc Preop Ent Steril,Preoperative Otolaryngologic Sterilisation Service,price_unique,0.98
+Svc Routine Derm Transf /NG-2484,Routine Dermatologic Transfusion Service,price_unique,0.98
+Svc Rtn Gi Transfusion,Routine Gastrointestinal Transfusion Service,price_unique,0.9
+Ther Assisted Ger Infusion,Assisted Geriatric Infusion Therapy,price_unique,0.98
+Ther Asst Gi Inf,Assisted Gastrointestinal Infusion Therapy,price_unique,0.9
+Therapy - Assisted Ger Infusion /NG-4561,Assisted Geriatric Infusion Therapy,price_unique,0.98
+Therapy Asst Ger Inf,Assisted Geriatric Infusion Therapy,price_unique,0.98
+Therapy Asst Gi Inf,Assisted Gastrointestinal Infusion Therapy,price_unique,0.9
+Therapy Rtn Haem Inf,Routine Haematology Infusion Therapy,price_unique,0.98
+Therapy Rtn Haem Infusion /NG-2021,Routine Haematology Infusion Therapy,price_unique,0.98
+Time Asst Pulm Theatre,Assisted Pulmonary Theatre Time,price_unique,0.98
+Vasc  Diagnostic Img,Preoperative Vascular Diagnostic Imaging,price_unique,0.9
+Vasc Diag Img Inpt,Inpatient Vascular Diagnostic Imaging,price_unique,0.98
+Vasc Diag Img Preop,Preoperative Vascular Diagnostic Imaging,price_unique,0.98
+Visit - Assisted Urol Home /NG-4509,Assisted Urologic Home Visit,price_unique,0.98
+Visit Amb Hm,Ambulatory Infectious Home Visit,price_unique,0.9
+Visit Cardiac Hm,Ambulatory Cardiac Home Visit,price_unique,0.98
