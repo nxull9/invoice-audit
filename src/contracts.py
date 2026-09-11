@@ -15,9 +15,10 @@ from datetime import datetime
 # contract identity, from the document header
 # --------------------------------------------------------------------------
 
-NUMBER = re.compile(r'\*\*Contract number:\*\*\s*(\S+)')
-FROM   = re.compile(r'\*\*Effective from:\*\*\s*(.+)')
-TO     = re.compile(r'\*\*Effective to:\*\*\s*(.+)')
+# The bold markers are optional: a PDF's text layer drops them.
+NUMBER = re.compile(r'\**Contract number:\**\s*(\S+)')
+FROM   = re.compile(r'\**Effective from:\**\s*(.+)')
+TO     = re.compile(r'\**Effective to:\**\s*(.+)')
 
 
 def read_header(data_root, hospital):
@@ -27,16 +28,19 @@ def read_header(data_root, hospital):
     read them all and require agreement — a disagreement becomes an error rather
     than a silent first-match win.
     """
-    docs = sorted(glob.glob(f'{data_root}/contracts/{hospital}/*.md'))
+    folder = f'{data_root}/contracts/{hospital}'
+    docs = next((sorted(glob.glob(f'{folder}/{p}')) for p in ('*.md', '*.txt', '*.pdf')
+                 if glob.glob(f'{folder}/{p}')), [])
     seen = set()
     for path in docs:
-        text = open(path).read()
+        from src.ingest import read_contract_file
+        text, _ = read_contract_file(path)
         num, frm, to = NUMBER.search(text), FROM.search(text), TO.search(text)
         if not (num and frm and to):
             continue
-        seen.add((num.group(1),
-                  datetime.strptime(frm.group(1).strip(), '%d %B %Y').date(),
-                  datetime.strptime(to.group(1).strip(), '%d %B %Y').date()))
+        seen.add((num.group(1).strip('*'),
+                  datetime.strptime(frm.group(1).strip().strip('*'), '%d %B %Y').date(),
+                  datetime.strptime(to.group(1).strip().strip('*'), '%d %B %Y').date()))
     if len(seen) != 1:
         raise ValueError(f'{hospital}: headers disagree across documents: {seen}')
     number, start, end = seen.pop()

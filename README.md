@@ -68,6 +68,18 @@ two-way collisions, and how decisively it breaks them sets the confidence; below
 the description is reported **ambiguous** with both candidates named. No model call.
 Every description on every hospital resolves.
 
+## Contracts that arrive as PDF
+
+The exercise ships Markdown, but a new provider sends a PDF. `src/ingest.py` reads a
+contract by the most trustworthy route available: Markdown or plain text (exact), then a
+PDF's embedded text layer (exact), then OCR (not exact — digits are repaired inside
+`GBP` amounts only, the route is recorded, and every rate from that contract carries
+reduced confidence). A PDF's text layer loses the article headings, so the prose chunker
+falls back to grouping clauses by their article number. Hospital 2 loaded from its PDF
+alone produces a spec identical to the one from its Markdown (`tests/test_runtime.py`).
+OCR needs `pip install -r requirements-optional.txt` plus the `tesseract` and `poppler`
+binaries; without them an image-only PDF is reported as unreadable, not silently skipped.
+
 ## How an invoice is audited
 
 1. Seven checks that need no contract: line arithmetic, invoice total, reused
@@ -196,6 +208,10 @@ per-category support, and the four systematic failure modes: `reports/evaluation
 6. Hospital 2's "Service Day" runs 07:00–06:59 and the data carries no times; the
    reading taken made a falsifiable prediction that was tested and held
    (`decision_log.md` item 6).
+7. An OCR-read contract is only as good as the OCR. Rates from it are marked inexact
+   and their confidence reduced, but a misread digit that survives repair is invisible
+   downstream. The exercise's PDFs all carry text layers, so this path was exercised on
+   a demo page, not on scored data.
 
 ## AI assistance
 

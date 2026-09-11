@@ -29,9 +29,29 @@ def rate_chunks(text, marker=RATE_ARTICLE):
     article is needed, and top-k retrieval cannot promise that. `n_clauses` is counted
     by regex so a model that returns fewer has visibly missed some.
     """
-    return [{"title": title, "text": body.strip(), "n_clauses": len(CLAUSE.findall(body))}
-            for title, body in sections(text).items()
-            if marker.lower() in title.lower()]
+    chunks = [{"title": title, "text": body.strip(), "n_clauses": len(CLAUSE.findall(body))}
+              for title, body in sections(text).items()
+              if marker.lower() in title.lower()]
+    return chunks or clause_chunks(text)
+
+
+def clause_chunks(text):
+    """Group clauses by article number when the headings are gone.
+
+    A PDF's text layer keeps "4.1 In respect of ..." but not the markdown heading above
+    it. The article number is the first part of the clause number, so the clauses can
+    still be gathered into the same thirteen articles a model reads one at a time.
+    """
+    starts = [m.start() for m in CLAUSE.finditer(text)]
+    if not starts:
+        return []
+    by_article = {}
+    for a, b in zip(starts, starts[1:] + [len(text)]):
+        clause = text[a:b].strip()
+        article = clause.split(".", 1)[0]
+        by_article.setdefault(article, []).append(clause)
+    return [{"title": f"Article {article}", "text": "\n\n".join(clauses), "n_clauses": len(clauses)}
+            for article, clauses in by_article.items()]
 
 VALID_BASES = set(UNIT_BASIS.values())
 

@@ -255,3 +255,24 @@ def test_prose_path_prefers_markdown_and_records_it():
     assert [d["file"] for d in docs] == ["master_services_agreement.md"]
     assert docs[0]["route"] == "text" and docs[0]["exact"]
     assert len(extract.rate_chunks(text)) == 13
+
+
+def test_hospital_2_loads_identically_from_its_pdf_alone(tmp_path):
+    """A provider that sends only a PDF: same articles, same header, same spec."""
+    import shutil
+    folder = tmp_path / "contracts" / "hospital_2"
+    folder.mkdir(parents=True)
+    shutil.copy(f"{DATA}/contracts/hospital_2/master_services_agreement.pdf", folder)
+
+    text, docs = audit.contract_text(str(folder))
+    assert docs[0]["route"] == "pdf_text_layer"
+    chunks = extract.rate_chunks(text)
+    assert len(chunks) == 13 and sum(c["n_clauses"] for c in chunks) == 76
+
+    from_pdf = audit.load_spec(str(tmp_path), "hospital_2")
+    from_md = audit.load_spec(DATA, "hospital_2")
+    for family in ("services", "threshold_premiums", "nbd_uplifts", "volume_discounts"):
+        assert from_pdf[family] == from_md[family], family
+    assert sorted(from_pdf["bundles"]) == sorted(from_md["bundles"])
+    assert from_pdf["contract_number"] == from_md["contract_number"]
+    assert from_pdf["provenance"]["documents"][0]["route"] == "pdf_text_layer"

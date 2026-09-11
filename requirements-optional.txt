@@ -6,7 +6,8 @@ bitsandbytes>=0.46.1
 torch>=2.4.0
 sentencepiece>=0.2.0
 sentence-transformers>=3.1
-# OCR, needed only for a scanned PDF with no text layer (src/ingest.py)
+# OCR, only for a PDF with no text layer (src/ingest.py); also needs the tesseract and
+# poppler binaries (brew install tesseract poppler / apt install tesseract-ocr poppler-utils)
 pdf2image>=1.17.0
 pytesseract>=0.3.10
 pillow>=10.0.0
