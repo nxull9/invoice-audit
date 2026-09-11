@@ -190,6 +190,13 @@ def build_spec(hospital, header, extracted, rejected=None):
 
     for rec in extracted:
         name = rec["service"]
+        # A service can appear in more than one chunk -- hospital 3 states seven of them
+        # twice, once in the amendment with two dated rates and once in the base schedule
+        # with one. Last-write-wins silently discarded the amendment, so the richer
+        # reading is kept instead of whichever chunk happened to be processed last.
+        existing = spec["services"].get(name)
+        if existing and len(existing["rates"]) > len(rec["rates"]):
+            continue
         spec["services"][name] = new_service(
             name, rec["unit_basis"],
             [new_rate(r["cents"], r["valid_from"], r["valid_to"]) for r in rec["rates"]],

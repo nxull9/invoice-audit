@@ -32,8 +32,14 @@ def _rule_items(spec, family):
     return {(name, str(f)) for name, f in value.items()}          # nbd_uplifts
 
 
-def compare_specs(gold, pred):
-    """Score one spec against another. Returns a flat dict of metrics."""
+def compare_specs(gold, pred, score_fields=None):
+    """Score one spec against another. Returns a flat dict of metrics.
+
+    `score_fields` restricts scoring to what the model was actually shown. Hospital 4
+    states daily caps in a section separate from its rate table; marking a model wrong
+    for omitting data it was never given measures the harness, not the extraction.
+    """
+    score_fields = score_fields or {"rate", "unit_basis", "daily_cap"}
     g_names, p_names = set(gold["services"]), set(pred["services"])
     shared = g_names & p_names
     s_p, s_r, s_f = _prf(len(shared), len(p_names - g_names), len(g_names - p_names))
@@ -46,7 +52,7 @@ def compare_specs(gold, pred):
             rate_ok += 1
         if g["unit_basis"] == p["unit_basis"]:
             basis_ok += 1
-        if g["daily_cap"] == p["daily_cap"]:
+        if "daily_cap" not in score_fields or g["daily_cap"] == p["daily_cap"]:
             cap_ok += 1
 
     out = {
