@@ -16,6 +16,7 @@ import pandas as pd
 
 from src import ask as ask_mod
 from src import audit, config, output, scoring
+from src.compile_contract import COMPILERS
 from src.contract_table import spec_to_table
 from src.contracts import summarise
 from src.data import load_invoices, load_labels
@@ -27,6 +28,7 @@ HELP = """
   audit hospital_4           audit every invoice in a hospital
   ask hospital_4 <question>  answer from that hospital's contract only
   contract hospital_2        show the rules read from a contract
+  extract hospital_2 [model] [prompt]   read a prose contract with a model (live if unrecorded)
   evaluate                   score hospital 1 against its labels
   submit                     write submission.csv for hospitals 2-5
   help / quit
@@ -162,6 +164,31 @@ def cmd_ask(hospital, question):
     ask_mod.ask(question, index, model, hospital)
 
 
+def cmd_extract(hospital, model=None, version=None):
+    """Read a prose contract with a model. Replays if recorded, otherwise calls live and records."""
+    if hospital not in config.HOSPITALS:
+        print(f"  unknown hospital '{hospital}'"); return
+    if hospital in COMPILERS:
+        print(f"  {hospital} is read from tables by regex; nothing to extract"); return
+    try:
+        spec = audit.load_spec(DATA, hospital, model_name=model, prompt_version=version, verbose=True)
+    except RuntimeError as exc:
+        print(f"  {exc}"); return
+    prov = spec["provenance"]
+    print(f"\n  {prov['model']} / {prov['prompt_version']}  "
+          f"{'replayed' if prov['replayed'] else 'ran live and recorded to runs/'}")
+    print(f"  services {prov['services_accepted']}/{prov['clauses_expected']}  "
+          f"parse failures {prov['parse_failures']}  warnings {len(spec['warnings'])}")
+    for k, v in summarise(spec).items():
+        if k in ("daily_caps", "threshold_premiums", "nbd_uplifts", "volume_discounts", "bundles"):
+            print(f"    {k:20} {v}")
+    if hospital == "hospital_2":
+        from evaluation.verify_hospital_2 import verify
+        print("  checked against the contract text:")
+        verify(spec, config.CONTRACTS / hospital / "master_services_agreement.md")
+    _results.pop(hospital, None)              # the cached audit used the old spec
+
+
 def cmd_evaluate():
     r = result_for(config.DEV_HOSPITAL)
     labels = load_labels(DATA)
@@ -201,6 +228,9 @@ def run(command):
             cmd_ask(args[0], args[1] if len(args) > 1 else "")
         elif verb == "contract" and len(args) == 1:
             cmd_contract(args[0])
+        elif verb == "extract" and len(args) >= 1:
+            rest = (args[1].split() if len(args) > 1 else [])
+            cmd_extract(args[0], *(rest[:2]))
         elif verb == "evaluate":
             cmd_evaluate()
         elif verb == "submit":

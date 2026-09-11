@@ -122,6 +122,11 @@ non-business-day uplift will mismatch systematically, and only on dates adjacent
 weekends. That is a specific, checkable prediction rather than an assumption, and it
 is verified once hospital 2's rates are extracted.
 
+**Verified.** With hospital 2 extracted (item 11), the eight uplift services reproduce
+their billed amounts on 99.46% of 1,289 line items; weekend dates 98.81% (4 of 335
+mismatch), weekday 99.69%. Four in 335 is the ordinary error rate, not a systematic
+shift. The reading stands.
+
 ---
 
 ## 7. Two error categories that hospital 1 cannot express
@@ -239,3 +244,57 @@ runtime.
   possible for *this* contract's templated wording. It is used to check the model, not
   to replace it: the point of the model is the next prose contract, whose wording will
   differ.
+
+---
+
+## 11. Which model reads hospital 2, and how that was checked
+
+**The problem.** Hospital 2 is the only contract read by a model and the only one with
+no known-correct specification to score against. It had been validated indirectly —
+does the extracted contract reproduce billed amounts at the rate the regex-read
+hospitals do — and under the first pinned model it did not: 97.8% of line items against
+99.3–99.5% elsewhere, and 283 invoices flagged (25.2%) against 6.4–7.5%.
+
+**Locating the cause without labels.** The flag rate was an alarm, not a diagnosis. The
+subset that pointed at the cause was weekend lines on services carrying a
+non-business-day uplift: 411 lines, 80 mismatching. If two of the ten "uplift" services
+were phantom, 411 × 2/10 = 82 lines would mismatch. 80 observed.
+
+**A direct check.** Hospital 2's clauses use one sentence shape per rule family, so each
+rule can be read back with a pattern and compared with the model's reading service by
+service (`evaluation/verify_hospital_2.py`). Under the same prompt:
+
+| model | services | rates exact | rule defects | what they were |
+|---|---:|---:|---:|---|
+| gpt-4o | 76/76 | 76/76 | **7** | three threshold premiums filed as daily caps; twice the percentage also filed as a weekend uplift and the premium dropped |
+| deepseek | 76/76 | 76/76 | **2** | two invented daily caps (16 and 6 units) |
+
+Every number either model produced is in the contract. The errors are in which field a
+number was filed under, and gpt-4o's were all one confusion.
+
+**Decision.** Pin deepseek for hospital 2. Its two remaining defects are caps no invoice
+ever reaches — zero line items on those services bill 16 or 6 units — so they change no
+prediction; they are reported here rather than hand-corrected, because editing a
+model's output by hand would make the checker the extractor.
+
+**Result.** 99.49% of hospital 2's line items reproduce their billed amount; 76 invoices
+flagged (6.8%); every one of the 506 billing descriptions resolves. The category
+distribution matches hospital 1's.
+
+**What the tabular exam did not predict.** On hospitals 3, 4 and 5 both models scored
+identically, and the selection rule chose gpt-4o as the faster. A structured table and a
+prose clause are different reading tasks, and a model exam on one does not transfer to
+the other. That is the finding, and it is the reason the verifier exists.
+
+**The prompt fix, and why it is unrun.** `prompts/contract_extraction_prose_v2.txt`
+adds one section placing the three look-alike sentence shapes side by side and one
+self-check rule. It was written against gpt-4o's measured failure and has not been run:
+a live call needs a credential that was not available when the submission was
+assembled. `python app.py extract hospital_2 gpt-4o prose_v2` runs it, records it, and
+prints the verifier's result. The decision log will be wrong if v2 introduces a defect
+elsewhere, which is what the run is for.
+
+**Risk.** The verifier is regex over one contract's templated wording. It is evidence
+about this contract, not a general oracle, and a sixth prose contract would need the
+model checked some other way — most likely the reproduction rate, which is what caught
+this in the first place.

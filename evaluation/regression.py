@@ -18,6 +18,11 @@ from src import audit, config
 
 BASELINE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "baseline")
 
+# The baseline froze hospital 2 under the model pinned at the time. The pin later moved
+# to deepseek by decision (decision log item 11); this check is about the engine, so it
+# reads hospital 2 the way the baseline did.
+FROZEN_UNDER = {"hospital_2": {"model_name": "gpt-4o", "prompt_version": "prose_v1"}}
+
 
 def compare(name, old, new, keys):
     # None and NaN are the same absence; a CSV round-trip turns one into the other
@@ -39,7 +44,7 @@ def compare(name, old, new, keys):
 def run(hospitals=None):
     exit_code = 0
     for h in hospitals or config.HOSPITALS:
-        r = audit.audit_hospital(str(config.DATA), h)
+        r = audit.audit_hospital(str(config.DATA), h, **FROZEN_UNDER.get(h, {}))
         print(h)
         checks = [
             ("findings", pd.read_csv(f"{BASELINE}/{h}_findings.csv"),
