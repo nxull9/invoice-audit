@@ -95,6 +95,14 @@ class LexicalMatcher:
 UNKNOWN_MAX_LEXICAL = 0.20
 UNKNOWN_MAX_ROWS = 2
 
+# Where a price matches more than one service, text decides -- but how decisively it
+# decided is itself information. A tie won by a wide margin is near-certain; one won by
+# a hair is a coin-flip, and reporting both at the same confidence is the failure the
+# task singles out. Confidence follows the margin, and below DECIDED_MIN the
+# description is reported as ambiguous rather than resolved, with both candidates named.
+DECISIVE_MARGIN = 0.30
+DECIDED_MIN = 0.10
+
 
 def resolve(spec, line_items):
     """Resolve every distinct description to a contracted service.
@@ -111,14 +119,26 @@ def resolve(spec, line_items):
         candidates = index.get(mode, set())
         ranked = lex.rank(desc)
         lex_best, lex_score = ranked[0]
+        margin, runner_up = None, None
 
         if len(candidates) == 1:
             service = next(iter(candidates))
             agrees = service == lex_best
             method, conf = "price_unique", (0.98 if agrees else 0.90)
         elif len(candidates) > 1:
-            service = lex.rank(desc, among=candidates)[0][0]
-            agrees, method, conf = True, "price_tiebreak_text", 0.85
+            among = lex.rank(desc, among=candidates)
+            service, top_score = among[0]
+            runner_up, second_score = among[1] if len(among) > 1 else (None, 0.0)
+            margin = top_score - second_score
+            agrees = True
+            if margin >= DECISIVE_MARGIN:
+                method, conf = "price_tiebreak_text", 0.90
+            elif margin >= DECIDED_MIN:
+                method, conf = "price_tiebreak_narrow", 0.70
+            else:
+                # Neither signal separates the candidates. Naming one would be a guess
+                # presented as a finding; the pair is surfaced for review instead.
+                method, conf = "ambiguous", 0.40
         else:
             service, agrees = None, False
             method, conf = "unresolved", 0.30
@@ -132,6 +152,8 @@ def resolve(spec, line_items):
 
         rows.append({
             "description": desc, "service": service, "method": method,
+            "tiebreak_margin": round(margin, 3) if len(candidates) > 1 else None,
+            "runner_up": runner_up if len(candidates) > 1 else None,
             "n_candidates": len(candidates), "modal_basis": mode[0], "modal_price": mode[1],
             "modal_share": round(mode_n / total, 3), "n_rows": total,
             "lexical_best": lex_best, "lexical_score": round(float(lex_score), 3),

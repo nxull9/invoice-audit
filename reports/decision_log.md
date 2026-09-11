@@ -140,3 +140,44 @@ of lines whose billed rate the contract cannot produce at any setting.
 
 **Alternative rejected.** Reporting them as `unit_price_mismatch` would be true but
 would force a reviewer to rediscover the pattern by hand.
+
+---
+
+## 8. What happens when two services share a price *and* a similar abbreviation
+
+**The question.** Resolution matches on the modal `(unit_basis, unit_price_cents)`. If a
+future contract prices two services identically and describes them similarly, both
+signals fail at once. What then?
+
+**Measured today.** Collisions are rare and never worse than two-way:
+
+| hospital | distinct prices | colliding | worst |
+|---|---:|---:|---:|
+| hospital_1 | 141 | 0 | — |
+| hospital_3 | 185 | 1 (0.5%) | 2-way |
+| hospital_4 | 134 | 0 | — |
+| hospital_5 | 869 | 7 (0.8%) | 2-way |
+
+Text breaks them. On hospital 5 that happened 16 times, with winning margins from 0.153
+to 0.790.
+
+**The flaw this exposed.** Every one of those was reported at confidence 0.85 — a tie won
+by 0.79 and one won by 0.15 treated identically. That is exactly the failure the task
+singles out: a coin-flip presented as a finding.
+
+**Decision.** Confidence now follows the margin, and below a floor the description is not
+resolved at all:
+
+| margin | outcome | confidence |
+|---|---|---|
+| ≥ 0.30 | resolved, text decided clearly | 0.90 |
+| 0.10 – 0.30 | resolved, but narrowly | 0.70 |
+| < 0.10 | **reported ambiguous, both candidates named** | 0.40 |
+
+On the current data this moves one hospital 5 description from 0.85 to 0.70
+(`SPCLST GASTROINTESTINAL PHARM DISP`, margin 0.153) and produces no ambiguous rows.
+
+**Why it matters for a sixth hospital.** The failure mode is now graceful. A contract that
+prices two similarly-named services identically produces a low-confidence row naming both
+candidates, which a human resolves in seconds — rather than a confident assignment that
+silently misprices every invoice touching that service.
