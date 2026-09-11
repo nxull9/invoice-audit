@@ -14,6 +14,27 @@ from src.llm_client import parse_json
 
 VALID_BASES = set(UNIT_BASIS.values())
 
+# The contracts write "per item supplied"; the invoices write "per_item". The enum
+# follows the invoice, which is arbitrary from the model's point of view -- a model
+# transliterating the contract's own wording is being more faithful to the source than
+# the schema is, and rejecting it measures the schema rather than the extraction.
+BASIS_ALIASES = {}
+for _phrase, _canonical in UNIT_BASIS.items():
+    BASIS_ALIASES[_canonical] = _canonical
+    BASIS_ALIASES[_phrase] = _canonical
+    BASIS_ALIASES[_phrase.replace(" ", "_").replace(",", "")] = _canonical
+    BASIS_ALIASES[_phrase.replace(", ", "_").replace(" ", "_")] = _canonical
+
+
+def canonical_basis(value):
+    """Map any wording of a unit basis onto the invoice vocabulary, or None."""
+    if not value:
+        return None
+    key = str(value).strip().lower()
+    if key in BASIS_ALIASES:
+        return BASIS_ALIASES[key]
+    return BASIS_ALIASES.get(key.replace(" ", "_").replace(",", ""))
+
 
 def _as_int(value):
     if isinstance(value, bool) or value is None:
@@ -98,9 +119,10 @@ def validate_service(item, source_text=None):
     if not name:
         return None, ["no service name"]
 
-    basis = (item.get("unit_basis") or "").strip()
-    if basis not in VALID_BASES:
-        problems.append(f"unit_basis {basis!r} not one of {sorted(VALID_BASES)}")
+    raw_basis = (item.get("unit_basis") or "").strip()
+    basis = canonical_basis(raw_basis)
+    if basis is None:
+        problems.append(f"unit_basis {raw_basis!r} is not a recognised unit basis")
 
     rates = _read_rates(item)
     if not rates:

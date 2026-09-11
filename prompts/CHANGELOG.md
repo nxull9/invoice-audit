@@ -66,3 +66,37 @@ sampler so only tokens forming schema-valid JSON can be emitted — removes this
 failure entirely, and is available *because* the model is local. A hosted API's sampler
 cannot be constrained this way. That is an advantage of local inference this comparison
 does not currently credit.
+
+## The unit-basis enum was measuring the schema, not the extraction
+
+Qwen2.5-7B accepted only 204 of 307 services under v3 while the three hosted models
+accepted all 307. The telemetry showed it had **returned all 307** — every rejection was
+validation, not generation.
+
+The reasons were almost entirely one field:
+
+```
+52  per_item_supplied         contract says "per item supplied"
+33  per_day_of_service        contract says "per day of service"
+18  per_night_of_occupancy    contract says "per night of occupancy"
+ 4  bare_list (envelope)
+```
+
+103 of 107 rejections were the model transliterating **the contract's own wording**. The
+enum required `per_item`, which is the *invoice's* vocabulary and appears in no contract.
+By any reasonable reading the model was more faithful to the source document than the
+schema was.
+
+This was a defect in the harness, not a finding about model size. `canonical_basis` now
+accepts contract wording, invoice wording and the snake-cased form of either.
+
+**What it means for the comparison.** Qwen's apparent shortfall was measuring an
+arbitrary abbreviation, not its reading of the contract. The corrected figures are
+reported in the notebook; the uncorrected ones are preserved here because the mistake is
+instructive: *an extraction benchmark can silently measure its own schema, and the only
+reason this surfaced was that the reject reasons were logged per service rather than
+counted.*
+
+Constrained decoding would also have prevented it — an enum in the schema makes
+`per_item_supplied` unemittable. That remains the stronger fix, and it is available
+locally precisely because the sampler is ours.
