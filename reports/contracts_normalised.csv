@@ -1,0 +1,437 @@
+hospital,contract_number,service,unit_basis,rate_cents,valid_from,valid_to,daily_cap,nbd_uplift_pct,premium_threshold,premium_uplift_pct,discount_threshold,discount_pct,bundle_partner,bundle_rate_cents,facility_multipliers,tier_multipliers,source_route,extraction_confidence
+hospital_1,INS-H1-2024-0417,Advanced Cardiac Recovery Room Occupancy,per_hour,20000,,,,,,,,,Routine Cardiac Specimen Analysis,16400.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Haematology Physiotherapy Session,per_hour,10150,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Infectious Critical Care Occupancy,per_day,70925,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Metabolic Anaesthesia Administration,per_hour,9200,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Metabolic Nursing Observation,per_day,130125,,,6.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Neurological Consultation,per_visit,14125,,,,20.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Advanced Rheumatologic Laboratory Panel,per_test,14775,,,4.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Cardiac Home Visit,per_visit,28425,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Immunologic Endoscopic Procedure,per_procedure,607900,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Immunologic Ward Bed Occupancy,per_day,87250,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Infectious Home Visit,per_visit,8225,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Musculoskeletal Ward Bed Occupancy,per_night,154575,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Ophthalmic Case Conference,per_visit,16925,,,,,6.0,20.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Ophthalmic Dialysis Session,per_procedure,479825,,,,,10.0,20.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Psychiatric Dialysis Session,per_procedure,355550,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Pulmonary Recovery Room Occupancy,per_night,112825,,,,,,,60.0,10.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Ambulatory Urologic Imaging Interpretation,per_test,42700,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Assisted Gastrointestinal Infusion Therapy,per_hour,8925,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Assisted Geriatric Infusion Therapy,per_unit_dispensed,7825,,,,12.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Assisted Infectious Discharge Planning,per_hour,8875,,,,12.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Assisted Pulmonary Theatre Time,per_hour,6700,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Assisted Urologic Home Visit,per_visit,13625,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Bedside Otolaryngologic Recovery Room Occupancy,per_night,150450,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Bedside Psychiatric Dialysis Session,per_visit,20575,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Bedside Pulmonary Biopsy Procedure,per_procedure,316825,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Infectious Nursing Observation,per_day,169825,,,,,,,240.0,25.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Infectious Nursing Observation,per_day,169825,,,,,,,80.0,10.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Oncology Nursing Observation,per_hour,8475,,,12.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Otolaryngologic Rehabilitation Programme,per_visit,27025,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Otolaryngologic Theatre Time,per_hour,32100,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Psychiatric Transfusion Service,per_procedure,383650,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Comprehensive Urologic Transport Service,per_visit,42750,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Cardiac Nursing Observation,per_hour,9875,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Immunologic Theatre Time,per_hour,20975,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Musculoskeletal Wound Care,per_day,36800,,,,,8.0,40.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Obstetric Rehabilitation Programme,per_day,112400,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Otolaryngologic Telemetry Monitoring,per_day,111975,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Psychiatric Rehabilitation Programme,per_visit,20300,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Pulmonary Wound Care,per_day,144900,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Continuous Vascular Pharmaceutical Dispensing,per_unit_dispensed,6750,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Elective Cardiac Nutritional Support,per_day,158625,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Elective Pulmonary Nutritional Support,per_unit_dispensed,7450,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Emergency Dermatologic Case Conference,per_hour,3775,,,,,10.0,40.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Emergency Orthopaedic Consultation,per_procedure,418900,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Emergency Orthopaedic Rehabilitation Programme,per_visit,28950,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Emergency Renal Radiotherapy Fraction,per_item,11000,,,,20.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Extended Geriatric Wound Care,per_item,10100,,,,,,,60.0,15.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Extended Metabolic Isolation Room Occupancy,per_night,87300,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Extended Palliative Laboratory Panel,per_test,17850,,,,,,,,,Inpatient Ophthalmic Radiotherapy Fraction,15175.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Extended Renal Transport Service,per_item,25650,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Extended Vascular Rehabilitation Programme,per_day,65400,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Focused Immunologic Physiotherapy Session,per_hour,3300,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Focused Orthopaedic Transport Service,per_visit,42100,,,,10.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Focused Otolaryngologic Wound Care,per_visit,24725,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Endocrine Dialysis Session,per_procedure,81750,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Hepatic Physiotherapy Session,per_visit,42600,,,,,,,,,Specialist Otolaryngologic Theatre Time,37500.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Musculoskeletal Ward Bed Occupancy,per_day,35625,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Ophthalmic Radiotherapy Fraction,per_item,25300,,,,,,,,,Extended Palliative Laboratory Panel,21500.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Ophthalmic Transport Service,per_item,4800,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Palliative Isolation Room Occupancy,per_night,179600,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Palliative Specimen Analysis,per_item,29725,,,4.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Renal Radiotherapy Fraction,per_procedure,455300,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Inpatient Vascular Diagnostic Imaging,per_item,12725,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intensive Gastrointestinal Isolation Room Occupancy,per_night,160725,,,,,,,180.0,30.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intensive Gastrointestinal Isolation Room Occupancy,per_night,160725,,,,,,,60.0,12.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intensive Geriatric Nutritional Support,per_unit_dispensed,4275,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intensive Ophthalmic Case Conference,per_hour,21875,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intermittent Dermatologic Transfusion Service,per_procedure,243150,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intermittent Neurological Nutritional Support,per_day,50275,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intermittent Pulmonary Rehabilitation Programme,per_visit,13450,,,,,,,120.0,10.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Intermittent Rheumatologic Diagnostic Imaging,per_procedure,197700,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Outpatient Immunologic Consultation,per_procedure,279225,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Outpatient Metabolic Radiotherapy Fraction,per_item,22775,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Postoperative Metabolic Critical Care Occupancy,per_night,59700,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Postoperative Obstetric Isolation Room Occupancy,per_day,43525,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Postoperative Ophthalmic Radiotherapy Fraction,per_procedure,413325,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Postoperative Pulmonary Wound Care,per_visit,18050,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Endocrine Physiotherapy Session,per_visit,29975,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Geriatric Ventilation Support,per_hour,6875,,,,,8.0,20.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Immunologic Endoscopic Procedure,per_procedure,151975,,,,,,,240.0,20.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Immunologic Endoscopic Procedure,per_procedure,151975,,,,,,,80.0,12.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Oncology Consultation,per_visit,42125,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Otolaryngologic Sterilisation Service,per_procedure,134725,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Renal Wound Care,per_visit,40325,,,,,8.0,25.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Preoperative Vascular Diagnostic Imaging,per_procedure,396725,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Cardiac Specimen Analysis,per_item,23350,,,,,,,,,Advanced Cardiac Recovery Room Occupancy,19150.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Dermatologic Transfusion Service,per_unit_dispensed,5325,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Gastrointestinal Transfusion Service,per_procedure,341525,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Haematology Infusion Therapy,per_hour,10200,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Immunologic Ward Bed Occupancy,per_night,215875,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Infectious Critical Care Occupancy,per_night,58375,,,6.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Oncology Discharge Planning,per_visit,29050,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Palliative Critical Care Occupancy,per_night,96975,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Psychiatric Rehabilitation Programme,per_day,72500,,,,,8.0,25.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Routine Urologic Biopsy Procedure,per_procedure,226950,,,6.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Dermatologic Transport Service,per_visit,43575,,,,12.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Hepatic Physiotherapy Session,per_hour,5350,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Neurological Recovery Room Occupancy,per_hour,15400,,,,,8.0,30.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Otolaryngologic Pharmaceutical Dispensing,per_unit_dispensed,1425,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Otolaryngologic Theatre Time,per_hour,8025,,,,,,,,,Inpatient Hepatic Physiotherapy Session,7050.0,,,text,1.0
+hospital_1,INS-H1-2024-0417,Specialist Paediatric Biopsy Procedure,per_procedure,257325,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Endocrine Dialysis Session,per_visit,37600,,,8.0,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Endocrine Endoscopic Procedure,per_procedure,124450,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Geriatric Nutritional Support,per_day,42475,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Otolaryngologic Radiotherapy Fraction,per_item,25250,,,,,,,180.0,30.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Otolaryngologic Radiotherapy Fraction,per_item,25250,,,,,,,60.0,12.0,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Paediatric Biopsy Procedure,per_item,16100,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Psychiatric Endoscopic Procedure,per_procedure,242225,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Standard Pulmonary Dialysis Session,per_visit,43175,,,,,8.0,25.0,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Supervised Musculoskeletal Dialysis Session,per_visit,35150,,,,12.0,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Supervised Otolaryngologic Sterilisation Service,per_item,24200,,,,,,,,,,,,,text,1.0
+hospital_1,INS-H1-2024-0417,Supervised Renal Isolation Room Occupancy,per_night,164500,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Dermatologic Nutritional Support,per_day,86525,2025-01-01,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Gastrointestinal Telemetry Monitoring,per_day,128100,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Geriatric Nutritional Support,per_unit_dispensed,1250,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Metabolic Discharge Planning,per_hour,21075,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Musculoskeletal Radiotherapy Fraction,per_procedure,348975,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Paediatric Telemetry Monitoring,per_day,41000,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Advanced Rheumatologic Pharmaceutical Dispensing,per_item,27875,,,,,6.0,30.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Ambulatory Metabolic Isolation Room Occupancy,per_day,159725,,,,12.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Ambulatory Ophthalmic Imaging Interpretation,per_procedure,414850,,,,,,,100.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Ambulatory Otolaryngologic Imaging Interpretation,per_procedure,182625,,2024-12-31,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Ambulatory Otolaryngologic Imaging Interpretation,per_procedure,208200,2025-01-01,,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Ambulatory Renal Case Conference,per_hour,8775,,,,,8.0,25.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Ophthalmic Recovery Room Occupancy,per_hour,8775,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Paediatric Dialysis Session,per_procedure,372800,,,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Urologic Endoscopic Procedure,per_procedure,94250,,2024-12-31,,,,,300.0,20.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Urologic Endoscopic Procedure,per_procedure,94250,,2024-12-31,,,,,100.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Urologic Endoscopic Procedure,per_procedure,111225,2025-01-01,,,,,,300.0,20.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Assisted Urologic Endoscopic Procedure,per_procedure,111225,2025-01-01,,,,,,100.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Cardiac Recovery Room Occupancy,per_night,167750,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Geriatric Telemetry Monitoring,per_day,131100,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Metabolic Infusion Therapy,per_unit_dispensed,1850,,,,,12.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Neurological Pharmaceutical Dispensing,per_item,9675,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Neurological Radiotherapy Fraction,per_item,2575,,2024-12-31,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Neurological Radiotherapy Fraction,per_item,3050,2025-01-01,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Oncology Case Conference,per_hour,11400,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Palliative Wound Care,per_visit,14150,,,,,,,,,Intermittent Gastrointestinal Endoscopic Procedure,12025.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Pulmonary Sterilisation Service,per_procedure,381825,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Renal Imaging Interpretation,per_test,59250,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Urologic Laboratory Panel,per_item,2000,,,,,,,240.0,20.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Urologic Laboratory Panel,per_item,2000,,,,,,,80.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Urologic Ventilation Support,per_day,168975,,,,,,,240.0,30.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Urologic Ventilation Support,per_day,168975,,,,,,,80.0,12.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Bedside Vascular Critical Care Occupancy,per_day,144425,,,8.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Comprehensive Haematology Radiotherapy Fraction,per_procedure,156925,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Comprehensive Orthopaedic Wound Care,per_item,16600,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Comprehensive Palliative Diagnostic Imaging,per_procedure,163525,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Continuous Gastrointestinal Laboratory Panel,per_test,56000,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Continuous Immunologic Critical Care Occupancy,per_hour,20725,,,,,,,,,Specialist Ophthalmic Nutritional Support,15550.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Continuous Immunologic Isolation Room Occupancy,per_day,116275,,,24.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Continuous Pulmonary Wound Care,per_item,27625,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Continuous Renal Isolation Room Occupancy,per_day,50125,,,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Elective Palliative Physiotherapy Session,per_hour,18800,,,,,,,180.0,20.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Elective Palliative Physiotherapy Session,per_hour,18800,,,,,,,60.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Elective Pulmonary Consultation,per_procedure,399025,,,,,,,,,Focused Neurological Physiotherapy Session,351150.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Elective Pulmonary Imaging Interpretation,per_procedure,456000,2025-01-01,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Emergency Dermatologic Sterilisation Service,per_item,23025,,,,,10.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Emergency Oncology Biopsy Procedure,per_item,20375,,,,,6.0,30.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Emergency Pulmonary Biopsy Procedure,per_item,26350,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Emergency Renal Isolation Room Occupancy,per_night,49050,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Emergency Vascular Biopsy Procedure,per_procedure,215625,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Dermatologic Infusion Therapy,per_unit_dispensed,3475,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Dermatologic Sterilisation Service,per_procedure,161525,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Geriatric Infusion Therapy,per_unit_dispensed,6100,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Haematology Radiotherapy Fraction,per_item,27575,,,,15.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Infectious Telemetry Monitoring,per_day,82675,,,,,,,300.0,25.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Infectious Telemetry Monitoring,per_day,82675,,,,,,,100.0,12.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Musculoskeletal Endoscopic Procedure,per_procedure,442975,,,,,,,,,Focused Obstetric Nutritional Support,363250.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Extended Neurological Theatre Time,per_hour,3700,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Focused Metabolic Theatre Time,per_hour,4200,,,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Focused Neurological Physiotherapy Session,per_visit,11125,,,,,,,,,Elective Pulmonary Consultation,9800.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Focused Obstetric Nutritional Support,per_unit_dispensed,6925,,,,,,,,,Extended Musculoskeletal Endoscopic Procedure,5675.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Focused Urologic Telemetry Monitoring,per_hour_per_item,5225,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Gastrointestinal Pharmaceutical Dispensing,per_item,23550,,,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Haematology Imaging Interpretation,per_procedure,123075,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Hepatic Biopsy Procedure,per_item,3650,,,,,,,,,Specialist Gastrointestinal Specimen Analysis,2925.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Infectious Specimen Analysis,per_test,34775,,,,,,,240.0,25.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Infectious Specimen Analysis,per_test,34775,,,,,,,80.0,15.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Metabolic Infusion Therapy,per_hour,14850,,,,,16.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Metabolic Theatre Time,per_hour,21000,,,12.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Musculoskeletal Theatre Time,per_hour,9250,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Obstetric Diagnostic Imaging,per_procedure,327325,,,8.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Inpatient Obstetric Wound Care,per_visit,34175,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Immunologic Wound Care,per_item,13275,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Infectious Anaesthesia Administration,per_procedure,294675,,2024-12-31,4.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Infectious Anaesthesia Administration,per_procedure,312350,2025-01-01,,4.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Oncology Nutritional Support,per_day,62675,,,,25.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Ophthalmic Laboratory Panel,per_test,41825,,2024-12-31,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Ophthalmic Laboratory Panel,per_test,39725,2025-01-01,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Otolaryngologic Anaesthesia Administration,per_procedure,68025,,2024-12-31,,,,,60.0,12.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Otolaryngologic Anaesthesia Administration,per_procedure,80275,2025-01-01,,,,,,60.0,12.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intensive Paediatric Biopsy Procedure,per_procedure,399700,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Dermatologic Physiotherapy Session,per_visit,35175,,,,,,,180.0,30.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Dermatologic Physiotherapy Session,per_visit,35175,,,,,,,60.0,12.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Gastrointestinal Endoscopic Procedure,per_procedure,276475,,,,,,,,,Bedside Palliative Wound Care,235000.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Immunologic Isolation Room Occupancy,per_night,110525,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Infectious Theatre Time,per_hour,13900,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Intermittent Otolaryngologic Wound Care,per_visit,28500,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Gastrointestinal Isolation Room Occupancy,per_day,57050,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Haematology Transport Service,per_item,13375,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Infectious Anaesthesia Administration,per_hour,11950,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Metabolic Rehabilitation Programme,per_visit,18975,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Pulmonary Transport Service,per_visit,18125,,,,,12.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Renal Specimen Analysis,per_item,20700,,,,,,,60.0,15.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Outpatient Rheumatologic Pharmaceutical Dispensing,per_unit_dispensed,8050,,,,,10.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Cardiac Ward Bed Occupancy,per_day,134325,,,,,,,100.0,15.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Dermatologic Physiotherapy Session,per_hour,20200,,,4.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Geriatric Nutritional Support,per_day,108675,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Haematology Nursing Observation,per_day,140975,,,,,8.0,20.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Neurological Diagnostic Imaging,per_test,53550,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Otolaryngologic Laboratory Panel,per_item,24475,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Otolaryngologic Rehabilitation Programme,per_day,147875,,,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Psychiatric Endoscopic Procedure,per_procedure,368575,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Pulmonary Consultation,per_visit,26750,,,,25.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Postoperative Rheumatologic Anaesthesia Administration,per_hour,8725,,,,20.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Cardiac Discharge Planning,per_hour,5675,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Dermatologic Dialysis Session,per_procedure,439850,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Endocrine Dialysis Session,per_procedure,400300,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Gastrointestinal Radiotherapy Fraction,per_item,26025,,,,20.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Ophthalmic Imaging Interpretation,per_test,23275,,,,,16.0,40.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Paediatric Laboratory Panel,per_test,44500,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Psychiatric Home Visit,per_visit,32825,,,,15.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Psychiatric Radiotherapy Fraction,per_item,3450,,,4.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Preoperative Rheumatologic Transport Service,per_item,15075,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Routine Endocrine Specimen Analysis,per_item,8725,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Routine Obstetric Diagnostic Imaging,per_item,26375,,,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Routine Psychiatric Consultation,per_procedure,282975,,,8.0,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Routine Vascular Rehabilitation Programme,per_visit,37575,,,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Dermatologic Infusion Therapy,per_hour,17400,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Gastrointestinal Specimen Analysis,per_test,52850,,,,,,,,,Inpatient Hepatic Biopsy Procedure,42275.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Haematology Endoscopic Procedure,per_procedure,101900,,,,,12.0,15.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Hepatic Case Conference,per_visit,35275,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Obstetric Dialysis Session,per_procedure,62925,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Ophthalmic Nutritional Support,per_day,32475,,,,,,,,,Continuous Immunologic Critical Care Occupancy,24350.0,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Paediatric Biopsy Procedure,per_item,14225,,,,,8.0,15.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Psychiatric Discharge Planning,per_visit,38650,,2024-12-31,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Psychiatric Discharge Planning,per_visit,44050,2025-01-01,,,10.0,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Pulmonary Biopsy Procedure,per_procedure,385550,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Specialist Pulmonary Physiotherapy Session,per_hour,12500,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Standard Orthopaedic Theatre Time,per_hour,6025,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Standard Otolaryngologic Discharge Planning,per_visit,30600,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Standard Rheumatologic Imaging Interpretation,per_procedure,383550,,,,,8.0,25.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Supervised Hepatic Sterilisation Service,per_item,26625,,,,,,,80.0,10.0,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Supervised Neurological Laboratory Panel,per_item,23125,,,,,,,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Supervised Ophthalmic Nutritional Support,per_unit_dispensed,5950,,,,,16.0,20.0,,,,,,,text,1.0
+hospital_3,INS-H3-2024-0562,Supervised Otolaryngologic Wound Care,per_item,24025,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Advanced Oncology Ward Bed Occupancy,per_night,68700,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Advanced Orthopaedic Ward Bed Occupancy,per_night,97925,,,12.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Advanced Paediatric Theatre Time,per_hour,37100,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Advanced Palliative Home Visit,per_visit,11450,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Advanced Vascular Endoscopic Procedure,per_procedure,321775,,,,,10.0,25.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Cardiac Ward Bed Occupancy,per_day,46350,,,4.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Gastrointestinal Nutritional Support,per_unit_dispensed,4175,,,,,16.0,15.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Haematology Transfusion Service,per_procedure,402275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Immunologic Ward Bed Occupancy,per_day,74700,,,4.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Musculoskeletal Specimen Analysis,per_item,9550,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Musculoskeletal Ventilation Support,per_day,157150,,,,,,,240.0,30.0,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Musculoskeletal Ventilation Support,per_day,157150,,,,,,,80.0,15.0,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Obstetric Case Conference,per_hour,13975,,,,,,,,,Focused Vascular Infusion Therapy,11875.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Paediatric Critical Care Occupancy,per_hour,4750,,,,,,,,,Ambulatory Rheumatologic Rehabilitation Programme,3550.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Ambulatory Rheumatologic Rehabilitation Programme,per_visit,38325,,,,,,,,,Ambulatory Paediatric Critical Care Occupancy,28750.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Cardiac Ventilation Support,per_day,155700,,,,,12.0,30.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Gastrointestinal Anaesthesia Administration,per_hour,3050,,,24.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Obstetric Specimen Analysis,per_test,10100,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Paediatric Physiotherapy Session,per_hour,3150,,,,,,,,,Outpatient Orthopaedic Recovery Room Occupancy,2675.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Paediatric Theatre Time,per_hour,9275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Renal Nutritional Support,per_unit_dispensed,3575,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Assisted Urologic Nursing Observation,per_day,132675,,,4.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Bedside Cardiac Home Visit,per_visit,64800,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Bedside Gastrointestinal Biopsy Procedure,per_item,11075,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Bedside Obstetric Imaging Interpretation,per_procedure,365675,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Comprehensive Neurological Endoscopic Procedure,per_procedure,309275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Comprehensive Ophthalmic Laboratory Panel,per_test,58525,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Comprehensive Urologic Imaging Interpretation,per_test,23075,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Continuous Gastrointestinal Transfusion Service,per_procedure,308100,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Continuous Infectious Critical Care Occupancy,per_hour,13925,,,,,6.0,40.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Continuous Psychiatric Rehabilitation Programme,per_day,34900,,,,,,,,,Postoperative Palliative Recovery Room Occupancy,28625.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Elective Gastrointestinal Nursing Observation,per_day,58925,,,6.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Elective Neurological Ward Bed Occupancy,per_night,170125,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Elective Obstetric Transfusion Service,per_unit_dispensed,1425,,,,,,,,,Intermittent Rheumatologic Dialysis Session,1250.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Elective Ophthalmic Radiotherapy Fraction,per_procedure,373600,,,,,8.0,30.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Emergency Cardiac Physiotherapy Session,per_hour,9875,,,,,,,,,Extended Obstetric Case Conference,8400.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Emergency Metabolic Radiotherapy Fraction,per_procedure,364925,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Emergency Rheumatologic Rehabilitation Programme,per_day,62000,,,,,8.0,30.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Hepatic Discharge Planning,per_hour,7950,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Hepatic Transfusion Service,per_unit_dispensed,8450,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Obstetric Case Conference,per_visit,41425,,,,,,,,,Emergency Cardiac Physiotherapy Session,35200.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Psychiatric Endoscopic Procedure,per_procedure,325800,,,,,6.0,25.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Renal Ward Bed Occupancy,per_night,174050,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Rheumatologic Nursing Observation,per_night,87375,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Extended Urologic Telemetry Monitoring,per_day,144825,,,12.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Focused Metabolic Biopsy Procedure,per_item,15025,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Focused Urologic Case Conference,per_hour,20200,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Focused Vascular Infusion Therapy,per_unit_dispensed,5775,,,,,,,,,Ambulatory Obstetric Case Conference,4900.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Focused Vascular Transport Service,per_item,24450,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Inpatient Orthopaedic Anaesthesia Administration,per_procedure,145950,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Inpatient Psychiatric Home Visit,per_visit,19275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intensive Geriatric Case Conference,per_visit,10475,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intensive Paediatric Consultation,per_visit,39175,,,,,6.0,20.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intensive Rheumatologic Radiotherapy Fraction,per_item,23425,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intensive Urologic Specimen Analysis,per_item,19675,,,24.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intensive Vascular Sterilisation Service,per_item,25350,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Neurological Laboratory Panel,per_test,10175,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Oncology Home Visit,per_visit,22050,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Psychiatric Rehabilitation Programme,per_visit,32275,,,,,6.0,30.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Renal Anaesthesia Administration,per_hour,6600,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Rheumatologic Dialysis Session,per_procedure,126900,,,,,,,,,Elective Obstetric Transfusion Service,111675.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Intermittent Urologic Telemetry Monitoring,per_hour_per_item,7275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Cardiac Physiotherapy Session,per_visit,27300,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Geriatric Diagnostic Imaging,per_procedure,190450,,,,,12.0,15.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Obstetric Dialysis Session,per_procedure,367900,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Orthopaedic Recovery Room Occupancy,per_hour,11025,,,,,,,,,Assisted Paediatric Physiotherapy Session,9375.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Rheumatologic Anaesthesia Administration,per_hour,20875,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Urologic Endoscopic Procedure,per_procedure,372925,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Outpatient Urologic Theatre Time,per_hour,7650,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Cardiac Wound Care,per_item,17325,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Geriatric Case Conference,per_hour,4275,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Geriatric Imaging Interpretation,per_test,43925,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Oncology Diagnostic Imaging,per_item,23250,,,12.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Otolaryngologic Telemetry Monitoring,per_hour,10000,,,24.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Paediatric Imaging Interpretation,per_procedure,88600,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Paediatric Sterilisation Service,per_item,16050,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Palliative Recovery Room Occupancy,per_night,86550,,,,,,,,,Continuous Psychiatric Rehabilitation Programme,70975.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Postoperative Rheumatologic Nursing Observation,per_day,46425,,,6.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Preoperative Geriatric Diagnostic Imaging,per_test,19550,,,,,10.0,40.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Preoperative Haematology Imaging Interpretation,per_test,11375,,,,,16.0,15.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Preoperative Musculoskeletal Recovery Room Occupancy,per_night,162775,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Preoperative Oncology Diagnostic Imaging,per_procedure,102650,,,8.0,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Routine Cardiac Home Visit,per_visit,16200,,,,,10.0,25.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Specialist Cardiac Ventilation Support,per_hour,18125,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Specialist Gastrointestinal Imaging Interpretation,per_procedure,83625,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Specialist Hepatic Discharge Planning,per_visit,41175,,,,,6.0,15.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Specialist Immunologic Consultation,per_procedure,114500,,,,,,,,,Supervised Rheumatologic Dialysis Session,91600.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Hepatic Infusion Therapy,per_unit_dispensed,3975,,,,,6.0,15.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Oncology Ward Bed Occupancy,per_day,57950,,,,,,,120.0,10.0,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Ophthalmic Laboratory Panel,per_item,17925,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Orthopaedic Critical Care Occupancy,per_night,148975,,,,,,,120.0,10.0,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Paediatric Dialysis Session,per_procedure,368050,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Standard Vascular Home Visit,per_visit,26200,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Gastrointestinal Nursing Observation,per_night,156825,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Immunologic Ward Bed Occupancy,per_night,194400,,,,,10.0,25.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Pulmonary Anaesthesia Administration,per_hour,13500,,,,,,,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Pulmonary Home Visit,per_visit,28675,,,,,10.0,30.0,,,,,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Rheumatologic Dialysis Session,per_visit,17375,,,,,,,,,Specialist Immunologic Consultation,13900.0,,,text,1.0
+hospital_4,INS-H4-2024-2049,Supervised Vascular Radiotherapy Fraction,per_item,15825,,,,,10.0,15.0,,,,,,,text,1.0
+hospital_5,INS-H5-2024-0731,Advanced Cardiac Ventilation Support,per_hour,3375,,,24.0,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Advanced Dermatologic Pharmaceutical Dispensing,per_item,8175,,,4.0,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Ambulatory Hepatic Case Conference,per_hour,19775,,,,,,,80.0,12.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Ambulatory Metabolic Imaging Interpretation,per_test,3900,,,,15.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Ambulatory Oncology Imaging Interpretation,per_test,6675,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Ambulatory Paediatric Isolation Room Occupancy,per_day,126525,,,,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Assisted Cardiac Ventilation Support,per_day,156675,,,,20.0,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Assisted Hepatic Physiotherapy Session,per_visit,19025,,,12.0,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Assisted Immunologic Sterilisation Service,per_item,24500,,,,,10.0,15.0,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Assisted Metabolic Endoscopic Procedure,per_procedure,110150,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Assisted Renal Imaging Interpretation,per_procedure,161650,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Bedside Oncology Transfusion Service,per_unit_dispensed,3025,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Bedside Paediatric Consultation,per_procedure,421875,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.15,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Gastrointestinal Endoscopic Procedure,per_procedure,141500,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Geriatric Wound Care,per_visit,11725,,,,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Metabolic Ventilation Support,per_day,47650,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Oncology Transfusion Service,per_procedure,414475,,,8.0,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Ophthalmic Isolation Room Occupancy,per_night,105950,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Comprehensive Palliative Consultation,per_visit,35050,,,,,8.0,30.0,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Continuous Immunologic Laboratory Panel,per_item,7025,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Continuous Metabolic Endoscopic Procedure,per_procedure,550750,,,,,,,80.0,12.0,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Continuous Otolaryngologic Transport Service,per_item,14675,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Continuous Pulmonary Case Conference,per_hour,4300,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Metabolic Pharmaceutical Dispensing,per_item,28450,,,,,,,300.0,25.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Metabolic Pharmaceutical Dispensing,per_item,28450,,,,,,,100.0,12.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Ophthalmic Nutritional Support,per_day,94300,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Ophthalmic Recovery Room Occupancy,per_night,195975,,,,,,,,,Supervised Palliative Consultation,172450.0,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Pulmonary Radiotherapy Fraction,per_procedure,353625,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Elective Vascular Diagnostic Imaging,per_procedure,284175,,,,12.0,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Gastrointestinal Endoscopic Procedure,per_procedure,707500,,,,20.0,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Metabolic Discharge Planning,per_visit,20575,,,,,,,,,Specialist Gastrointestinal Pharmaceutical Dispensing,17500.0,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Neurological Biopsy Procedure,per_procedure,440750,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Oncology Imaging Interpretation,per_procedure,441250,,,4.0,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Pulmonary Radiotherapy Fraction,per_item,5850,,,,,8.0,20.0,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Emergency Urologic Home Visit,per_visit,17325,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Dermatologic Transport Service,per_visit,14475,,,4.0,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Endocrine Theatre Time,per_hour,15700,,,,,,,300.0,30.0,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Endocrine Theatre Time,per_hour,15700,,,,,,,100.0,12.0,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Neurological Consultation,per_visit,17100,,,,25.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Ophthalmic Transport Service,per_item,27750,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Psychiatric Endoscopic Procedure,per_procedure,145200,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Extended Urologic Infusion Therapy,per_hour,7400,,,,,,,,,Standard Paediatric Radiotherapy Fraction,5925.0,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Focused Endocrine Theatre Time,per_hour,3925,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Focused Neurological Radiotherapy Fraction,per_item,1950,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Focused Urologic Nutritional Support,per_unit_dispensed,7700,,,,,8.0,40.0,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Inpatient Dermatologic Nursing Observation,per_day,132400,,,,,,,300.0,20.0,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Inpatient Dermatologic Nursing Observation,per_day,132400,,,,,,,100.0,12.0,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Inpatient Immunologic Recovery Room Occupancy,per_hour,9500,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Inpatient Psychiatric Case Conference,per_hour,12175,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Inpatient Pulmonary Critical Care Occupancy,per_night,57800,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Intensive Hepatic Case Conference,per_visit,21375,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.15,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Intensive Oncology Sterilisation Service,per_procedure,247750,,,,,,,120.0,10.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Intermittent Orthopaedic Discharge Planning,per_visit,37375,,,,,,,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.15,BRONZE=1;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Intermittent Urologic Discharge Planning,per_hour,12125,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Intermittent Vascular Telemetry Monitoring,per_hour,3850,,,8.0,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Outpatient Dermatologic Home Visit,per_visit,19375,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Outpatient Haematology Laboratory Panel,per_item,19050,,,,20.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Outpatient Metabolic Physiotherapy Session,per_hour,16725,,,,10.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.15,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Outpatient Neurological Recovery Room Occupancy,per_night,111475,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Outpatient Psychiatric Discharge Planning,per_visit,19300,,,,,10.0,30.0,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Postoperative Musculoskeletal Imaging Interpretation,per_procedure,431375,,,,20.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.2,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Endocrine Rehabilitation Programme,per_visit,33725,,,,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Gastrointestinal Nutritional Support,per_unit_dispensed,3750,,,,,,,360.0,25.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Gastrointestinal Nutritional Support,per_unit_dispensed,3750,,,,,,,120.0,10.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.95;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Immunologic Recovery Room Occupancy,per_night,142550,,,,12.0,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Musculoskeletal Nutritional Support,per_unit_dispensed,6675,,,,,8.0,25.0,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Ophthalmic Transport Service,per_visit,13975,,,6.0,,,,,,,,F-COAST=1.05;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Preoperative Paediatric Biopsy Procedure,per_item,15675,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Dermatologic Home Visit,per_visit,96875,,,,,12.0,30.0,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Geriatric Telemetry Monitoring,per_day,126725,,,,,16.0,15.0,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Infectious Infusion Therapy,per_unit_dispensed,7150,,,24.0,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Neurological Biopsy Procedure,per_item,18625,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Psychiatric Physiotherapy Session,per_visit,30950,,,,,12.0,15.0,,,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.1,BRONZE=1;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Psychiatric Telemetry Monitoring,per_hour_per_item,2950,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Urologic Radiotherapy Fraction,per_item,5100,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Routine Urologic Transport Service,per_visit,15250,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Specialist Dermatologic Nursing Observation,per_hour,10450,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Specialist Gastrointestinal Pharmaceutical Dispensing,per_unit_dispensed,4125,,,,,,,,,Emergency Metabolic Discharge Planning,3500.0,F-COAST=0.95;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Specialist Metabolic Sterilisation Service,per_item,19825,,,,,12.0,25.0,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Standard Infectious Ventilation Support,per_hour,19225,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Standard Paediatric Radiotherapy Fraction,per_procedure,117900,,,,,,,,,Extended Urologic Infusion Therapy,94325.0,F-COAST=0.9;F-MAIN=1;F-NORTH=1.1,BRONZE=1.05;GOLD=0.9;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Standard Psychiatric Discharge Planning,per_hour,5200,,,,,,,,,,,F-COAST=0.9;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Immunologic Sterilisation Service,per_procedure,268575,,,,,,,300.0,25.0,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Immunologic Sterilisation Service,per_procedure,268575,,,,,,,100.0,15.0,,,F-COAST=0.92;F-MAIN=1;F-NORTH=1.2,BRONZE=1;GOLD=0.9;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Metabolic Discharge Planning,per_hour,16775,,,,,,,,,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.08,BRONZE=1.05;GOLD=0.92;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Otolaryngologic Specimen Analysis,per_item,28300,,,,,,,180.0,20.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Otolaryngologic Specimen Analysis,per_item,28300,,,,,,,60.0,10.0,,,F-COAST=0.95;F-MAIN=1;F-NORTH=1.15,BRONZE=1.05;GOLD=0.95;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Palliative Consultation,per_procedure,441425,,,,,,,,,Elective Ophthalmic Recovery Room Occupancy,388450.0,F-COAST=0.9;F-MAIN=1;F-NORTH=1.15,BRONZE=1;GOLD=0.92;SILVER=0.98,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Vascular Consultation,per_procedure,156100,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
+hospital_5,INS-H5-2024-0731,Supervised Vascular Diagnostic Imaging,per_test,20175,,,,,,,,,,,F-COAST=1;F-MAIN=1;F-NORTH=1,BRONZE=1;GOLD=1;SILVER=1,text,1.0
