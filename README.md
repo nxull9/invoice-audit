@@ -142,7 +142,7 @@ Audits hospitals 2–5, validates columns, types, ranges and coverage, writes
 ### Tests and evaluation
 
 ```bash
-python -m pytest tests -q            # 26 tests, ~15 s
+python -m pytest tests -q            # 29 tests, ~15 s
 python app.py evaluate               # precision / recall / F1 per category on hospital 1
 python evaluation/regression.py      # current outputs vs the pre-refactor baseline
 python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading vs the text

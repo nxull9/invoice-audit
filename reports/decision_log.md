@@ -4,6 +4,25 @@ Assumptions made, ambiguities found, and what was decided about each. Every entr
 states the risk of being wrong, because several of these are readings rather than
 facts.
 
+## On one page
+
+| # | decision | fitted on | risk if wrong |
+|---|---|---|---|
+| 1 | `invoice_id` is reused; the `line_id` prefix is the key; the **later** invoice is the offender | 5 pairs | wrong invoice flagged where ids are reused |
+| 2 | An out-of-term date is reported as `out_of_window` alone, not also `after_invoice_date` | 2 examples | one category's precision drops silently |
+| 3 | `unknown_service` needs two signals: low text support **and** no repeat usage | 12 examples | a coincidental price match passes as a real service |
+| 4 | Over a daily cap, trim to the cap; the true quantity is not recoverable | 4 examples | expected total wrong for that category (flag still right) |
+| 5 | Round half-up **after each step**, as every contract says | H5: 10.8% of rates differ | a cent out on a tenth of all rates |
+| 6 | Hospital 2's 07:00 "Service Day": the recorded date is the commencing date | verified: 4/335 weekend mismatches | systematic weekend mispricing (not observed) |
+| 7 | Two categories hospital 1 cannot express: wrong facility / tier multiplier | H5: 18 of 31 mispriced lines | none; strictly more informative than "price mismatch" |
+| 8 | Tie-break confidence follows the text margin; below 0.10 report **ambiguous**, name both | H5: 16 ties | a coin-flip presented as a finding |
+| 9 | Confidence = category strength × weakest resolution × contract source; arithmetic exempt | design | it is an ordering, not a calibrated probability |
+| 10 | Not built: RAG for extraction, a model for resolution, a local model in production, concurrency | measured | none; each is justified by a measurement |
+| 11 | Hospital 2 read by **deepseek**: 2 verified rule defects vs gpt-4o's 7, same prompt | rule-by-rule check vs text | two phantom caps (reach no invoice); prompt v2 unrun |
+| 12 | Disallowed lines count toward cumulative utilisation | 0 line totals differ either way | none on this data |
+
+The entries below give the evidence for each.
+
 ---
 
 ## 1. `invoice_id` is not the invoice key
