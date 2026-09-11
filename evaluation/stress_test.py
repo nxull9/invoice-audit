@@ -10,13 +10,10 @@ detection is of an error absent from the calibration set, and every flag raised 
 untouched invoice is a false positive.
 """
 
-import copy
 import random
 
 import pandas as pd
 
-from src.contracts import rate_on
-from src.money import uplift, discount
 
 
 def _clean_invoices(labels):
@@ -120,7 +117,7 @@ def inject(units, line_items, spec, labels, n_per_kind=12, seed=0):
 
     capped = {n for n, s in spec["services"].items() if s["daily_cap"]}
     for _ in range(n_per_kind):
-        iid, rows = take(lambda r: r.get("service") in capped)
+        iid, rows = take(lambda r: isinstance(r.get("service"), str) and r["service"] in capped)
         if not iid:
             break
         row = rows[0]

@@ -44,7 +44,7 @@ def check_duplicate_invoice_id(units):
     """
     bad = units[units['reuses_id']]
     return _f([(r.invoice_id, 'duplicate_invoice_id',
-                f'{r.source_seq} dated {r.invoice_date.date()} reuses an identifier '
+                f'{r.source_seq} dated {r.invoice_date_raw} reuses an identifier '
                 f'already in use')
                for r in bad.itertuples()])
 

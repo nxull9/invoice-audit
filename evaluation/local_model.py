@@ -65,10 +65,8 @@ def _build_constraint(schema, tokenizer):
     a supported outcome: generation falls back to prompting and the run is reported as
     unenforced rather than claiming a guarantee it does not have.
     """
-    import json as _json
     from transformers import LogitsProcessorList
 
-    text = _json.dumps(schema)
     attempts = []
 
     try:

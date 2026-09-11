@@ -7,7 +7,6 @@ rate identifies the specific error rather than a generic price mismatch.
 
 import pandas as pd
 
-from src.contracts import bundle_partner
 
 # Categories that flag a breach without changing what is owed. Established from
 # the single-category invoices on hospital 1, every one of which has
@@ -22,14 +21,14 @@ COMPLIANCE_ONLY = {
 def classify_line(row, spec):
     """Every category this line item breaches. May be empty, may be several."""
     found = []
-    svc = spec["services"].get(row.service) if row.service else None
+    svc = spec["services"].get(row.service) if isinstance(row.service, str) else None
     if svc is None:
         return found
 
     if row.unit_basis_as_billed != svc["unit_basis"]:
         found.append("wrong_unit_basis")
 
-    if row.disallowed:
+    if isinstance(row.disallowed, str) and row.disallowed:
         found.append(row.disallowed)
 
     if pd.notna(row.billable_quantity) and row.billable_quantity < row.quantity:
@@ -38,7 +37,7 @@ def classify_line(row, spec):
     if pd.isna(row.expected_unit_rate) or row.expected_unit_rate == row.unit_price_cents:
         return found
 
-    billed, expected, alt = int(row.unit_price_cents), int(row.expected_unit_rate), row.alternatives
+    billed, alt = int(row.unit_price_cents), row.alternatives
     used = row.adjustments or ""
 
     # Which alternative reading did the hospital actually bill?

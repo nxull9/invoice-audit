@@ -8,7 +8,6 @@ Run with:  python -m pytest tests -q     (or: python tests/test_pipeline.py)
 """
 
 import copy
-import json
 import os
 import sys
 
@@ -16,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import pandas as pd
 
-from src import (audit, checks, classify, compile_contract, contracts, data, evaluation,
+from src import (audit, checks, classify, compile_contract, contracts, data, scoring,
                  extract, llm, pricing, resolver)
 from evaluation import chunking, spec_diff, stress_test
 
@@ -147,7 +146,7 @@ def test_scorer_finds_exactly_the_faults_injected_into_a_spec():
 def test_hospital_one_scores_perfectly_and_reproduces_expected_totals():
     result = audit.audit_hospital(DATA, DEV)
     labels = data.load_labels(DATA)
-    scores = evaluation.detection_scores(result["findings"].invoice_id.unique(), labels)
+    scores = scoring.detection_scores(result["findings"].invoice_id.unique(), labels)
     assert scores["precision"] == 1.0 and scores["recall"] == 1.0
 
     totals = (result["totals"].sort_values("source_seq")

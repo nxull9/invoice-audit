@@ -4,7 +4,6 @@ One compiler per hospital over shared table readers. A rule naming a service abs
 from the rate schedule is recorded as a warning, never dropped silently.
 """
 
-import glob
 from datetime import date
 
 from src.config import UNIT_BASIS

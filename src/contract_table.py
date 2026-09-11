@@ -1,12 +1,9 @@
-"""Flattening every contract into one table.
+"""One table for every contract, whatever form it arrived in.
 
-Five contracts arrive in five layouts -- tables, prose, three documents, a PDF -- and
-become one row per service per rate period, with identical columns whatever the source.
-That table is the only thing the pricing engine reads, so a sixth provider in a sixth
-format changes nothing downstream.
-
-It is also the reviewable artefact. Written to CSV it is a few hundred rows an auditor
-can read against the contract itself, which a nested specification object is not.
+A spec is a nested dict, which is the right shape for the engine and the wrong shape
+for a person. This flattens it to one row per service per rate period with the same
+columns for all five hospitals, so a reviewer can read a contract's rules against the
+document itself. It is a view of the spec; the engine reads the spec, not this table.
 """
 
 import pandas as pd

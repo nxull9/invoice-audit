@@ -13,7 +13,6 @@ import textwrap
 
 from src.config import PROMPTS
 from src.retrieval import VectorIndex
-from src.llm import parse_json
 
 QA_PROMPT_VERSION = "qa_v1"
 

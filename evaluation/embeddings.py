@@ -3,13 +3,12 @@ with the price-based assignment. Two methods sharing no information agreeing is
 evidence; it needs no labels, so it applies to the unlabelled hospitals too.
 """
 
-import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.metrics import (adjusted_rand_score, homogeneity_score,
                              silhouette_score, completeness_score)
 
-from src.retrieval import embed, load_encoder  # noqa: F401  (re-exported for the notebook)
+from src.retrieval import embed, load_encoder  # noqa: F401  re-exported for the notebook
 
 
 def project(vectors, n_components=2, random_state=0):

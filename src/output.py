@@ -10,7 +10,6 @@ contract and however the description was resolved.
 
 import pandas as pd
 
-from src import config
 
 # How strong the evidence behind each category is. Arithmetic and calendar facts are
 # certain. Rule-based categories depend on a contract reading and a resolved service.
@@ -134,6 +133,15 @@ def write_submission(results, path, expected_ids=None):
 # Explaining one invoice
 # --------------------------------------------------------------------------
 
+def contract_source(spec):
+    """One phrase saying how this contract was read, for the explanation."""
+    prov = spec["provenance"]
+    if "model" in prov:
+        how = "replayed from runs/" if prov.get("replayed") else "called live"
+        return f"a model ({prov['model']}, prompt {prov['prompt_version']}, {how})"
+    return f"tables by regex ({prov.get('services', 'rate schedule')})"
+
+
 def explain_invoice(result, invoice_id):
     """Everything a reviewer needs to see about one invoice, as a dict.
 
@@ -154,7 +162,7 @@ def explain_invoice(result, invoice_id):
     for r in lines.itertuples():
         line_rows.append({
             "line_id": r.line_id, "service_date": str(r.service_date.date()) if pd.notna(r.service_date) else r.service_date_raw,
-            "description": r.description, "service": r.service or "(unresolved)",
+            "description": r.description, "service": r.service if isinstance(r.service, str) else "(unresolved)",
             "qty": int(r.quantity), "billed_rate": int(r.unit_price_cents),
             "expected_rate": None if pd.isna(r.expected_unit_rate) else int(r.expected_unit_rate),
             "billed_total": int(r.line_total_cents),
@@ -175,7 +183,7 @@ def explain_invoice(result, invoice_id):
         "categories": cats,
         "confidence": invoice_confidence(cats, extraction_confidence(result["spec"]),
                                          resolution_confidence(result, seq)),
-        "contract_source": result["spec"]["provenance"].get("services", "tables"),
+        "contract_source": contract_source(result["spec"]),
         "evidence": evidence,
         "lines": line_rows,
     }

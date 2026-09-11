@@ -23,7 +23,8 @@ ONE = Decimal(1)
 def _attach_context(units, line_items, resolution):
     """Give every line item its service, patient, facility and plan tier."""
     li = line_items.copy()
-    li["service"] = li["description"].map(dict(zip(resolution["description"], resolution["service"])))
+    li["service"] = li["description"].map(
+        dict(zip(resolution["description"], resolution["service"]))).astype(object)
     ctx = units.set_index("source_seq")[["patient_id", "facility_code", "plan_tier", "invoice_date"]]
     for col in ctx.columns:
         li[col] = li["source_seq"].map(ctx[col])
@@ -36,7 +37,7 @@ def _aggregates(li):
     day_services = collections.defaultdict(set)   # (patient, date) -> services delivered
     service_dates = collections.defaultdict(list)  # (patient, service) -> dates
     for r in li.itertuples():
-        if r.service is None or pd.isna(r.service_date):
+        if not isinstance(r.service, str) or pd.isna(r.service_date):
             continue
         key = (r.patient_id, r.service, r.service_date)
         daily_qty[key] += int(r.quantity)
@@ -53,7 +54,7 @@ def _exclusion_violations(spec, li):
     """
     dates = collections.defaultdict(list)
     for r in li.itertuples():
-        if r.service and not pd.isna(r.service_date):
+        if isinstance(r.service, str) and not pd.isna(r.service_date):
             dates[(r.patient_id, r.service)].append(r.service_date)
     bad = set()
     for excluded, days, trigger in spec["exclusions"]:
@@ -77,7 +78,7 @@ def _cross_invoice_duplicates(li):
     """
     seen, dup = set(), set()
     for r in li.itertuples():                      # li is already in (date, line_id) order
-        if not r.service or pd.isna(r.service_date):
+        if not isinstance(r.service, str) or pd.isna(r.service_date):
             continue
         key = (r.patient_id, r.service, r.service_date)
         if key in seen:
@@ -111,7 +112,7 @@ def reprice(spec, units, line_items, resolution):
     out = []
     for r in li.itertuples():
         note, alt = [], {}
-        svc = spec["services"].get(r.service) if r.service else None
+        svc = spec["services"].get(r.service) if isinstance(r.service, str) else None
         if svc is None:
             out.append({"rate": None, "billable": None, "total": None,
                         "note": "unknown_service", "alt": {}, "disallowed": None})
@@ -232,5 +233,5 @@ def reprice(spec, units, line_items, resolution):
     li["expected_line_total"] = [o["total"] for o in out]
     li["adjustments"] = [o["note"] for o in out]
     li["alternatives"] = [o["alt"] for o in out]
-    li["disallowed"] = [o["disallowed"] for o in out]
+    li["disallowed"] = pd.Series([o["disallowed"] for o in out], index=li.index, dtype=object)
     return li

@@ -15,7 +15,7 @@ import textwrap
 import pandas as pd
 
 from src import ask as ask_mod
-from src import audit, config, evaluation, output
+from src import audit, config, output, scoring
 from src.contract_table import spec_to_table
 from src.contracts import summarise
 from src.data import load_invoices, load_labels
@@ -165,7 +165,7 @@ def cmd_ask(hospital, question):
 def cmd_evaluate():
     r = result_for(config.DEV_HOSPITAL)
     labels = load_labels(DATA)
-    evaluation.report(r["findings"], labels, f"{config.DEV_HOSPITAL} against its labels")
+    scoring.report(r["findings"], labels, f"{config.DEV_HOSPITAL} against its labels")
     rows = output.submission_rows(r).merge(labels[["invoice_id", "expected_total_cents"]],
                                            on="invoice_id", suffixes=("", "_label"))
     exact = (rows.expected_total_cents == rows.expected_total_cents_label).sum()

@@ -181,3 +181,61 @@ On the current data this moves one hospital 5 description from 0.85 to 0.70
 prices two similarly-named services identically produces a low-confidence row naming both
 candidates, which a human resolves in seconds — rather than a confident assignment that
 silently misprices every invoice touching that service.
+
+---
+
+## 9. Confidence is composed from evidence, not asserted
+
+**The question.** The submission asks for a confidence per invoice. A single number
+invented per category would satisfy the format and mean nothing.
+
+**Decision.** Three kinds of evidence, multiplied (`src/output.py`):
+
+| evidence | value | where it comes from |
+|---|---|---|
+| category strength | 1.00 for arithmetic and calendar facts; 0.75–0.92 for rule-based categories | a fixed table; `daily_cap_exceeded` lowest because its expected total is unrecoverable (item 4) |
+| resolution confidence | the weakest service resolution among the invoice's lines | the resolver's own margin-scaled confidence (item 8) |
+| extraction source | 1.00 regex-read, 0.85 model-read | the spec's provenance |
+
+Arithmetic facts are exempt from the last two: `3 × 100 ≠ 350` holds whoever read the
+contract and however the description was resolved. A clean invoice is never certain
+(0.95 ceiling, because an error type this system does not model would pass unseen), and
+is less certain under a model-read contract.
+
+**Effect.** On the shipped submission, clean invoices on the regex-read hospitals sit at
+0.89–0.93; on hospital 2 at 0.73. Rule-based flags on hospital 2 sit below 0.70. A
+reviewer triaging by confidence looks at hospital 2 first, which is where the risk is.
+
+**What it is not.** It is not calibrated: no curve was fitted to outcomes, because the
+only labels are hospital 1's and every hospital 1 prediction is correct. It is an
+ordering by how much depends on a judgement, which is the property a reviewer needs.
+
+---
+
+## 10. What was deliberately not built
+
+Each of these was considered, and some were prototyped in the notebook. None is in the
+runtime.
+
+- **Retrieval for contract extraction.** Every rate-bearing article is needed, so
+  top-k retrieval can only lose some; article selection by heading loses none. Measured
+  (`evaluation/`): vector retrieval reaches full recall only at k = 13 — the total number
+  of articles — which you would only know if you already had the answer. Retrieval
+  *is* used for `ask`, where one question needs a few clauses and the hospital filter is
+  applied as a hard mask before scoring.
+- **A model for description → service resolution.** The price index resolves 100% of
+  descriptions on every hospital with zero calls; text similarity breaks the rare
+  two-way collisions. A model would be asked to do a job that is already done exactly.
+  The resolver still reports `ambiguous` rows for a human, so the failure mode when a
+  future contract defeats it is a low-confidence row, not a silent guess.
+- **A local model in production.** Qwen2.5-7B was run and compared. It read 307/307
+  services after the harness bugs were fixed, in 1,478 s against GPT-4o's 119 s, and
+  its constrained decoding would not load on the runtime available. The comparison is
+  kept as evidence in `evaluation/local_model.py`; the pinned production model is hosted.
+- **Concurrency.** The whole model workload is thirteen calls. Cumulative volume
+  discounts make the pricing pass order-dependent across invoices, so it could not be
+  parallelised even if it were slow, and it takes two seconds per hospital.
+- **A regex compiler for hospital 2.** `evaluation/verify_hospital_2.py` proves one is
+  possible for *this* contract's templated wording. It is used to check the model, not
+  to replace it: the point of the model is the next prose contract, whose wording will
+  differ.
