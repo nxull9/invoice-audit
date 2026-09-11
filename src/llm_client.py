@@ -198,6 +198,56 @@ class ApiModel:
         time.sleep(min(BACKOFF_BASE ** attempt + random.uniform(0, 1), 60))
 
 
+def _build_constraint(schema, tokenizer):
+    """A logits processor that admits only schema-valid JSON, or None.
+
+    Outlines has moved this API across releases, so each known shape is tried in turn
+    rather than pinning a version the Colab runtime may not resolve. Returning None is
+    a supported outcome: generation falls back to prompting and the run is reported as
+    unenforced rather than claiming a guarantee it does not have.
+    """
+    import json as _json
+    from transformers import LogitsProcessorList
+
+    text = _json.dumps(schema)
+    attempts = []
+
+    try:
+        from outlines.processors import JSONLogitsProcessor
+        from outlines.models.transformers import TransformerTokenizer
+        return LogitsProcessorList([JSONLogitsProcessor(schema, TransformerTokenizer(tokenizer))])
+    except Exception as exc:
+        attempts.append(f"outlines.processors+TransformerTokenizer: {type(exc).__name__}")
+
+    try:
+        from outlines.processors import JSONLogitsProcessor
+        return LogitsProcessorList([JSONLogitsProcessor(schema, tokenizer)])
+    except Exception as exc:
+        attempts.append(f"outlines.processors bare tokenizer: {type(exc).__name__}")
+
+    try:
+        import outlines
+        model = outlines.from_transformers(None, tokenizer)   # newer functional API
+        return LogitsProcessorList([outlines.processors.JSONLogitsProcessor(schema, model.tokenizer)])
+    except Exception as exc:
+        attempts.append(f"outlines.from_transformers: {type(exc).__name__}")
+
+    try:
+        from lmformatenforcer import JsonSchemaParser
+        from lmformatenforcer.integrations.transformers import (
+            build_transformers_prefix_allowed_tokens_fn)
+        from transformers import PrefixConstrainedLogitsProcessor
+        fn = build_transformers_prefix_allowed_tokens_fn(tokenizer, JsonSchemaParser(schema))
+        return LogitsProcessorList([PrefixConstrainedLogitsProcessor(fn, 1)])
+    except Exception as exc:
+        attempts.append(f"lm-format-enforcer: {type(exc).__name__}")
+
+    print("constrained decoding unavailable; generation falls back to prompting")
+    for a in attempts:
+        print(f"    {a}")
+    return None
+
+
 class LocalModel:
     """Qwen2.5-7B-Instruct quantised to 4 bit. No data leaves the machine."""
 
@@ -241,20 +291,10 @@ class LocalModel:
         # for the failure that cost this model 40% of rows on a nested schema.
         self.schema = schema
         self.processors = None
+        self.schema_enforced = False
         if schema:
-            try:
-                from transformers import LogitsProcessorList
-                from outlines.processors import JSONLogitsProcessor
-                from outlines.models.transformers import TransformerTokenizer
-                self.processors = LogitsProcessorList([
-                    JSONLogitsProcessor(schema, TransformerTokenizer(self.tokenizer))])
-                self.schema_enforced = True
-            except Exception as exc:
-                print(f"constrained decoding unavailable ({type(exc).__name__}); "
-                      f"falling back to prompting for JSON")
-                self.schema_enforced = False
-        else:
-            self.schema_enforced = False
+            self.processors = _build_constraint(schema, self.tokenizer)
+            self.schema_enforced = self.processors is not None
 
     def generate(self, system, user):
         import torch
