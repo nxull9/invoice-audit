@@ -1,8 +1,9 @@
 # Evaluation
 
 Hospital 1 is the only labelled hospital and therefore the only place this system can
-be measured. Everything below is either measured there, or measured without labels in a
-way that is stated explicitly.
+be scored. Everything below is either measured there, or measured without labels in a
+way that is stated explicitly. Every number comes from a run; `python app.py evaluate`,
+`python app.py audit hospital_N` and the scripts in `evaluation/` reproduce them.
 
 ---
 
@@ -11,10 +12,11 @@ way that is stated explicitly.
 | | |
 |---|---|
 | Detection, hospital 1 | precision **1.000**, recall **1.000**, F1 **1.000** (58 of 58) |
-| `expected_total_cents` exact | **909 / 913** (99.56%) |
-| Line items reproducing the billed amount | **99.30 – 99.51%** across four hospitals |
+| `expected_total_cents` exact, hospital 1 | **909 / 913** (99.56%) |
+| Line items reproducing the billed amount | **99.30 – 99.51%** on all five hospitals |
 | Descriptions left unresolved | **0**, on every hospital |
-| Injected faults detected | **96 / 96**, zero false positives, three seeds |
+| Injected faults detected | **96 / 96**, zero false positives on 759 clean controls, three seeds |
+| Submission | 3,942 invoices, 285 flagged (7.2%), schema-validated |
 
 **A perfect detection score is a warning, not a result, and section 4 treats it as one.**
 
@@ -50,6 +52,9 @@ weak evidence, and eleven of the eighteen categories have fewer than six.
 Accuracy is not reported anywhere. With 58 erroneous invoices in 913, a system that
 flags nothing scores 93.6% and finds nothing.
 
+**False positives: 0. False negatives: 0.** The four expected-total misses are all
+`daily_cap_exceeded` and are explained in §7.1.
+
 ### Why the score is 1.000
 
 The system does not predict, it **recomputes**. It reads the contract, derives what each
@@ -67,15 +72,17 @@ is a consequence of that number, not an independent achievement.
 
 ## 3. Coverage
 
-| hospital | invoices | line items | services | descriptions | resolved by price | text tie-break | unknown | unresolved | reproduced | flagged |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| hospital_1 | 913 | 11,415 | 108 | 488 | 476 | 0 | 12 | **0** | 99.51% | 58 (6.4%) |
-| hospital_3 | 932 | 11,655 | 120 | 544 | 525 | 5 | 14 | **0** | 99.36% | 70 (7.5%) |
-| hospital_4 | 835 | 10,560 | 98 | 534 | 521 | 0 | 13 | **0** | 99.35% | 63 (7.5%) |
-| hospital_5 | 1,050 | 13,221 | 84 | 474 | 446 | 16 | 12 | **0** | 99.30% | 76 (7.2%) |
+| hospital | contract read by | invoices | line items | services | descriptions | by price | text tie-break | unknown | unresolved | reproduced | flagged |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| hospital_1 | regex | 913 | 11,415 | 108 | 488 | 476 | 0 | 12 | **0** | 99.51% | 58 (6.4%) |
+| hospital_2 | **model** (deepseek) | 1,125 | 14,360 | 76 | 506 | 493 | 0 | 13 | **0** | 99.49% | 76 (6.8%) |
+| hospital_3 | regex | 932 | 11,655 | 120 | 544 | 525 | 5 | 14 | **0** | 99.36% | 70 (7.5%) |
+| hospital_4 | regex | 835 | 10,560 | 98 | 534 | 521 | 0 | 13 | **0** | 99.35% | 63 (7.5%) |
+| hospital_5 | regex | 1,050 | 13,221 | 84 | 474 | 446 | 16 | 12 | **0** | 99.30% | 76 (7.2%) |
 
-Flagged rates on the three unlabelled hospitals (7.2–7.5%) sit close to hospital 1's
-true rate of 6.4%, which is weak but real evidence that the approach transfers.
+Flagged rates on the four unlabelled hospitals (6.8–7.5%) sit close to hospital 1's
+true rate of 6.4%, which is weak but real evidence that the approach transfers. The
+model-read hospital is indistinguishable from the regex-read ones on every column.
 
 ---
 
@@ -87,6 +94,7 @@ fewer than six examples. The perfect score is therefore tested rather than defen
 **Method.** Faults are injected into invoices the labels mark **clean** — errors absent
 from the label file, in invoices the labels call correct. Detection is then
 generalisation, and any flag on an untouched clean invoice is a true false positive.
+(`evaluation/stress_test.py`; the test suite runs one seed on every change.)
 
 **Result**, twelve faults per category, three seeds:
 
@@ -119,7 +127,7 @@ and are the weakest claims in this submission.
 The resolver assigns services by price and never reads the description. A sentence
 encoder reads the description and never sees a price. Agreement between them is evidence
 rather than circularity, and needs no labels — so it applies to the hospitals that have
-none.
+none. (`evaluation/embeddings.py`, run in the notebook.)
 
 Clustering hospital 1's 488 descriptions on text alone, against the price-based
 assignment:
@@ -134,37 +142,86 @@ Two methods sharing no information recover nearly the same partition.
 
 ---
 
-## 6. Systematic failure modes
+## 6. Hospital 2: the contract a model read
+
+Hospital 2 is the only contract read by a model and the only one with no known-correct
+specification. It was checked three ways.
+
+**6.1 Indirectly, by reproduction.** A wrong rate shows up as line items that fail to
+reproduce their billed amount. Under the first pinned model (gpt-4o, prompt `prose_v1`)
+hospital 2 reproduced **97.77%** against 99.3–99.5% elsewhere and flagged **283 of
+1,125 (25.2%)**. That was an alarm, not a diagnosis.
+
+**6.2 By a falsifiable subset.** Weekend lines on services carrying a non-business-day
+uplift: 411 lines, 80 mismatching. If two of the ten "uplift" services were phantom,
+411 × 2/10 ≈ 82 would mismatch. 80 did.
+
+**6.3 Directly, against the text.** Hospital 2's clauses use one sentence shape per rule
+family, so each rule can be read back with a pattern and compared with the model's
+reading, service by service (`evaluation/verify_hospital_2.py`):
+
+| model, same prompt | services | rates exact | rule defects | nature |
+|---|---:|---:|---:|---|
+| gpt-4o | 76/76 | 76/76 | **7** | three threshold-premium clauses filed as daily caps; twice the percentage also filed as a weekend uplift and the premium dropped |
+| deepseek | 76/76 | 76/76 | **2** | two invented daily caps (16 and 6 units) |
+
+Every number either model produced is in the contract. The errors are which *field* a
+number went into.
+
+**Decision.** Pin deepseek (decision log item 11). Its two phantom caps are never
+reached — no line on either service bills 16 or 6 units — so they change no prediction.
+They are reported, not hand-corrected.
+
+**After the switch.** 99.49% of line items reproduce; 76 invoices flagged (6.8%); all
+506 descriptions resolve (493 by price, 13 unknown to the contract, 0 unresolved). The
+category distribution matches hospital 1's. The Service Day prediction from decision
+log item 6 was tested: uplift services reproduce 99.46% of 1,289 lines, weekend 98.81%
+(4 of 335), weekday 99.69% — ordinary noise, not the systematic shift a wrong reading
+would produce.
+
+**What the model exam did not predict.** On hospitals 3, 4 and 5 — tables, scored
+against the regex specs — all four models read 307/307 services with no hallucinations;
+gpt-4o was fastest (119 s) and was chosen by that rule. Prose was a different task. The
+exam measured table reading and was taken as evidence about prose reading; it was not.
+
+**The prompt fix, unrun.** `prompts/contract_extraction_prose_v2.txt` places the three
+look-alike sentence shapes side by side and adds a self-check. It targets gpt-4o's
+measured confusion and has not been executed: no credential was available when the
+submission was assembled. `python app.py extract hospital_2 gpt-4o prose_v2` runs it,
+records it, and prints the verifier's result.
+
+---
+
+## 7. Systematic failure modes
 
 Four ways this system goes wrong, each with an example.
 
-### 6.1 `daily_cap_exceeded` — expected totals are not recoverable
+### 7.1 `daily_cap_exceeded` — expected totals are not recoverable
 
-The four `expected_total_cents` misses are all this category, and they are irreducible.
-
-The engine trims a quantity to the contractual cap, which is what the contract entitles
-the provider to. The labels restore quantities of 3, 9, 3 and 3 against caps of 4, 12,
-12 and 8, with no co-occurring line item to explain the remainder. The pre-inflation
-quantity is stated nowhere in the contract.
+The four `expected_total_cents` misses on hospital 1 are all this category, and they
+are irreducible. The engine trims a quantity to the contractual cap, which is what the
+contract entitles the provider to. The labels restore quantities of 3, 9, 3 and 3
+against caps of 4, 12, 12 and 8, with no co-occurring line item to explain the
+remainder. The pre-inflation quantity is stated nowhere in the contract.
 
 *Example.* `INV-H1-000015`, Advanced Rheumatologic Laboratory Panel, 9 units billed
 against a cap of 4. We expect 4 × 14775. The label implies 3.
 
 All four invoices are still flagged correctly, and the error is always conservative — we
-allow the provider the contractual maximum. Confidence on this category is set to 0.75,
-the lowest of any.
+allow the provider the contractual maximum. This category carries the lowest confidence
+(0.75).
 
-### 6.2 Conventions read from a handful of examples
+### 7.2 Conventions read from a handful of examples
 
 Where the labels encode a convention rather than an arithmetic fact, it was inferred
 from very few instances.
 
 *Example.* A service dated `2026-07-24` on an invoice dated `2024-06-02` is both
 out-of-term and post-dated. The labels report `service_date_out_of_window` **alone**.
-Two examples established that precedence. If hospitals 2–5 label such cases differently,
-that category's precision drops and nothing in our output would indicate it.
+Two examples established that precedence. If hospitals 2–5 label such cases
+differently, that category's precision drops and nothing in our output would show it.
 
-### 6.3 Coincidental price matches
+### 7.3 Coincidental price matches
 
 Resolution matches on the modal `(unit_basis, unit_price_cents)`. A description for a
 service absent from the contract still lands on *some* derivable price by chance.
@@ -172,43 +229,60 @@ service absent from the contract still lands on *some* derivable price by chance
 Two independent signals guard this — low text similarity to the price's choice, and no
 established repeat usage — and both are required. On hospital 1 they recover all twelve
 with no false positives, but individually they overlap (fakes reach 0.123 against a
-genuine minimum of 0.095). This is the most data-fitted decision in the system, tuned on
-twelve examples.
+genuine minimum of 0.095). This is the most data-fitted decision in the system, tuned
+on twelve examples.
 
 *Mitigation.* The separation margin is reported per hospital. On hospital 5 it widened
 to 0.121 against 0.248, which is evidence it transfers.
 
-### 6.4 Schema complexity falls on the smallest model
+### 7.4 A model files a rule under the wrong field
 
-Prompt v2 nested a list of dated rates inside each service. The three hosted models were
-unaffected. Qwen2.5-7B, which returned 15 of 15 rows on every batch under the flat v1
-schema, dropped roughly 40%:
+A language model reading prose gets the numbers right and the *kind* of rule wrong.
+"Where the aggregate quantity … exceeds twelve (12) nights, the rate … shall be
+increased by forty percent (40%)" became `daily_cap: 12, nbd_uplift_pct: 40,
+threshold_premium: null` — three true numbers in two wrong fields, for a service that
+then mispriced every weekend line and every high-quantity day.
 
-```
-expected  7  accepted  6      expected 15  accepted  6
-expected 15  accepted  8      expected 15  accepted 13
-expected 15  accepted  9      expected 15  accepted 10
-```
+*Example.* Clause 26.1, Ambulatory Haematology Nutritional Support, under gpt-4o /
+prose_v1. Seven such defects took hospital 2 from 6.8% to 25.2% flagged.
 
-Token counts were normal, so nothing truncated. The model produced fewer usable objects
-once each service contained a list rather than scalars.
-
-*Mitigation.* v3 returns to flat scalars and rebuilds the two-period structure in code.
-Separately, the output schema is now enforced at the sampler — declared to the API for
-hosted models, applied with a logits processor locally — which removes this class of
-failure rather than mitigating it.
+*Why it is dangerous.* Every number is real, so nothing downstream can tell. It was
+caught only because the flag rate is compared across hospitals and the extraction is
+checked against the text. *Mitigation:* a second model with fewer defects is pinned; a
+prompt revision targets the confusion; and every confidence on the model-read hospital
+is multiplied by 0.85.
 
 ---
 
-## 7. What was not attempted
+## 8. Confidence
 
-- **Hospital 2 is the only contract requiring a model**, and the only one whose
-  extraction cannot be checked against a known-correct specification. It is validated
-  indirectly, by whether the extracted rates reproduce billed amounts at the rate the
-  four verified hospitals achieve.
-- **Constrained decoding was added but not tuned.** Enforcement is on; whether it fully
-  recovers the local model's row acceptance is measured in the notebook, not assumed.
-- **No confidence calibration curve.** Confidence is composed from evidence quality
-  rather than fitted, and its calibration against outcomes is not measured.
+Composed from evidence (`src/output.py`, decision log item 9): the weakest category's
+strength (1.00 arithmetic; 0.75–0.92 rule-based) × the weakest service resolution on
+the invoice × the contract source (1.00 regex, 0.85 model). Arithmetic facts skip the
+last two. A clean invoice starts at 0.95.
+
+| hospital | mean confidence | clean | flagged |
+|---|---:|---:|---:|
+| hospital_2 (model) | 0.764 | 0.765 | 0.745 |
+| hospital_3 | 0.889 | | |
+| hospital_4 | 0.901 | | |
+| hospital_5 | 0.887 | | |
+
+A reviewer sorting by confidence reaches the model-read hospital first, which is where
+the risk is. It is an ordering, not a calibrated probability: no curve was fitted,
+because the only labels are hospital 1's and every hospital 1 prediction is correct.
+
+---
+
+## 9. What was not attempted
+
+- **Prompt v2 was not run.** Written against a measured failure; unexecuted for want of
+  a credential. One command runs it.
+- **The extraction schema is not enforced at the sampler for the prose run.** It is for
+  the tabular exam. Adding it alongside the prompt change would have confounded the two.
+- **No confidence calibration curve.** Stated above.
 - **Cross-hospital validation of the fitted conventions.** They cannot be checked
   without labels, and are reported as assumptions in `decision_log.md`.
+- **A schema-complexity finding from the exam** is recorded in `prompts/CHANGELOG.md`:
+  the local 7B model dropped 40% of rows under a nested schema that the hosted models
+  absorbed. It shaped prompt v3 for tables and is why the prose schema is flat.

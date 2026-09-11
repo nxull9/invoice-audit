@@ -15,6 +15,7 @@ from src.compile_contract import COMPILERS, compile_contract
 from src.contracts import read_header
 from src.data import build_invoice_units, load_invoices, load_line_items
 from src.extract import extract_contract, rate_chunks
+from src.ingest import ingestion_confidence, read_contract_file
 from src.llm import ApiModel, ReplayModel, load_recording, save_recording
 from src.pricing import reprice
 from src.resolver import resolve
@@ -40,13 +41,12 @@ def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=
     model_name = model_name or config.EXTRACTION_MODEL
     prompt_version = prompt_version or config.PROSE_PROMPT_VERSION
 
-    documents = sorted(glob.glob(f"{data_root}/contracts/{hospital}/*.md"))
-    if not documents:
-        raise FileNotFoundError(f"{hospital}: no contract document found")
-    text = "\n\n".join(open(path).read() for path in documents)
+    text, documents = contract_text(f"{data_root}/contracts/{hospital}")
     chunks = rate_chunks(text)
     if not chunks:
-        raise ValueError(f"{hospital}: no rate-bearing articles found in the contract")
+        raise ValueError(f"{hospital}: no rate-bearing articles found in "
+                         f"{[d['file'] for d in documents]} (read via {documents[0]['route']}); "
+                         "the prose reader needs the contract's article headings")
 
     prompt = open(config.PROMPTS / f"contract_extraction_{prompt_version}.txt").read()
     header = read_header(data_root, hospital)
@@ -64,10 +64,11 @@ def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=
         save_recording(record, model_name, prompt_version, hospital)
 
     spec["provenance"].update({
+        "documents": documents,
         "model": model_name,
         "prompt_version": prompt_version,
         "replayed": recording is not None,
-        "confidence": config.MODEL_EXTRACTION_CONFIDENCE,
+        "confidence": config.MODEL_EXTRACTION_CONFIDENCE * ingestion_confidence(documents),
         "chunks": len(chunks),
         "clauses_expected": int(sum(c["n_clauses"] for c in chunks)),
         "services_accepted": int(telemetry.services_accepted.sum()),
@@ -75,6 +76,28 @@ def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=
     })
     spec["extraction_frame"] = frame
     return spec
+
+
+def contract_text(folder):
+    """The text of a prose contract and how it was obtained.
+
+    Markdown is exact and carries the headings the chunker needs, so it wins. Plain text
+    is next. A PDF is read last -- its text layer if it has one, OCR if it does not --
+    and the route is recorded so a rate read by OCR is never trusted as exact.
+    """
+    for pattern in ("*.md", "*.txt", "*.pdf"):
+        paths = sorted(glob.glob(f"{folder}/{pattern}"))
+        if not paths:
+            continue
+        texts, provenance = [], []
+        for path in paths:
+            text, meta = read_contract_file(path)
+            if text:
+                texts.append(text)
+            provenance.append(meta)
+        if texts:
+            return "\n\n".join(texts), provenance
+    raise FileNotFoundError(f"no readable contract document in {folder}")
 
 
 def unknown_service_findings(resolution, line_items):

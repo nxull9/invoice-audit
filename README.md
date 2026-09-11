@@ -1,120 +1,213 @@
-# Invoice Audit — Meridian Health Assurance Group
+# Invoice Audit
 
-Auditing 61,211 hospital invoice line items against five separately negotiated
-contracts, and identifying the erroneous invoices.
+Finds erroneous hospital invoices by repricing every line item under the hospital's own
+contract. Five hospitals, five differently written contracts, 61,211 line items.
 
 | | |
 |---|---:|
-| Detection on the labelled hospital | **precision 1.000 · recall 1.000 · F1 1.000** |
+| Detection on the labelled hospital | **precision 1.000 · recall 1.000** (58 of 58) |
 | `expected_total_cents` exact | **909 / 913** |
-| Line items reproducing the billed amount | **99.30 – 99.51%** |
-| Injected faults detected, zero false positives | **96 / 96** |
-| Descriptions left unresolved | **0** |
-| Model calls for the whole submission | **under 150** |
+| Line items reproducing the billed amount, all five hospitals | **99.30 – 99.51%** |
+| Injected faults caught, zero false positives | **96 / 96** |
+| Model calls needed to reproduce the submission | **0** (replayed from `runs/`) |
 
 ---
 
-## Reproducing the submission
+## What it does
+
+For each invoice: read the hospital's contract, work out what every line should have
+cost under it, compare with what was billed, name the rule that was broken, and say how
+sure it is. `submission.csv` carries one row per invoice for hospitals 2–5.
+
+## Architecture
+
+```
+contract (.md / .pdf)
+   │  tables → regex            prose → a language model, every reply validated
+   ▼
+ spec  ── one plain dict per hospital; the only thing the engine reads
+   │
+invoices ─► resolver ─► pricing ─► checks + classifier ─► confidence ─► submission.csv
+            (description   (integer cents,   (which rule       (from evidence)
+             → service      ordered steps,    was broken)
+             by price)      half-up rounding)
+```
+
+**A model reads English. Python does arithmetic.** The model touches two things: reading
+hospital 2's prose contract into the spec (13 calls, recorded), and answering questions
+you type in the app. It never sees an invoice and never produces a total or a verdict.
+
+## Why a language model, and where
+
+Four contracts are tables and are read by regex, matching columns by header text. The
+fifth is forty pages of prose — 76 rate clauses, each with its own caps, premiums,
+weekend uplifts, volume discounts and bundles written as sentences. That is a reading
+task. The model's output is validated (service name must appear in the text it was
+given; rates must be positive integers; unit bases must be known), assembled into the
+same spec the regex path produces, and then checked rule by rule against the contract
+text (`evaluation/verify_hospital_2.py`). Section 6 of the evaluation report shows what
+that check found and what was done about it.
+
+## Why Python for the money
+
+Every contract says: round half-up to the cent *after each step*, in a stated order —
+bundle, facility multiplier, plan-tier multiplier, premium or uplift, volume discount.
+Cumulative volume discounts count utilisation *before* each line across the whole term,
+so invoices are not independent. That is a deterministic procedure and it is written
+once, in `src/pricing.py`, with `Decimal` and never `float`. On hospital 5, rounding at
+each step versus once at the end differs on 10.8% of rate combinations.
+
+## How descriptions are matched to services
+
+Descriptions are abbreviated and reordered (`THER std HEP inf` → *Standard Hepatic
+Infusion Therapy*). Text matching alone is unreliable. But a contract can only produce
+a small set of unit prices — base × multipliers, ± premium, − discount, rounded at each
+step. Enumerating that set and matching a description's most common `(unit basis,
+price)` against it identifies the service exactly. Text similarity only breaks the rare
+two-way collisions, and how decisively it breaks them sets the confidence; below a floor
+the description is reported **ambiguous** with both candidates named. No model call.
+Every description on every hospital resolves.
+
+## How an invoice is audited
+
+1. Seven checks that need no contract: line arithmetic, invoice total, reused
+   identifier, malformed date, date after invoice, date outside the term, contract number.
+2. Every line repriced under the spec. The engine also records what the rate *would*
+   have been without the discount, without the premium, at the standalone rate, at each
+   other multiplier cell — so when the billed rate matches one of those, the finding
+   names that rule (`volume_discount_omitted`, not "price mismatch").
+3. Expected invoice total = sum of expected line totals; lines for a service the
+   contract does not list keep their billed amount.
+
+## How confidence works
+
+Three factors multiplied: the weakest category's strength (1.00 for arithmetic and
+calendar facts, 0.75–0.92 for rule-based findings) × the weakest service resolution on
+the invoice × the contract source (1.00 regex, 0.85 model). Arithmetic facts skip the
+last two. A clean invoice starts at 0.95, never 1.0. It is an ordering by how much
+depends on a judgement, not a calibrated probability.
+
+---
+
+## Running it
 
 ```bash
 git clone https://github.com/nxull9/invoice-audit
 cd invoice-audit
+python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-python -m pytest tests -q          # 12 regression tests
-jupyter notebook notebooks/invoice_audit.ipynb
 ```
 
-Run the notebook top to bottom. It writes `submission.csv`.
+No API key is needed for anything below except `ask`.
 
-**No API key or GPU is required.** Every model reply is recorded in `runs/` and replayed,
-so inference — the only non-deterministic and non-free step — reproduces exactly. Set
-`FORCE_RERUN = True` to call the models live instead.
+### The interactive app
 
-On Colab the notebook clones the dataset and builds its own `src/` package, so it runs
-from the notebook file alone:
+```bash
+python app.py
+```
 
-<a href="https://colab.research.google.com/github/nxull9/invoice-audit/blob/main/notebooks/invoice_audit.ipynb">Open in Colab</a>
+```
+> audit INV-H4-000105          one invoice: billed, expected, flagged, why, confidence
+> audit hospital_4             every invoice in a hospital, with the category counts
+> contract hospital_2          the rules read from a contract, as a table
+> extract hospital_2           read the prose contract with the model (replays the recording)
+> ask hospital_4 is there a premium on hepatic infusion therapy?     (needs a key)
+> evaluate                     hospital 1 against its labels
+> submit                       write submission.csv
+```
 
----
+Any command also runs directly: `python app.py audit INV-H2-000010`.
 
-## Approach
+### Generate the submission
 
-**A model reads English. Python does arithmetic. No value a model produces is used until
-the deterministic engine reproduces the invoice totals from it.**
+```bash
+python app.py submit
+```
 
-Four of the five contracts state their rules in tables and are parsed by regex. Hospital
-2 states 76 rate clauses as prose across 35 articles and is the only contract requiring
-a language model. All five compile into one representation, so the pricing engine is
-written once.
+Audits hospitals 2–5, validates columns, types, ranges and coverage, writes
+`submission.csv`. Deterministic: a fresh clone produces a byte-identical file.
 
-### Resolving descriptions to services
+### Tests and evaluation
 
-108 contracted services appear under 488 distinct billing descriptions — abbreviated
-(`Rtn`, `Compr`, `Ent` for Otolaryngologic), reordered, truncated, suffixed with noise
-codes. The task description frames this as the central difficulty.
+```bash
+python -m pytest tests -q            # 26 tests, ~15 s
+python app.py evaluate               # precision / recall / F1 per category on hospital 1
+python evaluation/regression.py      # current outputs vs the pre-refactor baseline
+python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading vs the text
+```
 
-It is not solved lexically. A contract can produce only a small enumerable set of unit
-rates: base, bundled, each multiplied by any facility and plan-tier multiplier, any
-premium, any volume discount, rounded half-up at each step. Matching a description's
-modal `(unit_basis, unit_price_cents)` against that set identifies the service.
+### Asking the contract a question
 
-**This resolves every description on every hospital.** Text similarity is used only to
-break genuine price collisions, and — where it contradicts the price — to identify
-services absent from the contract altogether.
+Put a key in `.env` (`OPENROUTER_API_KEY=...`; the file is git-ignored). `ask` retrieves
+the most relevant clauses from **one** hospital's contract — the hospital filter is a
+hard mask, not a similarity penalty — and the model answers only from those, quoting the
+clause. If the clauses do not contain the answer it says so.
 
-### Repricing
+### Running the prompt revision
 
-A single ordered pass. Cumulative volume discounts depend on utilisation *prior to* each
-line, counted across the whole term and all patients, so invoices are not independent and
-cannot be parallelised. Adjustment order is taken verbatim from the contracts: bundle
-substitution, facility multiplier, plan-tier multiplier, premium, volume discount, with
-half-up rounding after each step. All money is integer cents.
+```bash
+python app.py extract hospital_2 gpt-4o prose_v2
+```
+
+Calls the model live, records the replies under `runs/`, and prints the rule-by-rule
+check against the contract. See `prompts/CHANGELOG.md` for why v2 exists.
 
 ---
 
 ## Repository
 
 ```
-notebooks/invoice_audit.ipynb   the analysis; builds src/ and writes submission.csv
-src/                            19 modules, importable and tested
-prompts/                        3 prompt versions + CHANGELOG explaining each revision
-reports/evaluation.md           per-category results and failure analysis
-reports/decision_log.md         assumptions, ambiguities, and what was decided
-runs/                           recorded model replies, so the submission replays free
-tests/                          12 regression tests
-submission.csv                  predictions for hospitals 2–5
+app.py                     interactive entry point
+src/                       the runtime — 19 files, nothing notebook-only
+  audit.py                 load_spec (regex or model) and the per-hospital pipeline
+  pricing.py               the engine
+  resolver.py              description → service
+  classify.py, checks.py   which rule was broken; contract-free checks
+  output.py                confidence, explanation, submission + validation
+  extract.py, llm.py       prose contract → spec; the model client and replayer
+  compile_contract.py      the four table readers
+  ask.py, retrieval.py     contract Q&A over one hospital's clauses
+prompts/                   versioned prompts + CHANGELOG with the measured reason for each
+runs/                      every model reply, recorded; the submission replays without a key
+evaluation/                fault injection, model exam, local model, hospital 2 verifier, baseline
+tests/                     26 tests
+reports/                   evaluation.md · decision_log.md · requirements_checklist.md · writeup.md
+notebooks/                 the research notebook; imports src/, produces nothing src/ does not
+FINAL_WALKTHROUGH.md       the system explained for the person presenting it
 ```
 
----
+## Key results, hospital 1
 
-## AI assistance
-
-This project was built with AI assistance throughout — architecture discussion, code,
-and drafting. It is disclosed in three places:
-
-- `prompts/` holds every prompt sent to a model, versioned, with `CHANGELOG.md`
-  recording why each revision was made and what risk it introduced.
-- `runs/` holds every raw model reply, so any extraction can be traced to its source.
-- `reports/decision_log.md` records which judgements were made by a human reading the
-  contracts, and which were derived from data.
-
-The models under evaluation (GPT-4o, Kimi K2, DeepSeek, Qwen2.5-7B) perform exactly one
-task: reading hospital 2's prose contract into a structured specification. No model
-computes a monetary value, decides whether an invoice is erroneous, or contributes to
-`submission.csv` except through a specification the deterministic engine then verifies.
-
----
+Precision 1.000, recall 1.000 across all 18 categories; 909 of 913 expected totals
+exact (the four misses are one category whose true quantity the contract does not
+state); 99.51% of line items reproduce their billed amount to the cent. Full tables,
+per-category support, and the four systematic failure modes: `reports/evaluation.md`.
 
 ## Known limitations
 
-Fully described in `reports/evaluation.md` §6. In brief:
-
-1. `daily_cap_exceeded` expected totals are not recoverable from the contract; the four
-   `expected_total_cents` misses are all this category.
-2. Four conventions were calibrated on hospital 1's labels, two of them on five and two
+1. **Hospital 2 was read by a model, and the model's reading has two verified defects**
+   (two daily caps that do not exist, on services no invoice ever bills to those
+   quantities). They change no prediction and are disclosed, not hand-corrected.
+2. **The prompt revision targeting the other model's errors is written but unrun.**
+3. `daily_cap_exceeded` expected totals are not recoverable from the contract.
+4. Four conventions were calibrated on hospital 1's labels, two of them on five and two
    examples respectively.
-3. Hospital 2's extraction cannot be checked against a known-correct specification —
-   that is why it needs a model — and is validated indirectly.
-4. Hospital 2 redefines "Service Day" as 07:00–06:59. The data carries no times, so the
-   ambiguity is unresolvable; the reading taken and the test that would falsify it are
-   in `decision_log.md` §6.
+5. Confidence is an ordering, not a calibrated probability.
+6. Hospital 2's "Service Day" runs 07:00–06:59 and the data carries no times; the
+   reading taken made a falsifiable prediction that was tested and held
+   (`decision_log.md` item 6).
+
+## AI assistance
+
+This project was built with Claude (Anthropic) throughout — architecture discussion,
+code, tests, and drafting of every document, working from my direction and with my
+review at each step. The record of that is in the repository itself: `prompts/` holds
+every prompt sent to a model with a changelog saying what each revision was measured
+against; `runs/` holds every raw model reply; `reports/decision_log.md` records which
+judgements were made by reading the contracts and which were derived from the data.
+
+The models under evaluation (GPT-4o, Kimi K2, DeepSeek, Qwen2.5-7B) perform one task
+in the system: reading hospital 2's prose contract into a structured specification. No
+model computes a monetary value, decides whether an invoice is erroneous, or contributes
+to `submission.csv` except through a specification the deterministic engine then
+verifies.

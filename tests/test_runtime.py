@@ -223,3 +223,35 @@ def test_api_client_needs_a_credential(monkeypatch):
 def test_outputs_match_the_pre_refactor_baseline():
     from evaluation import regression
     assert regression.run() == 0
+
+
+# --------------------------------------------------------------------------
+# contracts that arrive as PDF
+# --------------------------------------------------------------------------
+
+def test_pdf_routes_are_reported_and_never_crash():
+    from src import ingest
+    folder = f"{DATA}/contracts/hospital_2"
+    text, meta = ingest.read_contract_file(f"{folder}/master_services_agreement.pdf")
+    assert meta["route"] in ("pdf_text_layer", "ocr", "failed")
+    if meta["route"] == "pdf_text_layer":
+        assert meta["exact"] and "In respect of" in text
+
+    # the dataset's "scanned" PDF turns out to carry a text layer too; it is read exactly
+    text, meta = ingest.read_contract_file(f"{folder}/master_services_agreement_scanned.pdf")
+    assert meta["route"] == "pdf_text_layer" and meta["exact"]
+
+    # an image-only PDF goes to OCR, or fails with a note saying what to install
+    text, meta = ingest.read_contract_file("reports/ocr_demo/scanned_contract.pdf")
+    assert meta["route"] in ("ocr", "failed")
+    assert meta["exact"] is False and meta["note"]
+    assert ingest.ingestion_confidence([meta]) < 1.0
+
+    assert ingest.repair_ocr_numbers("GBP 2S2.SO per hour, S patients") == "GBP 252.50 per hour, S patients"
+
+
+def test_prose_path_prefers_markdown_and_records_it():
+    text, docs = audit.contract_text(f"{DATA}/contracts/hospital_2")
+    assert [d["file"] for d in docs] == ["master_services_agreement.md"]
+    assert docs[0]["route"] == "text" and docs[0]["exact"]
+    assert len(extract.rate_chunks(text)) == 13

@@ -1,11 +1,12 @@
-# Extra dependencies for the local model (section 4). Colab GPU runtime only.
+# Only for evaluation/local_model.py (Qwen2.5-7B, 4-bit) -- a Colab GPU runtime.
+# Nothing in the runtime needs these.
 transformers>=4.46
 accelerate>=1.0
 bitsandbytes>=0.46.1
 torch>=2.4.0
-sentencepiece==0.2.0
+sentencepiece>=0.2.0
 sentence-transformers>=3.1
-# OCR, needed only for scanned PDFs with no text layer
+# OCR, needed only for a scanned PDF with no text layer (src/ingest.py)
 pdf2image>=1.17.0
 pytesseract>=0.3.10
 pillow>=10.0.0

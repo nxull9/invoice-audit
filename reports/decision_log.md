@@ -298,3 +298,21 @@ elsewhere, which is what the run is for.
 about this contract, not a general oracle, and a sixth prose contract would need the
 model checked some other way — most likely the reproduction rate, which is what caught
 this in the first place.
+
+---
+
+## 12. Does a disallowed line count toward cumulative utilisation?
+
+**The question.** Volume discounts turn on "cumulative utilisation of the Service prior
+to that line item". A line the engine disallows — a duplicate billing of the same
+patient, service and date, or one inside an exclusion window — is billed but arguably not
+*utilisation*: nothing extra was delivered.
+
+**Measured.** Pricing every hospital both ways — disallowed lines counting, and not —
+changes the expected total of **zero** line items on hospitals 1, 3, 4 and 5. The
+disallowed lines are too few, and too far from any discount threshold, for the two
+readings to differ on this data.
+
+**Decision.** Keep the simpler reading (every billed quantity counts) because nothing
+distinguishes them, and record that it is a reading. A dataset with many duplicates
+clustered around a discount threshold would force the question; this one does not.
