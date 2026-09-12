@@ -63,3 +63,26 @@ def ask(question, index, model, hospital, k=4, show_context=True):
     print()
     print(f"[{usage['input_tokens']} in · {usage['output_tokens']} out · {usage['seconds']}s]")
     return answer
+
+
+RELEVANT = 0.35     # below this the best clause is unrelated to the question
+
+
+def ask_every_hospital(question, indexes, model, k=4):
+    """Ask each hospital's contract separately; answer only from those with a match.
+
+    Contracts are never mixed in one prompt. A question about "the MRI rate" gets one
+    answer per hospital whose clauses mention it, each grounded in its own contract,
+    and silence from the rest.
+    """
+    answered = []
+    for hospital, index in indexes.items():
+        hits = index.search(question, k=1, where={"hospital": hospital})
+        if not hits or hits[0]["score"] < RELEVANT:
+            continue
+        print(f"===== {hospital} =====")
+        ask(question, index, model, hospital, k=k)
+        answered.append(hospital)
+    if not answered:
+        print("No contract has a clause close to that question.")
+    return answered

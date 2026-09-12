@@ -26,7 +26,8 @@ DATA = str(config.DATA)
 HELP = """
   audit INV-H3-000142        audit one invoice and explain the result
   audit hospital_4           audit every invoice in a hospital
-  ask hospital_4 <question>  answer from that hospital's contract only
+  ask hospital_4 <question>  answer from that hospital's contract only (h4 also works)
+  ask <question>             ask every contract; each answers from its own clauses
   contract hospital_2        show the rules read from a contract
   extract hospital_2 [model] [prompt]   read a prose contract with a model (live if unrecorded)
   evaluate                   score hospital 1 against its labels
@@ -151,19 +152,39 @@ def cmd_contract(hospital):
     print()
 
 
-def cmd_ask(hospital, question):
-    if hospital not in config.HOSPITALS:
-        print(f"  unknown hospital '{hospital}'"); return
-    if not question.strip():
+def hospital_named(word):
+    """'hospital_3' or 'h3' -> 'hospital_3'; anything else -> None."""
+    word = word.lower()
+    if word in config.HOSPITALS:
+        return word
+    if len(word) == 2 and word[0] == "h" and word[1].isdigit() and f"hospital_{word[1]}" in config.HOSPITALS:
+        return f"hospital_{word[1]}"
+    return None
+
+
+def index_for(hospital):
+    if hospital not in _indexes:
+        print(f"  indexing {hospital}'s contract ...", end="", flush=True)
+        _indexes[hospital], _ = ask_mod.clause_index(DATA, hospital)
+        print(" done")
+    return _indexes[hospital]
+
+
+def cmd_ask(words):
+    """`ask hospital_3 <question>` scopes to one contract; `ask <question>` tries them all."""
+    hospital = hospital_named(words[0]) if words else None
+    question = " ".join(words[1:] if hospital else words).strip()
+    if not question:
         print("  ask needs a question"); return
     try:
         model = ApiModel(config.EXTRACTION_MODEL)
     except RuntimeError as exc:
         print(f"  {exc}\n  `ask` calls a model live. Put OPENROUTER_API_KEY=... in .env and try again.")
         return
-    if hospital not in _indexes:
-        _indexes[hospital], _ = ask_mod.clause_index(DATA, hospital)
-    ask_mod.ask(question, _indexes[hospital], model, hospital)
+    if hospital:
+        ask_mod.ask(question, index_for(hospital), model, hospital)
+    else:
+        ask_mod.ask_every_hospital(question, {h: index_for(h) for h in config.HOSPITALS}, model)
 
 
 def cmd_extract(hospital, model=None, version=None):
@@ -226,8 +247,8 @@ def run(command):
             print(HELP)
         elif verb == "audit" and len(args) == 1:
             cmd_audit(args[0])
-        elif verb == "ask" and len(args) >= 1:
-            cmd_ask(args[0], args[1] if len(args) > 1 else "")
+        elif verb == "ask":
+            cmd_ask(command.strip().split()[1:])
         elif verb == "contract" and len(args) == 1:
             cmd_contract(args[0])
         elif verb == "extract" and len(args) >= 1:
