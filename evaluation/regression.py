@@ -1,6 +1,6 @@
 """Compare the current system with the outputs frozen before the refactor.
 
-The baseline was captured from the pre-refactor code on 12 September 2026, one file
+The baseline was captured on 12 September 2026, one file
 per hospital for findings, expected totals and description resolution. A refactor
 must reproduce them exactly; any difference is investigated, not accepted.
 
