@@ -121,7 +121,7 @@ def reprice(spec, units, line_items, resolution):
         # The whole adjustment chain, as a function of which facility and
         # plan-tier column is used. Evaluating it across the grid gives us the
         # rate this line would carry under every other column, with the same
-        # premium and discount decisions applied — so a hospital that billed the
+        # premium and discount decisions applied, so a hospital that billed the
         # right service at the wrong column is identified as exactly that,
         # rather than disappearing into a generic price mismatch.
         partner, bundled_rate = bundle_partner(spec, r.service)

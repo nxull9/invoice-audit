@@ -9,7 +9,7 @@ MONEY = ['invoice_total_cents', 'unit_price_cents', 'line_total_cents']
 
 
 def load_invoices(data_root, hospital):
-    """One row per invoice row (note: not per invoice — see build_invoice_units)."""
+    """One row per invoice row (not per invoice: see build_invoice_units)."""
     df = pd.read_csv(f'{data_root}/invoices/{hospital}_invoices.csv', dtype=str)
     df['invoice_total_cents'] = pd.to_numeric(df['invoice_total_cents']).astype('Int64')
     for c in ['invoice_date', 'admission_date', 'discharge_date']:

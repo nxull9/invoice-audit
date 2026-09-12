@@ -52,7 +52,7 @@ def modal_price(line_items):
     The mode is what makes this robust: an injected error affects a minority of
     a description's rows, so the majority still carries the contracted rate.
     That assumption is stated explicitly because it is the one way this method
-    can fail silently — see the decision log.
+    can fail silently. See the decision log.
     """
     counts = collections.defaultdict(collections.Counter)
     for r in line_items.itertuples():

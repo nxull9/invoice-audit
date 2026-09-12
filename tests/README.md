@@ -11,7 +11,7 @@ contract compiling without a warning, and rounding after each step.
 
 `test_runtime.py` covers the entry points: loading a spec (hospital 2 replays its
 recording with no key), writing and validating a submission, the later invoice winning a
-reused identifier, confidence composed from evidence, and a model that misbehaves —
+reused identifier, confidence composed from evidence, and a model that misbehaves:
 prose instead of JSON, a number where a name belongs, an invented service, a bundle
 partner that was never extracted, HTTP 429/503/401 and a timeout. The last test replays
 every hospital and compares with a frozen baseline of earlier outputs

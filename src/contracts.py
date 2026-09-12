@@ -21,7 +21,7 @@ def read_header(data_root, hospital):
     """Return {contract_number, effective_from, effective_to} for one hospital.
 
     Hospital 3's contract is three documents. Each repeats the same header, so we
-    read them all and require agreement — a disagreement becomes an error rather
+    read them all and require agreement. A disagreement becomes an error rather
     than a silent first-match win.
     """
     folder = f'{data_root}/contracts/{hospital}'
