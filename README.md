@@ -178,9 +178,13 @@ data/                  contracts, invoices, hospital 1 labels, submission templa
 
 ## Tools
 
-I used Claude (Anthropic) throughout this project: to discuss the design, write and
-review code, run the evaluations, and draft the documents. The prompts sent to the
-models, the raw replies, and the reasons behind each decision are in the repository.
+The ideas and the architecture in this project are mine. I worked through them in
+discussion with Claude (Anthropic), which I used under my direction to write and review
+code, run the evaluations and draft the documents. I reviewed every change before it
+went in. Development and the model runs were done in Google Colab and on my own
+machine. The prompts sent to the models, every raw reply, and the reasons behind each
+decision are in the repository.
+
 The models under evaluation (GPT-4o, DeepSeek, Kimi K2, Qwen2.5-7B) do one thing in
 the system: read hospital 2's contract into a spec. No model computes money or decides
 whether an invoice is wrong.

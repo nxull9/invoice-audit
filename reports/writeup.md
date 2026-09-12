@@ -111,7 +111,10 @@ build.
 
 ## Tools
 
-I used Claude throughout: design discussion, code, tests, evaluations and drafts, from
-my direction and with my review. Every prompt is in `prompts/` with a changelog of what
-each change was measured against. Every model reply is in `runs/`. The decision log
-records what I decided by reading the contracts and what came from the data.
+The ideas and the architecture are mine. I discussed them with Claude (Anthropic) and
+used it, under my direction and with my review of every change, to write and review
+code, run the evaluations and draft the documents. Development and the model runs were
+done in Google Colab and on my own machine. Every prompt is in `prompts/` with a
+changelog of what each change was measured against. Every model reply is in `runs/`.
+The decision log records what I decided by reading the contracts and what came from
+the data.
