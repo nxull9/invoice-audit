@@ -1,7 +1,7 @@
-# Pre-refactor baseline
+# Frozen baseline
 
-Outputs of the system as it stood on 12 September 2026, before `src/` was split from
-the research code, frozen so the refactor can be shown to change nothing.
+Outputs of the system as it stood on 12 September 2026, frozen so that later changes
+can be shown to leave the audit results untouched.
 
 One file per hospital for findings (`invoice_id, category, n_lines`), expected totals
 (`source_seq, invoice_total_cents, expected_total_cents`) and description resolution

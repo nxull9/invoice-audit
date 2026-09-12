@@ -148,7 +148,7 @@ Audits hospitals 2–5, validates columns, types, ranges and coverage, writes
 ```bash
 python -m pytest tests -q            # 36 tests, ~18 s
 python app.py evaluate               # precision / recall / F1 per category on hospital 1
-python evaluation/regression.py      # current outputs vs the pre-refactor baseline
+python evaluation/regression.py      # current outputs vs a frozen baseline of earlier runs
 python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading vs the text
 ```
 
@@ -191,9 +191,8 @@ prompts/                   versioned prompts + CHANGELOG with the measured reaso
 runs/                      every model reply, recorded; the submission replays without a key
 evaluation/                fault injection, model exam, local model, hospital 2 verifier, baseline
 tests/                     26 tests
-reports/                   evaluation.md · decision_log.md · requirements_checklist.md · writeup.md
+reports/                   evaluation.md · decision_log.md · qa_evaluation.md · writeup.md
 notebooks/                 the research notebook; imports src/, produces nothing src/ does not
-FINAL_WALKTHROUGH.md       the system explained for the person presenting it
 ```
 
 ## Key results, hospital 1

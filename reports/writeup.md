@@ -18,7 +18,7 @@ can only produce a small set of unit prices, so a description's most common
 `(unit basis, price)` identifies the service; text similarity only breaks the rare
 two-way ties, and how decisively it does so sets the confidence. Every description on
 every hospital resolves. `python app.py` audits an invoice, a hospital, or answers a
-question about a contract; `FINAL_WALKTHROUGH.md` maps every concept to its file.
+question about a contract.
 
 ## How I measured
 
@@ -91,7 +91,7 @@ test for any future prompt edit. **Replace the four
 regex compilers with the model** and keep them only as the test oracle, since the next
 contract will not be a table. **Calibrate confidence** once there are outcomes beyond
 hospital 1 — even a hundred reviewed hospital 2 flags would do. **Sequence
-differently:** I built more evaluation machinery than the brief's budget warranted
+differently:** I built more evaluation machinery than the exercise's budget warranted
 before the most important check — the model against the text — and found the biggest
 error last. The verifier should have existed before the first model call.
 
