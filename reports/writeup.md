@@ -56,8 +56,8 @@ its lines and flags 6.8%.
 
 I also tested the question-answering command with 274 generated questions with known
 answers. Where the model had to count or multiply it failed (6 of 7 services listed;
-63,221 x 3 given as 189,915), so counting and arithmetic moved to Python. The final
-version answered 137 of 137, including every off-topic and injection question.
+63,221 x 3 given as 189,915), so those moved to Python. The final version answered 137
+of 137, including every off-topic and injection question.
 
 ## Where I was uncertain, and why
 
@@ -72,7 +72,7 @@ invoice, and give this category the lowest confidence. All four expected total m
 are this.
 
 **Conventions from a handful of examples.** Which invoice of a reused id is the wrong
-one (five examples). Whether an out-of-term date is also reported as after the invoice
+one (five examples); whether an out-of-term date is also reported as after the invoice
 date (two). If hospitals 2 to 5 differ, nothing in my output would show it.
 
 **Hospital 2's Service Day.** It runs 07:00 to 06:59 and the data has no times. I read
@@ -96,17 +96,16 @@ Make it live. Today it is batch by design: a hospital is priced as a whole in se
 date order, because cumulative discounts depend on earlier invoices, so a new invoice
 means appending its rows and re-running (two seconds per hospital). There is no queue
 or live feed. A deployed version would stream lines from the billing database in that
-order per hospital; the engine would not change. A new hospital already works from a
-PDF (text layer, or OCR for a scan) as long as its contract is written like hospital
-2's; a very different style would need the article splitter and prompt examples
-adapted, and the line reproduction rate is the alarm that would tell me.
+order; the engine would not change. A new hospital already works from a PDF (text
+layer, or OCR for a scan) if its contract is written like hospital 2's; a very different
+style would need the article splitter and prompt examples adapted, and the line
+reproduction rate would tell me.
 
 Scope it the way the brief says. This repository does more than eight hours allow, and
 I built the most important check, the model against the text, last. Given the exercise
 again I would ship the engine, the submission, that check and this write-up, and stop.
 What an audit team would need next (flag states with history, monitoring of the two
-label-free health numbers, a web page over the same modules) I would list rather than
-build.
+health numbers, a web page over the same modules) I would list rather than build.
 
 ## Tools
 
