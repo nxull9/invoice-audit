@@ -212,6 +212,24 @@ def generate(hospital, spec, all_names, per_type, seed):
         q = quote(spec, n, 4, SATURDAY)
         add("arithmetic", f"What would 4 units of {n} for one patient on {SATURDAY:%A %d %B %Y} cost, in total?",
             money=sorted(money_forms(q["total"])), names=[n])
+    for n in pick([n for n in disc if n not in prem and n not in nbd], min(per_type, len(disc))):
+        deepest_t = max(t for t, _ in spec["volume_discounts"][n])
+        prior = deepest_t + 10
+        q = quote(spec, n, 2, WEEKDAY, prior_units=prior)
+        add("arithmetic_discount",
+            f"Cumulative utilisation of {n} across the contract so far is {prior} units. "
+            f"What would the next 2 units for one patient on {WEEKDAY:%A %d %B %Y} cost, in total?",
+            money=sorted(money_forms(q["total"])), names=[n])
+    if spec["facility_multipliers"] and spec["tier_multipliers"]:
+        for n in pick(sorted(set(spec["facility_multipliers"]) & set(spec["tier_multipliers"])
+                             - set(prem) - set(nbd)), per_type):
+            fac = rng.choice(sorted(spec["facility_multipliers"][n]))
+            tier = rng.choice(sorted(spec["tier_multipliers"][n]))
+            q = quote(spec, n, 2, WEEKDAY, facility_code=fac, plan_tier=tier)
+            add("arithmetic_multiplier",
+                f"What would 2 units of {n} cost, in total, at facility {fac} for a patient on plan tier {tier}, "
+                f"on {WEEKDAY:%A %d %B %Y}?",
+                money=sorted(money_forms(q["total"])), names=[n])
 
     add("convention", "Is rounding applied once at the end of the calculation or after each individual step?",
         keywords=["each"], forbidden_first=["once at the end"])
@@ -380,12 +398,13 @@ def run(prompt_version, hospitals, per_type, budget, seed, model_name="gpt-4o", 
             spent += cost
             passed, reason = grade(q, text, set(spec["services"]), all_names)
             rows.append({"prompt": prompt_version, "model": model_name, "hospital": hospital, "type": q["type"],
+                         "route": result.get("route", "model"),
                          "question": q["question"], "answer": text, "passed": passed, "reason": reason,
                          "seconds": usage["seconds"], "input_tokens": usage["input_tokens"],
                          "output_tokens": usage["output_tokens"], "cost_usd": round(cost, 5)})
-            recording[f"{hospital}/{i}"] = {"question": q, "reply": text, "usage": usage}
+            recording[f"{hospital}/{i}"] = {"question": q, "reply": text, "usage": usage, "route": result.get("route", "model")}
             mark = "ok " if passed else "XX "
-            print(f"{mark} {hospital[-1]} {q['type']:16} {usage['seconds']:5.1f}s  {reason[:70]}", flush=True)
+            print(f"{mark} {hospital[-1]} {q['type']:22} {result.get('route', 'model'):14} {usage['seconds']:5.1f}s  {reason[:60]}", flush=True)
         else:
             continue
         break

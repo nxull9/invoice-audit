@@ -363,3 +363,30 @@ def test_repair_model_replays_good_chunks_and_calls_live_for_bad_ones():
     m = llm.RepairModel(recording, Live(), "test")
     r0, u0 = m.generate("s", "u"); r1, u1 = m.generate("s", "u")
     assert u0["telemetry"] == "recorded" and Live.calls == 1 and m.repaired == [1]
+
+
+def test_cost_and_compare_questions_are_answered_by_the_engine_after_the_model_parses():
+    from src import ask as ask_mod
+    spec = audit.load_spec(DATA, "hospital_2")
+
+    class Parser:                     # the model's only job here is to fill the JSON
+        via = "direct"
+        def __init__(self, reply): self.reply = reply
+        def generate(self, s, u):
+            return self.reply, {"input_tokens": 10, "output_tokens": 5, "seconds": 0.2, "retries": 0}
+
+    class Idx:
+        encoder_name = "stub"
+        def search(self, *a, **k): return []
+
+    cost = Parser('{"kind":"cost","service":"Ambulatory Vascular Infusion Therapy","quantity":15,"date":"2024-06-08"}')
+    r = ask_mod.answer("what would 15 hours cost on Saturday?", Idx(), cost, "hospital_2", spec=spec)
+    assert r["route"] == "engine-cost" and "79,215 cents" in r["answer"] and "5,281" in r["answer"]
+
+    cmp = Parser('{"kind":"compare","services":["Standard Orthopaedic Isolation Room Occupancy","Continuous Renal Ventilation Support"]}')
+    r = ask_mod.answer("which is more expensive?", Idx(), cmp, "hospital_2", spec=spec)
+    assert r["route"] == "engine-compare" and "Continuous Renal Ventilation Support is more expensive" in r["answer"]
+
+    bad = Parser('{"kind":"cost","service":"Made Up Service","quantity":3}')      # falls back to the model path
+    r = ask_mod.answer("cost of made up service?", Idx(), bad, "hospital_2", spec=spec, table=None)
+    assert r["route"] == "model"

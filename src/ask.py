@@ -6,15 +6,19 @@ hospital's terms or from the model's own recollection, and every answer carries 
 clauses it was based on.
 """
 
+import datetime
 import glob
 import os
 import re
 import textwrap
 
 from src.config import PROMPTS
+from src.llm import parse_json
+from src.pricing import quote
 from src.retrieval import VectorIndex
 
-QA_PROMPT_VERSION = "qa_v3"
+QA_PROMPT_VERSION = "qa_v5"
+PARSE_PROMPT_VERSION = "parse_v1"
 EXPLANATION_PROMPT_VERSION = "explanation_v1"
 
 
@@ -136,12 +140,84 @@ def build_context(question, index, hospital, k=4, table=None, spec=None):
     return "\n\n".join(parts) + f"\n\nQUESTION: {question}", hits
 
 
+def parse_question(question, spec, model):
+    """Ask the model what kind of question this is and, for a cost or comparison, the inputs.
+
+    The model interprets; it does not compute. A reply that is not valid, or that names a
+    service not in the contract, is treated as "other" and answered the ordinary way.
+    """
+    system = open(PROMPTS / f"question_{PARSE_PROMPT_VERSION}.txt").read()
+    names = "\n".join(sorted(spec["services"]))
+    text, usage = model.generate(system, f"SERVICES:\n{names}\n\nQUESTION: {question}")
+    payload, error = parse_json(text)
+    if error or not isinstance(payload, dict):
+        return {"kind": "other", "note": f"parse failed: {error}"}, usage
+    kind = payload.get("kind")
+    if kind == "cost" and payload.get("service") in spec["services"] and isinstance(payload.get("quantity"), int) and payload["quantity"] > 0:
+        return payload, usage
+    if kind == "compare" and isinstance(payload.get("services"), list) and len(payload["services"]) == 2 \
+            and all(n in spec["services"] for n in payload["services"]):
+        return payload, usage
+    return {"kind": "other", "note": f"unusable parse: {payload}"}, usage
+
+
+def _date(value, default=None):
+    try:
+        return datetime.date.fromisoformat(str(value)[:10]) if value else default
+    except ValueError:
+        return default
+
+
+def cost_answer(spec, parsed):
+    """The engine prices the line; the text just shows its steps."""
+    q = quote(spec, parsed["service"], parsed["quantity"], _date(parsed.get("date"), datetime.date(2024, 6, 5)),
+              facility_code=parsed.get("facility_code") or None, plan_tier=parsed.get("plan_tier") or None,
+              prior_units=parsed.get("prior_units") or 0, with_partner=bool(parsed.get("with_partner")))
+    steps = "; ".join(f"{label} -> {value:,} cents" for label, value in q["steps"])
+    assumed = ("; assumed: " + "; ".join(q["assumptions"])) if q["assumptions"] else ""
+    return (f"ANSWER: {q['total']:,} cents (GBP {q['total'] / 100:,.2f}) for {q['billable']} x {parsed['service']} "
+            f"at a unit rate of {q['unit_rate']:,} cents. Steps: {steps}{assumed}.  "
+            f"SOURCE: audit engine (deterministic)  QUOTE: n/a")
+
+
+def compare_answer(spec, parsed):
+    a, b = parsed["services"]
+    ra, rb = spec["services"][a]["rates"][0]["cents"], spec["services"][b]["rates"][0]["cents"]
+    ua, ub = spec["services"][a]["unit_basis"], spec["services"][b]["unit_basis"]
+    if ra == rb:
+        verdict = "They cost the same per unit"
+    else:
+        hi = a if ra > rb else b
+        verdict = f"{hi} is more expensive per unit"
+    note = "" if ua == ub else f" (note the unit bases differ: {ua} vs {ub})"
+    return (f"ANSWER: {a} = {ra:,} cents {ua}; {b} = {rb:,} cents {ub}. {verdict}{note}.  "
+            f"SOURCE: table  QUOTE: n/a")
+
+
 def answer(question, index, model, hospital, k=4, table=None, spec=None, prompt_version=None):
-    """Answer one question from one hospital's contract. Returns a dict, prints nothing."""
+    """Answer one question from one hospital's contract. Returns a dict, prints nothing.
+
+    A question asking what something costs, or which of two services is dearer, is
+    parsed by the model and answered by the engine. Everything else is answered by the
+    model from the summary, the table and the retrieved clauses.
+    """
+    route, total_usage = "model", None
+    if spec is not None:
+        parsed, pusage = parse_question(question, spec, model)
+        total_usage = dict(pusage)
+        if parsed["kind"] == "cost":
+            return {"answer": cost_answer(spec, parsed), "usage": total_usage, "hits": [],
+                    "hospital": hospital, "route": "engine-cost", "parsed": parsed}
+        if parsed["kind"] == "compare":
+            return {"answer": compare_answer(spec, parsed), "usage": total_usage, "hits": [],
+                    "hospital": hospital, "route": "engine-compare", "parsed": parsed}
     user, hits = build_context(question, index, hospital, k, table, spec)
     system = open(PROMPTS / f"contract_{prompt_version or QA_PROMPT_VERSION}.txt").read()
     text, usage = model.generate(system, user)
-    return {"answer": text, "usage": usage, "hits": hits, "hospital": hospital}
+    if total_usage:
+        for key in ("input_tokens", "output_tokens", "seconds"):
+            usage[key] = round(usage.get(key, 0) + total_usage.get(key, 0), 2)
+    return {"answer": text, "usage": usage, "hits": hits, "hospital": hospital, "route": route}
 
 
 def ask(question, index, model, hospital, k=4, show_context=True, table=None, spec=None,
