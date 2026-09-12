@@ -7,38 +7,36 @@ Predictions: `submission.csv`, 3,942 invoices for hospitals 2 to 5, 285 flagged 
 
 The system re-prices every invoice line under the hospital's contract and compares.
 
-Four of the five contracts are tables. I read those with regex. Hospital 2 is 40 pages
-of prose, so a language model reads it, one article at a time, and every reply is
-checked against the text the model was shown before I accept it. From that point on
-everything is plain Python in integer cents: the contract's order of adjustments,
-rounding half up after each step, cumulative discounts counted in service date order
-across the whole term. The model never sees an invoice and never produces a total.
+Four of the five contracts are tables; I read those with regex. Hospital 2 is 40 pages
+of prose, so a language model reads it one article at a time, and every reply is checked
+against the text the model saw before I accept it. From there everything is plain Python
+in integer cents: the contract's order of adjustments, rounding half up after each step,
+cumulative discounts counted in service date order. The model never sees an invoice and
+never produces a total.
 
-Matching invoice descriptions to services turned out not to need a model. A contract
-can only produce a small set of unit prices, so a description's usual price identifies
-the service. Text similarity only breaks ties. Every description in all five hospitals
-matched this way.
+Matching descriptions to services did not need a model. A contract can only produce a
+small set of unit prices, so a description's usual price identifies the service; text
+similarity only breaks ties. Every description in all five hospitals matched this way.
 
 ## How I measured the results
 
 **On the labelled hospital.** Precision 1.000 and recall 1.000 across all 18
 categories, and 909 of 913 expected totals exact. I do not take that score as the
-evidence. The system recomputes instead of predicting, so a correct contract reading
-gives exact agreement by construction. The number I trust is that 99.51% of hospital
-1's 11,415 line items reproduce the billed amount to the cent. One misread rate would
-show up there as hundreds of mismatches. I did not report accuracy: flagging nothing
+evidence: the system recomputes instead of predicting, so a correct contract reading
+gives exact agreement by construction. The number I trust is that 99.51% of hospital 1's
+11,415 line items reproduce the billed amount to the cent; one misread rate would show
+up there as hundreds of mismatches. I did not report accuracy, because flagging nothing
 scores 93.6%.
 
 **Against memorising hospital 1.** Four decisions were fitted on its labels, some on
-two examples. So I injected errors into invoices the labels call clean and checked
-detection: 96 of 96 caught, 0 false positives on 759 clean controls, same on three
-random seeds.
+two examples. So I injected errors into invoices the labels call clean: 96 of 96
+caught, 0 false positives on 759 clean controls, same on three seeds.
 
-**On the hospitals with no labels.** Three signals. The line reproduction rate
-(99.30% to 99.49%, the same band as hospital 1). The flag rate (6.8% to 7.5% against
-hospital 1's true 6.4%). And a text-only clustering of descriptions that agrees with the
-price-based matching at homogeneity 0.89, which is two methods with no shared
-information giving the same answer.
+**On the hospitals with no labels.** Three signals: the line reproduction rate (99.30%
+to 99.49%, hospital 1's band), the flag rate (6.8% to 7.5% against hospital 1's true
+6.4%), and a text-only clustering of descriptions that agrees with the price-based
+matching at homogeneity 0.89, two methods with no shared information giving the same
+answer.
 
 **On the model.** I gave four models (GPT-4o, DeepSeek V3, Kimi K2, a local 4-bit
 Qwen2.5-7B) the same 22 table batches, scored against the regex specs. All four found
@@ -82,9 +80,9 @@ the recorded date as the start of the Service Day and wrote down what would prov
 wrong: systematic weekend mismatches on the eight uplift services. Measured after
 extraction: 4 of 335 weekend lines, normal noise. The reading held, but it was a reading.
 
-**Confidence.** It is built from evidence (category strength times service match
-strength times contract source) and it is an ordering, not a probability. There is
-nothing to calibrate it against beyond hospital 1, where everything is right.
+**Confidence.** Built from evidence (category strength x service match x contract
+source), it is an ordering, not a probability. There is nothing to calibrate it against
+beyond hospital 1, where everything is right.
 
 ## What I would do differently with another week
 
