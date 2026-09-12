@@ -74,6 +74,8 @@ def rules_summary(spec):
         f"bundles: {len(spec['bundles'])} pairs, {2 * len(spec['bundles'])} services",
         *[f"  - {a} ({svc[a]['rates'][0]['cents']} -> {ra} cents) with {b} ({svc[b]['rates'][0]['cents']} -> {rb} cents)"
           for a, b, ra, rb in spec["bundles"]],
+        "computed answers (use these for highest / largest / most / cheapest / ties):",
+        *_superlatives(spec, caps, nbd, prem, disc),
         f"exclusion windows: {len(spec['exclusions'])}",
         *[f"  - {excluded} is not billable within {days} days of {trigger} (either direction)"
           for excluded, days, trigger in spec["exclusions"]],
@@ -84,6 +86,32 @@ def rules_summary(spec):
         f"services with none of these rules: {len([n for n in svc if n not in dict(caps) and n not in spec['nbd_uplifts'] and n not in spec['threshold_premiums'] and n not in spec['volume_discounts'] and not any(n in pair[:2] for pair in spec['bundles'])])}",
     ]
     return "\n".join(lines)
+
+
+def _superlatives(spec, caps, nbd, prem, disc):
+    """Pre-computed extremes, with every service that ties, so the model copies them."""
+    svc = spec["services"]
+    pct = lambda f: f"{float(f) * 100:g}%"
+    out = []
+    if caps:
+        top = max(c for _, c in caps); low = min(c for _, c in caps)
+        out.append(f"  - highest daily cap: {top} ({', '.join(n for n, c in caps if c == top)})")
+        out.append(f"  - lowest daily cap: {low} ({', '.join(n for n, c in caps if c == low)})")
+    if nbd:
+        top = max(f for _, f in nbd)
+        out.append(f"  - largest non-business-day uplift: {pct(top)} ({', '.join(n for n, f in nbd if f == top)})")
+    if prem:
+        top = max(f for _, _, f in prem)
+        out.append(f"  - largest threshold premium: {pct(top)} ({', '.join(n for n, _, f in prem if f == top)})")
+    if disc:
+        deepest = max(f for _, tiers in disc for _, f in tiers)
+        out.append(f"  - deepest volume discount: {pct(deepest)} ({', '.join(n for n, tiers in disc if any(f == deepest for _, f in tiers))})")
+        multi = [n for n, tiers in disc if len(tiers) >= 2]
+        out.append(f"  - services with two or more discount tiers: {len(multi)} ({', '.join(multi) or 'none'})")
+    rates = sorted((v["rates"][0]["cents"], n) for n, v in svc.items())
+    out.append(f"  - most expensive service by unit rate: {rates[-1][1]} at {rates[-1][0]} cents {svc[rates[-1][1]]['unit_basis']}")
+    out.append(f"  - cheapest service by unit rate: {rates[0][1]} at {rates[0][0]} cents {svc[rates[0][1]]['unit_basis']}")
+    return out
 
 
 def rules_table_text(table):

@@ -336,3 +336,30 @@ def test_retrieval_works_without_sentence_transformers(monkeypatch):
     hits = index.search("renal infusion weekend rate", k=2, where={"hospital": "hospital_2"})
     assert hits and "Renal" in hits[0]["text"]
     assert index.search("anything", k=1, where={"hospital": "hospital_9"}) == []
+
+
+def test_a_live_reply_that_is_not_json_is_retried_once():
+    chunks, header = _prose_setup()
+    replies = iter(["{\"services\": [", '{"services": []}'])          # truncated, then fine
+
+    class Flaky:
+        via = "direct"
+        def generate(self, s, u):
+            return next(replies), {"input_tokens": 1, "output_tokens": 1, "seconds": 0.1, "retries": 0}
+    spec, frame, tel = extract.extract_contract(Flaky(), "p", chunks[:1], header, "hospital_2", verbose=False)
+    assert tel.parse_error.isna().all() and int(tel.retries.sum()) == 1
+
+
+def test_repair_model_replays_good_chunks_and_calls_live_for_bad_ones():
+    recording = {"0": {"reply": '{"services": []}', "usage": {"input_tokens": 5}},
+                 "1": {"reply": '{"services": [', "usage": {"input_tokens": 5}}}
+
+    class Live:
+        via = "direct"
+        calls = 0
+        def generate(self, s, u):
+            Live.calls += 1
+            return '{"services": []}', {"input_tokens": 9, "output_tokens": 1, "seconds": 0.1, "retries": 0}
+    m = llm.RepairModel(recording, Live(), "test")
+    r0, u0 = m.generate("s", "u"); r1, u1 = m.generate("s", "u")
+    assert u0["telemetry"] == "recorded" and Live.calls == 1 and m.repaired == [1]

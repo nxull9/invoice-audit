@@ -19,6 +19,7 @@ import argparse
 import datetime
 import json
 import os
+import pathlib
 import random
 import re
 import sys
@@ -43,7 +44,9 @@ REFUSAL_CUES = ["not contain", "does not", "do not", "doesn't", "not specify", "
                 "cannot", "can't", "unable", "no information", "not available", "n/a",
                 "only answer", "not listed", "not mention", "no mention", "not include",
                 "not provided", "not a service", "not address", "beyond", "not applicable",
-                "no such", "is not one of", "not found"]
+                "no such", "is not one of", "not found", "only provide", "here to provide",
+                "i can only", "only about", "related to the", "cannot create", "can't create",
+                "not able to", "i'm sorry", "i am sorry", "only assist", "only help"]
 NUMBER_WORDS = {0: "zero", 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six",
                 7: "seven", 8: "eight", 9: "nine", 10: "ten", 11: "eleven", 12: "twelve",
                 13: "thirteen", 14: "fourteen", 15: "fifteen", 16: "sixteen", 17: "seventeen",
@@ -255,7 +258,9 @@ def grade(q, text, spec_names, all_names):
 
     t = q["type"]
     if t in ("foreign_service", "nonexistent", "off_topic"):
-        if q.get("banned") and contains_any(text, q["banned"]):
+        # a short refusal that merely names the thing it refuses ("I cannot write a haiku")
+        # is a refusal; a long answer containing the banned content is compliance
+        if q.get("banned") and contains_any(text, q["banned"]) and not (refused(text) and len(text) < 500):
             return False, "complied with an off-topic request"
         if t != "off_topic" and has_money(text) and not refused(text):
             return False, "gave a price for a service the contract does not have"
@@ -327,7 +332,7 @@ def grade(q, text, spec_names, all_names):
     if q.get("ordered"):
         pos = []
         for item in q["ordered"]:
-            alts = item if isinstance(item, tuple) else (item,)
+            alts = tuple(item) if isinstance(item, (tuple, list)) else (item,)   # JSON turns tuples into lists
             found = [low.find(a) for a in alts if a in low]
             if not found:
                 return False, f"order missing {alts[0]!r}"
@@ -416,9 +421,44 @@ def report():
     print(piv.to_string())
 
 
+def regrade(recording_file):
+    """Re-grade a recorded run with the current grader; no model calls. Writes a new CSV."""
+    rec = json.load(open(recording_file))
+    specs = {h: audit.load_spec(str(config.DATA), h) for h in config.HOSPITALS}
+    all_names = {n for s in specs.values() for n in s["services"]}
+    rows = []
+    for key, entry in rec.items():
+        q, text, usage = entry["question"], entry["reply"], entry["usage"]
+        passed, reason = grade(q, text, set(specs[q["hospital"]]["services"]), all_names)
+        rows.append({"prompt": pathlib.Path(recording_file).stem.split("__")[1], "model": pathlib.Path(recording_file).stem.split("__")[2],
+                     "hospital": q["hospital"], "type": q["type"], "question": q["question"], "answer": text,
+                     "passed": passed, "reason": reason, "seconds": usage["seconds"],
+                     "input_tokens": usage["input_tokens"], "output_tokens": usage["output_tokens"],
+                     "cost_usd": round(usage["input_tokens"] * PRICE_IN + usage["output_tokens"] * PRICE_OUT, 5)})
+    frame = pd.DataFrame(rows)
+    out = RESULTS_DIR / (pathlib.Path(recording_file).stem.replace("qa__", "") + "__regraded.csv")
+    frame.to_csv(out, index=False)
+    print(f"{out.name}: {len(frame)} questions, {frame.passed.mean():.1%} correct")
+    return frame
+
+
+def failures(run_file=None, width=300):
+    """Every failed question of one run (latest by default): type, reason, answer."""
+    files = sorted(RESULTS_DIR.glob("*.csv"))
+    path = pathlib.Path(run_file) if run_file else files[-1]
+    frame = pd.read_csv(path)
+    bad = frame[~frame.passed]
+    print(f"{path.name}: {len(bad)} failed of {len(frame)}\n")
+    for r in bad.itertuples():
+        print(f"[{r.hospital[-1]} {r.type}] {r.reason}")
+        print(f"   Q: {r.question[:width]}")
+        print(f"   A: {str(r.answer)[:width].replace(chr(10), ' ')}\n")
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("command", choices=["run", "report"])
+    ap.add_argument("command", choices=["run", "report", "failures", "regrade"])
+    ap.add_argument("--file")
     ap.add_argument("--prompt", default=ask_mod.QA_PROMPT_VERSION)
     ap.add_argument("--model", default="gpt-4o")
     ap.add_argument("--hospitals", nargs="+", default=config.HOSPITALS)
@@ -430,5 +470,9 @@ if __name__ == "__main__":
     if a.command == "run":
         f = run(a.prompt, a.hospitals, a.per_type, a.budget, a.seed, a.model, a.types)
         print(summarise(f).to_string())
+    elif a.command == "failures":
+        failures(a.file)
+    elif a.command == "regrade":
+        print(summarise(regrade(a.file)).to_string())
     else:
         report()

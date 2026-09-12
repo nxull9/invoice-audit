@@ -34,7 +34,7 @@ HELP = """
   explain INV-H4-000105      the model narrates the audit result in plain English
   price h2 "vascular infusion" 15 2024-06-08   what N units would cost, computed by the engine
   contract hospital_2        show the rules read from a contract
-  extract hospital_2 [model] [prompt]   read a prose contract with a model (live if unrecorded)
+  extract hospital_2 [model] [prompt] [live|repair]   read a prose contract with a model
   evaluate                   score hospital 1 against its labels
   submit                     write submission.csv for hospitals 2-5
   help / quit
@@ -226,19 +226,22 @@ def cmd_explain(invoice_id):
     ask_mod.explain_with_model(explanation, model)
 
 
-def cmd_extract(hospital, model=None, version=None):
+def cmd_extract(hospital, model=None, version=None, mode=None):
     """Read a prose contract with a model. Replays if recorded, otherwise calls live and records."""
     if hospital not in config.HOSPITALS:
         print(f"  unknown hospital '{hospital}'"); return
     if hospital in COMPILERS:
         print(f"  {hospital} is read from tables by regex; nothing to extract"); return
     try:
-        spec = audit.load_spec(DATA, hospital, model_name=model, prompt_version=version, verbose=True)
+        spec = audit.load_spec(DATA, hospital, model_name=model, prompt_version=version, verbose=True,
+                               live=(mode == "live"), repair=(mode == "repair"))
     except RuntimeError as exc:
         print(f"  {exc}"); return
     prov = spec["provenance"]
-    print(f"\n  {prov['model']} / {prov['prompt_version']}  "
-          f"{'replayed' if prov['replayed'] else 'ran live and recorded to runs/'}")
+    how = ("replayed" if prov["replayed"] and not prov.get("repaired_chunks")
+           else f"replayed; re-called chunks {prov['repaired_chunks']} and re-recorded" if prov.get("repaired_chunks")
+           else "ran live and recorded to runs/")
+    print(f"\n  {prov['model']} / {prov['prompt_version']}  {how}")
     print(f"  services {prov['services_accepted']}/{prov['clauses_expected']}  "
           f"parse failures {prov['parse_failures']}  warnings {len(spec['warnings'])}")
     for k, v in summarise(spec).items():
@@ -338,7 +341,7 @@ def run(command):
             cmd_contract(args[0])
         elif verb == "extract" and len(args) >= 1:
             rest = (args[1].split() if len(args) > 1 else [])
-            cmd_extract(args[0], *(rest[:2]))
+            cmd_extract(args[0], *(rest[:3]))
         elif verb == "evaluate":
             cmd_evaluate()
         elif verb == "submit":

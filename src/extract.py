@@ -332,11 +332,17 @@ def extract_contract(model, prompt, chunks, header, hospital, verbose=True,
 
     for i, chunk in enumerate(chunks):
         reply, usage = model.generate(prompt, chunk["text"])
+        payload, error = parse_json(reply)
+        # A reply that is not JSON at all (truncated, empty, prose) is retried once when
+        # the model is live. A replayed recording is what it is.
+        if error and getattr(model, "via", "replay") != "replay":
+            reply, usage2 = model.generate(prompt, chunk["text"])
+            usage = {**usage2, "retries": usage.get("retries", 0) + 1 + usage2.get("retries", 0),
+                     "seconds": round(usage.get("seconds", 0) + usage2.get("seconds", 0), 2)}
+            payload, error = parse_json(reply)
         if record is not None:
             record[str(i)] = {"reply": reply,
                               "usage": {k: v for k, v in usage.items() if k != "telemetry"}}
-
-        payload, error = parse_json(reply)
         found, returned, deviation, unverified = 0, 0, None, 0
         if error:
             rejected.append(f"{chunk['title']}: {error}")

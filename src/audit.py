@@ -16,13 +16,13 @@ from src.contracts import read_header
 from src.data import build_invoice_units, load_invoices, load_line_items
 from src.extract import extract_contract, rate_chunks
 from src.ingest import ingestion_confidence, read_contract_file
-from src.llm import ApiModel, ReplayModel, load_recording, save_recording
+from src.llm import ApiModel, RepairModel, ReplayModel, load_recording, save_recording
 from src.pricing import reprice
 from src.resolver import resolve
 
 
 def load_spec(data_root, hospital, model_name=None, prompt_version=None, live=False,
-              verbose=False):
+              verbose=False, repair=False):
     """The contract spec for a hospital.
 
     A hospital with a table compiler is read by regex. Any other hospital is prose and
@@ -33,11 +33,11 @@ def load_spec(data_root, hospital, model_name=None, prompt_version=None, live=Fa
     if hospital in COMPILERS:
         return compile_contract(data_root, hospital)
     return extract_prose_contract(data_root, hospital, model_name, prompt_version, live,
-                                  verbose)
+                                  verbose, repair)
 
 
 def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=None,
-                           live=False, verbose=False):
+                           live=False, verbose=False, repair=False):
     model_name = model_name or config.EXTRACTION_MODEL
     prompt_version = prompt_version or config.PROSE_PROMPT_VERSION
 
@@ -52,7 +52,9 @@ def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=
     header = read_header(data_root, hospital)
 
     recording = None if live else load_recording(model_name, prompt_version, hospital)
-    if recording is not None:
+    if recording is not None and repair:
+        model, record = RepairModel(recording, ApiModel(model_name), model_name), {}
+    elif recording is not None:
         model, record = ReplayModel(recording, model_name), None
     else:
         model, record = ApiModel(model_name), {}
@@ -65,6 +67,7 @@ def extract_prose_contract(data_root, hospital, model_name=None, prompt_version=
 
     spec["provenance"].update({
         "documents": documents,
+        "repaired_chunks": getattr(model, "repaired", []),
         "model": model_name,
         "prompt_version": prompt_version,
         "replayed": recording is not None,

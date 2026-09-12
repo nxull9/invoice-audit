@@ -107,12 +107,14 @@ class ApiModel:
                     self.schema_enforced = "response_format" in body
                 payload = response.json()
                 usage = payload.get("usage") or {}
-                return payload["choices"][0]["message"]["content"], {
+                choice = payload["choices"][0]
+                return choice["message"]["content"] or "", {
                     "input_tokens": usage.get("prompt_tokens", 0),
                     "output_tokens": usage.get("completion_tokens", 0),
                     "seconds": round(time.time() - started, 2),
                     "retries": retries,
                     "schema_enforced": bool(self.schema_enforced),
+                    "finish_reason": choice.get("finish_reason"),   # "length" means truncated
                 }
 
             last = f"{response.status_code}: {response.text[:200]}"
@@ -182,6 +184,31 @@ class ReplayModel:
         usage.setdefault("schema_enforced", False)
         usage["telemetry"] = "recorded"
         return entry.get("reply", ""), usage
+
+
+class RepairModel:
+    """Replay a recording, but call the live model for chunks whose reply never parsed.
+
+    A recorded run with one truncated reply is repaired with one call, not thirteen, and
+    the merged replies are what gets recorded afterwards.
+    """
+
+    def __init__(self, recording, live, name):
+        self.recording, self.live, self.name, self.via = recording, live, name, "repair"
+        self.calls, self.repaired = 0, []
+
+    def generate(self, system, user):
+        entry = self.recording.get(str(self.calls))
+        self.calls += 1
+        if entry and parse_json(entry.get("reply", entry) if isinstance(entry, dict) else entry)[0] is not None:
+            usage = dict(entry.get("usage", {})) if isinstance(entry, dict) else {}
+            for k, v in (("input_tokens", 0), ("output_tokens", 0), ("seconds", 0.0),
+                         ("retries", 0), ("schema_enforced", False)):
+                usage.setdefault(k, v)
+            usage["telemetry"] = "recorded"
+            return (entry["reply"] if isinstance(entry, dict) else entry), usage
+        self.repaired.append(self.calls - 1)
+        return self.live.generate(system, user)
 
 
 def recording_path(model_name, prompt_version, hospital):
