@@ -90,10 +90,13 @@ change. **Run prompt v2 on the remaining models** and keep the verifier as a reg
 test for any future prompt edit. **Replace the four
 regex compilers with the model** and keep them only as the test oracle, since the next
 contract will not be a table. **Calibrate confidence** once there are outcomes beyond
-hospital 1 — even a hundred reviewed hospital 2 flags would do. **Sequence
-differently:** I built more evaluation machinery than the exercise's budget warranted
-before the most important check — the model against the text — and found the biggest
-error last. The verifier should have existed before the first model call.
+hospital 1 — even a hundred reviewed hospital 2 flags would do. **Scope it
+like the brief says.** This repository does more than eight hours allow, and I built the
+most important check — the model against the text — last, after most of the evaluation
+machinery. Given the exercise again I would ship the engine, the submission, the verifier
+and this write-up, and stop. What an audit team would need next — flag states with
+history, monitoring of the two label-free health numbers, a web page over the same
+modules — I would list, as I am doing here, rather than build inside a take-home.
 
 ## AI assistance
 
