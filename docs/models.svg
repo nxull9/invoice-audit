@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 500" width="960" height="500" font-family="Helvetica, Arial, sans-serif" font-size="12.5">
+  <rect width="960" height="500" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- input -->
+  <rect x="20" y="180" width="170" height="120" rx="8" fill="#f3f3f3" stroke="#555"/>
+  <text x="105" y="205" text-anchor="middle" font-weight="bold" fill="#222">same input</text>
+  <text x="105" y="228" text-anchor="middle" fill="#444">one prompt file</text>
+  <text x="105" y="246" text-anchor="middle" fill="#444">+ one contract chunk</text>
+  <text x="105" y="270" text-anchor="middle" fill="#666" font-size="11">22 table batches (H3, H4, H5)</text>
+  <text x="105" y="286" text-anchor="middle" fill="#666" font-size="11">13 prose articles (H2)</text>
+
+  <!-- model boxes -->
+  <g>
+    <rect x="260" y="30" width="300" height="96" rx="8" fill="#e8f3f0" stroke="#1d7a6e" stroke-width="2"/>
+    <text x="275" y="52" font-weight="bold" fill="#222">GPT-4o  (hosted)</text>
+    <text x="275" y="72" fill="#333">tables: 22 calls, 119 s, 5.4 s per call, $0.28</text>
+    <text x="275" y="90" fill="#333">prose: 13 calls, 58 s, $0.18</text>
+    <text x="275" y="110" fill="#333">307/307 services · prose v1: 7 defects · v2: 0</text>
+
+    <rect x="260" y="140" width="300" height="96" rx="8" fill="#f3f3f3" stroke="#555"/>
+    <text x="275" y="162" font-weight="bold" fill="#222">DeepSeek V3  (hosted)</text>
+    <text x="275" y="182" fill="#333">tables: 22 calls, 557 s, 25 s per call, $0.04</text>
+    <text x="275" y="200" fill="#333">prose: 13 calls, 172 s, $0.02</text>
+    <text x="275" y="220" fill="#333">307/307 · prose v1: 2 defects · v2: 0</text>
+
+    <rect x="260" y="250" width="300" height="96" rx="8" fill="#f3f3f3" stroke="#555"/>
+    <text x="275" y="272" font-weight="bold" fill="#222">Kimi K2  (hosted)</text>
+    <text x="275" y="292" fill="#333">tables: 22 calls, 661 s, 30 s per call, $0.07</text>
+    <text x="275" y="310" fill="#333">prose: 13 calls, 280 s, $0.04</text>
+    <text x="275" y="330" fill="#333">307/307 · prose v2: 0 (one reply cut off, re-sent)</text>
+
+    <rect x="260" y="360" width="300" height="96" rx="8" fill="#f3f3f3" stroke="#555"/>
+    <text x="275" y="382" font-weight="bold" fill="#222">Qwen2.5-7B, 4-bit  (local, Colab T4)</text>
+    <text x="275" y="402" fill="#333">tables: 22 calls, 1,478 s, 67 s per call, $0 API</text>
+    <text x="275" y="420" fill="#333">prose: not run</text>
+    <text x="275" y="440" fill="#333">307/307 after fixes; dropped 40% under a nested schema</text>
+  </g>
+
+  <!-- outputs -->
+  <rect x="620" y="30" width="320" height="96" rx="8" fill="#ffffff" stroke="#1d7a6e" stroke-width="2"/>
+  <text x="635" y="52" font-weight="bold" fill="#222">output</text>
+  <text x="635" y="72" fill="#333" font-family="Menlo, monospace" font-size="11">{"service": "Advanced Cardiac Ventilation</text>
+  <text x="635" y="88" fill="#333" font-family="Menlo, monospace" font-size="11"> Support", "rate_cents": 3375, "daily_cap": 24,</text>
+  <text x="635" y="104" fill="#333" font-family="Menlo, monospace" font-size="11"> "confidence": 1.0, ...}   plain JSON</text>
+
+  <rect x="620" y="140" width="320" height="96" rx="8" fill="#ffffff" stroke="#555"/>
+  <text x="635" y="162" font-weight="bold" fill="#222">output</text>
+  <text x="635" y="182" fill="#333" font-family="Menlo, monospace" font-size="11">same values; keys in alphabetical order;</text>
+  <text x="635" y="198" fill="#333" font-family="Menlo, monospace" font-size="11">quote keeps the table pipes | ... |;</text>
+  <text x="635" y="214" fill="#333" font-family="Menlo, monospace" font-size="11">prose replies wrapped in ```json fences</text>
+
+  <rect x="620" y="250" width="320" height="96" rx="8" fill="#ffffff" stroke="#555"/>
+  <text x="635" y="272" font-weight="bold" fill="#222">output</text>
+  <text x="635" y="292" fill="#333" font-family="Menlo, monospace" font-size="11">same values; "confidence": 0.95;</text>
+  <text x="635" y="308" fill="#333" font-family="Menlo, monospace" font-size="11">table replies in ```json fences,</text>
+  <text x="635" y="324" fill="#333" font-family="Menlo, monospace" font-size="11">prose replies as one compact line</text>
+
+  <rect x="620" y="360" width="320" height="96" rx="8" fill="#ffffff" stroke="#555"/>
+  <text x="635" y="382" font-weight="bold" fill="#222">output</text>
+  <text x="635" y="402" fill="#333" font-family="Menlo, monospace" font-size="11">same values; quote keeps the pipes;</text>
+  <text x="635" y="418" fill="#333" font-family="Menlo, monospace" font-size="11">used the contract's own words for unit</text>
+  <text x="635" y="434" fill="#333" font-family="Menlo, monospace" font-size="11">basis ("per item supplied"), now accepted</text>
+
+  <!-- arrows -->
+  <g stroke="#444" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M190 240 H225 V78 H260"/>
+    <path d="M225 188 H260"/>
+    <path d="M225 240 V298 H260"/>
+    <path d="M225 298 V408 H260"/>
+    <path d="M560 78 H620"/>
+    <path d="M560 188 H620"/>
+    <path d="M560 298 H620"/>
+    <path d="M560 408 H620"/>
+  </g>
+
+  <text x="20" y="485" fill="#1d7a6e" font-size="12">Rule set before looking at the numbers: of the models that returned every service and invented none, take the fastest. That is GPT-4o.</text>
+</svg>

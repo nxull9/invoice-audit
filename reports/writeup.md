@@ -40,8 +40,15 @@ hospital 1's true 6.4%). And a text-only clustering of descriptions that agrees 
 price-based matching at homogeneity 0.89, which is two methods with no shared
 information giving the same answer.
 
-**On the model.** Hospital 2 is the only contract without an answer key, and it is
-where the biggest problem was. With the first prompt, hospital 2 flagged 25.2% of
+**On the model.** Before trusting any model on prose, I gave four of them (GPT-4o,
+DeepSeek V3, Kimi K2 and a local 4-bit Qwen2.5-7B) the same 22 table batches and
+scored them against the regex specs. All four found 307 of 307 services and invented
+none; they differed in speed (5 to 67 seconds a call) and cost (under $0.30 for the
+exam). My rule, set before the numbers: the fastest model that invents nothing. That
+was GPT-4o.
+
+Hospital 2 is the only contract without an answer key, and it is where the biggest
+problem was. With the first prompt, hospital 2 flagged 25.2% of
 invoices. The weekend lines pointed at the cause (411 lines, 80 mismatching; two
 phantom weekend uplifts would predict 82). Because hospital 2's clauses are templated,
 I could read each rule back with a pattern and compare service by service. GPT-4o had

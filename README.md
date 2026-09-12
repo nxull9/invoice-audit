@@ -81,6 +81,48 @@ time: it filed three threshold premiums as daily caps. I found that from the num
 second prompt version fixed it on all three models I tried. Details are in
 `reports/evaluation.md` and `prompts/CHANGELOG.md`.
 
+## Choosing the model
+
+I did not pick a model up front. I gave four the same job and measured them. The job was
+the table exam: the same prompt and the same 22 table batches from hospitals 3, 4 and 5,
+scored against the regex specs, so every answer had a known right value. Three of them
+then read the same 13 prose articles from hospital 2.
+
+![model comparison](docs/models.svg)
+
+| model | where it runs | services found | seconds per call | cost for the exam | prose defects (v1 → v2) |
+|---|---|---:|---:|---:|---|
+| GPT-4o | hosted | 307/307 | 5.4 | $0.28 | 7 → 0 |
+| DeepSeek V3 | hosted | 307/307 | 25.3 | $0.04 | 2 → 0 |
+| Kimi K2 | hosted | 307/307 | 30.0 | $0.07 | not run → 0 |
+| Qwen2.5-7B 4-bit | local, Colab T4 | 307/307 | 67.2 | $0 API | not run |
+
+Costs use OpenRouter's list prices at the time (about $2.50 / $10 per million tokens in
+and out for GPT-4o, $0.27 / $1.10 for DeepSeek, $0.57 / $2.30 for Kimi). The whole
+exam cost less than a dollar across all three hosted models.
+
+What the same input produced. For the first row of hospital 5's rate table, all four
+models returned the same service, rate, cap and unit basis. The differences were in
+form, not content: Kimi wrapped its reply in a code fence, DeepSeek ordered the keys
+alphabetically and kept the table's pipe characters in its quote, Qwen wrote the unit
+basis the way the contract does ("per item supplied") instead of the way the invoices do
+(`per_item`). Two of those broke my first harness, not the models. `parse_json` now
+strips fences and `canonical_basis` accepts the contract's wording. That was a lesson
+in itself: an extraction test can end up measuring its own schema.
+
+On prose the models did differ. Under the first prompt GPT-4o filed three threshold
+premiums as daily caps (7 defects) and DeepSeek invented two caps. The table exam had
+not predicted that; reading a table and reading a clause are different jobs. Prompt v2
+took all three hosted models to zero defects. Qwen ran only on the exam: it matched the
+others once the harness bugs were fixed, but at 25 times GPT-4o's latency on a T4, and
+under a nested output schema it had dropped 40% of rows, which is why the prose schema
+is flat.
+
+The decision rule was written down before the numbers came in: of the models that
+return every service and invent none, take the fastest. That is GPT-4o. DeepSeek is
+seven times cheaper and would be the pick if cost mattered more than speed; the client
+switches with one line in `config.py`, and every model's replies are in `runs/`.
+
 ## Asking the contract a question
 
 ```bash
