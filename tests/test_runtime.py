@@ -230,7 +230,7 @@ def test_pdf_routes_are_reported_and_never_crash():
     assert meta["route"] == "pdf_text_layer" and meta["exact"]
 
     # an image-only PDF goes to OCR, or fails with a note saying what to install
-    text, meta = ingest.read_contract_file("reports/ocr_demo/scanned_contract.pdf")
+    text, meta = ingest.read_contract_file("evaluation/ocr_demo/scanned_contract.pdf")
     assert meta["route"] in ("ocr", "failed")
     assert meta["exact"] is False and meta["note"]
     assert ingest.ingestion_confidence([meta]) < 1.0
