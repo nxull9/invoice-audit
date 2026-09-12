@@ -134,7 +134,7 @@ def audit_whole_hospital(hospital):
 def cmd_contract(hospital):
     if hospital not in config.HOSPITALS:
         print(f"  unknown hospital '{hospital}'"); return
-    spec = result_for(hospital)["spec"]
+    spec = spec_for(hospital)
     print()
     for k, v in summarise(spec).items():
         print(f"  {k:20} {v}")
@@ -188,9 +188,20 @@ def cmd_ask(words):
         ask_mod.ask_every_hospital(question, {h: index_for(h) for h in config.HOSPITALS}, model)
 
 
+_specs = {}         # hospital -> spec; a question about a contract needs no invoices
+
+
+def spec_for(hospital):
+    if hospital in _results:
+        return _results[hospital]["spec"]
+    if hospital not in _specs:
+        _specs[hospital] = audit.load_spec(DATA, hospital)
+    return _specs[hospital]
+
+
 def rules_for(hospital):
     """The verified rules table the model may answer set questions from."""
-    return spec_to_table(result_for(hospital)["spec"])
+    return spec_to_table(spec_for(hospital))
 
 
 def cmd_explain(invoice_id):
