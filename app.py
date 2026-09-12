@@ -353,7 +353,7 @@ def run(command):
 def main(argv):
     load_env()
     if argv:
-        run(" ".join(argv))
+        run(shlex.join(argv))            # keep a quoted service name as one argument
         return
     print("invoice audit -- five hospitals, five contracts. Type `help`.")
     while True:
