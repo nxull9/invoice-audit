@@ -203,6 +203,17 @@ wrong fields while producing 76 records in a row, which is why one section namin
 three fields fixed it. Asked for an MRI rate, which no clause states, it answered that
 the contract does not specify one, with no clause and no quote.
 
+**6.6 The model at arithmetic, measured.** Asked what 15 hours of a service on a
+Saturday would cost, the model found the right clause, quoted it, correctly declined to
+invent a weekend uplift, deferred to the engine as its prompt requires — and computed
+68,656.25 cents. The clause raises the rate *for that Service Day* once ten hours are
+exceeded, so all fifteen hours are priced at the higher rate: 79,215. The model applied a
+marginal, tax-bracket reading that contracts usually use and this one does not, and left
+a fraction of a cent. Asked to count capped services from an 80-row table it said 5 of
+8, and listed 4 of 6 bundled services. Rates it quoted were right every time. Counting
+and arithmetic now happen in Python (`ask` receives computed counts; `price` computes
+costs) and the model is left with what it is good at: reading and explaining.
+
 ## 7. Systematic failure modes
 
 Four ways this system goes wrong, each with an example.

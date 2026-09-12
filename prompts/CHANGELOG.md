@@ -190,3 +190,12 @@ and tells the model to copy them, never to recount, and to name both services in
 
 **What is being tested.** The same three questions should now return 8 (two at 24),
 6 bundled services in 3 pairs, and 4 two-tier discounts, with SOURCE "summary".
+
+**Arithmetic through `ask`, measured.** Asked what 15 hours of Ambulatory Vascular
+Infusion Therapy on a Saturday would cost, gpt-4o found clause 22.2, quoted it, invented
+no weekend uplift, and deferred to the engine as instructed — and still got the number
+wrong: 10 × 4225 + 5 × 5281.25 = 68,656.25. The clause says the rate *for that Service
+Day* rises once the day exceeds ten hours, so all fifteen are priced at 5,281: 79,215
+cents. The model applied the rule the way tariffs usually work, not the way this contract
+says, and left a fraction of a cent. `price` now answers such questions from the engine
+with every step shown; `ask` remains for what the contract *says*.

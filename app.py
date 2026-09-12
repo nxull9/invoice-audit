@@ -8,7 +8,9 @@ that call a model are `ask` (always) and `audit`/`submit` on a prose hospital wh
 extraction has not been recorded (never, for the shipped recordings).
 """
 
+import datetime
 import os
+import shlex
 import sys
 import textwrap
 
@@ -20,6 +22,7 @@ from src.compile_contract import COMPILERS
 from src.contract_table import spec_to_table
 from src.contracts import summarise
 from src.data import load_invoices, load_labels
+from src.pricing import quote
 from src.llm import ApiModel
 
 DATA = str(config.DATA)
@@ -29,6 +32,7 @@ HELP = """
   ask hospital_4 <question>  answer from that hospital's contract only (h4 also works)
   ask <question>             ask every contract; each answers from its own clauses
   explain INV-H4-000105      the model narrates the audit result in plain English
+  price h2 "vascular infusion" 15 2024-06-08   what N units would cost, computed by the engine
   contract hospital_2        show the rules read from a contract
   extract hospital_2 [model] [prompt]   read a prose contract with a model (live if unrecorded)
   evaluate                   score hospital 1 against its labels
@@ -247,6 +251,48 @@ def cmd_extract(hospital, model=None, version=None):
     _results.pop(hospital, None)              # the cached audit used the old spec
 
 
+def find_service(spec, words):
+    """The one service whose name contains every word given, or the candidates."""
+    wanted = [w.lower() for w in words.split()]
+    hits = [n for n in spec["services"] if all(w in n.lower() for w in wanted)]
+    return (hits[0], []) if len(hits) == 1 else (None, hits)
+
+
+def cmd_price(words):
+    """`price h2 "vascular infusion" 15 [YYYY-MM-DD] [prior=N] [facility=F] [tier=T] [bundled]`"""
+    try:
+        parts = shlex.split(" ".join(words))
+    except ValueError as exc:
+        print(f"  {exc}"); return
+    hospital = hospital_named(parts[0]) if parts else None
+    if not hospital or len(parts) < 3:
+        print("  usage: price h2 \"part of the service name\" 15 [2024-06-08] [prior=120] [facility=F1] [tier=T2] [bundled]")
+        return
+    spec = spec_for(hospital)
+    service, candidates = find_service(spec, parts[1])
+    if service is None:
+        print("  " + ("no service matches" if not candidates else "which one?\n    " + "\n    ".join(candidates))); return
+    quantity = int(parts[2])
+    date, options = datetime.date(2024, 6, 5), {}
+    for extra in parts[3:]:
+        if extra.count("-") == 2:
+            date = datetime.date.fromisoformat(extra)
+        elif "=" in extra:
+            key, _, value = extra.partition("=")
+            options[{"prior": "prior_units", "facility": "facility_code", "tier": "plan_tier"}.get(key, key)] = int(value) if value.isdigit() else value
+        elif extra == "bundled":
+            options["with_partner"] = True
+    q = quote(spec, service, quantity, date, **options)
+    print(f"\n  {q['service']}  ({q['unit_basis']})   {quantity} units on {date:%A %d %B %Y}")
+    for label, value in q["steps"]:
+        print(f"    {value:>9,}   {label}")
+    print(f"    {'':>9}   x {q['billable']} billable unit(s)")
+    print(f"    {q['total']:>9,}   total  (GBP {q['total'] / 100:,.2f})")
+    for a in q["assumptions"]:
+        print(f"  assumed: {a}")
+    print()
+
+
 def cmd_evaluate():
     r = result_for(config.DEV_HOSPITAL)
     labels = load_labels(DATA)
@@ -286,6 +332,8 @@ def run(command):
             cmd_ask(command.strip().split()[1:])
         elif verb == "explain" and len(args) == 1:
             cmd_explain(args[0])
+        elif verb == "price":
+            cmd_price(command.strip().split()[1:])
         elif verb == "contract" and len(args) == 1:
             cmd_contract(args[0])
         elif verb == "extract" and len(args) >= 1:

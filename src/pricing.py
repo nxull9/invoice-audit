@@ -235,3 +235,75 @@ def reprice(spec, units, line_items, resolution):
     li["alternatives"] = [o["alt"] for o in out]
     li["disallowed"] = pd.Series([o["disallowed"] for o in out], index=li.index, dtype=object)
     return li
+
+
+def quote(spec, service, quantity, service_date, facility_code=None, plan_tier=None,
+          prior_units=0, with_partner=False):
+    """Price one hypothetical line under the contract, showing every step.
+
+    `quantity` is the patient's whole-day quantity of this service; `prior_units` is the
+    cumulative utilisation before this line (0 means no volume discount can apply);
+    `with_partner` says the bundle partner was delivered the same day. The assumptions
+    are returned so the caller can print them beside the number.
+    """
+    svc = spec["services"][service]
+    rate = rate_on(svc, service_date)
+    if rate is None:
+        raise ValueError(f"{service}: no rate in force on {service_date}")
+    steps, assumptions = [], []
+
+    partner, bundled_rate = bundle_partner(spec, service)
+    value = rate
+    if partner:
+        if with_partner:
+            value = bundled_rate
+            steps.append(("bundled rate, partner delivered the same day", value))
+        else:
+            assumptions.append(f"bundle partner ({partner}) not delivered the same day")
+            steps.append(("contracted rate", value))
+    else:
+        steps.append(("contracted rate", value))
+
+    fv = spec["facility_multipliers"].get(service, {}).get(facility_code)
+    if fv is not None:
+        value = apply(value, fv); steps.append((f"x facility {facility_code} ({fv})", value))
+    tv = spec["tier_multipliers"].get(service, {}).get(plan_tier)
+    if tv is not None:
+        value = apply(value, tv); steps.append((f"x plan tier {plan_tier} ({tv})", value))
+
+    prem = spec["threshold_premiums"].get(service)
+    if prem:
+        if quantity > prem[0]:
+            value = uplift(value, prem[1])
+            steps.append((f"+{float(prem[1]) * 100:g}% premium: {quantity} units exceeds {prem[0]} "
+                          f"in one Service Day, so the whole day is priced at the higher rate", value))
+        else:
+            assumptions.append(f"no premium: {quantity} does not exceed {prem[0]} units")
+    nbd = spec["nbd_uplifts"].get(service)
+    if nbd is not None:
+        if service_date.weekday() >= 5:
+            value = uplift(value, nbd)
+            steps.append((f"+{float(nbd) * 100:g}% non-business-day uplift ({service_date:%A})", value))
+        else:
+            assumptions.append(f"no non-business-day uplift: {service_date:%A}")
+
+    tiers = spec["volume_discounts"].get(service, [])
+    applied = None
+    for threshold, frac in tiers:
+        if prior_units > threshold:
+            applied = (threshold, frac)
+            value = discount(value, frac)
+            steps.append((f"-{float(frac) * 100:g}% volume discount: {prior_units} prior units exceeds {threshold}", value))
+            break
+    if tiers and applied is None:
+        assumptions.append(f"no volume discount: prior utilisation {prior_units} does not exceed "
+                           + " / ".join(str(t) for t, _ in sorted(tiers)))
+
+    billable = quantity
+    if svc["daily_cap"] is not None and quantity > svc["daily_cap"]:
+        billable = svc["daily_cap"]
+        steps.append((f"quantity capped at {billable} per Service Day", value))
+
+    return {"service": service, "unit_basis": svc["unit_basis"], "quantity": quantity,
+            "billable": billable, "unit_rate": value, "total": value * billable,
+            "steps": steps, "assumptions": assumptions}

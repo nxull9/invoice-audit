@@ -300,3 +300,23 @@ def test_rules_summary_counts_are_computed_not_estimated():
     assert "services with a non-business-day uplift: 8" in text
     assert "services with a threshold premium: 9" in text
     assert text.count("cumulative units") == 12          # 8 discounted services, 12 tiers
+
+
+def test_quote_prices_the_whole_day_at_the_premium_rate_not_marginally():
+    """A model answered 10 x 4225 + 5 x 5281.25. The contract says the day's rate rises."""
+    import datetime
+    from src.pricing import quote
+    spec = audit.load_spec(DATA, "hospital_2")
+    saturday = datetime.date(2024, 6, 8)
+    q = quote(spec, "Ambulatory Vascular Infusion Therapy", 15, saturday)
+    assert q["unit_rate"] == 5281 and q["total"] == 79215
+    assert not any("non-business" in label for label, _ in q["steps"])     # 22.2 has no uplift
+    assert quote(spec, "Ambulatory Vascular Infusion Therapy", 10, saturday)["total"] == 42250  # "exceeds ten"
+
+    q = quote(spec, "Emergency Renal Infusion Therapy", 3, saturday)           # 4.4: +12% weekend
+    assert q["unit_rate"] == 6636 and q["total"] == 3 * 6636
+    assert quote(spec, "Emergency Renal Infusion Therapy", 3, datetime.date(2024, 6, 5))["unit_rate"] == 5925
+
+    q = quote(spec, "Emergency Haematology Transport Service", 2, saturday, prior_units=200)  # 8.3: -20% after 180
+    assert q["unit_rate"] == 7740
+    assert q["assumptions"] == []
