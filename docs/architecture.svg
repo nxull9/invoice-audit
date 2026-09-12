@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <rect width="960" height="420" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- contracts -->
+  <text x="20" y="30" font-weight="bold" fill="#222">Contracts (once per hospital)</text>
+  <rect x="20" y="45" width="180" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="110" y="68" text-anchor="middle" fill="#222">4 table contracts</text>
+  <text x="110" y="88" text-anchor="middle" fill="#666">H1 H3 H4 H5</text>
+
+  <rect x="20" y="120" width="180" height="56" rx="6" fill="#e8f3f0" stroke="#1d7a6e"/>
+  <text x="110" y="143" text-anchor="middle" fill="#222">1 prose contract</text>
+  <text x="110" y="163" text-anchor="middle" fill="#666">H2, 40 pages</text>
+
+  <rect x="260" y="45" width="180" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="350" y="68" text-anchor="middle" fill="#222">regex reader</text>
+  <text x="350" y="88" text-anchor="middle" fill="#666">compile_contract.py</text>
+
+  <rect x="260" y="120" width="180" height="56" rx="6" fill="#e8f3f0" stroke="#1d7a6e"/>
+  <text x="350" y="143" text-anchor="middle" fill="#222">LLM reads, Python checks</text>
+  <text x="350" y="163" text-anchor="middle" fill="#666">llm.py, extract.py</text>
+
+  <rect x="500" y="80" width="160" height="60" rx="8" fill="#ffffff" stroke="#222" stroke-width="2"/>
+  <text x="580" y="105" text-anchor="middle" font-weight="bold" fill="#222">spec</text>
+  <text x="580" y="125" text-anchor="middle" fill="#666">rules as one dict</text>
+
+  <!-- invoices -->
+  <text x="20" y="230" font-weight="bold" fill="#222">Invoices (every run, no LLM)</text>
+  <rect x="20" y="245" width="150" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="95" y="268" text-anchor="middle" fill="#222">load CSV</text>
+  <text x="95" y="288" text-anchor="middle" fill="#666">data.py</text>
+
+  <rect x="200" y="245" width="150" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="275" y="268" text-anchor="middle" fill="#222">match services</text>
+  <text x="275" y="288" text-anchor="middle" fill="#666">resolver.py (by price)</text>
+
+  <rect x="380" y="245" width="150" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="455" y="268" text-anchor="middle" fill="#222">price every line</text>
+  <text x="455" y="288" text-anchor="middle" fill="#666">pricing.py</text>
+
+  <rect x="560" y="245" width="150" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="635" y="268" text-anchor="middle" fill="#222">find and name errors</text>
+  <text x="635" y="288" text-anchor="middle" fill="#666">checks.py, classify.py</text>
+
+  <rect x="740" y="245" width="200" height="56" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="840" y="268" text-anchor="middle" fill="#222">confidence + submission.csv</text>
+  <text x="840" y="288" text-anchor="middle" fill="#666">output.py</text>
+
+  <!-- ask -->
+  <text x="20" y="350" font-weight="bold" fill="#222">Questions (app.py ask)</text>
+  <rect x="20" y="365" width="240" height="40" rx="6" fill="#e8f3f0" stroke="#1d7a6e"/>
+  <text x="140" y="390" text-anchor="middle" fill="#222">LLM decides the question type</text>
+  <rect x="300" y="365" width="260" height="40" rx="6" fill="#f3f3f3" stroke="#555"/>
+  <text x="430" y="390" text-anchor="middle" fill="#222">cost or compare: engine answers</text>
+  <rect x="600" y="365" width="340" height="40" rx="6" fill="#e8f3f0" stroke="#1d7a6e"/>
+  <text x="770" y="390" text-anchor="middle" fill="#222">other: LLM answers from summary + table + 4 clauses</text>
+
+  <!-- arrows -->
+  <g stroke="#444" stroke-width="1.5" fill="none" marker-end="url(#a)">
+    <path d="M200 73 H260"/>
+    <path d="M200 148 H260"/>
+    <path d="M440 73 H470 V110 H500"/>
+    <path d="M440 148 H470 V110"/>
+    <path d="M580 140 V200 H455 V245"/>
+    <path d="M170 273 H200"/>
+    <path d="M350 273 H380"/>
+    <path d="M530 273 H560"/>
+    <path d="M710 273 H740"/>
+    <path d="M260 385 H300"/>
+    <path d="M580 385 H600"/>
+  </g>
+  <text x="590" y="190" fill="#666" font-size="12">the engine reads only the spec</text>
+  <text x="20" y="412" fill="#1d7a6e" font-size="11">green = a language model is involved</text>
+</svg>
