@@ -175,3 +175,18 @@ the engine. The refusal rule is unchanged.
 expected, categories, evidence lines, line items — and asks for a plain-English
 narration under 150 words. It adds no facts; it is the "LLM interprets" half of the
 principle applied to the output rather than the input.
+
+## contract_qa_v2 -> qa_v3
+
+**Why.** With the rules table in context, three set questions were put to gpt-4o about
+hospital 2. Two-tier discounts: 4 named, correct. Services with a daily cap: it said 5;
+there are 8, and it named one holder of the highest cap where two tie at 24. Bundled
+services: it listed 4 of 6. Every rate it quoted was right; every count over the 80-row
+CSV was unreliable. Counting is arithmetic, and the model was being asked to do it.
+
+**Change.** Python computes a SUMMARY — per rule family, the count and the full list
+with values — and places it above the table. The prompt calls those counts authoritative
+and tells the model to copy them, never to recount, and to name both services in a tie.
+
+**What is being tested.** The same three questions should now return 8 (two at 24),
+6 bundled services in 3 pairs, and 4 two-tier discounts, with SOURCE "summary".

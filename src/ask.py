@@ -14,7 +14,7 @@ import textwrap
 from src.config import PROMPTS
 from src.retrieval import VectorIndex
 
-QA_PROMPT_VERSION = "qa_v2"
+QA_PROMPT_VERSION = "qa_v3"
 EXPLANATION_PROMPT_VERSION = "explanation_v1"
 
 
@@ -47,13 +47,44 @@ TABLE_COLUMNS = ["service", "unit_basis", "rate_cents", "daily_cap", "nbd_uplift
                  "discount_pct", "bundle_partner"]
 
 
+def rules_summary(spec):
+    """Counts and lists per rule family, computed in Python.
+
+    A model reading an 80-row CSV counted 8 capped services as 5 and listed 4 of 6
+    bundled services. Counting is arithmetic; it is done here and handed over as fact.
+    """
+    svc = spec["services"]
+    caps = sorted((n, v["daily_cap"]) for n, v in svc.items() if v["daily_cap"] is not None)
+    nbd = sorted((n, f) for n, f in spec["nbd_uplifts"].items())
+    prem = sorted((n, t, f) for n, (t, f) in spec["threshold_premiums"].items())
+    disc = sorted((n, tiers) for n, tiers in spec["volume_discounts"].items())
+    pct = lambda f: f"{float(f) * 100:g}%"
+    lines = [
+        f"services: {len(svc)}",
+        f"services with a daily cap: {len(caps)}",
+        *[f"  - {n}: cap {c} per patient per Service Day" for n, c in caps],
+        f"services with a non-business-day uplift: {len(nbd)}",
+        *[f"  - {n}: +{pct(f)} on a Saturday or Sunday" for n, f in nbd],
+        f"services with a threshold premium: {len(prem)}",
+        *[f"  - {n}: +{pct(f)} when more than {t} units in one Service Day" for n, t, f in prem],
+        f"services with a volume discount: {len(disc)}",
+        *[f"  - {n}: " + "; ".join(f"-{pct(f)} after {t} cumulative units" for t, f in sorted(tiers))
+          for n, tiers in disc],
+        f"bundles: {len(spec['bundles'])} pairs, {2 * len(spec['bundles'])} services",
+        *[f"  - {a} ({svc[a]['rates'][0]['cents']} -> {ra} cents) with {b} ({svc[b]['rates'][0]['cents']} -> {rb} cents)"
+          for a, b, ra, rb in spec["bundles"]],
+        f"services with none of these rules: {len([n for n in svc if n not in dict(caps) and n not in spec['nbd_uplifts'] and n not in spec['threshold_premiums'] and n not in spec['volume_discounts'] and not any(n in pair[:2] for pair in spec['bundles'])])}",
+    ]
+    return "\n".join(lines)
+
+
 def rules_table_text(table):
     """The hospital's rules as compact CSV, blank where a rule does not apply."""
     cols = [c for c in TABLE_COLUMNS if c in table.columns]
     return table[cols].to_csv(index=False, na_rep="")
 
 
-def ask(question, index, model, hospital, k=4, show_context=True, table=None):
+def ask(question, index, model, hospital, k=4, show_context=True, table=None, spec=None):
     """Answer from one hospital's contract: its rules table plus the k most relevant clauses.
 
     The table carries every service, so questions across services (which, how many,
@@ -68,6 +99,8 @@ def ask(question, index, model, hospital, k=4, show_context=True, table=None):
         f"[{i + 1}] ({h['document']} · {h['section']})\n{h['text']}"
         for i, h in enumerate(hits))
     parts = []
+    if spec is not None:
+        parts.append(f"SUMMARY (counts and lists computed by the audit engine; authoritative):\n{rules_summary(spec)}")
     if table is not None:
         parts.append(f"RULES TABLE ({len(table)} rows):\n{rules_table_text(table)}")
     parts.append(f"CLAUSES:\n{clauses}")

@@ -183,7 +183,8 @@ def cmd_ask(words):
         print(f"  {exc}\n  `ask` calls a model live. Put OPENROUTER_API_KEY=... in .env and try again.")
         return
     if hospital:
-        ask_mod.ask(question, index_for(hospital), model, hospital, table=rules_for(hospital))
+        ask_mod.ask(question, index_for(hospital), model, hospital,
+                    table=rules_for(hospital), spec=spec_for(hospital))
     else:
         ask_mod.ask_every_hospital(question, {h: index_for(h) for h in config.HOSPITALS}, model)
 

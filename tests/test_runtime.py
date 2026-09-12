@@ -289,3 +289,14 @@ def test_prompt_v2_reads_hospital_2_with_no_defects_on_both_models():
         defects_v2, _ = verify(v2, contract, show=False)
         assert len(defects_v1) > 0, model            # v1 was measurably wrong
         assert defects_v2 == [], (model, defects_v2) # v2 is not
+
+
+def test_rules_summary_counts_are_computed_not_estimated():
+    from src import ask as ask_mod
+    spec = audit.load_spec(DATA, "hospital_2")
+    text = ask_mod.rules_summary(spec)
+    assert "services with a daily cap: 8" in text
+    assert "bundles: 3 pairs, 6 services" in text
+    assert "services with a non-business-day uplift: 8" in text
+    assert "services with a threshold premium: 9" in text
+    assert text.count("cumulative units") == 12          # 8 discounted services, 12 tiers
