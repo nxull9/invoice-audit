@@ -40,28 +40,26 @@ hospital 1's true 6.4%). And a text-only clustering of descriptions that agrees 
 price-based matching at homogeneity 0.89, which is two methods with no shared
 information giving the same answer.
 
-**On the model.** Before trusting any model on prose, I gave four of them (GPT-4o,
-DeepSeek V3, Kimi K2 and a local 4-bit Qwen2.5-7B) the same 22 table batches and
-scored them against the regex specs. All four found 307 of 307 services and invented
-none; they differed in speed (5 to 67 seconds a call) and cost (under $0.30 for the
-exam). My rule, set before the numbers: the fastest model that invents nothing. That
-was GPT-4o.
+**On the model.** I gave four models (GPT-4o, DeepSeek V3, Kimi K2, a local 4-bit
+Qwen2.5-7B) the same 22 table batches, scored against the regex specs. All four found
+307 of 307 services and invented none; they differed in speed (5 to 67 s a call) and
+cost. My rule, set before the numbers: the fastest model that invents nothing, which was
+GPT-4o.
 
 Hospital 2 is the only contract without an answer key, and it is where the biggest
-problem was. With the first prompt, hospital 2 flagged 25.2% of
-invoices. The weekend lines pointed at the cause (411 lines, 80 mismatching; two
-phantom weekend uplifts would predict 82). Because hospital 2's clauses are templated,
-I could read each rule back with a pattern and compare service by service. GPT-4o had
-filed three threshold premiums as daily caps. Every number was right; the field was
-wrong. I wrote a second prompt version that adds one section showing the three
-look-alike sentence types side by side, ran it on GPT-4o, DeepSeek and Kimi K2, and
-checked again: 7 defects to 0, 2 to 0, and 0. Hospital 2 now reproduces 99.49% of its
-lines and flags 6.8%.
+problem was. With the first prompt it flagged 25.2% of invoices. The weekend lines
+pointed at the cause (411 lines, 80 mismatching; two phantom weekend uplifts would
+predict 82). Because hospital 2's clauses are templated, I could read each rule back
+with a pattern and compare service by service. GPT-4o had filed three threshold premiums
+as daily caps: every number right, the field wrong. A second prompt version showing the
+three look-alike sentence types side by side took GPT-4o from 7 defects to 0 and
+DeepSeek from 2 to 0; Kimi K2 also read it clean. Hospital 2 now reproduces 99.49% of
+its lines and flags 6.8%.
 
 I also tested the question-answering command with 274 generated questions with known
-answers. Where the model had to count or multiply it failed (it listed 6 of 7 services,
-and computed 63,221 x 3 as 189,915), so counting and arithmetic moved to Python. The
-final version answered 137 of 137, including every off-topic and injection question.
+answers. Where the model had to count or multiply it failed (6 of 7 services listed;
+63,221 x 3 given as 189,915), so counting and arithmetic moved to Python. The final
+version answered 137 of 137, including every off-topic and injection question.
 
 ## Where I was uncertain, and why
 
@@ -81,9 +79,8 @@ date (two). If hospitals 2 to 5 differ, nothing in my output would show it.
 
 **Hospital 2's Service Day.** It runs 07:00 to 06:59 and the data has no times. I read
 the recorded date as the start of the Service Day and wrote down what would prove me
-wrong: systematic weekend mismatches on the eight uplift services. After extraction I
-measured it: 4 of 335 weekend lines, which is normal noise. The reading held, but it
-was a reading.
+wrong: systematic weekend mismatches on the eight uplift services. Measured after
+extraction: 4 of 335 weekend lines, normal noise. The reading held, but it was a reading.
 
 **Confidence.** It is built from evidence (category strength times service match
 strength times contract source) and it is an ordering, not a probability. There is
@@ -91,26 +88,20 @@ nothing to calibrate it against beyond hospital 1, where everything is right.
 
 ## What I would do differently with another week
 
-Turn on schema enforcement for the prose extraction. I left it off so the prompt change
-could be measured on its own; now that it is, this is the next change.
+Turn on schema enforcement for the prose extraction; I left it off so the prompt change
+could be measured alone. Replace the four regex readers with the model and keep the
+regex only as the test, because the next contract will not be a table. Run the
+question-answering test on DeepSeek and Kimi too. Calibrate confidence once there are
+reviewed outcomes beyond hospital 1.
 
-Replace the four regex readers with the model and keep the regex only as the test,
-because the next contract will not be a table.
-
-Run the question-answering test on DeepSeek and Kimi too. The extraction prompt was
-checked on three models; the Q&A prompt on one.
-
-Calibrate confidence the first time there are reviewed outcomes beyond hospital 1.
-
-Make it a live system. Today it is batch by design: a hospital is priced as a whole, in
-service date order, because cumulative discounts depend on earlier invoices, so a new
-invoice means appending its rows and re-running (about two seconds per hospital). There
-is no queue and no live feed. A deployed version would stream lines from the billing
-database in service date order per hospital; the engine itself would not change. A new
-hospital works now if its contract is a PDF: the text layer is read, or OCR if it is a
-scan, and the model reads it the same way it read hospital 2. The parts that would need
-adapting are the article splitter and the prompt examples, if the contract is written in
-a very different style. The line reproduction rate is the alarm that would tell me.
+Make it live. Today it is batch by design: a hospital is priced as a whole in service
+date order, because cumulative discounts depend on earlier invoices, so a new invoice
+means appending its rows and re-running (two seconds per hospital). There is no queue
+or live feed. A deployed version would stream lines from the billing database in that
+order per hospital; the engine would not change. A new hospital already works from a
+PDF (text layer, or OCR for a scan) as long as its contract is written like hospital
+2's; a very different style would need the article splitter and prompt examples
+adapted, and the line reproduction rate is the alarm that would tell me.
 
 Scope it the way the brief says. This repository does more than eight hours allow, and
 I built the most important check, the model against the text, last. Given the exercise
