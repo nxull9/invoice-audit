@@ -35,6 +35,7 @@ HELP = """
 """
 
 _results = {}       # hospital -> audit result, computed on first use
+_indexes = {}       # hospital -> clause index for `ask`, embedded once per session
 
 
 def load_env(path=".env"):
@@ -160,8 +161,9 @@ def cmd_ask(hospital, question):
     except RuntimeError as exc:
         print(f"  {exc}\n  `ask` calls a model live. Put OPENROUTER_API_KEY=... in .env and try again.")
         return
-    index, _ = ask_mod.clause_index(DATA, hospital)
-    ask_mod.ask(question, index, model, hospital)
+    if hospital not in _indexes:
+        _indexes[hospital], _ = ask_mod.clause_index(DATA, hospital)
+    ask_mod.ask(question, _indexes[hospital], model, hospital)
 
 
 def cmd_extract(hospital, model=None, version=None):
