@@ -42,9 +42,10 @@ def clause_index(data_root, hospital, encoder=None):
     return VectorIndex(clauses, meta, encoder), clauses
 
 
-TABLE_COLUMNS = ["service", "unit_basis", "rate_cents", "daily_cap", "nbd_uplift_pct",
-                 "premium_threshold", "premium_uplift_pct", "discount_threshold",
-                 "discount_pct", "bundle_partner"]
+TABLE_COLUMNS = ["service", "unit_basis", "rate_cents", "valid_from", "valid_to", "daily_cap",
+                 "nbd_uplift_pct", "premium_threshold", "premium_uplift_pct", "discount_threshold",
+                 "discount_pct", "bundle_partner", "bundle_rate_cents",
+                 "facility_multipliers", "tier_multipliers"]
 
 
 def rules_summary(spec):
@@ -73,6 +74,13 @@ def rules_summary(spec):
         f"bundles: {len(spec['bundles'])} pairs, {2 * len(spec['bundles'])} services",
         *[f"  - {a} ({svc[a]['rates'][0]['cents']} -> {ra} cents) with {b} ({svc[b]['rates'][0]['cents']} -> {rb} cents)"
           for a, b, ra, rb in spec["bundles"]],
+        f"exclusion windows: {len(spec['exclusions'])}",
+        *[f"  - {excluded} is not billable within {days} days of {trigger} (either direction)"
+          for excluded, days, trigger in spec["exclusions"]],
+        f"services with facility multipliers: {len(spec['facility_multipliers'])}; "
+        f"with plan-tier multipliers: {len(spec['tier_multipliers'])}"
+        + (" (the multipliers themselves are in the RULES TABLE columns facility_multipliers / tier_multipliers)"
+           if spec["facility_multipliers"] or spec["tier_multipliers"] else ""),
         f"services with none of these rules: {len([n for n in svc if n not in dict(caps) and n not in spec['nbd_uplifts'] and n not in spec['threshold_premiums'] and n not in spec['volume_discounts'] and not any(n in pair[:2] for pair in spec['bundles'])])}",
     ]
     return "\n".join(lines)
@@ -84,39 +92,49 @@ def rules_table_text(table):
     return table[cols].to_csv(index=False, na_rep="")
 
 
-def ask(question, index, model, hospital, k=4, show_context=True, table=None, spec=None):
-    """Answer from one hospital's contract: its rules table plus the k most relevant clauses.
-
-    The table carries every service, so questions across services (which, how many,
-    compare) can be answered; the clauses carry the wording, so single-service questions
-    can be quoted. Neither includes any other hospital.
-    """
+def build_context(question, index, hospital, k=4, table=None, spec=None):
+    """What the model is shown for one question: summary, table, retrieved clauses."""
     hits = index.search(question, k=k, where={"hospital": hospital})
-    if not hits and table is None:
-        return "No clauses retrieved for that hospital."
-
     clauses = "\n\n".join(
         f"[{i + 1}] ({h['document']} · {h['section']})\n{h['text']}"
         for i, h in enumerate(hits))
     parts = []
     if spec is not None:
-        parts.append(f"SUMMARY (counts and lists computed by the audit engine; authoritative):\n{rules_summary(spec)}")
+        parts.append("SUMMARY (counts and lists computed by the audit engine; authoritative):\n"
+                     + rules_summary(spec))
     if table is not None:
         parts.append(f"RULES TABLE ({len(table)} rows):\n{rules_table_text(table)}")
     parts.append(f"CLAUSES:\n{clauses}")
-    answer, usage = model.generate(answer_prompt(),
-                                   "\n\n".join(parts) + f"\n\nQUESTION: {question}")
+    return "\n\n".join(parts) + f"\n\nQUESTION: {question}", hits
 
+
+def answer(question, index, model, hospital, k=4, table=None, spec=None, prompt_version=None):
+    """Answer one question from one hospital's contract. Returns a dict, prints nothing."""
+    user, hits = build_context(question, index, hospital, k, table, spec)
+    system = open(PROMPTS / f"contract_{prompt_version or QA_PROMPT_VERSION}.txt").read()
+    text, usage = model.generate(system, user)
+    return {"answer": text, "usage": usage, "hits": hits, "hospital": hospital}
+
+
+def ask(question, index, model, hospital, k=4, show_context=True, table=None, spec=None,
+        prompt_version=None):
+    """Answer from one hospital's contract and print it: the computed summary, the rules
+    table and the k most relevant clauses go to the model; nothing from another hospital."""
+    result = answer(question, index, model, hospital, k, table, spec, prompt_version)
+    hits, usage, text = result["hits"], result["usage"], result["answer"]
+    if not hits and table is None:
+        print("No clauses retrieved for that hospital.")
+        return text
     if show_context:
         print(f"question  {question}")
         print(f"hospital  {hospital}   clauses retrieved: {len(hits)}")
         for i, h in enumerate(hits):
             print(f"   [{i + 1}] {h['score']:.3f}  {h['section'][:60]}")
         print()
-    print(textwrap.fill(answer, 92, subsequent_indent="  "))
+    print(textwrap.fill(text, 92, subsequent_indent="  "))
     print()
     print(f"[{usage['input_tokens']} in · {usage['output_tokens']} out · {usage['seconds']}s]")
-    return answer
+    return text
 
 
 RELEVANT = 0.35     # below this the best clause is unrelated to the question

@@ -320,3 +320,19 @@ def test_quote_prices_the_whole_day_at_the_premium_rate_not_marginally():
     q = quote(spec, "Emergency Haematology Transport Service", 2, saturday, prior_units=200)  # 8.3: -20% after 180
     assert q["unit_rate"] == 7740
     assert q["assumptions"] == []
+
+
+def test_retrieval_works_without_sentence_transformers(monkeypatch):
+    """The TF-IDF fallback must fit once and search with the same vocabulary."""
+    import sys
+    from src import retrieval
+    monkeypatch.setitem(sys.modules, "sentence_transformers", None)     # force the fallback
+    texts = ["4.1 In respect of Advanced Infectious Isolation Room Occupancy, GBP 1,648.25 per day",
+             "4.4 In respect of Emergency Renal Infusion Therapy, GBP 59.25 per hour, increased on a non-Business Day",
+             "8.3 Emergency Haematology Transport Service, a discount after sixty visits"]
+    meta = [{"hospital": "hospital_2"}] * 3
+    index = retrieval.VectorIndex(texts, meta)
+    assert index.encoder_name.startswith("tfidf")
+    hits = index.search("renal infusion weekend rate", k=2, where={"hospital": "hospital_2"})
+    assert hits and "Renal" in hits[0]["text"]
+    assert index.search("anything", k=1, where={"hospital": "hospital_9"}) == []

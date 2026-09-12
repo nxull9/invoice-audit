@@ -56,8 +56,12 @@ class VectorIndex:
     def __init__(self, texts, metadata, encoder=None):
         self.texts = list(texts)
         self.metadata = list(metadata)
+        # One encoder for the corpus and every later query. The TF-IDF fallback is
+        # stateful (it fits on first use), so loading it twice yields two vocabularies
+        # and a dimension mismatch on the first search.
+        encoder = encoder or load_encoder()
         self.vectors, self.encoder_name = embed(self.texts, encoder)
-        self._encode = (encoder or load_encoder())[0]
+        self._encode = encoder[0]
 
     def search(self, query, k=5, where=None):
         mask = np.ones(len(self.texts), dtype=bool)
