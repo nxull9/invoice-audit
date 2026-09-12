@@ -14,7 +14,8 @@ import textwrap
 from src.config import PROMPTS
 from src.retrieval import VectorIndex
 
-QA_PROMPT_VERSION = "qa_v1"
+QA_PROMPT_VERSION = "qa_v2"
+EXPLANATION_PROMPT_VERSION = "explanation_v1"
 
 
 def answer_prompt():
@@ -41,17 +42,37 @@ def clause_index(data_root, hospital, encoder=None):
     return VectorIndex(clauses, meta, encoder), clauses
 
 
-def ask(question, index, model, hospital, k=4, show_context=True):
-    """Retrieve the k most relevant clauses from one hospital, then answer from them."""
+TABLE_COLUMNS = ["service", "unit_basis", "rate_cents", "daily_cap", "nbd_uplift_pct",
+                 "premium_threshold", "premium_uplift_pct", "discount_threshold",
+                 "discount_pct", "bundle_partner"]
+
+
+def rules_table_text(table):
+    """The hospital's rules as compact CSV, blank where a rule does not apply."""
+    cols = [c for c in TABLE_COLUMNS if c in table.columns]
+    return table[cols].to_csv(index=False, na_rep="")
+
+
+def ask(question, index, model, hospital, k=4, show_context=True, table=None):
+    """Answer from one hospital's contract: its rules table plus the k most relevant clauses.
+
+    The table carries every service, so questions across services (which, how many,
+    compare) can be answered; the clauses carry the wording, so single-service questions
+    can be quoted. Neither includes any other hospital.
+    """
     hits = index.search(question, k=k, where={"hospital": hospital})
-    if not hits:
+    if not hits and table is None:
         return "No clauses retrieved for that hospital."
 
-    context = "\n\n".join(
+    clauses = "\n\n".join(
         f"[{i + 1}] ({h['document']} · {h['section']})\n{h['text']}"
         for i, h in enumerate(hits))
+    parts = []
+    if table is not None:
+        parts.append(f"RULES TABLE ({len(table)} rows):\n{rules_table_text(table)}")
+    parts.append(f"CLAUSES:\n{clauses}")
     answer, usage = model.generate(answer_prompt(),
-                                   f"CLAUSES:\n{context}\n\nQUESTION: {question}")
+                                   "\n\n".join(parts) + f"\n\nQUESTION: {question}")
 
     if show_context:
         print(f"question  {question}")
@@ -86,3 +107,24 @@ def ask_every_hospital(question, indexes, model, k=4):
     if not answered:
         print("No contract has a clause close to that question.")
     return answered
+
+
+def explain_with_model(explanation, model):
+    """Narrate a deterministic audit result in plain English. The model adds no facts."""
+    e = explanation
+    lines = [f"hospital: {e['hospital']}", f"invoice: {e['invoice_id']}  dated {e['invoice_date']}",
+             f"contract read from: {e['contract_source']}",
+             f"billed_total_cents: {e['billed_total_cents']}",
+             f"expected_total_cents: {e['expected_total_cents']}",
+             f"flagged: {e['flagged']}  categories: {', '.join(e['categories']) or 'none'}",
+             f"confidence: {e['confidence']}", "evidence:"]
+    lines += [f"  - {x}" for x in e["evidence"]] or ["  - none"]
+    lines.append("line items (id, date, description -> service, qty x billed rate, expected rate, adjustments):")
+    for l in e["lines"]:
+        lines.append(f"  - {l['line_id']} {l['service_date']} {l['description']!r} -> {l['service']}: "
+                     f"{l['qty']} x {l['billed_rate']}, expected {l['expected_rate']}, {l['adjustments'] or '-'}")
+    prompt = open(PROMPTS / f"invoice_{EXPLANATION_PROMPT_VERSION}.txt").read()
+    answer, usage = model.generate(prompt, "\n".join(lines))
+    print(textwrap.fill(answer, 92, subsequent_indent="  "))
+    print(f"\n[{usage['input_tokens']} in · {usage['output_tokens']} out · {usage['seconds']}s]")
+    return answer

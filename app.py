@@ -28,6 +28,7 @@ HELP = """
   audit hospital_4           audit every invoice in a hospital
   ask hospital_4 <question>  answer from that hospital's contract only (h4 also works)
   ask <question>             ask every contract; each answers from its own clauses
+  explain INV-H4-000105      the model narrates the audit result in plain English
   contract hospital_2        show the rules read from a contract
   extract hospital_2 [model] [prompt]   read a prose contract with a model (live if unrecorded)
   evaluate                   score hospital 1 against its labels
@@ -182,9 +183,31 @@ def cmd_ask(words):
         print(f"  {exc}\n  `ask` calls a model live. Put OPENROUTER_API_KEY=... in .env and try again.")
         return
     if hospital:
-        ask_mod.ask(question, index_for(hospital), model, hospital)
+        ask_mod.ask(question, index_for(hospital), model, hospital, table=rules_for(hospital))
     else:
         ask_mod.ask_every_hospital(question, {h: index_for(h) for h in config.HOSPITALS}, model)
+
+
+def rules_for(hospital):
+    """The verified rules table the model may answer set questions from."""
+    return spec_to_table(result_for(hospital)["spec"])
+
+
+def cmd_explain(invoice_id):
+    hospital = audit.hospital_of(invoice_id)
+    if hospital not in config.HOSPITALS:
+        print(f"  '{invoice_id}' is not an invoice id like INV-H3-000142"); return
+    explanation = output.explain_invoice(result_for(hospital), invoice_id)
+    if explanation is None:
+        print(f"  {invoice_id} is not in {hospital}'s invoice file"); return
+    try:
+        model = ApiModel(config.EXTRACTION_MODEL)
+    except RuntimeError as exc:
+        print(f"  {exc}\n  `explain` calls a model live; `audit {invoice_id}` gives the same facts without one.")
+        return
+    show_invoice(explanation)
+    print("  in plain English:")
+    ask_mod.explain_with_model(explanation, model)
 
 
 def cmd_extract(hospital, model=None, version=None):
@@ -249,6 +272,8 @@ def run(command):
             cmd_audit(args[0])
         elif verb == "ask":
             cmd_ask(command.strip().split()[1:])
+        elif verb == "explain" and len(args) == 1:
+            cmd_explain(args[0])
         elif verb == "contract" and len(args) == 1:
             cmd_contract(args[0])
         elif verb == "extract" and len(args) >= 1:

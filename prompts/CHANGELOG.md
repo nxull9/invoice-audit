@@ -153,3 +153,25 @@ run. Doing so alongside the prompt change would make the two effects inseparable
 
 Rates stayed 76/76 exact on both. No defect was introduced elsewhere. gpt-4o / prose_v2
 is the production pin (decision log item 11). Both v2 recordings are in `runs/`.
+
+## contract_qa_v1 -> qa_v2
+
+**Why.** v1 gave the model the four clauses most similar to the question. That answers
+"what is the rate for X" and cannot answer "which services have both a discount and a
+weekend uplift": the answer is spread over 76 clauses and no four contain it.
+
+**Change.** The model now also receives the hospital's rules table — one row per
+service, the same table the engine's spec produces and the verifier checked — and is
+told to answer set questions from the table and wording questions from the clauses,
+naming what it counted. Arithmetic is allowed as shown steps with a stated deferral to
+the engine. The refusal rule is unchanged.
+
+**Risk.** A larger context invites summarising instead of quoting. SOURCE must say
+"table" or a clause number, so a reader can tell which it did.
+
+## invoice_explanation_v1
+
+**Purpose.** `explain INV-...` hands the model the deterministic audit result — billed,
+expected, categories, evidence lines, line items — and asks for a plain-English
+narration under 150 words. It adds no facts; it is the "LLM interprets" half of the
+principle applied to the output rather than the input.
