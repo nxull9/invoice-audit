@@ -214,6 +214,12 @@ a fraction of a cent. Asked to count capped services from an 80-row table it sai
 and arithmetic now happen in Python (`ask` receives computed counts; `price` computes
 costs) and the model is left with what it is good at: reading and explaining.
 
+**6.7 The Q&A, evaluated.** `ask` was put through 274 generated questions with known
+answers — facts, counts, lists, ties, comparisons, five kinds of arithmetic, contract
+conventions, and traps — across three prompt revisions and one architectural change
+(the model classifies a cost or comparison question; the engine answers it). Final
+configuration: 137 of 137 across all five hospitals. `reports/qa_evaluation.md`.
+
 ## 7. Systematic failure modes
 
 Four ways this system goes wrong, each with an example.

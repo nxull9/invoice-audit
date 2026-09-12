@@ -52,7 +52,10 @@ version that only adds one section putting the three look-alike sentence shapes 
 side, ran it on both models, and checked it the same way: **seven to zero, two to zero,
 rates still 76/76**. Hospital 2 now reproduces 99.49% and flags 6.8%. The tabular model
 exam had ranked the two models equal; it measured table reading and I had taken it as
-evidence about prose reading, which it was not.
+evidence about prose reading, which it was not. I then put the contract Q&A through 274 generated questions
+with known answers; where the model had to count or multiply it failed (88.7% → it named
+6 of 7, multiplied 63,221 × 3 as 189,915), so counting and arithmetic moved to Python
+and the final configuration answered 137 of 137, including every off-topic trap.
 
 ## Where I was uncertain, and why
 

@@ -132,9 +132,48 @@ higher because its rules table carries the multiplier grids (~4k tokens of conte
 
 ---
 
+### Final sweep — `qa_v5` + engine routing, every type, new seed, hospitals 1, 4, 2
+
+A different seed samples different services, and hospitals 1 and 4 had not been asked
+anything yet. 84 questions before the budget guard stopped it ($1.10); hospitals
+3 and 5 were therefore covered under v5 by round 2 only. **100.0% correct.**
+
+| hospital | n | correct | median s | p95 s |
+|---|---:|---:|---:|---:|
+| hospital_1 | 29 | 100% | 4.3 | 9.2 |
+| hospital_2 | 29 | 100% | 5.6 | 7.2 |
+| hospital_4 | 26 | 100% | 5.4 | 6.9 |
+
+Every one of the 19 types present scored 100%, including the two hospitals never seen
+during prompt development. Routes: 67 answered by the model,
+14 costs and 3 comparisons by the engine.
+
+Latency was higher in this run than in the earlier ones (median 5.2 s against
+1.6–2.6 s): the API was slower at that hour, hospital 1's rules table is the largest,
+and every model-path answer now carries the parse call's extra round trip. It is
+reported as measured.
+
+---
+
 ## 3. What this establishes
 
-_Filled in after the final sweep._
+**Under the final configuration — prompt `qa_v5`, computed summary, engine routing —
+137 questions across all five hospitals and every question type were answered with
+0 errors.** That includes 37 arithmetic questions of five kinds graded against
+the engine's own totals, 9 comparisons, and 20 traps — services from other
+hospitals, services that exist nowhere, general knowledge, poems, medical advice and
+prompt injection — every one refused in a sentence with no invented number.
+
+How it got there is the point. The model started at 88.7%. Where it failed because it
+had to *count*, Python now counts and it copies (list, tie, cap-vs-premium: fixed by
+computed summary + prompt). Where it failed because it had to *calculate*, Python now
+calculates and it only reads the question (arithmetic, comparison: fixed by routing).
+The model kept the jobs it was good at — reading a clause, choosing which one, quoting
+it, refusing what is not there — and every one of those was at or near 100% from the
+first round.
+
+Whole exercise: 274 model-graded questions, $3.42, three prompt revisions and one
+architectural change, all recorded and re-gradable.
 
 ## 4. What it does not
 

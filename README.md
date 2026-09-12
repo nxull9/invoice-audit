@@ -10,6 +10,7 @@ contract. Five hospitals, five differently written contracts, 61,211 line items.
 | Line items reproducing the billed amount, all five hospitals | **99.30 – 99.51%** |
 | Injected faults caught, zero false positives | **96 / 96** |
 | Model calls needed to reproduce the submission | **0** (replayed from `runs/`) |
+| Contract Q&A under the final prompt, all five hospitals, 19 question types incl. arithmetic and traps | **137 / 137** ([report](reports/qa_evaluation.md)) |
 
 ---
 
@@ -216,7 +217,10 @@ per-category support, and the four systematic failure modes: `reports/evaluation
 6. Hospital 2's "Service Day" runs 07:00–06:59 and the data carries no times; the
    reading taken made a falsifiable prediction that was tested and held
    (`decision_log.md` item 6).
-7. An OCR-read contract is only as good as the OCR. Rates from it are marked inexact
+7. `ask` answers a generated question set at 100%, but the set is templated from the
+   spec: exhaustive over rule kinds, not over phrasings. Latency is 2–6 s per answer and
+   rises with the size of the hospital's rules table.
+8. An OCR-read contract is only as good as the OCR. Rates from it are marked inexact
    and their confidence reduced, but a misread digit that survives repair is invisible
    downstream. The exercise's PDFs all carry text layers, so this path was exercised on
    a demo page, not on scored data.
