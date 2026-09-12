@@ -124,6 +124,9 @@ python app.py
 > contract hospital_2          the rules read from a contract, as a table
 > extract hospital_2           read the prose contract with the model (replays the recording)
 > ask hospital_4 is there a premium on hepatic infusion therapy?     (needs a key)
+> ask h2 what would 15 hours of vascular infusion therapy cost on a Saturday?   (engine answers)
+> price h2 "vascular infusion" 15 2024-06-08     the same, with no model at all
+> explain INV-H4-000105        the model narrates an audit result   (needs a key)
 > evaluate                     hospital 1 against its labels
 > submit                       write submission.csv
 ```
@@ -142,7 +145,7 @@ Audits hospitals 2–5, validates columns, types, ranges and coverage, writes
 ### Tests and evaluation
 
 ```bash
-python -m pytest tests -q            # 30 tests, ~16 s
+python -m pytest tests -q            # 36 tests, ~18 s
 python app.py evaluate               # precision / recall / F1 per category on hospital 1
 python evaluation/regression.py      # current outputs vs the pre-refactor baseline
 python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading vs the text
@@ -150,10 +153,13 @@ python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading 
 
 ### Asking the contract a question
 
-Put a key in `.env` (`OPENROUTER_API_KEY=...`; the file is git-ignored). `ask` retrieves
-the most relevant clauses from **one** hospital's contract — the hospital filter is a
-hard mask, not a similarity penalty — and the model answers only from those, quoting the
-clause. If the clauses do not contain the answer it says so.
+Put a key in `.env` (`OPENROUTER_API_KEY=...`; the file is git-ignored). `ask` first has
+the model *classify* the question. If it asks what something costs or which of two
+services is dearer, the **engine** answers — the model only extracts service, quantity,
+date and options. Otherwise the model answers from a summary the engine computed
+(counts, lists, extremes), the hospital's rules table, and the most relevant clauses from
+**that** hospital only, quoting its source. Off-contract questions get a one-sentence
+refusal. Measured in `reports/qa_evaluation.md`.
 
 ### Re-running the extraction live
 

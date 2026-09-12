@@ -199,3 +199,27 @@ Day* rises once the day exceeds ten hours, so all fifteen are priced at 5,281: 7
 cents. The model applied the rule the way tariffs usually work, not the way this contract
 says, and left a fraction of a cent. `price` now answers such questions from the engine
 with every step shown; `ask` remains for what the contract *says*.
+
+## contract_qa_v3 -> qa_v4 -> qa_v5, and question_parse_v1
+
+Measured with `evaluation/qa_eval.py`; the full account is `reports/qa_evaluation.md`.
+
+**v3 → v4.** Round 0 (97 questions, 88.7%) failed on: two marginal readings and four
+rounding errors in arithmetic; a premium threshold read as a daily cap; a tie where one
+of two services was named; a seven-item list given as six. v4 adds the four rule kinds
+side by side ("a threshold is not a cap"), an arithmetic procedure (adjust the unit rate
+step by step, round half-up after each step, the premium covers every unit that day,
+multiply last), a "name every tied service" rule and a one-sentence refusal rule. The
+summary handed to the model gains **computed** extremes and multi-tier lists so the
+model copies rather than counts. Round 1: cap / list / superlative / off-topic all to
+100%; no marginal or rounding error left.
+
+**What v4 could not fix.** With both rates written correctly the model named the smaller
+as more expensive (2 of 4); after rounding correctly it multiplied wrong, 63,221 × 3 =
+189,915 (3 of 7). A prompt teaches a procedure; it does not make a model multiply.
+
+**question_parse_v1 + v5.** The model now only *classifies* a question and, for a cost
+or a comparison, extracts the inputs as JSON; the engine computes and the text shows
+the steps. v5 adds an explicit "A = x, B = y, larger: …" procedure for any comparison
+the router lets through. Round 2: 53 questions, 100%, every arithmetic and comparison
+answered by the engine.
