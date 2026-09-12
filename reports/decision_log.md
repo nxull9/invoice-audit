@@ -18,7 +18,7 @@ facts.
 | 8 | Tie-break confidence follows the text margin; below 0.10 report **ambiguous**, name both | H5: 16 ties | a coin-flip presented as a finding |
 | 9 | Confidence = category strength × weakest resolution × contract source; arithmetic exempt | design | it is an ordering, not a calibrated probability |
 | 10 | Not built: RAG for extraction, a model for resolution, a local model in production, concurrency | measured | none; each is justified by a measurement |
-| 11 | Hospital 2 read by **deepseek**: 2 verified rule defects vs gpt-4o's 7, same prompt | rule-by-rule check vs text | two phantom caps (reach no invoice); prompt v2 unrun |
+| 11 | Hospital 2 read by **gpt-4o with prompt v2**: v1 had 7 defects (premiums filed as caps), v2 has 0 on both models | rule-by-rule check vs text | verifier is regex over one contract's wording; 0.85 multiplier kept |
 | 12 | Disallowed lines count toward cumulative utilisation | 0 line totals differ either way | none on this data |
 
 The entries below give the evidence for each.
@@ -266,13 +266,13 @@ runtime.
 
 ---
 
-## 11. Which model reads hospital 2, and how that was checked
+## 11. Which model and which prompt read hospital 2, and how that was checked
 
 **The problem.** Hospital 2 is the only contract read by a model and the only one with
 no known-correct specification to score against. It had been validated indirectly —
 does the extracted contract reproduce billed amounts at the rate the regex-read
-hospitals do — and under the first pinned model it did not: 97.8% of line items against
-99.3–99.5% elsewhere, and 283 invoices flagged (25.2%) against 6.4–7.5%.
+hospitals do — and under the first pinned model and prompt it did not: 97.8% of line
+items against 99.3–99.5% elsewhere, and 283 invoices flagged (25.2%) against 6.4–7.5%.
 
 **Locating the cause without labels.** The flag rate was an alarm, not a diagnosis. The
 subset that pointed at the cause was weekend lines on services carrying a
@@ -281,43 +281,45 @@ were phantom, 411 × 2/10 = 82 lines would mismatch. 80 observed.
 
 **A direct check.** Hospital 2's clauses use one sentence shape per rule family, so each
 rule can be read back with a pattern and compared with the model's reading service by
-service (`evaluation/verify_hospital_2.py`). Under the same prompt:
+service (`evaluation/verify_hospital_2.py`). Under prompt `prose_v1`:
 
 | model | services | rates exact | rule defects | what they were |
 |---|---:|---:|---:|---|
 | gpt-4o | 76/76 | 76/76 | **7** | three threshold premiums filed as daily caps; twice the percentage also filed as a weekend uplift and the premium dropped |
-| deepseek | 76/76 | 76/76 | **2** | two invented daily caps (16 and 6 units) |
+| deepseek | 76/76 | 76/76 | **2** | two invented daily caps |
 
 Every number either model produced is in the contract. The errors are in which field a
 number was filed under, and gpt-4o's were all one confusion.
 
-**Decision.** Pin deepseek for hospital 2. Its two remaining defects are caps no invoice
-ever reaches — zero line items on those services bill 16 or 6 units — so they change no
-prediction; they are reported here rather than hand-corrected, because editing a
-model's output by hand would make the checker the extractor.
+**The prompt revision.** `prompts/contract_extraction_prose_v2.txt` adds one section
+placing the three look-alike sentence shapes — cap, threshold premium, non-business-day
+uplift — side by side with a worked example each, and one self-check rule. Nothing else
+changed. Run live on both models and checked the same way:
+
+| model | prose_v1 defects | prose_v2 defects | v2 wall-clock |
+|---|---:|---:|---:|
+| gpt-4o | 7 | **0** | 58 s |
+| deepseek | 2 | **0** | 173 s |
+
+**Decision.** Pin gpt-4o with prose_v2. With both models clean, the rule stated before
+any numbers were seen applies again — the faster of the models that invented nothing.
 
 **Result.** 99.49% of hospital 2's line items reproduce their billed amount; 76 invoices
-flagged (6.8%); every one of the 506 billing descriptions resolves. The category
-distribution matches hospital 1's.
+flagged (6.8%); every one of the 506 billing descriptions resolves; the extracted rule
+counts (9 premiums, 8 uplifts, 8 discounted services, 3 bundle pairs, 8 caps) equal the
+contract's. The category distribution matches hospital 1's.
 
 **What the tabular exam did not predict.** On hospitals 3, 4 and 5 both models scored
 identically, and the selection rule chose gpt-4o as the faster. A structured table and a
 prose clause are different reading tasks, and a model exam on one does not transfer to
 the other. That is the finding, and it is the reason the verifier exists.
 
-**The prompt fix, and why it is unrun.** `prompts/contract_extraction_prose_v2.txt`
-adds one section placing the three look-alike sentence shapes side by side and one
-self-check rule. It was written against gpt-4o's measured failure and has not been run:
-a live call needs a credential that was not available when the submission was
-assembled. `python app.py extract hospital_2 gpt-4o prose_v2` runs it, records it, and
-prints the verifier's result. The decision log will be wrong if v2 introduces a defect
-elsewhere, which is what the run is for.
-
 **Risk.** The verifier is regex over one contract's templated wording. It is evidence
 about this contract, not a general oracle, and a sixth prose contract would need the
 model checked some other way — most likely the reproduction rate, which is what caught
-this in the first place.
-
+this in the first place. The 0.85 confidence multiplier on model-read contracts stays for
+that reason: the verifier shows the rules were read right here, not that they would be
+next time.
 ---
 
 ## 12. Does a disallowed line count toward cumulative utilisation?

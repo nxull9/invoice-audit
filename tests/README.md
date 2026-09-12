@@ -1,7 +1,7 @@
 # Tests
 
 ```bash
-python -m pytest tests -q          # 26 tests, about 15 seconds
+python -m pytest tests -q          # 30 tests, about 16 seconds
 ```
 
 `test_pipeline.py` pins the results a refactor must not move: hospital 1 at precision

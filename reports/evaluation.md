@@ -75,7 +75,7 @@ is a consequence of that number, not an independent achievement.
 | hospital | contract read by | invoices | line items | services | descriptions | by price | text tie-break | unknown | unresolved | reproduced | flagged |
 |---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | hospital_1 | regex | 913 | 11,415 | 108 | 488 | 476 | 0 | 12 | **0** | 99.51% | 58 (6.4%) |
-| hospital_2 | **model** (deepseek) | 1,125 | 14,360 | 76 | 506 | 493 | 0 | 13 | **0** | 99.49% | 76 (6.8%) |
+| hospital_2 | **model** (gpt-4o, prompt v2) | 1,125 | 14,360 | 76 | 506 | 493 | 0 | 13 | **0** | 99.49% | 76 (6.8%) |
 | hospital_3 | regex | 932 | 11,655 | 120 | 544 | 525 | 5 | 14 | **0** | 99.36% | 70 (7.5%) |
 | hospital_4 | regex | 835 | 10,560 | 98 | 534 | 521 | 0 | 13 | **0** | 99.35% | 63 (7.5%) |
 | hospital_5 | regex | 1,050 | 13,221 | 84 | 474 | 446 | 16 | 12 | **0** | 99.30% | 76 (7.2%) |
@@ -168,13 +168,22 @@ reading, service by service (`evaluation/verify_hospital_2.py`):
 Every number either model produced is in the contract. The errors are which *field* a
 number went into.
 
-**Decision.** Pin deepseek (decision log item 11). Its two phantom caps are never
-reached — no line on either service bills 16 or 6 units — so they change no prediction.
-They are reported, not hand-corrected.
+**6.4 The prompt revision, measured.** `prose_v2` adds one section placing the three
+look-alike sentence shapes side by side with an example each, and one self-check rule;
+nothing else changed. Run live on both models:
 
-**After the switch.** 99.49% of line items reproduce; 76 invoices flagged (6.8%); all
-506 descriptions resolve (493 by price, 13 unknown to the contract, 0 unresolved). The
-category distribution matches hospital 1's. The Service Day prediction from decision
+| model | prose_v1 defects | prose_v2 defects | rates | v2 wall-clock |
+|---|---:|---:|---:|---:|
+| gpt-4o | 7 | **0** | 76/76 | 58 s |
+| deepseek | 2 | **0** | 76/76 | 173 s |
+
+**Decision.** Pin gpt-4o with prose_v2 (decision log item 11): with both models clean,
+the pre-stated rule — the faster of the models that invented nothing — applies.
+
+**Result.** 99.49% of line items reproduce; 76 invoices flagged (6.8%); all 506
+descriptions resolve (493 by price, 13 unknown to the contract, 0 unresolved); the
+extracted rule counts equal the contract's. The category distribution matches
+hospital 1's. The Service Day prediction from decision
 log item 6 was tested: uplift services reproduce 99.46% of 1,289 lines, weekend 98.81%
 (4 of 335), weekday 99.69% — ordinary noise, not the systematic shift a wrong reading
 would produce.
@@ -183,12 +192,6 @@ would produce.
 against the regex specs — all four models read 307/307 services with no hallucinations;
 gpt-4o was fastest (119 s) and was chosen by that rule. Prose was a different task. The
 exam measured table reading and was taken as evidence about prose reading; it was not.
-
-**The prompt fix, unrun.** `prompts/contract_extraction_prose_v2.txt` places the three
-look-alike sentence shapes side by side and adds a self-check. It targets gpt-4o's
-measured confusion and has not been executed: no credential was available when the
-submission was assembled. `python app.py extract hospital_2 gpt-4o prose_v2` runs it,
-records it, and prints the verifier's result.
 
 ---
 
@@ -248,9 +251,10 @@ prose_v1. Seven such defects took hospital 2 from 6.8% to 25.2% flagged.
 
 *Why it is dangerous.* Every number is real, so nothing downstream can tell. It was
 caught only because the flag rate is compared across hospitals and the extraction is
-checked against the text. *Mitigation:* a second model with fewer defects is pinned; a
-prompt revision targets the confusion; and every confidence on the model-read hospital
-is multiplied by 0.85.
+checked against the text. *Mitigation:* one prompt section separating the three
+look-alike sentence shapes took both models to zero defects (§6.4); every confidence on
+the model-read hospital is still multiplied by 0.85, because the check covers this
+contract's wording, not the next one's.
 
 ---
 
@@ -276,10 +280,11 @@ because the only labels are hospital 1's and every hospital 1 prediction is corr
 
 ## 9. What was not attempted
 
-- **Prompt v2 was not run.** Written against a measured failure; unexecuted for want of
-  a credential. One command runs it.
+- **Prompt v2 was run on two of the four models** (gpt-4o, deepseek). Kimi K2 and the
+  local Qwen were not re-run under v2.
 - **The extraction schema is not enforced at the sampler for the prose run.** It is for
-  the tabular exam. Adding it alongside the prompt change would have confounded the two.
+  the tabular exam. Adding it alongside the prompt change would have confounded the two;
+  now that the prompt effect is measured, it is the next change to make.
 - **No confidence calibration curve.** Stated above.
 - **Cross-hospital validation of the fitted conventions.** They cannot be checked
   without labels, and are reported as assumptions in `decision_log.md`.

@@ -142,7 +142,7 @@ Audits hospitals 2–5, validates columns, types, ranges and coverage, writes
 ### Tests and evaluation
 
 ```bash
-python -m pytest tests -q            # 29 tests, ~15 s
+python -m pytest tests -q            # 30 tests, ~16 s
 python app.py evaluate               # precision / recall / F1 per category on hospital 1
 python evaluation/regression.py      # current outputs vs the pre-refactor baseline
 python evaluation/verify_hospital_2.py [model] [prompt]   # the model's reading vs the text
@@ -155,14 +155,15 @@ the most relevant clauses from **one** hospital's contract — the hospital filt
 hard mask, not a similarity penalty — and the model answers only from those, quoting the
 clause. If the clauses do not contain the answer it says so.
 
-### Running the prompt revision
+### Re-running the extraction live
 
 ```bash
-python app.py extract hospital_2 gpt-4o prose_v2
+python app.py extract hospital_2 gpt-4o prose_v2      # replays the shipped recording
+python app.py extract hospital_2 kimi-k2 prose_v2     # unrecorded: calls live, records
 ```
 
-Calls the model live, records the replies under `runs/`, and prints the rule-by-rule
-check against the contract. See `prompts/CHANGELOG.md` for why v2 exists.
+Prints the rule-by-rule check against the contract. Prompt v1 → v2 took gpt-4o from 7
+rule defects to 0 and deepseek from 2 to 0; `prompts/CHANGELOG.md` has the measurement.
 
 ---
 
@@ -197,10 +198,11 @@ per-category support, and the four systematic failure modes: `reports/evaluation
 
 ## Known limitations
 
-1. **Hospital 2 was read by a model, and the model's reading has two verified defects**
-   (two daily caps that do not exist, on services no invoice ever bills to those
-   quantities). They change no prediction and are disclosed, not hand-corrected.
-2. **The prompt revision targeting the other model's errors is written but unrun.**
+1. **Hospital 2 was read by a model.** Its reading is verified rule by rule against the
+   contract text (0 defects under prompt v2), but that check is regex over one
+   contract's templated wording — evidence about this contract, not a general oracle.
+2. **Prompt v2 was run on two of four models.** Kimi K2 and the local Qwen were not
+   re-run.
 3. `daily_cap_exceeded` expected totals are not recoverable from the contract.
 4. Four conventions were calibrated on hospital 1's labels, two of them on five and two
    examples respectively.

@@ -276,3 +276,16 @@ def test_hospital_2_loads_identically_from_its_pdf_alone(tmp_path):
     assert sorted(from_pdf["bundles"]) == sorted(from_md["bundles"])
     assert from_pdf["contract_number"] == from_md["contract_number"]
     assert from_pdf["provenance"]["documents"][0]["route"] == "pdf_text_layer"
+
+
+def test_prompt_v2_reads_hospital_2_with_no_defects_on_both_models():
+    """The revision was written against gpt-4o's measured confusion; it fixed both models."""
+    from evaluation.verify_hospital_2 import verify
+    contract = config.CONTRACTS / "hospital_2" / "master_services_agreement.md"
+    for model in ("gpt-4o", "deepseek"):
+        v1 = audit.load_spec(DATA, "hospital_2", model_name=model, prompt_version="prose_v1")
+        v2 = audit.load_spec(DATA, "hospital_2", model_name=model, prompt_version="prose_v2")
+        defects_v1, _ = verify(v1, contract, show=False)
+        defects_v2, _ = verify(v2, contract, show=False)
+        assert len(defects_v1) > 0, model            # v1 was measurably wrong
+        assert defects_v2 == [], (model, defects_v2) # v2 is not

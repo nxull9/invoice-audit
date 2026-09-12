@@ -144,10 +144,12 @@ If v2 introduces a defect elsewhere, the section over-steered and the finding ch
 **Not changed, deliberately.** The schema is not enforced at the sampler for the prose
 run. Doing so alongside the prompt change would make the two effects inseparable.
 
-**Outcome, at submission.** v2 has not been run: no credential was available when the
-submission was assembled. The production pin moved to deepseek's prose_v1 recording
-instead (2 defects, neither reaching any invoice — decision log item 11). To run v2:
+**Outcome.** Run live on both models and checked rule by rule against the contract:
 
-    python app.py extract hospital_2 gpt-4o prose_v2
+| model | prose_v1 | prose_v2 | v2 wall-clock |
+|---|---:|---:|---:|
+| gpt-4o | 7 defects | **0** | 58 s |
+| deepseek | 2 defects | **0** | 173 s |
 
-It calls the model, records the reply under `runs/`, and prints the verifier's result.
+Rates stayed 76/76 exact on both. No defect was introduced elsewhere. gpt-4o / prose_v2
+is the production pin (decision log item 11). Both v2 recordings are in `runs/`.

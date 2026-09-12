@@ -47,18 +47,20 @@ I found the most important problem. Under the first pinned model the flag rate w
 uplifts" hypothesis predicted 82), and because hospital 2's clauses are templated I
 could read each rule back with a pattern and compare service by service. GPT-4o had
 filed three threshold-premium clauses as daily caps — every number right, the field
-wrong, seven defects. DeepSeek under the same prompt made two, on caps no invoice ever
-reaches. I pinned DeepSeek; hospital 2 now reproduces 99.49% and flags 6.8%. The
-tabular model exam had ranked the two equal. It measured table reading and I had taken
-it as evidence about prose reading; it was not.
+wrong, seven defects. DeepSeek under the same prompt made two. I wrote a second prompt
+version that only adds one section putting the three look-alike sentence shapes side by
+side, ran it on both models, and checked it the same way: **seven to zero, two to zero,
+rates still 76/76**. Hospital 2 now reproduces 99.49% and flags 6.8%. The tabular model
+exam had ranked the two models equal; it measured table reading and I had taken it as
+evidence about prose reading, which it was not.
 
 ## Where I was uncertain, and why
 
-**The model's reading of hospital 2.** Two verified defects remain and are disclosed,
-not hand-edited — editing the output would make my checker the extractor. Every
-confidence on hospital 2 is multiplied by 0.85, so a reviewer sorting by confidence
-reaches it first. The prompt revision that targets GPT-4o's confusion is written and
-unrun: I had no credential when the submission was assembled. One command runs it.
+**The model's reading of hospital 2.** Zero verified defects under the final prompt —
+but the verifier is regex over one contract's templated wording, so it is evidence about
+this contract, not a promise about the next. Every confidence on hospital 2 is still
+multiplied by 0.85, so a reviewer sorting by confidence reaches it first. I ran the
+revised prompt on two of the four models, not all.
 
 **`daily_cap_exceeded` totals.** The contract caps quantity; the labels imply a smaller
 pre-inflation quantity the contract does not state. I trim to the cap, flag the invoice,
@@ -79,9 +81,10 @@ to calibrate against beyond hospital 1, where every prediction is right.
 
 ## What I would do differently with another week
 
-**Run the prompt revision on all three hosted models** and adopt the result the verifier
-supports, then **enforce the extraction schema at the sampler** for the prose run —
-I left it off so the prompt change would be measurable on its own. **Replace the four
+**Enforce the extraction schema at the sampler** for the prose run — I left it off so
+the prompt change would be measurable on its own, and now that it is, it is the next
+change. **Run prompt v2 on the remaining models** and keep the verifier as a regression
+test for any future prompt edit. **Replace the four
 regex compilers with the model** and keep them only as the test oracle, since the next
 contract will not be a table. **Calibrate confidence** once there are outcomes beyond
 hospital 1 — even a hundred reviewed hospital 2 flags would do. **Sequence
