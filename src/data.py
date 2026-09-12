@@ -1,8 +1,6 @@
-"""Load invoice data and reconstruct the invoice key.
-
-Money is read as integer cents. Dates are parsed non-destructively so unparseable
-values remain reportable. `invoice_id` is not unique — the `line_id` prefix is the
-real key, and `build_invoice_units` restores it.
+"""Loads the invoice and line-item CSV files. The important part: invoice_id is not
+unique, so the real invoice key is taken from line_id, and line items are sorted the
+way the contracts count them (service date, then line id).
 """
 
 import pandas as pd

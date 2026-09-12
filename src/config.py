@@ -1,7 +1,5 @@
-"""Project-wide paths and constants.
-
-Every monetary amount in this project is an integer number of cents.
-There are no floats anywhere in the financial path — see `pricing`.
+"""Paths, hospital names, the pinned model and prompt version, the error categories and
+the unit-basis spellings. All money in this project is integer cents.
 """
 
 from pathlib import Path

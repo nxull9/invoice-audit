@@ -1,12 +1,6 @@
-"""Reprice a hospital's line items under its contract.
-
-A single ordered pass. Cumulative volume discounts depend on utilisation prior to
-each line, so invoices are not independent and cannot be parallelised. Per-patient
-daily quantities, bundle co-occurrence and exclusion windows are precomputed.
-
-Adjustment order, identical across all contracts: bundle substitution, facility
-multiplier, plan-tier multiplier, premium or uplift, cumulative volume discount,
-with half-up rounding after each step.
+"""The engine. Works out what every line should have cost under the contract, in the
+contract's order of adjustments, rounding after each step, and also records what the
+rate would have been under each alternative reading so a difference can be named.
 """
 
 import collections

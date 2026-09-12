@@ -1,7 +1,5 @@
-"""Exact monetary arithmetic.
-
-All contracts require half-up rounding to the cent after each adjustment step,
-not once at the end. Decimal throughout; float is never used for money.
+"""Money arithmetic. Decimal only, never float, and round half-up after every step,
+because every contract says so.
 """
 
 from decimal import Decimal, ROUND_HALF_UP

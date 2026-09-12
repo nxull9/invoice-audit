@@ -1,8 +1,6 @@
-"""Audit one hospital end to end: contract -> spec -> resolve -> reprice -> findings.
-
-`load_spec` is the one place that decides how a contract is read. Tables are read by
-regex; prose is read by a model, from a recording when one exists so the result is
-reproducible without a key. Everything after that point is identical for every hospital.
+"""Runs one hospital end to end. load_spec is the one place that decides whether a
+contract is read by regex (tables) or by a model (prose); after that every hospital
+goes through the same steps.
 """
 
 import glob

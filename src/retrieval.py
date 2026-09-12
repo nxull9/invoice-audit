@@ -1,8 +1,5 @@
-"""Encode text and search it, scoped to one hospital.
-
-The hospital filter is applied before scoring, never after: a question about one
-contract must not be answered from another, however similar the wording. Falls back
-to character n-gram TF-IDF when sentence-transformers is not installed.
+"""Turns text into vectors and searches them. The hospital filter is applied before
+scoring, so a question about one contract is never answered from another.
 """
 
 import numpy as np

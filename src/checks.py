@@ -1,8 +1,5 @@
-"""Checks requiring no rate table.
-
-Seven error categories are arithmetic or calendar facts, or need only the contract
-number and term. Operates on invoice units rather than `invoice_id`, which is not
-unique; findings are reported against `invoice_id`, the submission key.
+"""Seven checks that need no contract at all: line arithmetic, invoice totals, reused
+invoice ids, malformed or impossible dates, the contract number.
 """
 
 import pandas as pd

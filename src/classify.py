@@ -1,8 +1,5 @@
-"""Classify a mispriced line by which adjustment was mishandled.
-
-The engine records the rate each alternative reading would produce, so the billed
-rate identifies the specific error rather than a generic price mismatch.
-`unit_price_mismatch` means the billed rate is not one the contract can produce.
+"""Names which rule was broken on a mispriced line by comparing the billed rate with the
+alternative rates the engine recorded.
 """
 
 import pandas as pd

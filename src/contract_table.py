@@ -1,9 +1,5 @@
-"""One table for every contract, whatever form it arrived in.
-
-A spec is a nested dict, which is the right shape for the engine and the wrong shape
-for a person. This flattens it to one row per service per rate period with the same
-columns for all five hospitals, so a reviewer can read a contract's rules against the
-document itself. It is a view of the spec; the engine reads the spec, not this table.
+"""The spec as a flat table, one row per service, for people to read. The engine reads
+the spec, not this table.
 """
 
 import pandas as pd

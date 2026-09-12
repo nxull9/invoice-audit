@@ -1,11 +1,6 @@
-"""Turn an audit into what a person or the grader reads: an explanation, a confidence,
-and submission.csv.
-
-Confidence is composed from evidence, not asserted. Three things weaken it: a finding
-whose category is a judgement rather than an arithmetic fact; a service the resolver
-was unsure about; and a contract that was read by a model rather than by regex.
-Arithmetic facts are exempt from the last two, because they hold whoever read the
-contract and however the description was resolved.
+"""Turns an audit into what a person or the grader reads: the explanation of one
+invoice, a confidence built from evidence, and submission.csv, validated before it is
+written.
 """
 
 import pandas as pd
@@ -129,9 +124,7 @@ def write_submission(results, path, expected_ids=None):
     return submission
 
 
-# --------------------------------------------------------------------------
 # Explaining one invoice
-# --------------------------------------------------------------------------
 
 def contract_source(spec):
     """One phrase saying how this contract was read, for the explanation."""

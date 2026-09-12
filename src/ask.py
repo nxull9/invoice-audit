@@ -1,9 +1,7 @@
-"""Ask a question about a contract, answered from retrieved clauses.
-
-Interactive counterpart to the batch extraction. The model only ever sees clauses
-retrieved from one hospital's contract, so an answer cannot be drawn from another
-hospital's terms or from the model's own recollection, and every answer carries the
-clauses it was based on.
+"""Answers a typed question about one contract. The model first says what kind of
+question it is: a cost or a comparison is computed by the engine; anything else is
+answered by the model from a computed summary, the rules table and the most relevant
+clauses, quoting its source.
 """
 
 import datetime

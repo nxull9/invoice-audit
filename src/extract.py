@@ -1,8 +1,6 @@
-"""Convert a model's JSON extraction into a contract spec.
-
-Every field is validated on the way in and rejected rather than coerced. The prompt
-requires a verbatim quote of the clause each rate came from; that quote is checked
-against the source text, so a fabricated rule cannot pass.
+"""Turns a model's JSON about the prose contract (hospital 2) into a spec. Every field is
+checked before it is accepted; above all, the service name must appear in the text
+the model was shown, so an invented service cannot get in.
 """
 
 import re
@@ -14,9 +12,7 @@ from src.llm import parse_json
 from src.markdown_tables import sections
 
 
-# --------------------------------------------------------------------------
 # Splitting a prose contract into units a model reads one at a time
-# --------------------------------------------------------------------------
 
 RATE_ARTICLE = "Contracted Services"
 CLAUSE = re.compile(r"^\d+\.\d+ In respect of", re.M)
@@ -290,9 +286,7 @@ def extraction_frame(extracted):
     } for r in extracted])
 
 
-# --------------------------------------------------------------------------
 # Running an extraction over a whole contract
-# --------------------------------------------------------------------------
 
 def normalise_payload(payload):
     """Accept the shapes models actually return, and report which one arrived.

@@ -1,7 +1,5 @@
-"""Read tables from the tabular contracts.
-
-Columns are matched by header text rather than position, since contracts order the
-same columns differently.
+"""Helpers to read tables out of the markdown contracts. Columns are matched by header
+text, not by position, because the contracts order the same columns differently.
 """
 
 import re

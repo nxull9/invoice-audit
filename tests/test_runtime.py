@@ -18,9 +18,7 @@ from src import audit, config, extract, llm, output
 DATA = str(config.DATA)
 
 
-# --------------------------------------------------------------------------
 # loading specs
-# --------------------------------------------------------------------------
 
 def test_hospital_is_read_from_the_invoice_id():
     assert audit.hospital_of("INV-H3-000142") == "hospital_3"
@@ -45,9 +43,7 @@ def test_tabular_hospitals_carry_full_extraction_confidence():
         assert output.extraction_confidence(audit.load_spec(DATA, h)) == 1.0
 
 
-# --------------------------------------------------------------------------
 # submission
-# --------------------------------------------------------------------------
 
 @pytest.fixture(scope="module")
 def hospital_1():
@@ -99,9 +95,7 @@ def test_reused_identifiers_report_the_later_invoice(hospital_1):
         assert collapsed.loc[collapsed.invoice_id == invoice_id, "source_seq"].item() == later.source_seq
 
 
-# --------------------------------------------------------------------------
 # confidence
-# --------------------------------------------------------------------------
 
 def test_confidence_is_composed_from_evidence():
     arithmetic = ["line_total_arithmetic", "invoice_total_mismatch"]
@@ -124,9 +118,7 @@ def test_clean_invoices_under_the_model_read_contract_are_less_confident():
     assert h2.loc[h2.flagged == 0, "confidence"].mean() < h4.loc[h4.flagged == 0, "confidence"].mean()
 
 
-# --------------------------------------------------------------------------
 # a model behaving badly
-# --------------------------------------------------------------------------
 
 def _prose_setup():
     text = open(f"{DATA}/contracts/hospital_2/master_services_agreement.md").read()
@@ -216,18 +208,14 @@ def test_api_client_needs_a_credential(monkeypatch):
         llm.ApiModel("gpt-4o")
 
 
-# --------------------------------------------------------------------------
 # the refactor changed nothing
-# --------------------------------------------------------------------------
 
 def test_outputs_match_the_pre_refactor_baseline():
     from evaluation import regression
     assert regression.run() == 0
 
 
-# --------------------------------------------------------------------------
 # contracts that arrive as PDF
-# --------------------------------------------------------------------------
 
 def test_pdf_routes_are_reported_and_never_crash():
     from src import ingest

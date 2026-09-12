@@ -23,9 +23,7 @@ DATA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
 DEV = "hospital_1"
 
 
-# --------------------------------------------------------------------------
 # model reply handling
-# --------------------------------------------------------------------------
 
 def test_parse_json_accepts_every_shape_a_model_returns():
     cases = {
@@ -61,9 +59,7 @@ def test_replay_reports_recorded_usage_and_flags_recordings_without_it():
     assert usage["input_tokens"] == 0 and usage["telemetry"] == "missing"
 
 
-# --------------------------------------------------------------------------
 # extraction validation
-# --------------------------------------------------------------------------
 
 def _chunk():
     text = open(f"{DATA}/contracts/hospital_5/network_reimbursement_agreement.md").read()
@@ -111,9 +107,7 @@ def test_extract_contract_survives_a_broken_reply():
     assert len(spec["warnings"]) >= 1
 
 
-# --------------------------------------------------------------------------
 # contracts and engine
-# --------------------------------------------------------------------------
 
 def test_every_tabular_contract_compiles_without_warnings():
     for h in ["hospital_1", "hospital_3", "hospital_4", "hospital_5"]:

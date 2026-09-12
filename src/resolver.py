@@ -1,10 +1,6 @@
-"""Resolve free-text billing descriptions to contracted services.
-
-Descriptions are abbreviated, reordered and suffixed with noise codes, so lexical
-matching alone is unreliable. A contract can only produce a small enumerable set of
-unit rates, so we match on the modal (unit_basis, unit_price_cents) of each
-description instead, and use character n-gram similarity only to break genuine price
-collisions and to flag descriptions the price identifies but the text contradicts.
+"""Matches a messy invoice description to a contracted service. Done by price, not by
+text: a contract can only produce a small set of unit prices, so a description's usual
+price identifies its service. Text similarity only breaks the rare ties.
 """
 
 import collections

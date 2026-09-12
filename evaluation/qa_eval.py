@@ -68,9 +68,7 @@ NONEXISTENT = ["MRI scan", "CT scan", "dental cleaning", "Quantum Resonance Ther
                "helicopter transfer", "cosmetic rhinoplasty"]
 
 
-# --------------------------------------------------------------------------
 # helpers
-# --------------------------------------------------------------------------
 
 def money_forms(cents):
     """Every way an answer might legitimately write an amount in cents."""
@@ -110,9 +108,7 @@ def base_rate(spec, name):
     return spec["services"][name]["rates"][0]["cents"]
 
 
-# --------------------------------------------------------------------------
 # question generation
-# --------------------------------------------------------------------------
 
 def generate(hospital, spec, all_names, per_type, seed):
     """Questions for one hospital, each with what a correct answer must contain."""
@@ -263,9 +259,7 @@ def generate(hospital, spec, all_names, per_type, seed):
     return qs
 
 
-# --------------------------------------------------------------------------
 # grading
-# --------------------------------------------------------------------------
 
 def grade(q, text, spec_names, all_names):
     """(passed, reason). Rule-based: what a correct answer must and must not contain."""
@@ -360,9 +354,7 @@ def grade(q, text, spec_names, all_names):
     return True, "correct"
 
 
-# --------------------------------------------------------------------------
 # running
-# --------------------------------------------------------------------------
 
 def load_env(path=config.ROOT / ".env"):
     if path.exists():

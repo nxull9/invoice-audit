@@ -1,4 +1,7 @@
-"""Model access: an OpenAI-compatible endpoint over plain HTTP, and a replayer for recordings."""
+"""The only file that talks to a language model. Plain HTTP, retries when the endpoint
+is busy, and a replay mode that reads saved replies from runs/ so the whole project
+runs without an API key.
+"""
 
 import json
 import os

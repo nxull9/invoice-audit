@@ -1,8 +1,6 @@
-"""The contract specification: its shape, and the identity read from its header.
-
-A spec is a plain dict, so it is printable, comparable and JSON-serialisable. Every
-compiler -- regex over tables, or a model over prose -- produces this one shape, and
-the pricing engine reads nothing else.
+"""What a contract looks like once it has been read: the spec (a plain dict of rules that
+every reader produces and the engine consumes) and the contract number and dates
+taken from the document header.
 """
 
 import glob
@@ -11,9 +9,7 @@ import re
 from datetime import datetime
 
 
-# --------------------------------------------------------------------------
 # contract identity, from the document header
-# --------------------------------------------------------------------------
 
 # The bold markers are optional: a PDF's text layer drops them.
 NUMBER = re.compile(r'\**Contract number:\**\s*(\S+)')
@@ -48,9 +44,7 @@ def read_header(data_root, hospital):
             'effective_to': end, 'documents': [os.path.basename(d) for d in docs]}
 
 
-# --------------------------------------------------------------------------
 # the spec
-# --------------------------------------------------------------------------
 
 def new_rate(cents, valid_from=None, valid_to=None):
     """A rate, optionally bounded in time.

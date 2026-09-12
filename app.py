@@ -1,11 +1,6 @@
-"""Interactive invoice audit.
-
-    python app.py                       start a prompt
-    python app.py audit INV-H3-000142   run one command and exit
-
-Contracts are read once per hospital and cached for the session. The only commands
-that call a model are `ask` (always) and `audit`/`submit` on a prose hospital whose
-extraction has not been recorded (never, for the shipped recordings).
+"""The command line for the project. Run `python app.py` and type commands: audit an
+invoice or a whole hospital, ask a contract a question, price a line, evaluate
+hospital 1, write the submission. A contract is read once per session and kept in memory.
 """
 
 import datetime
@@ -67,9 +62,7 @@ def money(cents):
     return f"{cents:,} cents  (GBP {cents / 100:,.2f})"
 
 
-# --------------------------------------------------------------------------
 # commands
-# --------------------------------------------------------------------------
 
 def cmd_audit(target):
     if target in config.HOSPITALS:

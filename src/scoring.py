@@ -1,7 +1,6 @@
-"""Score predictions against the hospital 1 labels.
-
-Detection and attribution are reported separately. Accuracy is not reported: with 58
-erroneous invoices in 913 it is uninformative.
+"""Scores hospital 1 against its labels: precision, recall and F1 per category. Accuracy
+is not reported, because most invoices are correct and flagging nothing would score
+93.6%.
 """
 
 import pandas as pd

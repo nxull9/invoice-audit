@@ -1,18 +1,6 @@
-"""Getting contract text out of whatever a provider actually sends.
-
-This exercise ships Markdown and plain text, but a provider signing on sends a PDF.
-Three routes, tried in order of how much they can be trusted:
-
-    1. Markdown or plain text        exact
-    2. PDF with an embedded text layer   exact
-    3. PDF with no text layer            OCR, and marked as such
-
-The ordering matters more than it looks. OCR misreads digits -- 5/S, 0/O, 1/l -- and a
-contract is almost entirely digits. A rate silently read as 25260 instead of 25250
-misprices every invoice touching that service and nothing downstream can detect it,
-because the wrong number is perfectly well-formed. So OCR is a last resort, every
-extraction reports which route produced it, and an OCR-derived contract carries reduced
-confidence on every rate it yields.
+"""Gets text out of a contract file. Markdown or plain text first, then a PDF's text
+layer, then OCR as the last resort. The route is recorded, because OCR can misread a
+digit and a wrong digit looks perfectly normal downstream.
 """
 
 import glob

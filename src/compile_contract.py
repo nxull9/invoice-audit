@@ -1,7 +1,6 @@
-"""Compile a tabular contract into a spec.
-
-One compiler per hospital over shared table readers. A rule naming a service absent
-from the rate schedule is recorded as a warning, never dropped silently.
+"""Reads the four table contracts (hospitals 1, 3, 4, 5) into a spec with regex. One
+function per hospital. A rule that names a service missing from the rate table
+becomes a warning, never a silent drop.
 """
 
 from datetime import date
@@ -103,9 +102,7 @@ def _doc(data_root, hospital, stem):
     return open(f"{data_root}/contracts/{hospital}/{stem}.md").read()
 
 
-# --------------------------------------------------------------------------
 # hospital 1 - a single document, one table per rule family
-# --------------------------------------------------------------------------
 
 def compile_hospital_1(data_root, hospital="hospital_1"):
     hdr = read_header(data_root, hospital)
@@ -123,9 +120,7 @@ def compile_hospital_1(data_root, hospital="hospital_1"):
     return _validate(spec)
 
 
-# --------------------------------------------------------------------------
 # hospital 3 - three documents, and an amendment that reprices by service date
-# --------------------------------------------------------------------------
 
 AMENDMENT_START = date(2025, 1, 1)
 
@@ -175,9 +170,7 @@ def compile_hospital_3(data_root, hospital="hospital_3"):
     return _validate(spec)
 
 
-# --------------------------------------------------------------------------
 # hospital 4 - single document; rates carry no cap column, caps are their own table
-# --------------------------------------------------------------------------
 
 def compile_hospital_4(data_root, hospital="hospital_4"):
     hdr = read_header(data_root, hospital)
@@ -199,9 +192,7 @@ def compile_hospital_4(data_root, hospital="hospital_4"):
     return _validate(spec)
 
 
-# --------------------------------------------------------------------------
 # hospital 5 - a facility x plan-tier multiplier grid over a base rate table
-# --------------------------------------------------------------------------
 
 def compile_hospital_5(data_root, hospital="hospital_5"):
     hdr = read_header(data_root, hospital)
