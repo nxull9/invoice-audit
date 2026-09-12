@@ -195,6 +195,14 @@ exam measured table reading and was taken as evidence about prose reading; it wa
 
 ---
 
+**6.5 The same model, asked directly.** Through `ask`, GPT-4o was asked about clause
+26.1 — the clause it had mis-filed under prompt v1. It answered correctly: a threshold
+premium, +40% for that Service Day, quoted verbatim. The v1 failure was therefore not
+comprehension but filing: the model understood the sentence and put its numbers in the
+wrong fields while producing 76 records in a row, which is why one section naming the
+three fields fixed it. Asked for an MRI rate, which no clause states, it answered that
+the contract does not specify one, with no clause and no quote.
+
 ## 7. Systematic failure modes
 
 Four ways this system goes wrong, each with an example.
