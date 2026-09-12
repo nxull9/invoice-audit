@@ -102,6 +102,16 @@ checked on three models; the Q&A prompt on one.
 
 Calibrate confidence the first time there are reviewed outcomes beyond hospital 1.
 
+Make it a live system. Today it is batch by design: a hospital is priced as a whole, in
+service date order, because cumulative discounts depend on earlier invoices, so a new
+invoice means appending its rows and re-running (about two seconds per hospital). There
+is no queue and no live feed. A deployed version would stream lines from the billing
+database in service date order per hospital; the engine itself would not change. A new
+hospital works now if its contract is a PDF: the text layer is read, or OCR if it is a
+scan, and the model reads it the same way it read hospital 2. The parts that would need
+adapting are the article splitter and the prompt examples, if the contract is written in
+a very different style. The line reproduction rate is the alarm that would tell me.
+
 Scope it the way the brief says. This repository does more than eight hours allow, and
 I built the most important check, the model against the text, last. Given the exercise
 again I would ship the engine, the submission, that check and this write-up, and stop.
