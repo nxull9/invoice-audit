@@ -99,17 +99,32 @@ def test_reused_identifiers_report_the_later_invoice(hospital_1):
 
 def test_confidence_is_composed_from_evidence():
     arithmetic = ["line_total_arithmetic", "invoice_total_mismatch"]
-    # arithmetic facts are certain whoever read the contract and however it was resolved
-    assert output.invoice_confidence(arithmetic, 0.85, 0.40) == 1.0
+    # arithmetic keeps its certainty: neither the contract reading nor the service match
+    # was involved in finding it. But no flag is reported as certain.
+    assert output.invoice_confidence(arithmetic, 0.85, 0.40) == output.FLAGGED_MAX
+    assert output.FLAGGED_MAX < 1.0
     # a rule-based finding is weakened by a model-read contract and a shaky resolution
     assert output.invoice_confidence(["premium_omitted"], 1.0, 0.98) == round(0.85 * 0.98, 3)
     assert output.invoice_confidence(["premium_omitted"], 0.85, 0.98) == round(0.85 * 0.85 * 0.98, 3)
     assert output.invoice_confidence(["premium_omitted"], 0.85, 0.40) < 0.30
     # the weakest category sets the ceiling
     assert output.invoice_confidence(["line_total_arithmetic", "daily_cap_exceeded"], 1.0, 1.0) == 0.75
+    # a category whose attribution was fitted on a few labelled examples lowers it too,
+    # even though the finding itself is arithmetic
+    assert output.invoice_confidence(["duplicate_invoice_id"], 1.0, 1.0) == 0.90
+    assert output.invoice_confidence(["service_date_after_invoice_date"], 1.0, 1.0) == 0.90
+    assert output.invoice_confidence(["line_total_arithmetic", "duplicate_invoice_id"], 1.0, 1.0) == 0.90
     # a clean invoice is never certain, and less so under a model-read contract
     assert output.invoice_confidence([], 1.0, 0.98) == round(0.95 * 0.98, 3)
     assert output.invoice_confidence([], 0.85, 0.98) < output.invoice_confidence([], 1.0, 0.98)
+
+
+def test_no_flagged_invoice_is_reported_as_certain():
+    import pandas as pd
+    submission = pd.read_csv(config.ROOT / "submission.csv")
+    flagged = submission[submission.flagged == 1]
+    assert flagged.confidence.max() <= output.FLAGGED_MAX
+    assert (submission.confidence < 1.0).all()
 
 
 def test_clean_invoices_under_the_model_read_contract_are_less_confident():

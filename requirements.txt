@@ -1,6 +1,9 @@
-pandas>=2.0
-numpy>=1.26
-scikit-learn>=1.4
-requests>=2.31
-pypdf>=5.0
-pytest>=8.0
+# Pinned so a reviewer reproduces the same submission.csv, not a nearby one.
+# Tested on Python 3.11, 3.12 and 3.13. The suite and the frozen baseline also pass on
+# pandas 3.0 / numpy 2.5, so the code is not tied to these exact releases.
+pandas==2.2.3
+numpy==2.1.3
+scikit-learn==1.5.2
+requests==2.32.3
+pypdf==5.1.0
+pytest==8.3.4

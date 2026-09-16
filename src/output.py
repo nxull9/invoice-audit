@@ -27,6 +27,19 @@ CLEAN_BASE = 0.95          # a clean invoice is never certain: an error type we 
                            # model would pass unnoticed
 UNKNOWN_CATEGORY = 0.70
 
+# Two categories where the finding is certain but pinning it on this invoice is a
+# convention I inferred from a handful of labelled examples. The arithmetic is not in
+# doubt; which invoice it belongs to is. Decision log items 1 and 2.
+CONVENTION_FITTED = {
+    "duplicate_invoice_id": 0.90,             # which of the reused pair is the offender: 5 examples
+    "service_date_after_invoice_date": 0.90,  # precedence over out_of_window: 2 examples
+}
+
+# No flagged invoice is reported as certain. Even a pure arithmetic finding is a claim
+# about an invoice whose key I reconstructed (decision log item 1), and an invoice can
+# carry an error type this system does not model.
+FLAGGED_MAX = 0.98
+
 
 def extraction_confidence(spec):
     """1.0 for a regex-read contract, less for a model-read one."""
@@ -42,13 +55,21 @@ def resolution_confidence(result, source_seq):
 
 
 def invoice_confidence(categories, extraction_conf, resolution_conf):
-    """Compose one number from the three kinds of evidence."""
-    if categories:
-        base = min(CATEGORY_STRENGTH.get(c, UNKNOWN_CATEGORY) for c in categories)
-        if all(c in ARITHMETIC for c in categories):
-            return round(base, 3)
-        return round(base * extraction_conf * resolution_conf, 3)
-    return round(CLEAN_BASE * extraction_conf * resolution_conf, 3)
+    """Compose one number from the kinds of evidence behind the flag.
+
+    The weakest category sets the ceiling, a category whose attribution rests on a
+    fitted convention lowers it further, and a flag is never reported as certain. An
+    invoice flagged only on arithmetic keeps that certainty for the arithmetic itself:
+    it is not weakened by how the contract was read or how a description was matched,
+    because neither was involved in finding it.
+    """
+    if not categories:
+        return round(CLEAN_BASE * extraction_conf * resolution_conf, 3)
+    base = min([CATEGORY_STRENGTH.get(c, UNKNOWN_CATEGORY) for c in categories]
+               + [CONVENTION_FITTED[c] for c in categories if c in CONVENTION_FITTED])
+    if not all(c in ARITHMETIC for c in categories):
+        base *= extraction_conf * resolution_conf
+    return round(min(base, FLAGGED_MAX), 3)
 
 
 def collapse_reused_ids(totals):
