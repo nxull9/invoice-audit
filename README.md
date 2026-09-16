@@ -10,7 +10,8 @@ labels. Hospitals 2 to 5 are the ones predicted in `submission.csv`.
 ```bash
 git clone https://github.com/nxull9/invoice-audit
 cd invoice-audit
-pip install -r requirements.txt
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt          # pinned; tested on Python 3.11, 3.12, 3.13
 
 python app.py audit INV-H4-000105     # one invoice: billed, expected, what is wrong, how sure
 python app.py evaluate                # hospital 1 against its labels
@@ -51,7 +52,10 @@ read once and every model reply is saved in `runs/`, so the code replays it.
 
 5. **Confidence and output.** Confidence is built from three things: how strong the
    evidence type is, how sure the service match was, and whether the contract was read by
-   regex or by a model. Arithmetic facts skip the last two. Then one row per invoice in the
+   regex or by a model. Arithmetic findings keep their certainty through the last two,
+   because neither was involved in finding them. No flag is reported as certain: the
+   ceiling is 0.98, and the two categories that rest on a convention I fitted to a
+   handful of labelled examples are capped at 0.90. Then one row per invoice in the
    template format, validated before it is written.
 
 The language model is used in two places only: reading hospital 2's contract, and the
@@ -73,6 +77,15 @@ I do not lead with the perfect score. The system recomputes rather than predicts
 the contract was read correctly, exact agreement is what you get. The numbers I trust
 are the 99.5% line reproduction and the fault injection test: I put 96 errors into
 invoices the labels call clean, and the system caught all 96 with no false positives.
+
+Because services are matched to descriptions by price, I tested whether that
+reproduction rate is circular rather than earned (`evaluation/resolution_holdout.py`).
+13,608 lines across the five hospitals are priced at a rate the matching never produced,
+because a bundle, multiplier, premium, uplift, discount or cap moved them, and those
+reproduce at 98.6% to 99.6%. Fitting the matching on half the invoices and measuring on
+the other half gives 99.35% to 99.64%. Matching by text alone instead of price drops it
+to 93.5% to 96.2%, which is the control that matters: the number is not fixed at 99% by
+the method.
 
 Hospital 2 is the one contract a model read, and the model got it wrong the first
 time: it filed three threshold premiums as daily caps. I found that from the numbers
@@ -156,8 +169,8 @@ src/
 prompts/               every prompt, versioned, with a changelog of why each changed
 runs/                  every model reply, so nothing has to be re-run
 evaluation/            fault injection, model comparison, the hospital 2 checker, baseline
-tests/                 36 tests
-reports/               evaluation.md, decision_log.md, qa_evaluation.md, writeup.md
+tests/                 37 tests
+reports/               evaluation.md, decision_log.md (+ appendix), qa_evaluation.md, writeup.md
 data/                  contracts, invoices, hospital 1 labels, submission template
 ```
 
@@ -170,7 +183,10 @@ data/                  contracts, invoices, hospital 1 labels, submission templa
   original quantity the contract does not state. I trim to the cap and give this
   category the lowest confidence. The four expected total misses are all this.
 - Confidence is an ordering, not a probability. There is nothing to calibrate it against
-  beyond hospital 1, where every prediction is right.
+  beyond hospital 1, where every prediction is right. No flagged invoice is reported
+  above 0.98, and the two convention-fitted categories are capped at 0.90.
+- No blind manual re-read of a sample of high-confidence flags and low-confidence clean
+  invoices. That is the cheapest remaining check and it needs a person, not code.
 - The hospital 2 checker is regex over one contract's wording. It proves this contract
   was read correctly. A sixth prose contract would need the model checked another way,
   most likely the line reproduction rate.
