@@ -11,7 +11,7 @@ labels. Hospitals 2 to 5 are the ones predicted in `submission.csv`.
 git clone https://github.com/nxull9/invoice-audit
 cd invoice-audit
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt          # pinned; tested on Python 3.11, 3.12, 3.13
+pip install -r requirements.txt          # pinned; tested on Python 3.13
 
 python app.py audit INV-H4-000105     # one invoice: billed, expected, what is wrong, how sure
 python app.py evaluate                # hospital 1 against its labels
