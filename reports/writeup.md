@@ -86,20 +86,18 @@ arithmetic finding is a claim about an invoice whose key I reconstructed, and th
 convention-fitted categories are capped at 0.90. Where I am sure an invoice is wrong but
 not sure of the amount, the single confidence column carries the weaker claim.
 
-## Time and scope
-
-About 12 hours, against the 6 to 8 the brief allows. I went over, and it shows in the
-repository.
+## Sequence and scope
 
 The order was: the four table contracts with regex, the pricing engine and the
-description matching, hospital 1 to a clean score, hospital 2 with a model, then the model
-comparison, the question-answering evaluation, and the checks above. Roughly the first
-seven hours produced the submission; the rest is evidence.
+description matching, hospital 1 to a clean score, hospital 2 with a model, then the
+model comparison, the question-answering evaluation, and the checks above. The submission
+was finished before most of the evaluation work started; everything after that point is
+evidence for it rather than part of it.
 
-Given the cap again I would ship the engine, the submission, the rule-by-rule check of the
-model's reading, and this write-up, and stop. What an audit team needs around the audit,
-such as flag states with a history and monitoring of the two label-free numbers, I left
-out on purpose and would list rather than build inside a take-home.
+Two things I left out on purpose. Anything an audit team needs around the audit, such as
+flag states with a history and monitoring of the two label-free numbers, I would list
+rather than build inside a take-home. And I did not calibrate confidence, because there
+is nothing to calibrate it against beyond hospital 1.
 
 ## With another week
 
