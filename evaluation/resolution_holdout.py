@@ -5,10 +5,11 @@ engine reprices to the billed amount. A reviewer asked whether that number is
 guaranteed by the matching method rather than earned. Three measurements, no argument:
 
 1. Split the lines into the ones the match makes trivial and the ones it does not. A
-   line whose expected rate equals the modal price that chose its service proves
-   little. A line where the engine applied a bundle, a multiplier, a premium, an uplift,
-   a discount or a cap is priced at a rate the match never saw, so reproducing it tests
-   the engine.
+   line whose expected unit price equals the modal price that chose its service proves
+   little. The measured set is the lines whose expected unit price differs from it,
+   because the engine applied a bundle, a facility or tier multiplier, a premium, a
+   weekend uplift or a volume discount. A daily cap is deliberately not in that list: it
+   changes the billable quantity, not the unit price.
 2. Hold out half the invoices. Fit the description-to-service mapping on the other half
    only, then measure reproduction on the held-out half, whose prices never influenced
    the mapping.
@@ -114,8 +115,9 @@ def run(hospitals=None):
         pct(d.overall), pct(d.at_modal_reproduced), pct(d.adjusted_reproduced))
     print("1. reproduction split by whether the match already fixed the rate\n")
     print(d.to_string(index=False))
-    print("\n   'adjusted_away' lines are priced at a rate the modal price never produced:")
-    print("   a bundle, multiplier, premium, uplift, discount or cap moved them.\n")
+    print("\n   'adjusted_away' = expected unit price differs from the modal price that\n"
+          "   chose the service: a bundle, multiplier, premium, uplift or discount moved it.\n"
+          "   A daily cap is not counted here; it changes quantity, not the unit price.\n")
 
     h = pd.DataFrame(held); h["reproduced"] = pct(h.reproduced)
     print("\n2. mapping fitted on half the invoices, measured on the held-out half\n")

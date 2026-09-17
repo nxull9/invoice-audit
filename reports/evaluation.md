@@ -110,9 +110,11 @@ whether that is guaranteed by the matching rather than earned by the engine. It 
 fair question and it is testable. `evaluation/resolution_holdout.py` runs three tests.
 
 **Split the lines by whether the match already fixed the rate.** A line whose expected
-rate equals the modal price that chose its service proves little. A line where the engine
-applied a bundle, a facility or tier multiplier, a premium, a weekend uplift, a discount
-or a cap is priced at a rate the matching never produced.
+unit price equals the modal price that chose its service proves little. The measured set
+is the lines whose expected unit price differs from it, because the engine applied a
+bundle, a facility or tier multiplier, a premium, a weekend uplift or a volume discount.
+A daily cap is not in that list on purpose: it changes the billable quantity, not the
+unit price, so it cannot move a line into this set.
 
 | hospital | lines | repriced to billed | priced away from the matched rate | of those, repriced to billed |
 |---|---:|---:|---:|---:|

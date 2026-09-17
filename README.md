@@ -80,9 +80,9 @@ invoices the labels call clean, and the system caught all 96 with no false posit
 
 Because services are matched to descriptions by price, I tested whether that
 reproduction rate is circular rather than earned (`evaluation/resolution_holdout.py`).
-13,608 lines across the five hospitals are priced at a rate the matching never produced,
-because a bundle, multiplier, premium, uplift, discount or cap moved them, and those
-reproduce at 98.6% to 99.6%. Fitting the matching on half the invoices and measuring on
+On 13,608 lines across the five hospitals the expected unit price is not the modal price
+that chose the service, because a bundle, a facility or tier multiplier, a premium, a
+weekend uplift or a volume discount moved the rate; those reproduce at 98.6% to 99.6%. Fitting the matching on half the invoices and measuring on
 the other half gives 99.35% to 99.64%. Matching by text alone instead of price drops it
 to 93.5% to 96.2%, which is the control that matters: the number is not fixed at 99% by
 the method.

@@ -257,9 +257,10 @@ question and it is testable, so I tested it three ways rather than argue
 (`evaluation/resolution_holdout.py`).
 
 **Split the lines by whether the match already fixed the rate.** A line whose expected
-rate equals the modal price that chose its service proves little. A line where the engine
-applied a bundle, a multiplier, a premium, an uplift, a discount or a cap is priced at a
-rate the match never saw.
+unit price equals the modal price that chose its service proves little. The measured set
+is the lines whose expected unit price differs from it, because the engine applied a
+bundle, a facility or tier multiplier, a premium, a weekend uplift or a volume discount.
+A daily cap is not in that list: it changes the billable quantity, not the unit price.
 
 | hospital | lines | reproduced | priced away from the matched rate | reproduced on those |
 |---|---:|---:|---:|---:|
