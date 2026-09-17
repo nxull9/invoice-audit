@@ -3,121 +3,132 @@
 Repository: github.com/nxull9/invoice-audit
 Predictions: `submission.csv`, 3,942 invoices for hospitals 2 to 5, 285 flagged (7.2%)
 
-## What I built
+## What I tried first
 
-The system re-prices every invoice line under the hospital's contract and compares.
+The hardest looking part was matching invoice descriptions to contract services.
+Descriptions arrive like `THER std HEP inf` and the contract calls it Standard Hepatic
+Infusion Therapy, so my first instinct was text similarity. I built it. It got most of
+them, it confused services that share words, and worst of all it had no way to say "I am
+not sure".
 
-Four of the five contracts are tables; I read those with regex. Hospital 2 is 40 pages of
-prose, so a language model reads it one article at a time, and every reply is checked
-against the text the model saw before I accept it. Everything after that is plain Python
-in integer cents: the contract's order of adjustments, rounding half up after each step,
-cumulative discounts in service date order. The model never sees an invoice and never
-produces a total.
+Then I noticed something about the contracts. A contract can only produce a small set of
+unit prices: the base rate, times any multiplier, plus a premium, minus a discount,
+rounded after each step. That set is short enough to list. So instead of comparing words
+I compared each description's usual price against every price the contract can generate.
+That matched every description in all five hospitals with no model call, and text
+similarity was left with one small job, breaking the rare ties where two services cost
+the same. I kept it rather than deleting it, which mattered later.
 
-Matching descriptions to services did not need a model. A contract can only produce a
-small set of unit prices, so a description's usual price identifies the service, and text
-similarity only breaks ties. Every description in all five hospitals matched this way.
+The rest follows the same split. A model reads hospital 2's contract, because it is 40
+pages of prose and nothing else will. Everything to do with money is plain Python in
+integer cents, in the contract's order of adjustments, rounding half up after each step.
+The model never sees an invoice and never produces a total.
 
-## How I measured
+## What I measured, and what worried me
 
-**On the labelled hospital.** Precision and recall 1.000 across all 18 categories, 909 of
-913 expected totals exact. I do not treat that as the evidence: the system recomputes
-rather than predicts, so a correct contract reading gives exact agreement by
-construction. The number I trust is that 99.51% of hospital 1's 11,415 line items reprice
-to the billed amount to the cent. Accuracy is not reported: flagging nothing scores 93.6%.
+Hospital 1 comes out at precision and recall 1.000 across all 18 categories, 909 of 913
+expected totals exact. That made me suspicious rather than pleased. The system does not
+predict, it recomputes, so a correct contract reading gives exact agreement by
+construction. The score is a consequence of something else, so I went looking for it.
 
-**Testing that number rather than trusting it.** Services are matched by price, so
-reproducing a price could be circular. On 13,608 lines the expected unit price is not the
-modal price that chose the service, because a bundle, a facility or tier multiplier, a
-premium, a weekend uplift or a volume discount moved the rate; those reproduce at 98.6% to
-99.6%. Fitting the matching on half the invoices and
-measuring on the held-out half gives 99.35% to 99.64%. Matching by text alone drops
-reproduction to 93.5% to 96.2%, which is the control: the number is not pinned at 99% by
-the method.
+The number I actually trust is that 99.51% of hospital 1's 11,415 line items reprice to
+the billed amount, to the cent. One misread rate would show up there as hundreds of
+mismatches. I never report accuracy, because flagging nothing scores 93.6%.
 
-**Against memorising hospital 1.** Four decisions were fitted on its labels, some on two
-examples, so I injected errors into invoices the labels call clean: 96 of 96 caught, no
-false positives on 759 controls, same on three seeds. That covers eight of eighteen
-categories.
+Then I realised that number might be rigged: I match services by price, so of course
+prices reproduce. I tested it three ways. First I separated the lines where a bundle, a
+multiplier, a premium, an uplift or a discount had moved the rate away from the price
+that did the matching. There are 13,608 of them and they reproduce at 98.6% to 99.6%, the
+same as everything else. Second, I fitted the matching on half the invoices and measured
+only on the other half, whose prices had never been seen: 99.35% to 99.64%. Third I threw
+the price away and matched by text alone, the method from my first attempt, which dropped
+reproduction to 93.5% to 96.2%. That last one is the answer I wanted. If the number were
+an artefact of the method it would sit at 99% however I matched, and it does not.
 
-**On the hospitals with no labels.** The reproduction rate above, and a text-only
-clustering of descriptions that agrees with the price-based matching at homogeneity 0.89.
-Flag rates (6.8% to 7.5% against hospital 1's 6.4%) are an anomaly alarm, not proof: a
-rate can look right while false positives and negatives cancel.
+Four of my decisions were fitted on hospital 1's labels, some on two examples, so I also
+injected errors into invoices the labels call clean: 96 of 96 caught, no false positives
+on 759 controls, same on three seeds. That covers eight of eighteen categories, so it is
+evidence rather than proof.
 
-**On the model.** Four models read the same 22 table batches, scored against the regex
-specs; all four found 307 of 307 services and invented none, differing only in speed and
-cost. Hospital 2 has no answer key and is where the biggest problem was: under the first
-prompt it flagged 25.2% of invoices. Because its clauses are templated I could read each
-rule back with a pattern and compare service by service. GPT-4o had filed three threshold
-premiums as daily caps: every number right, the field wrong. One added prompt section,
-showing the three look-alike sentence types side by side, took GPT-4o from 7 defects to 0
-and DeepSeek from 2 to 0, and Kimi read it clean. Hospital 2 now reproduces 99.49%.
+## The four models, and what my comparison missed
 
-## Four ways it goes wrong
+I did not want to pick a model by reputation, so I gave four the same job: read the same
+22 table batches, scored against the contracts I had already read with regex. All four
+(GPT-4o, DeepSeek V3, Kimi K2, and a local 4-bit Qwen2.5-7B) found 307 of 307 services and
+invented nothing. They differed only in speed and cost, from 5 seconds a call for GPT-4o
+to 67 for Qwen on a Colab T4. My rule, written down before I looked: the fastest model
+that invents nothing. That was GPT-4o.
 
-**The amount for a daily cap is not recoverable.** The contract caps the quantity; the
-labels imply a smaller original quantity it does not state. All four expected-total misses
-are this category, which carries the lowest confidence.
+Funnily enough, the exam told me almost nothing about the job that mattered. On hospital
+2's prose, GPT-4o made seven mistakes and DeepSeek only two. Reading a table and reading
+a clause are different skills, and I had tested the wrong one.
 
-**A model files a real number in the wrong field.** The seven defects above were true
-numbers in wrong fields, which nothing downstream can detect. Only the flag rate and the
-rule-by-rule check caught them.
+## The mistake that nearly shipped
 
-**Conventions fitted on a handful of examples.** Which invoice of a reused id is the wrong
-one came from five examples; whether an out-of-term date is also reported as post-dated,
-from two.
+Hospital 2 flagged 25.2% of its invoices while every other hospital sat near 7%. Nothing
+crashed and no single number looked strange. I noticed only because I compare flag rates
+across hospitals.
 
-**A price that matches by chance.** A description for a service not in the contract can
-still land on a derivable price. Two signals guard it, tuned on twelve examples.
+To find it I picked the subset that could prove me wrong: weekend lines on services with
+a weekend uplift. There were 411, and 80 mismatched, and if two of the ten uplift
+services were invented the arithmetic predicted 82. Then, because hospital 2's clauses
+all follow one sentence shape, I could read each rule back with a pattern and compare it
+with the model's answer service by service. GPT-4o had filed three threshold premiums as
+daily caps. Every number was right; the field was wrong.
 
-## Where I was uncertain
+That is the failure I would warn anyone about. A wrong value that is well formed looks
+exactly like a right one, so nothing downstream catches it. The fix was one added section
+in the prompt showing the three look-alike sentence types side by side, which took GPT-4o
+from seven defects to zero and DeepSeek from two to zero, and Kimi read it clean. Hospital
+2 now reproduces 99.49% and flags 6.8%.
 
-**Hospital 2's reading.** Zero defects under the final prompt, but the checker is regex
-over one contract's wording: it proves this contract was read right, not the next one.
-Every confidence on hospital 2 is multiplied by 0.85 for that reason.
+I hit the same pattern testing the question-answering command with 274 generated
+questions. The model would quote the right clause and then multiply wrong (63,221 times 3
+came back as 189,915), or count five when the answer was eight. So counting and arithmetic
+moved into Python and the model only reads the question. It then answered 137 of 137.
 
-**Hospital 2's Service Day.** It runs 07:00 to 06:59 and the data has no times. I read the
-recorded date as the start and wrote down what would prove me wrong: systematic weekend
-mismatches on the eight uplift services. Measured afterwards, 4 of 335. The reading held,
-but it was a reading.
+## Where else it goes wrong, and where I am unsure
 
-**Confidence.** An ordering, not a probability, with nothing to calibrate against beyond
-hospital 1. So I put two limits in: no flag is reported as certain, since even an
-arithmetic finding is a claim about an invoice whose key I reconstructed, and the two
-convention-fitted categories are capped at 0.90. Where I am sure an invoice is wrong but
-not sure of the amount, the single confidence column carries the weaker claim.
+The daily cap category is the one I could not solve. The contract caps the quantity, the
+labels imply a smaller original quantity it never states, and all four expected-total
+misses are this. The flag is right and the amount is not, so it carries my lowest
+confidence.
 
-## Sequence and scope
+Two conventions rest on almost nothing: which invoice of a reused id is the wrong one
+(five examples), and whether an out-of-term date is also reported as post-dated (two). A
+description for a service not in the contract can also hit a real price by chance, which
+two signals guard, tuned on twelve examples.
 
-The order was: the four table contracts with regex, the pricing engine and the
-description matching, hospital 1 to a clean score, hospital 2 with a model, then the model
-comparison, the question-answering evaluation, and the checks above. The submission was
-finished before most of the evaluation work started; everything after it is evidence for
-it rather than part of it.
+Hospital 2 defines a Service Day as 07:00 to 06:59 and the data has no times. I read the
+recorded date as the start and wrote down what would prove me wrong. Measured afterwards,
+4 of 335 weekend lines mismatched, which is noise. The reading held, but it was a reading.
 
-Two things I left out on purpose: what an audit team needs around the audit, such as flag
-states with a history and monitoring of the two label-free numbers, which I would list
-rather than build inside a take-home; and calibrating confidence, which needs outcomes
-beyond hospital 1.
+Confidence is an ordering for review, not a probability, since there is nothing to
+calibrate against beyond hospital 1. So I put two limits in: no flag is reported as
+certain, because even an arithmetic finding is a claim about an invoice whose key I
+reconstructed, and the two convention-fitted categories are capped at 0.90.
 
-## With another week
+## What I left out, and what I would do next
 
-Re-read a sample by hand: twenty high-confidence flags and twenty low-confidence clean
-invoices, blind, to see whether the ordering matches what a person would say. Cheapest
-check left and the one I most want.
+The order was the table contracts, the engine and the matching, hospital 1, then hospital
+2 with a model, then the model comparison, the question evaluation, and the checks above.
+The submission was finished before most of the evaluation started.
 
-Turn on schema enforcement for the prose extraction; I left it off so the prompt change
-could be measured alone. Replace the regex readers with the model and keep regex as the
-test, since the next contract will not be a table. Run the question-answering test on more
-than one model. And make it live: it is batch by design, because cumulative discounts
-depend on earlier invoices, so a deployment would stream lines in service date order
-without changing the engine.
+I left out what an audit team needs around the audit, such as flag states with a history
+and monitoring of the two label-free numbers. I would list those rather than build them
+inside a take-home. I also did not calibrate confidence, which needs outcomes beyond
+hospital 1.
+
+Next I would re-read a sample by hand, twenty high-confidence flags and twenty
+low-confidence clean invoices, blind, to see whether my ordering matches a person's. Then
+turn on schema enforcement for the prose extraction, which I left off so the prompt change
+could be measured alone, and replace the regex readers with the model, keeping regex only
+as the test, because the next contract will not be a table.
 
 ## Tools
 
-The ideas and the architecture are mine. I discussed them with Claude (Anthropic) and
-used it, under my direction and with my review of every change, to write and review code,
-run the evaluations and draft the documents. Development and the model runs were done in
-Google Colab and on my own machine. Every prompt is in `prompts/` with a changelog of what
-it was measured against, and every model reply is in `runs/`.
+The ideas and the architecture are mine. I worked through them in discussion with Claude
+(Anthropic) and used it, under my direction and with my review of every change, to write
+and review code, run the evaluations and draft the documents. Development and the model
+runs were in Google Colab and on my machine. Every prompt is in `prompts/` with a
+changelog of what it was measured against, and every model reply is in `runs/`.
